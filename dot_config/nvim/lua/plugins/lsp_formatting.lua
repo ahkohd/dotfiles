@@ -40,7 +40,7 @@ return {
 				},
 				command,
 				stdin = true,
-				args = { "format", "--stdin-file-path", "$FILENAME", "--config-path", cwd },
+				args = { "format", "--stdin-file-path", "$FILENAME", "--config-path=" .. cwd },
 				cwd,
 			}
 		end
