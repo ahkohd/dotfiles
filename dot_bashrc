@@ -44,3 +44,6 @@ alias cat='bat --theme="Embark"'
 
 # workaround to make GPG work with pinentry
 export GPG_TTY=$(tty)
+
+# setup fnm
+eval "$(fnm env --use-on-cd)"
