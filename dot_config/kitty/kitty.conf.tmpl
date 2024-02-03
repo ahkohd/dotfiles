@@ -6,5 +6,10 @@ bold_italic_font BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Cod
 
 window_padding_width 20
 
+{{ if eq .chezmoi.os "darwin" }}
 include embark-theme.conf
-#include no-clown-fiesta-theme.conf
+{{ else if eq .chezmoi.os "linux" }}
+# linux
+{{ else }}
+include no-clown-fiesta-theme.conf
+{{ end }}
