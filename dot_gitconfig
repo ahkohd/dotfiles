@@ -1,0 +1,48 @@
+[user]
+name = Victor Aremu
+email = me@victorare.mu
+
+[github]
+user = ahkohd
+
+[url "https://"]
+insteadOf = git://
+
+[url "git@github.com:"]
+insteadOf = https://github.com/
+
+[user]
+signingkey = 1F76A9056C921C8A004F63E28D43F8A176DDC6BD
+
+[commit]
+ gpgsign = true
+
+[core]
+editor = nvim
+pager = delta
+
+[interactive]
+diffFilter = delta --color-only
+
+[delta]
+navigate = true    # use n and N to move between diff sections
+light = false
+side-by-side = true
+line-numbers = false
+syntax-theme = Embark
+minus-style = syntax "#32283D"
+minus-non-emph-style = syntax "#32283D"
+minus-emph-style= syntax "#835870"
+minus-empty-line-marker-style = syntax "#32283D"
+plus-style = syntax "#2C3342"
+plus-non-emph-style = syntax "#2C3342"
+plus-emph-style= syntax "#618883"
+plus-empty-line-marker-style = syntax "#2C3342"
+line-numbers-minus-style = "#E593AE"
+line-numbers-plus-style = "#A1EFD3"
+
+[merge]
+conflictstyle = diff3
+
+[diff]
+colorMoved = default

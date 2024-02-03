@@ -1,0 +1,28 @@
+-- luacheck: globals vim
+
+return {
+	"rcarriga/nvim-notify",
+	event = "VeryLazy",
+	config = function()
+		local icons = require("core.ui.icons")
+
+		require("notify").setup({
+			background_colour = "#000000",
+			render = "minimal",
+			stages = "static",
+			top_down = false,
+			icons = {
+				ERROR = icons.error,
+				WARN = icons.warn,
+				INFO = icons.info,
+			},
+		})
+
+		vim.keymap.set("n", "<leader>nc", function()
+			require("noice").cmd("dismiss")
+		end)
+		vim.keymap.set("n", "<leader>nh", function()
+			require("noice").cmd("telescope")
+		end)
+	end,
+}

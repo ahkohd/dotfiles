@@ -1,0 +1,45 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+PS1='[\u@\h \W]\$ '
+
+# SSH Agent bind address
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+export PATH="/usr/local/bin:$PATH"
+
+export PATH=$PATH:~/.cargo/bin
+
+# Homebrew for macOS
+export PATH="/opt/homebrew/bin:$PATH"
+
+export PATH="$HOME/neovim/bin:$PATH"
+
+# Fly.io CLI
+export FLYCTL_INSTALL="/home/var/.fly"
+
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+export EDITOR=nvim
+
+alias cm=chezmoi
+alias dev=developer/personal
+alias grep='grep --color=auto'
+alias gs="git status"
+alias gp="git pull"
+alias gP="git push"
+alias wm=Hyprland
+alias ls='exa --icons'
+alias pbcopy=wl-copy
+alias pbpaste=wl-paste
+alias z=zrok
+alias cat='bat --theme="Embark"'
+
+. "$HOME/.cargo/env"
+
+# workaround to make GPG work with pinentry
+export GPG_TTY=$(tty)

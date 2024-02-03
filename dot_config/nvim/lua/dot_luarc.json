@@ -1,0 +1,37 @@
+{
+    "workspace.library": [
+        "/home/var/.config/nvim",
+        "/home/var/.local/share/nvim/lazy/lazy.nvim",
+        "/home/var/.local/share/nvim/lazy/rust-tools.nvim",
+        "/home/var/.local/share/nvim/lazy/cmp-nvim-lsp",
+        "/home/var/.local/share/nvim/lazy/lspconfig",
+        "/home/var/.local/share/nvim/lazy/marks.nvim",
+        "/home/var/.local/share/nvim/lazy/heirline",
+        "/home/var/.local/share/nvim/lazy/gitsigns",
+        "/home/var/.local/share/nvim/lazy/hydra.nvim",
+        "/home/var/.local/share/nvim/lazy/luasnip",
+        "/home/var/.local/share/nvim/lazy/copilot-cmp",
+        "/home/var/.local/share/nvim/lazy/copilot",
+        "/home/var/.local/share/nvim/lazy/surround.nvim",
+        "/home/var/.local/share/nvim/lazy/nvim-web-devicons",
+        "/home/var/.local/share/nvim/lazy/oil",
+        "/home/var/.local/share/nvim/lazy/vim-tmux-navigator",
+        "/home/var/.local/share/nvim/lazy/tokyonight.nvim",
+        "/usr/share/nvim/runtime",
+        "/usr/share/nvim/runtime/pack/dist/opt/matchit",
+        "/usr/lib/nvim",
+        "/home/var/.local/share/nvim/lazy/cmp-nvim-lsp/after",
+        "/home/var/.config/nvim/after",
+        "/home/var/.local/state/nvim/lazy/readme",
+        "${3rd}/luassert/library"
+    ],
+    "workspace.checkThirdParty": false,
+    "diagnostics.globals": [
+        "vim",
+        "packer_plugins",
+        "api",
+        "fn",
+        "loop",
+        "_btop_toggle"
+    ]
+}

@@ -1,0 +1,32 @@
+shell:
+  program: zsh
+env:
+  TERM: alacritty
+window:
+  decorations: {{ ternary "Buttonless" "None" (eq .chezmoi.os "darwin") }}
+  dimensions:
+    columns: 140
+    lines: 38
+  opacity: 1
+  padding:
+    x: 10
+    y: 5
+font:
+  size: 14
+  normal:
+    family: "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons"
+    style: Regular
+  bold:
+    family: "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons"
+    style: Bold
+  italic:
+    family: "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons"
+    style: Italic
+  bold_italic:
+    family: "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons"
+    style: Bold Italic
+  offset:
+    x: 0
+    y: 0
+import:
+  - ~/.config/alacritty/themes/embark.yml

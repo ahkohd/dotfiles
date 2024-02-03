@@ -1,0 +1,54 @@
+colors:
+  primary:
+    background: '0x151515'
+    foreground: '0xE1E1E1'
+  normal:
+    black: '0x151515'
+    red: '0xb46958'
+    green: '0x90A959'
+    yellow: '0xF4BF75'
+    blue: '0x7b909d'
+    magenta: '0xAA759F'
+    cyan: '0x88afa2'
+    white: '0xE1E1E1'
+  bright:
+    black: '0x303030'
+    red: '0x984936'
+    green: '0xB4D46C'
+    yellow: '0xab8550'
+    blue: '0xA2B5C1'
+    magenta: '0xAA749F'
+    cyan: '0xA2B5C1'
+    white: '0xffffff'
+  dim:
+    black: '0x171717'
+    red: '0x7E97AB'
+    green: '0x576f82'
+    yellow: '0x727272'
+    blue: '0x202020'
+    magenta: '0xAA749F'
+    cyan: '0x7E97AB'
+    white: '0xAFAFAF'
+  cursor:
+    text: '0x151515'
+    cursor: '0x575757'
+  vi_mode_cursor:
+    text: '0x151515'
+    cursor: '0xF4BF75'
+  selection:
+    text: '0xE1E1E1'
+    background: '0x373737'
+  search:
+    matches:
+      foreground: '0xE1E1E1'
+      background: '0x727272'
+    focused_match:
+      foreground: '0xE1E1E1'
+      background: '0x373737'
+  hints:
+    start:
+      foreground: '0xE1E1E1'
+      background: '0x727272'
+    end:
+      foreground: '0xE1E1E1'
+      background: '0x373737'

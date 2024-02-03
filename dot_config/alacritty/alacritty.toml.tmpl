@@ -1,0 +1,42 @@
+import = ["/home/var/.config/alacritty/themes/embark.toml"]
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 14
+
+[font.bold]
+family = "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons"
+style = "Bold"
+
+[font.bold_italic]
+family = "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons"
+style = "Bold Italic"
+
+[font.italic]
+family = "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons"
+style = "Italic"
+
+[font.normal]
+family = "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[shell]
+program = "zsh"
+
+[window]
+opacity = 1
+decorations = {{ ternary "Buttonless" "None" (eq .chezmoi.os "darwin") }}
+
+[window.dimensions]
+columns = 140
+lines = 38
+
+[window.padding]
+x = 10
+y = 5
