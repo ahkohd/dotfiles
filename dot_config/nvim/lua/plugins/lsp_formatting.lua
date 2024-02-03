@@ -5,13 +5,13 @@ return {
 	event = { "BufWritePre" },
 	opts = function()
 		local function pick_web_formatter()
-			local root_dir = require("core.utils.project").root_dir()
-			if root_dir then
-				local biome_config_path = root_dir .. "/biome.json"
-				if root_dir and vim.fn.filereadable(biome_config_path) == 1 then
-					return { "biome" }
-				end
+			local root_dir = require("core.utils.project").root_dir() or "."
+			local biome_config_path = root_dir .. "/biome.json"
+
+			if vim.fn.filereadable(biome_config_path) == 1 then
+				return { "biome" }
 			end
+
 			return { "prettierd", "prettier" }
 		end
 
