@@ -5,8 +5,8 @@ return {
 	event = { "BufWritePre" },
 	opts = function()
 		local function pick_web_formatter()
-			local root_dir = require("core.utils.project").root_dir() or "."
-			local biome_config_path = root_dir .. "/biome.json"
+			local cwd = require("conform.util").root_file({ ".editorconfig", "package.json" })
+			local biome_config_path = cwd .. "/biome.json"
 
 			if vim.fn.filereadable(biome_config_path) == 1 then
 				return { "biome" }
