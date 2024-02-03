@@ -28,18 +28,19 @@ return {
 
 		local custom_biome_formatter = function()
 			local util = require("conform.util")
+			local command = util.from_node_modules("biome")
 			local cwd = util.root_file({
 				"biome.json",
-			})
+			}) or ""
 
 			return {
 				meta = {
 					url = "https://github.com/biomejs/biome",
 					description = "A toolchain for web projects, aimed to provide functionalities to maintain them.",
 				},
-				command = util.from_node_modules("biome"),
+				command,
 				stdin = true,
-				args = { "--config-path", cwd, "format", "--stdin-file-path", "$FILENAME" },
+				args = { "format", "--stdin-file-path", "$FILENAME", "--config-path", cwd },
 				cwd,
 			}
 		end
