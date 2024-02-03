@@ -27,11 +27,10 @@ return {
 		end, { range = true })
 
 		local custom_biome_formatter = function()
-			local util = require("conform.util")
-			local command = util.from_node_modules("biome")
-			local cwd = util.root_file({
+			local command = require("conform.util").from_node_modules("biome")
+			local cwd = require("core.utils.project").root_file({
 				"biome.json",
-			}) or ""
+			}) or "./"
 
 			return {
 				meta = {
