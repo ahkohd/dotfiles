@@ -108,6 +108,8 @@ eval "$(starship init zsh)"
 
 eval "$(op completion zsh)"; compdef _op op
 
+eval "$(fnm env --use-on-cd)"
+
 # pnpm
 export PNPM_HOME="/home/var/.local/share/pnpm"
 case ":$PATH:" in
