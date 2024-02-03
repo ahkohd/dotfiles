@@ -5,10 +5,9 @@ return {
 	event = { "BufWritePre" },
 	opts = function()
 		local function pick_web_formatter()
-			local cwd = require("core.utils.project").root_file({ ".editorconfig", "package.json" })
-			local biome_config_path = cwd .. "/biome.json"
+			local cwd = require("core.utils.project").root_file({ "biome.json" })
 
-			if vim.fn.filereadable(biome_config_path) == 1 then
+			if cwd then
 				return { "biome" }
 			end
 
@@ -27,6 +26,11 @@ return {
 			require("conform").format({ async = true, lsp_fallback = true, range = range })
 		end, { range = true })
 
+    local util = require("conform.util")
+    local biome_config = util.root_file({
+      "biome.json",
+    })
+
 		return {
 			formatters_by_ft = {
 				html = pick_web_formatter(),
@@ -43,6 +47,20 @@ return {
 				["*"] = {},
 				["_"] = { "trim_whitespace" },
 			},
+      formatters = {
+        custom_biome = {
+          meta = {
+            url = "https://github.com/biomejs/biome",
+            description = "A toolchain for web projects, aimed to provide functionalities to maintain them.",
+          },
+          command = util.from_node_modules("biome"),
+          stdin = true,
+          args = { "format", "--stdin-file-path", "$FILENAME", "--config-path", biome_config },
+          cwd = util.root_file({
+            "biome.json",
+          })
+        }
+      },
 			format_on_save = function(bufnr)
 				-- Disable autoformat for files in a certain path
 				local bufname = vim.api.nvim_buf_get_name(bufnr)
