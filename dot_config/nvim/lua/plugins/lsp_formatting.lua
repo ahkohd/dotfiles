@@ -24,7 +24,7 @@ return {
 					["end"] = { args.line2, end_line:len() },
 				}
 			end
-			require("conform").format({ async = true, lsp_fallback = false, range = range })
+			require("conform").format({ async = true, lsp_fallback = true, range = range })
 		end, { range = true })
 
 		return {
@@ -40,7 +40,6 @@ return {
 				yaml = { "yamlfmt" },
 				toml = { "taplo" },
 				lua = { "stylua" },
-				rust = { "rustfmt" },
 				["*"] = {},
 				["_"] = { "trim_whitespace" },
 			},
@@ -51,7 +50,7 @@ return {
 					return
 				end
 
-				return { timeout_ms = 1000, lsp_fallback = false }
+				return { timeout_ms = 1000, lsp_fallback = true }
 			end,
 		}
 	end,
