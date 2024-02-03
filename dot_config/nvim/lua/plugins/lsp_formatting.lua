@@ -34,6 +34,8 @@ return {
 				css = pick_web_formatter(),
 				javascript = pick_web_formatter(),
 				typescript = pick_web_formatter(),
+				javascriptreact = pick_web_formatter(),
+				typescriptreact = pick_web_formatter(),
 				markdown = pick_web_formatter(),
 				yaml = { "yamlfmt" },
 				toml = { "taplo" },
