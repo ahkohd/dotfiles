@@ -29,9 +29,9 @@ return {
 		local custom_biome_formatter = function()
       local util = require("conform.util")
 			local command = util.from_node_modules("biome")
-			local config_dir = util.root_file({
+			local config_dir = require("core.utils.project").root_file({
 				"biome.json",
-			})()
+			})
 
 			return {
 				meta = {
@@ -40,7 +40,7 @@ return {
 				},
 				command,
 				stdin = true,
-				args = { "format", "--stdin-file-path", "$FILENAME", "--config-path=" .. config_dir },
+				args = { "format", "--stdin-file-path", "$FILENAME", "--config-path", config_dir },
 				cwd = util.root_dir({
           "biome.json"
         }),
