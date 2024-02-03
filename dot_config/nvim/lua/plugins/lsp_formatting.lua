@@ -40,6 +40,7 @@ return {
 				yaml = { "yamlfmt" },
 				toml = { "taplo" },
 				lua = { "stylua" },
+				rust = { "rustfmt" },
 				["*"] = {},
 				["_"] = { "trim_whitespace" },
 			},
