@@ -30,7 +30,7 @@ return {
 			local command = require("conform.util").from_node_modules("biome")
 			local cwd = require("core.utils.project").root_file({
 				"biome.json",
-			}) or "./"
+			})
 
 			return {
 				meta = {
