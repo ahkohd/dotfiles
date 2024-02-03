@@ -27,6 +27,7 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export EDITOR=nvim
 
 alias cm=chezmoi
+alias cme='chezmoi edit'
 alias dev=developer/personal
 alias grep='grep --color=auto'
 alias gs="git status"
