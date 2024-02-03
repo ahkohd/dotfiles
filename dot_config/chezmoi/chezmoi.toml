@@ -1,3 +1,6 @@
+[diff]
+command = "delta"
+
 [git]
 autoCommit = true
 autoPush = true
