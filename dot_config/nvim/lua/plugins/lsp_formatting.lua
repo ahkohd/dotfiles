@@ -26,29 +26,7 @@ return {
 			require("conform").format({ async = true, lsp_fallback = true, range = range })
 		end, { range = true })
 
-		local custom_biome_formatter = function()
-      local util = require("conform.util")
-			local command = util.from_node_modules("biome")
-			local cwd = util.root_file({
-				"biome.json",
-			})
-
-			return {
-				meta = {
-					url = "https://github.com/biomejs/biome",
-					description = "A toolchain for web projects, aimed to provide functionalities to maintain them.",
-				},
-				command,
-				stdin = true,
-				args = { "format", "--stdin-file-path", "$FILENAME", "--config-path", "$BIOME_CONFIG_PATH" },
-        env = function(ctx)
-          return {
-            BIOME_CONFIG_PATH = cwd(ctx),
-          }
-        end,
-				cwd,
-			}
-		end
+		local util = require("conform.util")
 
 		return {
 			formatters_by_ft = {
@@ -67,7 +45,30 @@ return {
 				["_"] = { "trim_whitespace" },
 			},
 			formatters = {
-				custom_biome = custom_biome_formatter(),
+				custom_biome = {
+					meta = {
+						url = "https://github.com/biomejs/biome",
+						description = "A toolchain for web projects, aimed to provide functionalities to maintain them.",
+					},
+					command = util.from_node_modules("biome"),
+					stdin = true,
+					args = function(self, ctx)
+						local config_path = require("conform.util").root_file({
+							"biome.json",
+						})(self, ctx)
+
+						return {
+							"format",
+							"--stdin-file-path",
+							"$FILENAME",
+							"--config-path",
+							config_path,
+						}
+					end,
+					cwd = require("conform.util").root_file({
+						"biome.json",
+					}),
+				},
 			},
 			format_on_save = function(bufnr)
 				-- Disable autoformat for files in a certain path
