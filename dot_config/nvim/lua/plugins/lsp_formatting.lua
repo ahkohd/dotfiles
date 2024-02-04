@@ -8,7 +8,7 @@ return {
 			local cwd = require("core.utils.project").root_file({ "biome.json" })
 
 			if cwd then
-				return { "custom_biome" }
+				return { "biome" }
 			end
 
 			return { "prettierd", "prettier" }
