@@ -27,8 +27,8 @@ diffFilter = delta --color-only
 [delta]
 navigate = true    # use n and N to move between diff sections
 light = false
-side-by-side = true
-line-numbers = false
+side-by-side = false
+line-numbers = true
 syntax-theme = Embark
 minus-style = syntax "#32283D"
 minus-non-emph-style = syntax "#32283D"
