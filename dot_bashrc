@@ -31,7 +31,7 @@ alias cme='chezmoi edit'
 alias cma='chezmoi apply'
 alias cmd='chezmoi diff'
 alias cmu='chezmoi update'
-alias dev=developer/personal
+alias dev=~/developer/personal
 alias grep='grep --color=auto'
 alias gs="git status"
 alias gp="git pull"
