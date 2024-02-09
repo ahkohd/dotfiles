@@ -26,7 +26,7 @@ return {
 				laststatus = 0,
 			},
 			alacritty = {
-				enabled = true,
+				enabled = false,
 				font = 14,
 			},
 			tmux = {
