@@ -9,11 +9,16 @@ return {
 		},
 	},
 	opts = {
-		options = {
-			number = false,
-			signcolumn = "no",
-			cursorline = false,
-			relativenumber = false,
+		window = {
+			options = {
+				signcolumn = "no",
+				number = false,
+				relativenumber = false,
+				cursorline = false,
+				cursorcolumn = false,
+				foldcolumn = "0",
+				list = false,
+			},
 		},
 		plugins = {
 			options = {
