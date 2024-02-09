@@ -10,6 +10,7 @@ return {
 	},
 	opts = {
 		window = {
+			backdrop = 1,
 			options = {
 				signcolumn = "no",
 				number = false,
