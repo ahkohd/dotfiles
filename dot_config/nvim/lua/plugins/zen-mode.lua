@@ -17,7 +17,6 @@ return {
 				cursorline = false,
 				cursorcolumn = false,
 				foldcolumn = "0",
-				list = false,
 			},
 		},
 		plugins = {
