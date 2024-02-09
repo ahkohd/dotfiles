@@ -7,6 +7,10 @@ return {
 	priority = 1000,
 	config = function()
 		vim.cmd("colorscheme embark")
-		vim.cmd("highlight link NvimDarkGrey1 Normal")
+
+		-- Astral1: #cbe3e7
+		-- Space1: #1e1c31
+
+		vim.cmd("highlight NvimDarkGrey1 guifg=#cbe3e7 guibg=#1e1c31")
 	end,
 }
