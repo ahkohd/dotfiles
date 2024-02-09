@@ -1,11 +1,19 @@
 return {
 	"folke/zen-mode.nvim",
 	event = "BufRead",
+	keys = {
+		{
+			"<space>z",
+			"<cmd>:ZenMode<CR>",
+			desc = "Toggle Zen mode",
+		},
+	},
 	opts = {
 		options = {
 			number = false,
 			signcolumn = "no",
-			cursorline = true,
+			cursorline = false,
+			relativenumber = false,
 		},
 		plugins = {
 			options = {
