@@ -9,7 +9,5 @@ window_padding_width 20
 {{ if eq .chezmoi.os "darwin" }}
 include embark-theme.conf
 {{ else if eq .chezmoi.os "linux" }}
-# linux
-{{ else }}
 include no-clown-fiesta-theme.conf
 {{ end }}
