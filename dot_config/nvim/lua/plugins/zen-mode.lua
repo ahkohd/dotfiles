@@ -2,9 +2,14 @@ return {
 	"folke/zen-mode.nvim",
 	event = "BufRead",
 	opts = {
-		alacritty = {
-			enabled = true,
-			font = 14,
+		plugins = {
+			alacritty = {
+				enabled = true,
+				font = 14,
+			},
+			tmux = {
+				enabled = true,
+			},
 		},
 	},
 }
