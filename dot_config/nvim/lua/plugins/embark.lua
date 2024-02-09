@@ -7,6 +7,6 @@ return {
 	priority = 1000,
 	config = function()
 		vim.cmd("colorscheme embark")
-		vim.cmd([[autocmd ColorScheme * highlight link NormalFloat Normal]])
+		vim.cmd("highlight link NvimDarkGrey1 Normal")
 	end,
 }
