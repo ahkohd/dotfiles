@@ -28,6 +28,7 @@ return {
 				code_action = "",
 			},
 			symbol_in_winbar = {
+				enable = false,
 				separator = " → ",
 			},
 			lightbulb = {
