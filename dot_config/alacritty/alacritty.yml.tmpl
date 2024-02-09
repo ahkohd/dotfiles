@@ -12,7 +12,7 @@ window:
     x: 10
     y: 5
 font:
-  size: 14
+  size: {{ ternary 16 14 (eq .chezmoi.os "darwin") }}
   normal:
     family: "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons"
     style: Regular
