@@ -1,4 +1,10 @@
 return {
 	"folke/zen-mode.nvim",
-	opts = {},
+	event = "BufRead",
+	opts = {
+		alacritty = {
+			enabled = true,
+			font = 14,
+		},
+	},
 }
