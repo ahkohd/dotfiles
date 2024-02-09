@@ -4,7 +4,7 @@ import = ["/home/var/.config/alacritty/themes/embark.toml"]
 TERM = "alacritty"
 
 [font]
-size = 14
+size = {{ ternary 18 14 (eq .chezmoi.os "darwin") }}
 
 [font.bold]
 family = "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons"
