@@ -43,7 +43,7 @@ alias pbpaste=wl-paste
 alias z=zrok
 alias cat='bat --theme="Embark"'
 alias f="fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}'"
-aias fzo="open '$(fzf)'"
+alias fo="open '$(fzf)'"
 
 . "$HOME/.cargo/env"
 
@@ -52,5 +52,3 @@ export GPG_TTY=$(tty)
 
 # setup fnm
 eval "$(fnm env --use-on-cd)"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
