@@ -132,3 +132,5 @@ bindkey ^l _sgpt_zsh
 
 # Created by `pipx` on 2023-10-13 23:26:04
 export PATH="$PATH:/home/var/.local/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
