@@ -51,10 +51,7 @@ vim.cmd("autocmd InsertLeave * set nopaste")
 vim.o.formatoptions = vim.o.formatoptions .. "r"
 
 -- Highlights
-vim.wo.cursorline = true
-
--- Uncomment if you want to use this option
--- vim.wo.cursorcolumn = true
+vim.opt.cursorline = false
 
 -- Extras
 vim.o.exrc = true
