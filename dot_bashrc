@@ -42,6 +42,8 @@ alias pbcopy=wl-copy
 alias pbpaste=wl-paste
 alias z=zrok
 alias cat='bat --theme="Embark"'
+alias f="fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}'"
+aias fzo="open '$(fzf)'"
 
 . "$HOME/.cargo/env"
 
