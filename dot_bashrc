@@ -45,6 +45,7 @@ alias cat='bat --theme="Embark"'
 alias f="fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}'"
 alias fo='open "$(f)"'
 alias fv='nvim "$(f)"'
+alias fs='history | fzf'
 alias x=exit
 
 . "$HOME/.cargo/env"
