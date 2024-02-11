@@ -47,7 +47,7 @@ alias f="fzf --preview 'bat --theme=Embark --color=always --style=header,grid --
 alias fo='open "$(f)"'
 alias fe='nvim "$(f)"'
 alias x=exit
-alias cht=~/.config/scripts/tmux-cht.sh
+alias cht=~/.config/bin/.local/scripts/tmux-cht.sh
 
 
 . "$HOME/.cargo/env"
