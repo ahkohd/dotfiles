@@ -1,4 +1,5 @@
 # Setup fzf
+{{ if eq .chezmoi.os "darwin" }}
 # ---------
 if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
   PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
@@ -11,3 +12,5 @@ source "/opt/homebrew/opt/fzf/shell/completion.bash"
 # Key bindings
 # ------------
 source "/opt/homebrew/opt/fzf/shell/key-bindings.bash"
+{{ else if eq .chezmoi.os "linux" }}
+{{ end }}
