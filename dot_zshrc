@@ -110,7 +110,14 @@ eval "$(op completion zsh)"; compdef _op op
 
 eval "$(fnm env --use-on-cd)"
 
+
+
+
+# setup zoxide
 eval "$(zoxide init zsh)"
+
+alias cd=z
+alias zz='z -'
 
 # pnpm
 export PNPM_HOME="/home/var/.local/share/pnpm"
