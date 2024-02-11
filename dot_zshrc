@@ -110,6 +110,8 @@ eval "$(op completion zsh)"; compdef _op op
 
 eval "$(fnm env --use-on-cd)"
 
+eval "$(zoxide init zsh)"
+
 # pnpm
 export PNPM_HOME="/home/var/.local/share/pnpm"
 case ":$PATH:" in
