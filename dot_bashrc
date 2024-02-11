@@ -43,10 +43,8 @@ alias pbpaste=wl-paste
 alias cat='bat --theme="Embark"'
 alias f="fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}'"
 alias fo='open "$(f)"'
-alias fv='nvim "$(f)"'
+alias fe='nvim "$(f)"'
 alias x=exit
-alias cd=z
-alias zz='z -'
 
 
 . "$HOME/.cargo/env"
