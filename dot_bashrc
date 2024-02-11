@@ -40,13 +40,14 @@ alias wm=Hyprland
 alias ls='exa --icons'
 alias pbcopy=wl-copy
 alias pbpaste=wl-paste
-alias z=zrok
 alias cat='bat --theme="Embark"'
 alias f="fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}'"
 alias fo='open "$(f)"'
 alias fv='nvim "$(f)"'
-alias fs='history | fzf'
 alias x=exit
+alias cd=z
+alias z='z -'
+
 
 . "$HOME/.cargo/env"
 
