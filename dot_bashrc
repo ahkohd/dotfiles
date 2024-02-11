@@ -41,7 +41,7 @@ alias ls='exa --icons'
 alias pbcopy=wl-copy
 alias pbpaste=wl-paste
 alias cat='bat --theme="Embark"'
-alias f="fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}'"
+alias f="fzf --preview 'bat --theme=Embark --color=always --style=header,grid --line-range :500 {}'"
 alias fo='open "$(f)"'
 alias fe='nvim "$(f)"'
 alias x=exit
