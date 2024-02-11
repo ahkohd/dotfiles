@@ -76,6 +76,8 @@ plugins=(git zsh-autosuggestions fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
+eval "$(zoxide init zsh)"
+
 source ~/.bashrc
 
 # User configuration
@@ -109,8 +111,6 @@ eval "$(starship init zsh)"
 eval "$(op completion zsh)"; compdef _op op
 
 eval "$(fnm env --use-on-cd)"
-
-eval "$(zoxide init zsh)"
 
 # pnpm
 export PNPM_HOME="/home/var/.local/share/pnpm"
