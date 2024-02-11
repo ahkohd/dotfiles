@@ -38,6 +38,8 @@ alias gp="git pull"
 alias gP="git push"
 alias wm=Hyprland
 alias ls='exa --icons'
+alias ll='exa -alh'
+alias tree='exa --tree'
 alias pbcopy=wl-copy
 alias pbpaste=wl-paste
 alias cat='bat --theme="Embark"'
