@@ -54,3 +54,6 @@ export GPG_TTY=$(tty)
 
 # setup fnm
 eval "$(fnm env --use-on-cd)"
+
+# setup fzf
+[ -z "$ZSH_NAME" ] && [ -f ~/.fzf.bash ] && source ~/.fzf.bash
