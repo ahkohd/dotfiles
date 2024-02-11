@@ -46,7 +46,7 @@ alias fo='open "$(f)"'
 alias fv='nvim "$(f)"'
 alias x=exit
 alias cd=z
-alias z='z -'
+alias zz='z -'
 
 
 . "$HOME/.cargo/env"
