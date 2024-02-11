@@ -36,7 +36,7 @@ return {
 			["<space>x"] = {
 				name = "Sessions",
 			},
-			c = {
+			["<space>c"] = {
 				name = "ChatGPT",
 				c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
 				e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
