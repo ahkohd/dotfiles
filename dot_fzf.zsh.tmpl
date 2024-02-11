@@ -12,5 +12,18 @@ source "/opt/homebrew/opt/fzf/shell/completion.zsh"
 # Key bindings
 # ------------
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+
 {{ else if eq .chezmoi.os "linux" }}
+# ---------
+if [[ ! "$PATH" == */home/var/.fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/home/var/.fzf/bin"
+fi
+
+# Auto-completion
+# ---------------
+source "/home/var/.fzf/shell/completion.zsh"
+
+# Key bindings
+# ------------
+source "/home/var/.fzf/shell/key-bindings.zsh"
 {{ end }}
