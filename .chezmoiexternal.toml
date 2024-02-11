@@ -18,10 +18,3 @@ url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
 exact = true
 stripComponents = 1
 refreshPeriod = "168h"
-
-[".oh-my-zsh/custom/plugins/fzf-zsh-plugin"]
-type = "archive"
-url = "https://github.com/unixorn/fzf-zsh-plugin/archive/master.tar.gz"
-exact = true
-stripComponents = 1
-refreshPeriod = "168h"
