@@ -53,7 +53,7 @@ alias cht=~/.config/bin/.local/scripts/tmux-cht.sh
 . "$HOME/.cargo/env"
 
 # workaround to make GPG work with pinentry
-export GPG_TTY=$(tmux neww tty)
+export GPG_TTY=$(tmux new-window -n 'tty')
 
 # setup fnm
 eval "$(fnm env --use-on-cd)"
