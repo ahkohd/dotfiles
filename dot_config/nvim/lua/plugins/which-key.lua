@@ -36,6 +36,9 @@ return {
 			["<space>x"] = {
 				name = "Sessions",
 			},
+			["<space>l"] = {
+				name = "Pencil",
+			},
 			["<space>c"] = {
 				name = "ChatGPT",
 				c = { "<cmd>ChatGPT<CR>", "ChatGPT" },

@@ -5,11 +5,11 @@ return {
 	event = "VeryLazy",
 	keys = {
 		{
-			"<space>l",
+			"<space>lw",
 			function()
 				vim.cmd("PencilToggle")
 			end,
-			desc = "Toggle line wrap with Pencil",
+			desc = "Toggle line wrap",
 		},
 		{
 			"<space>ls",
@@ -23,7 +23,7 @@ return {
 			function()
 				vim.cmd("PencilHard")
 			end,
-			desc = "Enable hard line wrap",
+			desc = "Enable hard line breaks",
 		},
 	},
 	config = function() end,
