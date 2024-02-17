@@ -15,7 +15,7 @@ return {
 		obsidian.setup({
 			dir = "~/vaults/brain",
 			daily_notes = {
-				folder = "notes/dailies",
+				folder = "02 Journals",
 				date_format = "%Y-%m-%d",
 				alias_format = "%B %-d, %Y",
 			},
