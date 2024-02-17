@@ -6,24 +6,24 @@ return {
 	keys = {
 		{
 			"<space>l",
-			description = "Pencil",
 			function()
 				vim.cmd("PencilToggle")
 			end,
+			desc = "Toggle line wrap with Pencil",
 		},
 		{
 			"<space>ls",
-			description = "PencilSoft",
 			function()
 				vim.cmd("PencilSoft")
 			end,
+			desc = "Enable soft line wrap",
 		},
 		{
 			"<space>lh",
-			description = "PencilHard",
 			function()
 				vim.cmd("PencilHard")
 			end,
+			desc = "Enable hard line wrap",
 		},
 	},
 	config = function() end,
