@@ -25,6 +25,15 @@ return {
 			end,
 			desc = "Enable hard line breaks",
 		},
+		{
+			"<space>lt",
+			function()
+				vim.cmd("ZenMode")
+				vim.cmd("Twilight")
+				vim.cmd("Pencil")
+			end,
+			desc = "Toggle Writer mode",
+		},
 	},
 	config = function() end,
 }
