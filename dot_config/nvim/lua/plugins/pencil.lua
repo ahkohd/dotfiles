@@ -28,9 +28,9 @@ return {
 		{
 			"<space>lt",
 			function()
+				vim.cmd("TwilightEnable")
+				vim.cmd("PencilSoft")
 				vim.cmd("ZenMode")
-				vim.cmd("Twilight")
-				vim.cmd("Pencil")
 			end,
 			desc = "Toggle Writer mode",
 		},
