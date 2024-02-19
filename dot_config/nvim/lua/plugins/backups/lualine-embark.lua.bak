@@ -7,27 +7,6 @@ return {
 	config = function()
 		local icons = require("core.ui.icons")
 
-		-- local trans_colors = {
-		-- 	bg = nil,
-		-- 	fg = "#D0D0D0",
-		-- }
-		-- local transparent_theme = {
-		-- 	normal = {
-		-- 		a = { fg = trans_colors.fg, bg = trans_colors.bg, gui = "bold" },
-		-- 		b = { fg = trans_colors.fg, bg = trans_colors.bg },
-		-- 		c = { fg = trans_colors.fg, bg = trans_colors.bg },
-		-- 	},
-		-- 	insert = { a = { fg = trans_colors.fg, bg = trans_colors.bg, gui = "bold" } },
-		-- 	visual = { a = { fg = trans_colors.fg, bg = trans_colors.bg, gui = "bold" } },
-		-- 	command = { a = { fg = trans_colors.fg, bg = trans_colors.bg, gui = "bold" } },
-		-- 	replace = { a = { fg = trans_colors.fg, bg = trans_colors.bg, gui = "bold" } },
-		-- 	inactive = {
-		-- 		a = { fg = trans_colors.fg, bg = trans_colors.bg },
-		-- 		b = { fg = trans_colors.fg, bg = trans_colors.bg },
-		-- 		c = { fg = trans_colors.fg, bg = trans_colors.bg },
-		-- 	},
-		-- }
-
 		local embark_colors = {
 			space0 = "#100e23",
 			space1 = "#191729",
@@ -161,11 +140,9 @@ return {
 		local opts = {
 			options = {
 				icons_enabled = true,
-				-- theme = "embark",
 				theme = embark,
 				component_separators = "",
 				section_separators = { left = "", right = " " },
-				-- section_separators = { left = "", right = "" },
 				disabled_filetypes = disable,
 				ignore_focus = ignore,
 				always_divide_middle = true,
