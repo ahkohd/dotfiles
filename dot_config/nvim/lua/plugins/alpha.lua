@@ -18,9 +18,9 @@ return {
 
 			local function apply_gradient_hl(text)
 				-- no clown fiesta
-				local gradient = require("core.ui.alpha.utils").create_gradient("#E1E1E1", "#202020", #text)
+				-- local gradient = require("core.ui.alpha.utils").create_gradient("#E1E1E1", "#202020", #text)
 				-- embark
-				-- local gradient = require("core.ui.alpha.utils").create_gradient("#91ddff", "#cbe3e7", #text)
+				local gradient = require("core.ui.alpha.utils").create_gradient("#91ddff", "#cbe3e7", #text)
 
 				local lines = {}
 				for i, line in ipairs(text) do
