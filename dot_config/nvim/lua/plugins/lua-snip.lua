@@ -3,10 +3,9 @@
 return {
 	"L3MON4D3/LuaSnip",
 	version = "v2.*",
-	after = "nvim-cmp",
 	build = "make install_jsregexp",
-	event = { "BufReadPre", "BufNewFile" },
 	dependencies = { "rafamadriz/friendly-snippets" },
+	event = "VeryLazy",
 	config = function()
 		require("luasnip.loaders.from_vscode").lazy_load()
 
