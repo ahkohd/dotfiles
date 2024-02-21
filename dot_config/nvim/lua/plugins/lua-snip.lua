@@ -4,10 +4,15 @@ return {
 	"L3MON4D3/LuaSnip",
 	version = "v2.*",
 	build = "make install_jsregexp",
-	dependencies = { "rafamadriz/friendly-snippets" },
+	dependencies = {
+		"saadparwaiz1/cmp_luasnip",
+		"rafamadriz/friendly-snippets",
+	},
 	event = "VeryLazy",
 	config = function()
 		require("luasnip.loaders.from_vscode").lazy_load()
+
+		require("cmp_luasnip")
 
 		-- press <Tab> to expand or jump in a snippet. These can also be mapped separately
 		-- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
