@@ -1,7 +1,7 @@
 -- luacheck: globals vim
 
 return {
-	"embark-theme/vim",
+	"ahkohd/embark-vim",
 	name = "embark",
 	lazy = false,
 	priority = 1000,
