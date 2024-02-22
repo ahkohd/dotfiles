@@ -1,4 +1,4 @@
-vim.o.guifont = "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons:h17"
+vim.o.guifont = "BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons:h{{ ternary "17" "15" (eq .chezmoi.os "darwin") }}"
 
 vim.g.neovide_refresh_rate = 120
 
