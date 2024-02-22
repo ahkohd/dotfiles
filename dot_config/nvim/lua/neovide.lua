@@ -5,3 +5,5 @@ vim.g.neovide_refresh_rate = 120
 vim.g.neovide_confirm_quit = false
 
 vim.g.neovide_cursor_vfx_mode = "sonicboom"
+
+vim.g.neovide_window_blurred = true
