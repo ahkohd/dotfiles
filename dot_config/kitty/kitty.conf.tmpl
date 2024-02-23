@@ -7,7 +7,7 @@ bold_italic_font BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Cod
 window_padding_width 20
 
 {{ if eq .chezmoi.os "darwin" }}
-include embark-theme.conf
+include themes/mellow.conf
 {{ else if eq .chezmoi.os "linux" }}
-include no-clown-fiesta-theme.conf
+include themes/mellow.conf
 {{ end }}
