@@ -30,6 +30,7 @@ navigate = true    # use n and N to move between diff sections
 light = false
 side-by-side = false
 line-numbers = true
+syntax-theme = mellow-barbet
 ; syntax-theme = Embark
 ; minus-style = syntax "#32283D"
 ; minus-non-emph-style = syntax "#32283D"
