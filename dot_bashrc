@@ -51,7 +51,7 @@ alias x=exit
 alias cht=~/.config/bin/.local/scripts/tmux-cht.sh
 alias gpg-check="gpg --decrypt ~/test.gpg"
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat --theme=Embark -l man -p'"
 
 . "$HOME/.cargo/env"
 
