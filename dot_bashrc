@@ -43,15 +43,15 @@ alias ll='exa -alh'
 alias tree='exa --tree --level=4'
 alias pbcopy=wl-copy
 alias pbpaste=wl-paste
-alias cat='bat --theme="Embark"'
-alias f="fzf --preview 'bat --theme=Embark --color=always --style=header,grid --line-range :500 {}'"
+alias cat='bat --theme="mellow"'
+alias f="fzf --preview 'bat --theme=mellow --color=always --style=header,grid --line-range :500 {}'"
 alias fo='open "$(f)"'
 alias fe='nvim "$(f)"'
 alias x=exit
 alias cht=~/.config/bin/.local/scripts/tmux-cht.sh
 alias gpg-check="gpg --decrypt ~/test.gpg"
 
-export MANPAGER="sh -c 'col -bx | bat --theme=Embark -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat --theme=mellow -l man -p'"
 
 . "$HOME/.cargo/env"
 
