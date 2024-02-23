@@ -41,8 +41,7 @@ diffFilter = delta --color-only
   line-numbers-minus-style = "#E593AE"
   line-numbers-plus-style = "#A1EFD3"
 
-; [delta "mellow-barbet"]
-[delta]
+[delta "mellow-barbet"]
     # author: https://github.com/kvrohit
     # To configure terminal colors see https://github.com/kvrohit/mellow.nvim#terminals
     dark = true
