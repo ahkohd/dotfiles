@@ -33,9 +33,6 @@ alias cmd='chezmoi diff'
 alias cmu='chezmoi update'
 alias dev=~/developer/personal
 alias grep='grep --color=auto'
-alias gs="git status"
-alias gp="git pull"
-alias gP="git push"
 alias nv="neovide"
 alias wm=Hyprland
 alias ls='exa --icons'
