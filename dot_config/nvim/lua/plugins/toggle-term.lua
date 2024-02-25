@@ -1,4 +1,4 @@
--- luacheck: globals vim BTOP_TOGGLE GITUI_TOGGLE
+-- luacheck: globals vim BTOP_TOGGLE LAZYGIT_TOGGLE
 
 return {
 	"akinsho/toggleterm.nvim",
@@ -14,11 +14,11 @@ return {
 			desc = "Toggle btop",
 		},
 		{
-			"<space><PageDown>",
+			"<space>g",
 			function()
-				GITUI_TOGGLE()
+				LAZYGIT_TOGGLE()
 			end,
-			desc = "Toggle Git UI",
+			desc = "Toggle LazyGit",
 		},
 	},
 	config = function()
@@ -42,10 +42,10 @@ return {
 			btop:toggle()
 		end
 
-		local gitui = Terminal:new({ cmd = "gitui", hidden = true })
+		local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
-		function GITUI_TOGGLE()
-			gitui:toggle()
+		function LAZYGIT_TOGGLE()
+			lazygit:toggle()
 		end
 
 		-- use <esc> enter normal mode in terminal
