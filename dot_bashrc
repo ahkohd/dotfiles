@@ -50,6 +50,7 @@ alias fe='nvim "$(f)"'
 alias x=exit
 alias cht=~/.config/bin/.local/scripts/tmux-cht.sh
 alias gpg-check="gpg --decrypt ~/test.gpg"
+alias lg=lazygit
 
 export MANPAGER="sh -c 'col -bx | bat --theme=mellow -l man -p'"
 
