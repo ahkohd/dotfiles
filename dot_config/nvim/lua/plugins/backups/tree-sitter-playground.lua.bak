@@ -1,7 +1,0 @@
--- luacheck: globals vim
-
-return {
-  "nvim-treesitter/playground",
-  dependencies = { "nvim-treesitter/nvim-treesitter" },
-  event = { "BufReadPre", "BufNewFile" },
-}
