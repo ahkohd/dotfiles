@@ -1,4 +1,4 @@
-import = ["/home/var/.config/alacritty/themes/oceanic_next.toml"]
+import = ["~/.config/alacritty/themes/oceanic_next.toml"]
 
 [env]
 TERM = "alacritty"
@@ -23,7 +23,7 @@ program = "zsh"
 
 [window]
 opacity = 1
-decorations = {{ ternary "'Buttonless'" "'None'" (eq .chezmoi.os "darwin") }}
+decorations = {{ ternary '"Buttonless"' '"None"' (eq .chezmoi.os "darwin") }}
 
 [window.dimensions]
 columns = 140
