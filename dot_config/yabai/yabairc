@@ -26,6 +26,8 @@ yabai -m rule --add title='^Archive Utility$' manage=off
 # float settings windows
 yabai -m rule --add title='Settings$' manage=off
 
+yabai -m rule --add title='^Extension' manage=off
+
 yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^Alacritty$" manage=off
 yabai -m rule --add app="^Roon$" manage=off
