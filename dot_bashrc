@@ -33,7 +33,7 @@ alias cmd='chezmoi diff'
 alias cmu='chezmoi update'
 alias dev=~/developer/personal
 alias grep='grep --color=auto'
-alias nv="neovide"
+alias nv="neovide --frame transparent"
 alias wm=Hyprland
 alias ls='exa --icons'
 alias ll='exa -alh'
