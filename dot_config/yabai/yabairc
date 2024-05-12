@@ -30,6 +30,7 @@ yabai -m rule --add title='^Extension' manage=off
 
 yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^Alacritty$" manage=off
+yabai -m rule --add app="^neovide$" manage=off
 yabai -m rule --add app="^Roon$" manage=off
 
 yabai -m rule --apply
