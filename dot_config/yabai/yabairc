@@ -21,7 +21,7 @@ yabai -m config auto_balance on
 yabai -m rule --add app="^System Information$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add title='Preferences$' manage=off
-yabai -m rule --add title='^Archive Utility$' manage=off
+# yabai -m rule --add title='^Archive Utility$' manage=off
 
 # float settings windows
 yabai -m rule --add title='Settings$' manage=off
