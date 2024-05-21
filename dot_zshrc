@@ -113,6 +113,7 @@ eval "$(zoxide init zsh)"
 
 alias cd=z
 alias zz='z -'
+alias zj=zellij
 
 # pnpm
 export PNPM_HOME="/home/var/.local/share/pnpm"
