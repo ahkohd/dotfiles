@@ -139,3 +139,13 @@ bindkey ^l _sgpt_zsh
 export PATH="$PATH:/home/var/.local/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# yazi
+function ya() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
