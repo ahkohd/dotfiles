@@ -24,58 +24,21 @@ pager = delta
 [interactive]
 diffFilter = delta --color-only
 
-[delta "embark"]
-  navigate = true    # use n and N to move between diff sections
-  light = false
-  side-by-side = false
-  line-numbers = true
-  syntax-theme = Embark
-  minus-style = syntax "#32283D"
-  minus-non-emph-style = syntax "#32283D"
-  minus-emph-style= syntax "#835870"
-  minus-empty-line-marker-style = syntax "#32283D"
-  plus-style = syntax "#2C3342"
-  plus-non-emph-style = syntax "#2C3342"
-  plus-emph-style= syntax "#618883"
-  plus-empty-line-marker-style = syntax "#2C3342"
-  line-numbers-minus-style = "#E593AE"
-  line-numbers-plus-style = "#A1EFD3"
-
-; [delta "mellow-barbet"]
 [delta]
-    # author: https://github.com/kvrohit
-    # To configure terminal colors see https://github.com/kvrohit/mellow.nvim#terminals
     dark = true
-    syntax-theme = base16
+    syntax-theme = Nord
     line-numbers = true
     side-by-side = true
-    file-style = brightwhite
     file-decoration-style = none
     file-added-label = [+]
     file-copied-label = [==]
     file-modified-label = [*]
     file-removed-label = [-]
     file-renamed-label = [->]
-    hunk-header-decoration-style = "#3e3e43" box ul
-    plus-style = brightgreen black
-    plus-emph-style = black green
-    minus-style = brightred black
-    minus-emph-style = black red
-    line-numbers-minus-style = brightred
-    line-numbers-plus-style = brightgreen
-    line-numbers-left-style = "#3e3e43"
-    line-numbers-right-style = "#3e3e43"
-    line-numbers-zero-style = "#57575f"
     zero-style = syntax
-    whitespace-error-style = black bold
     blame-code-style = syntax
-    blame-palette = "#161617" "#1b1b1d" "#2a2a2d" "#3e3e43"
     merge-conflict-begin-symbol = ~
     merge-conflict-end-symbol = ~
-    merge-conflict-ours-diff-header-style = yellow bold
-    merge-conflict-ours-diff-header-decoration-style = "#3e3e43" box
-    merge-conflict-theirs-diff-header-style = yellow bold
-    merge-conflict-theirs-diff-header-decoration-style = "#3e3e43" box
 
 [merge]
 conflictstyle = diff3
