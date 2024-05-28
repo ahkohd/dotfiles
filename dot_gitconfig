@@ -26,8 +26,6 @@ diffFilter = delta --color-only
 
 [delta]
     syntax-theme = Nord
-    line-numbers = true
-    side-by-side = true
     file-decoration-style = none
     file-added-label = [+]
     file-copied-label = [==]
