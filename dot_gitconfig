@@ -25,7 +25,6 @@ pager = delta
 diffFilter = delta --color-only
 
 [delta]
-    dark = true
     syntax-theme = Nord
     line-numbers = true
     side-by-side = true
