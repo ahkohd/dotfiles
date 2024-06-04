@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/themes/nordic.toml"]
+import = ["~/.config/alacritty/themes/gruvbox.toml"]
 
 [env]
 TERM = "alacritty"
@@ -24,8 +24,8 @@ y = 0
 program = "zsh"
 
 [window]
-opacity = 0.7
-blur = true
+opacity = 1.0
+blur = false
 decorations = {{ ternary "\"Buttonless\"" "\"None\"" (eq .chezmoi.os "darwin") }}
 option_as_alt = "Both"
 
