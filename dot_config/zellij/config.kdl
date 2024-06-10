@@ -1,7 +1,7 @@
 default_shell "zsh"
 pane_frames false
 simplified_ui true
-theme "gruvbox-dark"
+theme "nord"
 ui {
 	pane_frames {
 		hide_session_name true

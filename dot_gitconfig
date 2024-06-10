@@ -25,56 +25,37 @@ pager = delta
 diffFilter = delta --color-only
 
 [delta]
-  # author: https://github.com/maxfangx
-  # General appearance
+  # author: https://github.com/anthony-halim
   dark = true
-  syntax-theme = gruvbox-dark
-  # File
-  file-style = "#FFFFFF" bold
+  syntax-theme = Nord
   file-added-label = [+]
   file-copied-label = [==]
   file-modified-label = [*]
   file-removed-label = [-]
   file-renamed-label = [->]
-  file-decoration-style = "#434C5E" ul
-  file-decoration-style = "#84786A" ul
-  # No hunk headers
-  hunk-header-style = omit
-  # Line numbers
+  file-style = omit
+  hunk-header-decoration-style = "#5E81AC" ul
+  hunk-header-file-style = blue ul bold
+  hunk-header-line-number-style = yellow box bold
+  hunk-header-style = file line-number syntax bold italic
+  plus-style = brightgreen
+  plus-emph-style = black green
+  minus-style = brightred
+  minus-emph-style = black red
   line-numbers = true
-  line-numbers-left-style = "#84786A"
-  line-numbers-right-style = "#84786A"
-  line-numbers-minus-style = "#A02A11"
-  line-numbers-plus-style = "#479B36"
-  line-numbers-zero-style = "#84786A"
-  line-numbers-left-format = " {nm:>3} │"
-  line-numbers-right-format = " {np:>3} │"
-  # Diff contents
-  inline-hint-style = syntax
-  minus-style = syntax "#330011"
-  minus-emph-style = syntax "#80002a"
-  minus-non-emph-style = syntax auto
-  plus-style = syntax "#001a00"
-  plus-emph-style = syntax "#003300"
-  plus-non-emph-style = syntax auto
-  whitespace-error-style = "#FB4934" reverse
-  # Commit hash
-  commit-decoration-style = normal box
-  commit-style = "#ffffff" bold
-  # Blame
+  line-numbers-minus-style = brightred
+  line-numbers-plus-style = brightgreen
+  line-numbers-left-style = "#5E81AC"
+  line-numbers-right-style = "#5E81AC"
+  line-numbers-zero-style = "#4C566A"
+  zero-style = syntax
+  whitespace-error-style = black bold
   blame-code-style = syntax
-  blame-format = "{author:>18} ({commit:>8}) {timestamp:<13} "
-  blame-palette = "#000000" "#1d2021" "#282828" "#3c3836"
-  # Merge conflicts
-  merge-conflict-begin-symbol = ⌃
-  merge-conflict-end-symbol = ⌄
-  merge-conflict-ours-diff-header-style = "#FABD2F" bold
-  merge-conflict-theirs-diff-header-style = "#FABD2F" bold overline
-  merge-conflict-ours-diff-header-decoration-style = ''
-  merge-conflict-theirs-diff-header-decoration-style = ''
-
-[merge]
-conflictstyle = diff3
-
-[diff]
-colorMoved = default
+  blame-format = "{author:<18} {commit:<6} {timestamp:<15}"
+  blame-palette = "#2E3440" "#3B4252" "#434C5E"
+  merge-conflict-begin-symbol = ~
+  merge-conflict-end-symbol = ~
+  merge-conflict-ours-diff-header-style = yellow bold
+  merge-conflict-ours-diff-header-decoration-style = "#5E81AC" box
+  merge-conflict-theirs-diff-header-style = yellow bold
+  merge-conflict-theirs-diff-header-decoration-style = "#5E81AC" box
