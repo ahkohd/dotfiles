@@ -2,6 +2,17 @@ default_shell "zsh"
 pane_frames false
 simplified_ui true
 theme "nord"
+
+keybinds {
+  unbind "Ctrl h"
+
+  bind "Ctrl g" { SwitchToMode "Move"; }
+
+  move {
+    bind "Ctrl g" { SwitchToMode "Normal"; }
+  }
+}
+
 ui {
 	pane_frames {
 		hide_session_name true
