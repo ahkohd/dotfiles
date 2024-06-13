@@ -4,12 +4,14 @@ simplified_ui true
 theme "nord"
 
 keybinds {
-  unbind "Ctrl h"
-
-  bind "Ctrl g" { SwitchToMode "Move"; }
+  shared_except "tab" "locked" {
+    unbind "Ctrl h"
+    bind "Ctrl x" { SwitchToMode "Move"; }
+  }
 
   move {
-    bind "Ctrl g" { SwitchToMode "Normal"; }
+    unbind "Ctrl h"
+    bind "Ctrl x" { SwitchToMode "Normal"; }
   }
 }
 
