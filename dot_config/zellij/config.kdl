@@ -4,15 +4,28 @@ simplified_ui true
 theme "nord"
 
 keybinds {
-  shared_except "tab" "locked" {
-    unbind "Ctrl h"
-    bind "Ctrl x" { SwitchToMode "Move"; }
-  }
+      move {
+        unbind "Ctrl h"
+        bind "Ctrl x" { SwitchToMode "Normal"; }
+      }
 
-  move {
-    unbind "Ctrl h"
-    bind "Ctrl x" { SwitchToMode "Normal"; }
-  }
+      shared_except "tab" "locked" {
+        unbind "Ctrl h"
+
+        bind "Ctrl x" { SwitchToMode "Move"; }
+      }
+
+      shared_except "locked" {
+        bind "Alt f" { ToggleFloatingPanes; SwitchToMode "Normal"; }
+
+        bind "Alt b" {
+              LaunchOrFocusPlugin "file:~/.config/zellij/plugins/harpoon.wasm" {
+                  floating true; move_to_focused_tab true;
+              }
+          }
+
+        bind "Alt m" { ToggleFocusFullscreen; }
+      }
 }
 
 ui {
