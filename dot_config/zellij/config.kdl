@@ -16,15 +16,15 @@ keybinds {
       }
 
       shared_except "locked" {
-        bind "Alt f" { ToggleFloatingPanes; SwitchToMode "Normal"; }
+        bind "Alt f" "PageUp" { ToggleFloatingPanes; SwitchToMode "Normal"; }
 
-        bind "Alt b" {
+        bind "Alt b" "End" {
               LaunchOrFocusPlugin "file:~/.config/zellij/plugins/harpoon.wasm" {
                   floating true; move_to_focused_tab true;
               }
           }
 
-        bind "Alt m" { ToggleFocusFullscreen; }
+        bind "Alt m" "PageDown" { ToggleFocusFullscreen; }
       }
 }
 
