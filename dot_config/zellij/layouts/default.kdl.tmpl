@@ -28,7 +28,16 @@ layout {
                 mode_tmux          ""
 
                 tab_normal   "#[fg=#6C7086] {name} "
-                tab_active   "#[fg=#9399B2,bold,italic] {name} "
+
+                tab_active   "#[fg=#9399B2,bold,italic] {name} {floating_indicator}"
+
+                tab_active_fullscreen   "#[fg=#6C7086,bold,italic] {name} {fullscreen_indicator}"
+
+                tab_rename              "#[fg=#627086] {index}  {name} {floating_indicator} "
+
+                tab_fullscreen_indicator " "
+
+                tab_floating_indicator " "
             }
         }
         children
