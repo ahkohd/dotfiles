@@ -1,13 +1,9 @@
 font_size 14.0
-font_family BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons Regular
-bold_font BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons Bold
-italic_font BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons Italic
-bold_italic_font BerkeleyMono Nerd Font Plus Font Awesome Plus Octicons Plus Codicons Plus Material Design Icons Bold Italic
+font_family GeistMono Nerd Font Mono
+bold_font GeistMono Nerd Font Mono
+italic_font GeistMono Nerd Font Mono
+bold_italic_font GeistMono Nerd Font Mono
 
-window_padding_width 20
+window_padding_width 0
 
-{{ if eq .chezmoi.os "darwin" }}
-include themes/mellow.conf
-{{ else if eq .chezmoi.os "linux" }}
-include themes/mellow.conf
-{{ end }}
+include themes/nord.conf
