@@ -1,5 +1,17 @@
-font-family = "GeistMono Nerd Font Mono"
+# font-family = GeistMono Nerd Font Mono
+
+font-family = Berkeley Mono
+
 font-size = 15
 
-theme = Solarized Dark - Patched
+theme = Nord
 
+window-padding-x = 20
+
+window-padding-y = 10
+
+macos-titlebar-style = tabs
+
+# background-opacity = 0.9
+
+# background-blur-radius = 30
