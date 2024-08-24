@@ -4,7 +4,9 @@ font-family = Berkeley Mono
 
 font-size = 15
 
-theme = Nord
+# theme = Nord
+
+theme = Solarized Dark - Patched
 
 window-padding-x = 20
 
