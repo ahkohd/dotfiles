@@ -12,7 +12,7 @@ window-padding-x = 20
 
 window-padding-y = 10
 
-macos-titlebar-style = tabs
+mouse-hide-while-typing = true
 
 # background-opacity = 0.9
 
