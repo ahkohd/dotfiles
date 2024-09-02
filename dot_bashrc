@@ -50,6 +50,8 @@ alias gpg-check="gpg --decrypt ~/test.gpg"
 alias lg=lazygit
 alias zj=zellij
 alias google-chrome=/Applications/Chromium.app/Contents/MacOS/Chromium
+alias p=pnpm
+alias y=yarn
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
