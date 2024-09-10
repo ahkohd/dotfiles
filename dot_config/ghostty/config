@@ -48,4 +48,4 @@ keybind = alt+shift+enter=toggle_split_zoom
 
 # [behaviour]
 
-mouse-hide-while-typing = true
+# mouse-hide-while-typing = true
