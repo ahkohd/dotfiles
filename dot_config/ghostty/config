@@ -1,6 +1,8 @@
 # font-family = GeistMono Nerd Font Mono
 
-font-family = Berkeley Mono
+# font-family = Berkeley Mono
+
+font-family = Geist Mono
 
 font-size = 15
 
