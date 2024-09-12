@@ -153,19 +153,19 @@ run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'org.chromium.Chromium'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 7'
+run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = 'move-node-to-workspace 7'
+run = 'move-node-to-workspace 5'
 
 [workspace-to-monitor-force-assignment]
 1 = 1
