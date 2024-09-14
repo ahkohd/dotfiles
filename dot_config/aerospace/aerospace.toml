@@ -102,32 +102,32 @@ cmd-alt-ctrl-shift-d = 'move up'
 cmd-alt-ctrl-shift-f = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-alt-shift-minus = 'resize smart -50'
-alt-shift-equal = 'resize smart +50'
+cmd-alt-ctrl-shift-z = 'resize smart -50'
+cmd-alt-ctrl-shift-x = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-y = 'workspace 1'
-alt-u = 'workspace 2'
-alt-i = 'workspace 3'
-alt-o = 'workspace 4'
-alt-p = 'workspace 5'
+cmd-alt-ctrl-shift-y = 'workspace 1'
+cmd-alt-ctrl-shift-u = 'workspace 2'
+cmd-alt-ctrl-shift-i = 'workspace 3'
+cmd-alt-ctrl-shift-o = 'workspace 4'
+cmd-alt-ctrl-shift-p = 'workspace 5'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-y = 'move-node-to-workspace 1'
-alt-shift-u = 'move-node-to-workspace 2'
-alt-shift-i = 'move-node-to-workspace 3'
-alt-shift-o = 'move-node-to-workspace 4'
-alt-shift-p = 'move-node-to-workspace 5'
+cmd-alt-ctrl-shift-q = 'move-node-to-workspace 1'
+cmd-alt-ctrl-shift-w = 'move-node-to-workspace 2'
+cmd-alt-ctrl-shift-e = 'move-node-to-workspace 3'
+cmd-alt-ctrl-shift-r = 'move-node-to-workspace 4'
+cmd-alt-ctrl-shift-t = 'move-node-to-workspace 5'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-tab = 'workspace-back-and-forth'
+cmd-alt-ctrl-shift-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+cmd-alt-ctrl-shift-space = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-shift-semicolon = 'mode service'
+cmd-alt-ctrl-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -141,10 +141,10 @@ f = [
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
+cmd-alt-ctrl-shift-v = ['join-with left', 'mode main']
+cmd-alt-ctrl-shift-b = ['join-with down', 'mode main']
+cmd-alt-ctrl-shift-n = ['join-with up', 'mode main']
+cmd-alt-ctrl-shift-m = ['join-with right', 'mode main']
 
 
 [[on-window-detected]]
