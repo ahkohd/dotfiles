@@ -90,16 +90,16 @@ cmd-alt-ctrl-shift-g = 'layout tiles horizontal vertical'
 cmd-alt-ctrl-shift-b = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-cmd-alt-ctrl-shift-h = 'focus left'
-cmd-alt-ctrl-shift-j = 'focus down'
-cmd-alt-ctrl-shift-k = 'focus up'
-cmd-alt-ctrl-shift-l = 'focus right'
+cmd-alt-ctrl-shift-a = 'focus left'
+cmd-alt-ctrl-shift-s = 'focus down'
+cmd-alt-ctrl-shift-d = 'focus up'
+cmd-alt-ctrl-shift-f = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-cmd-alt-ctrl-shift-a = 'move left'
-cmd-alt-ctrl-shift-s = 'move down'
-cmd-alt-ctrl-shift-d = 'move up'
-cmd-alt-ctrl-shift-f = 'move right'
+cmd-alt-ctrl-shift-6 = 'move left'
+cmd-alt-ctrl-shift-7 = 'move down'
+cmd-alt-ctrl-shift-8 = 'move up'
+cmd-alt-ctrl-shift-9 = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 cmd-alt-ctrl-shift-z = 'resize smart -50'
@@ -141,10 +141,10 @@ f = [
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
-cmd-alt-ctrl-shift-6 = ['join-with left', 'mode main']
-cmd-alt-ctrl-shift-7 = ['join-with down', 'mode main']
-cmd-alt-ctrl-shift-8 = ['join-with up', 'mode main']
-cmd-alt-ctrl-shift-9 = ['join-with right', 'mode main']
+cmd-alt-ctrl-shift-h = ['join-with left', 'mode main']
+cmd-alt-ctrl-shift-j = ['join-with down', 'mode main']
+cmd-alt-ctrl-shift-k = ['join-with up', 'mode main']
+cmd-alt-ctrl-shift-l = ['join-with right', 'mode main']
 
 
 [[on-window-detected]]
