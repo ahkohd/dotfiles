@@ -127,7 +127,7 @@ cmd-alt-ctrl-shift-tab = 'workspace-back-and-forth'
 cmd-alt-ctrl-shift-space = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-cmd-alt-ctrl-shift-semicolon = 'mode service'
+cmd-alt-ctrl-shift-c = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
