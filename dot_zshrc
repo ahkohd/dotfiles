@@ -87,6 +87,10 @@ source ~/.bashrc
 
 export EDITOR='nvim'
 
+# luarocks
+
+export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
