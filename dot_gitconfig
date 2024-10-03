@@ -25,37 +25,21 @@ pager = delta
 diffFilter = delta --color-only
 
 [delta]
-  # author: https://github.com/anthony-halim
-  dark = true
-  syntax-theme = Nord
+  # author: https://github.com/ahkohd
+  dark = false
+  side-by-side = true
+  true-color = always
   file-added-label = [+]
   file-copied-label = [==]
-  file-modified-label = [*]
+  file-modified-label = [M]
   file-removed-label = [-]
   file-renamed-label = [->]
-  file-style = omit
-  hunk-header-decoration-style = "#5E81AC" ul
-  hunk-header-file-style = blue ul bold
-  hunk-header-line-number-style = yellow box bold
-  hunk-header-style = file line-number syntax bold italic
-  plus-style = brightgreen
-  plus-emph-style = black green
-  minus-style = brightred
-  minus-emph-style = black red
-  line-numbers = true
-  line-numbers-minus-style = brightred
-  line-numbers-plus-style = brightgreen
-  line-numbers-left-style = "#5E81AC"
-  line-numbers-right-style = "#5E81AC"
-  line-numbers-zero-style = "#4C566A"
   zero-style = syntax
-  whitespace-error-style = black bold
-  blame-code-style = syntax
-  blame-format = "{author:<18} {commit:<6} {timestamp:<15}"
-  blame-palette = "#2E3440" "#3B4252" "#434C5E"
-  merge-conflict-begin-symbol = ~
-  merge-conflict-end-symbol = ~
-  merge-conflict-ours-diff-header-style = yellow bold
-  merge-conflict-ours-diff-header-decoration-style = "#5E81AC" box
-  merge-conflict-theirs-diff-header-style = yellow bold
-  merge-conflict-theirs-diff-header-decoration-style = "#5E81AC" box
+  syntax-theme = ansi
+  hunk-header-decoration-style = omit
+  hunk-header-style = line-number syntax bold italic
+  line-numbers = true
+  line-numbers-left-format = " {nm:>3}"
+  line-numbers-right-format = " {np:>3}"
+  wrap-max-lines = unlimited
+  wrap-right-percent = 1
