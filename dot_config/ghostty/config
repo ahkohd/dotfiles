@@ -2,6 +2,8 @@ font-family = SF Mono
 # font-family = GeistMono Nerd Font Mono
 # font-family = Berkeley Mono
 
+# recommended font size is 13pt ~ 17.33px
+
 font-size = 17.33
 
 theme = Solarized Dark - Patched
