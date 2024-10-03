@@ -10,9 +10,9 @@ window-padding-x = 20
 
 window-padding-y = 10
 
-background-opacity = 0.9
+# background-opacity = 0.9
 
-background-blur-radius = 30
+# background-blur-radius = 30
 
 # [keybinds]
 
