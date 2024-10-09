@@ -108,7 +108,7 @@ cmd-alt-ctrl-shift-x = 'resize smart +50'
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 cmd-alt-ctrl-shift-q = 'workspace 1'
 cmd-alt-ctrl-shift-w = 'workspace 2'
-# cmd-alt-ctrl-shift-e = 'workspace 3'
+cmd-alt-ctrl-shift-e = 'workspace 3'
 # cmd-alt-ctrl-shift-r = 'workspace 4'
 # cmd-alt-ctrl-shift-t = 'workspace 5'
 
@@ -116,7 +116,7 @@ cmd-alt-ctrl-shift-w = 'workspace 2'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 cmd-alt-ctrl-shift-1 = 'move-node-to-workspace 1'
 cmd-alt-ctrl-shift-2 = 'move-node-to-workspace 2'
-# cmd-alt-ctrl-shift-3 = 'move-node-to-workspace 3'
+cmd-alt-ctrl-shift-3 = 'move-node-to-workspace 3'
 # cmd-alt-ctrl-shift-4 = 'move-node-to-workspace 4'
 # cmd-alt-ctrl-shift-5 = 'move-node-to-workspace 5'
 
@@ -174,3 +174,4 @@ run = 'move-node-to-workspace 2'
 [workspace-to-monitor-force-assignment]
 1 = 1
 2 = 2
+3 = 3
