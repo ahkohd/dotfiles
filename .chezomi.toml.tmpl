@@ -1,0 +1,7 @@
+{{- $fishPath := "/usr/bin/fish" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $fishPath = "/opt/homebrew/bin/fish" -}}
+{{- end -}}
+
+[data]
+  fishPath = {{ $fishPath | quote}}
