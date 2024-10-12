@@ -15,7 +15,7 @@ source ~/.config/fish/alias.fish
 source ~/.config/fish/extra_vars.fish
 
 # setup direnv
-# direnv hook fish | source
+direnv hook fish | source
 
 # setup zoxide
 zoxide init fish | source
