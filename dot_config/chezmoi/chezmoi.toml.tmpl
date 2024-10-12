@@ -1,10 +1,12 @@
 [diff]
 command = "delta"
 
+{{- $commitMsg := promptString "Commit message" -}}
+
 [git]
 autoCommit = true
 autoPush = true
-commitMessageTemplate = "{{ promptString \"Commit message\" }}"
+commitMessageTemplate = "{{ $commitMsg }}"
 
 encryption = "gpg"
 [gpg]
