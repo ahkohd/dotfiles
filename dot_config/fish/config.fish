@@ -17,8 +17,5 @@ source ~/.config/fish/extra_vars.fish
 # setup direnv
 direnv hook fish | source
 
-# setup zoxide
-zoxide init fish | source
-
 # setup starship prompt
 starship init fish | source
