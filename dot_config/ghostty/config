@@ -48,10 +48,16 @@ keybind = alt+enter=toggle_split_zoom
 
 keybind = alt+shift+enter=toggle_split_zoom
 
+keybind = super+d=scroll_page_down
+
+keybind = super+u=scroll_page_up
+
+keybind = global:super+t=toggle_quick_terminal
+
 # [behaviour]
 
-quick-terminal-position=bottom
+quick-terminal-position = bottom
 
-quick-terminal-screen=mouse
+quick-terminal-screen = mouse
 
 # mouse-hide-while-typing = true
