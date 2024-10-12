@@ -65,6 +65,4 @@ quick-terminal-screen = mouse
 
 # [shell]
 
-command = "/opt/homebrew/bin/fish"
-
 shell-integration = fish
