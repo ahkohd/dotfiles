@@ -1,8 +1,3 @@
-{{- $fishPath := "/usr/bin/fish" -}}
-{{- if eq .chezmoi.os "darwin" -}}
-{{- $fishPath = "/opt/homebrew/bin/fish" -}}
-{{- end -}}
-
 [diff]
 command = "delta"
 
@@ -14,6 +9,11 @@ commitMessageTemplate = "{{ promptString \"Commit message\" }}"
 encryption = "gpg"
 [gpg]
 recipient = "1F76A9056C921C8A004F63E28D43F8A176DDC6BD"
+
+{{- $fishPath := "/usr/bin/fish" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $fishPath = "/opt/homebrew/bin/fish" -}}
+{{- end -}}
 
 [data]
   fishPath = {{ $fishPath | quote}}
