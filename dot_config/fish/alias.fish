@@ -8,7 +8,7 @@ alias grep="grep --color=auto"
 alias ls="lsd --icon always"
 alias l="ls -l"
 alias lla="ls -la"
-alias tree="ls --tree"
+alias tree="ls --tree --depth=4"
 alias cat="bat"
 alias f="fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}'"
 alias fo='open "$(f)"'
