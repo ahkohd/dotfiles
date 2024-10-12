@@ -1,3 +1,4 @@
+alias cd='z'
 alias cm="chezmoi"
 alias cme="chezmoi edit"
 alias cma="chezmoi apply"
