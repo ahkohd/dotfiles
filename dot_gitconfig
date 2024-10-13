@@ -39,8 +39,8 @@ diffFilter = delta --color-only
   hunk-header-decoration-style = omit
   hunk-header-style = line-number syntax bold italic
   line-numbers = true
-  line-numbers-left-format = " {nm:>3}"
-  line-numbers-right-format = " {np:>3}"
+  line-numbers-left-format = " {nm:>3} "
+  line-numbers-right-format = " {np:>3} "
   wrap-max-lines = unlimited
   wrap-right-percent = 1
 
