@@ -72,6 +72,7 @@ alias fe='nvim "$(f)"'
 alias x=exit
 alias cht=~/.config/bin/.local/scripts/tmux-cht.sh
 alias gpg-check="gpg --decrypt ~/test.gpg"
+alias gst="git status"
 alias lg=lazygit
 alias zj=zellij
 alias google-chrome=/Applications/Chromium.app/Contents/MacOS/Chromium
