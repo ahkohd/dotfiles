@@ -44,7 +44,7 @@ key-mapping.preset = 'qwerty'
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-on-focus-changed = 'move-mouse window-lazy-center'
+# on-focus-changed = 'move-mouse window-lazy-center'
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -148,28 +148,8 @@ cmd-alt-ctrl-shift-l = ['join-with right', 'mode main']
 
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Safari'
-run = 'move-node-to-workspace 1'
-
-# [[on-window-detected]]
-# if.app-id = 'com.mitchellh.ghostty'
-# run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = 'layout floating'
-
-[[on-window-detected]]
-if.app-id = 'org.chromium.Chromium'
-run = 'move-node-to-workspace 2'
-
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 2'
-
-[[on-window-detected]]
-if.app-id = 'com.hnc.Discord'
-run = 'move-node-to-workspace 2'
 
 [workspace-to-monitor-force-assignment]
 1 = 1
