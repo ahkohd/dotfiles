@@ -16,6 +16,9 @@ source ~/.config/fish/alias.fish
 # extra variables
 source ~/.config/fish/extra_vars.fish
 
+# abbrevations
+source ~/.config/fish/abbr.fish
+
 # setup zoxide
 zoxide init fish | source
 
