@@ -52,7 +52,7 @@ keybind = super+d=scroll_page_down
 
 keybind = super+u=scroll_page_up
 
-keybind = global:super+t=toggle_quick_terminal
+keybind = global:super+return=toggle_quick_terminal
 
 # [behaviour]
 
