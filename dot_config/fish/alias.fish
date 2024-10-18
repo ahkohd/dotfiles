@@ -12,7 +12,7 @@ alias tree="ls --tree --depth=4"
 alias cat="bat"
 alias f="fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}'"
 alias fo='open "$(f)"'
-alias fe='nvim "$(f)"'
+alias nv='nvim "$(f)"'
 alias x="exit"
 alias gpg-check="gpg --decrypt ~/test.gpg"
 alias lg="lazygit"
