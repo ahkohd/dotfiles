@@ -60,9 +60,10 @@ alias dev=~/developer/personal
 alias grep='grep --color=auto'
 alias nv="neovide --frame transparent"
 alias wm=Hyprland
-alias ls='exa --icons'
-alias ll='exa -alh'
-alias tree='exa --tree --level=4'
+alias ls='lsd --icon always --tree --depth=1'
+alias l='lsd -l'
+alias lla='lsd -la'
+alias tree='lsd --tree --depth=4'
 alias pbcopy=wl-copy
 alias pbpaste=wl-paste
 alias cat='bat'
