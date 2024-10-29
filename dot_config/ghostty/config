@@ -66,3 +66,6 @@ quick-terminal-screen = mouse
 # [shell]
 
 shell-integration = fish
+
+# [shader]
+custom-shader = shaders/shader.glsl
