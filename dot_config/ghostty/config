@@ -20,11 +20,11 @@ window-padding-y = 10
 
 # background-blur-radius = 30
 
-keybind = alt+t=new_tab
+keybind = alt+a=new_tab
 
 keybind = alt+s=new_split:right
 
-keybind = alt+a=new_split:down
+keybind = alt+f=new_split:down
 
 keybind = alt+i=previous_tab
 
