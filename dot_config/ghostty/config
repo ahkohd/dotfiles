@@ -24,7 +24,7 @@ keybind = alt+t=new_tab
 
 keybind = alt+s=new_split:right
 
-keybind = alt+g=new_split:down
+keybind = alt+x=new_split:down
 
 keybind = alt+i=previous_tab
 
