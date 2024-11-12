@@ -105,15 +105,8 @@ eval "$(op completion zsh)"; compdef _op op
 
 eval "$(fnm env --use-on-cd)"
 
-
-
-
 # setup zoxide
 eval "$(zoxide init zsh)"
-
-alias cd=z
-alias zz='z -'
-alias zj=zellij
 
 # pnpm
 export PNPM_HOME="/home/var/.local/share/pnpm"
@@ -141,7 +134,7 @@ export PATH="$PATH:/home/var/.local/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # yazi
-function ya() {
+function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then

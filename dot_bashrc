@@ -67,6 +67,7 @@ alias x=exit
 alias gpg-check="gpg --decrypt ~/test.gpg"
 alias gst="git status"
 alias glg="git log -n 10 --graph --decorate --oneline"
+alias cd=z
 alias zz="z -"
 alias lg=lazygit
 alias p=pnpm
