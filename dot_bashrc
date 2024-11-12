@@ -71,7 +71,7 @@ alias cd=z
 alias zz="z -"
 alias lg=lazygit
 alias p=pnpm
-alias speed =speedest-cli
+alias speed =speedtest-cli
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
