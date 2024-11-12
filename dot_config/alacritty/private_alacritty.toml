@@ -1,0 +1,45 @@
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 16
+
+
+[font.normal]
+family = "Maple Mono NF"
+style = "Regular"
+
+[font.italic]
+family = "Maple Mono NF"
+style = "Italic"
+
+[font.bold]
+family = "Maple Mono NF"
+style = "Bold"
+
+[font.bold_italic]
+family = "Maple Mono NF"
+style = "Bold Italic"
+
+[terminal.shell]
+program = "zsh"
+
+[window]
+opacity = 1.0
+blur = true
+decorations = "Buttonless"
+option_as_alt = "Both"
+
+[window.dimensions]
+columns = 140
+lines = 38
+
+[window.padding]
+x = 10
+y = 5
+
+[general]
+import = ["~/.config/alacritty/themes/tokyonight_storm.toml"]
+
+[terminal]
