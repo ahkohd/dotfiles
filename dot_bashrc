@@ -56,29 +56,21 @@ alias cme='chezmoi edit'
 alias cma='chezmoi apply'
 alias cmd='chezmoi diff'
 alias cmu='chezmoi update'
-alias dev=~/developer/personal
 alias grep='grep --color=auto'
-alias nv="neovide --frame transparent"
-alias wm=Hyprland
 alias ls='lsd --icon always --tree --depth=1'
-alias l='lsd -l'
-alias lla='lsd -la'
-alias tree='lsd --tree --depth=4'
-alias pbcopy=wl-copy
-alias pbpaste=wl-paste
+alias tree='lsd --icon always --tree --depth=4'
 alias cat='bat'
 alias f="fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}'"
-alias fo='open "$(f)"'
-alias fe='nvim "$(f)"'
+alias nv='nvim "$(f)"'
+alias c=clear
 alias x=exit
-alias cht=~/.config/bin/.local/scripts/tmux-cht.sh
 alias gpg-check="gpg --decrypt ~/test.gpg"
 alias gst="git status"
+alias glg="git log -n 10 --graph --decorate --oneline"
+alias zz="z -"
 alias lg=lazygit
-alias zj=zellij
-alias google-chrome=/Applications/Chromium.app/Contents/MacOS/Chromium
 alias p=pnpm
-alias y=yarn
+alias speed =speedest-cli
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
@@ -94,7 +86,7 @@ eval "$(fnm env --use-on-cd)"
 [ -z "$ZSH_NAME" ] && [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # yazi
-function ya() {
+function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
