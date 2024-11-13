@@ -1,11 +1,11 @@
 # favourite font
-font-family = Berkeley Mono
+# font-family = Berkeley Mono
 
 # alternate font
 # font-family = SF Mono
 
-# fallback to GeistMono
-font-family = GeistMono Nerd Font
+# fallback to Maple Mono
+font-family = Maple Mono
 
 # recommended font size is 13pt ~ 17.33px
 font-size = 17.33
