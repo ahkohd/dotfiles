@@ -7,19 +7,19 @@ size = 16
 
 
 [font.normal]
-family = "Maple Mono NF"
+family = "Berkeley Mono"
 style = "Regular"
 
 [font.italic]
-family = "Maple Mono NF"
+family = "Berkeley Mono"
 style = "Italic"
 
 [font.bold]
-family = "Maple Mono NF"
+family = "Berkeley Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "Maple Mono NF"
+family = "Berkeley Mono"
 style = "Bold Italic"
 
 [terminal.shell]
