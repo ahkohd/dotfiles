@@ -1,4 +1,4 @@
-require("eza-preview").setup({
+require("eza-preview"):setup({
 	level = 2,
 })
 
