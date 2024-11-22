@@ -45,7 +45,7 @@ keybind = alt+enter=toggle_split_zoom
 
 keybind = global:super+t=toggle_quick_terminal
 
-quick-terminal-position = bottom
+quick-terminal-position = top
 
 quick-terminal-screen = mouse
 
