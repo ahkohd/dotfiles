@@ -45,9 +45,9 @@ keybind = alt+enter=toggle_split_zoom
 
 keybind = global:super+t=toggle_quick_terminal
 
-keybind = alt+u=scroll_up
+keybind = alt+u=scroll_page_up
 
-keybind = alt+d=scroll_down
+keybind = alt+d=scroll_page_down
 
 quick-terminal-position = top
 
