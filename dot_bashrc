@@ -3,9 +3,6 @@
 
 PS1='[\u@\h \W]\$ '
 
-# SSH Agent bind address
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
 export PATH="/usr/local/bin:$PATH"
 
 export PATH=$PATH:~/.cargo/bin
@@ -13,14 +10,15 @@ export PATH=$PATH:~/.cargo/bin
 # Homebrew for macOS
 export PATH="/opt/homebrew/bin:$PATH"
 
-export PATH="$HOME/neovim/bin:$PATH"
-
-# Fly.io CLI
-export FLYCTL_INSTALL="/home/var/.fly"
-
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
 export EDITOR=nvim
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# workaround to make GPG work with pinentry
+export GPG_TTY=$(tty)
+
+# SSH Agent bind address
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
 # Tokyonight fzf theme
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
@@ -69,25 +67,17 @@ alias lg=lazygit
 alias p=pnpm
 alias speed=speedtest-cli
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+alias jst="jj st --no-pager"
+alias jbl="jj log -r 'heads(all())'"
+alias jpw="jj git push --change=@"
+alias jsq="jj squash"
+alias jed="jj edit"
+alias jds="jj desc"
+alias jfo="jj git fetch --remote=origin"
+alias jbk="jj bookmark"
+alias jab="jj abandon"
+alias jla="jj log -r 'all()'"
+alias jt="jj_tui"
+alias j= "jj"
 
 . "$HOME/.cargo/env"
-
-# workaround to make GPG work with pinentry
-export GPG_TTY=$(tty)
-
-# setup fzf
-[ -z "$ZSH_NAME" ] && [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# ssh agent with 1password
-export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-
-# yazi
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}

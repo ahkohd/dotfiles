@@ -1,3 +1,5 @@
+source ~/.bashrc
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -9,27 +11,17 @@ ZSH_THEME="robbyrussell"
 
 DISABLE_AUTO_UPDATE="true"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git fast-syntax-highlighting zsh-autocomplete forgit direnv)
+plugins=(fast-syntax-highlighting zsh-autocomplete forgit direnv)
 
 source $ZSH/oh-my-zsh.sh
-
-source ~/.bashrc
-
-export EDITOR='nvim'
 
 eval "$(starship init zsh)"
 
 eval "$(op completion zsh)"; compdef _op op
 
-eval "$(fnm env --use-on-cd)"
-
-# setup zoxide
 eval "$(zoxide init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # pnpm
 export PNPM_HOME="/home/var/.local/share/pnpm"
@@ -38,8 +30,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # yazi
 function y() {
