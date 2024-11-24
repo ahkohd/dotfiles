@@ -3,23 +3,19 @@ source ~/.bashrc
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-ZSH_THEME="robbyrussell"
-
-
-DISABLE_AUTO_UPDATE="true"
-
-plugins=(fast-syntax-highlighting zsh-autocomplete forgit direnv)
-
-source $ZSH/oh-my-zsh.sh
-
 eval "$(starship init zsh)"
 
-eval "$(op completion zsh)"; compdef _op op
-
 eval "$(zoxide init zsh)"
+
+eval "$(direnv hook zsh)"
+
+source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+source ~/.zsh/forgit/forgit.plugin.zsh
+
+eval "$(op completion zsh)"; compdef _op op
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
