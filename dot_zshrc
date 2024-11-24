@@ -9,11 +9,11 @@ eval "$(zoxide init zsh)"
 
 eval "$(direnv hook zsh)"
 
-source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
-source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source ~/.zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
-source ~/.zsh/forgit/forgit.plugin.zsh
+source ~/.zsh/plugins/forgit/forgit.plugin.zsh
 
 eval "$(op completion zsh)"; compdef _op op
 
