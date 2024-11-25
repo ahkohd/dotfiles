@@ -5,8 +5,6 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 eval "$(starship init zsh)"
 
-eval "$(zoxide init zsh)"
-
 eval "$(direnv hook zsh)"
 
 source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
@@ -14,6 +12,8 @@ source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.z
 source ~/.zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 source ~/.zsh/plugins/forgit/forgit.plugin.zsh
+
+eval "$(zoxide init zsh)"
 
 eval "$(op completion zsh)"; compdef _op op
 
