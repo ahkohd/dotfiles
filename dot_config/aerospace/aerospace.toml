@@ -104,6 +104,8 @@ l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 
+check-further-callbacks = true
+
 run = 'layout floating'
 
 [workspace-to-monitor-force-assignment]
