@@ -7,7 +7,17 @@ font-family = Berkeley Mono
 # fallback to Maple Mono
 font-family = Maple Mono
 
+font-feature = -calt
+
+font-feature = -liga
+
+font-feature = -dlig
+
 font-size = 16
+
+adjust-cell-height = 15%
+
+freetype-load-flags = no-hinting
 
 theme = tokyonight-storm
 

@@ -50,22 +50,25 @@ alias cme='chezmoi edit'
 alias cma='chezmoi apply'
 alias cmd='chezmoi diff'
 alias cmu='chezmoi update'
+
 alias grep='grep --color=auto'
-alias ls='eza --icons always --tree --level=1'
-alias l='eza -l --icons always --tree --level=1'
 alias cat='bat'
-alias f="fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}'"
-alias nv='nvim "$(f)"'
 alias c=clear
 alias x=exit
 alias gpg-check="gpg --decrypt ~/test.gpg"
 alias gst="git status"
 alias glg="git log -n 10 --graph --decorate --oneline"
-alias cd=z
-alias zz="z -"
 alias lg=lazygit
 alias p=pnpm
 alias speed=speedtest-cli
+
+alias nv=nvim
+
+alias cd=z
+alias zz="z -"
+
+alias ls='eza --icons always --tree --level=1'
+alias l='eza -l --icons always --tree --level=1'
 
 alias jst="jj st --no-pager"
 alias jbl="jj log -r 'heads(all())'"

@@ -5,19 +5,23 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 eval "$(starship init zsh)"
 
+eval "$(zoxide init zsh)"
+
 eval "$(direnv hook zsh)"
+
+source <(fzf --zsh)
+
+autoload -U compinit; compinit
+
+source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 
 source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
-source ~/.zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
 source ~/.zsh/plugins/forgit/forgit.plugin.zsh
 
-eval "$(zoxide init zsh)"
-
 eval "$(op completion zsh)"; compdef _op op
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # pnpm
 export PNPM_HOME="/home/var/.local/share/pnpm"
