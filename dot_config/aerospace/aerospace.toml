@@ -74,11 +74,15 @@ cmd-alt-ctrl-shift-u = 'workspace 2'
 
 cmd-alt-ctrl-shift-i = 'workspace 3'
 
+cmd-alt-ctrl-shift-o = 'workspace 4'
+
 cmd-alt-ctrl-shift-q = 'move-node-to-workspace 1'
 
 cmd-alt-ctrl-shift-w = 'move-node-to-workspace 2'
 
 cmd-alt-ctrl-shift-e = 'move-node-to-workspace 3'
+
+cmd-alt-ctrl-shift-r = 'move-node-to-workspace 4'
 
 # cmd-alt-ctrl-shift-space = 'move-workspace-to-monitor --wrap-around next'
 
