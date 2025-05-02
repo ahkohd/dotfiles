@@ -1,0 +1,29 @@
+[user]
+  name = Victor Aremu
+  email = me@victorare.mu
+  signingkey = 1F76A9056C921C8A004F63E28D43F8A176DDC6BD
+
+[github]
+  user = ahkohd
+
+[commit]
+  gpgsign = true
+
+[core]
+  editor = vim
+  pager = riff
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
+[pager]
+  diff = riff
+  show = riff
+  log = riff
+
+[interactive]
+  diffFilter = riff --color=on
+
