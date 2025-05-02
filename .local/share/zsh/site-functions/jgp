@@ -1,0 +1,6 @@
+#autoload
+jgp() {
+  local bm
+  bm=$(j bookmark list --template 'name ++ "\n"' --no-pager | sort -u | fzf)
+  [ -n "$bm" ] && j git push --bookmark="$bm"
+}
