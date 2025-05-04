@@ -1,0 +1,98 @@
+font-family = TX-02-AREMU
+
+font-feature = -calt
+
+font-feature = -liga
+
+font-feature = -dlig
+
+font-size = 12
+
+adjust-cell-height = 35%
+
+freetype-load-flags = no-hinting
+
+# theme = light:tokyonight-day,dark:tokyonight-storm
+
+background-opacity = 0.9
+
+background-blur-radius = 20
+
+window-padding-x = 5
+
+window-padding-y = 0
+
+window-colorspace = display-p3
+
+alpha-blending = native
+
+window-save-state = always
+
+keybind = alt+t=new_tab
+
+keybind = alt+s=new_split:right
+
+keybind = alt+x=new_split:down
+
+keybind = alt+i=previous_tab
+
+keybind = alt+o=next_tab
+
+keybind = alt+h=goto_split:left
+
+keybind = alt+l=goto_split:right
+
+keybind = alt+j=goto_split:bottom
+
+keybind = alt+k=goto_split:top
+
+keybind = alt+,=reload_config
+
+keybind = alt+w=close_surface
+
+keybind = alt+enter=toggle_split_zoom
+
+keybind = alt+u=scroll_page_up
+
+keybind = alt+d=scroll_page_down
+
+keybind = global:cmd+alt+ctrl+shift+enter=toggle_quick_terminal
+
+quick-terminal-screen = mouse
+
+mouse-hide-while-typing = true
+
+mouse-scroll-multiplier = 2
+
+cursor-style = bar
+
+cursor-style-blink = true
+
+shell-integration = zsh
+
+command = zsh
+
+# solarize osaka dark theme
+
+palette = 0=#001419
+palette = 1=#db302d
+palette = 2=#849900
+palette = 3=#b28500
+palette = 4=#268bd3
+palette = 5=#d23681
+palette = 6=#29a298
+palette = 7=#fdf5e2
+palette = 8=#063540
+palette = 9=#f55350
+palette = 10=#b7f900
+palette = 11=#ffbf00
+palette = 12=#46acf5
+palette = 13=#f254a0
+palette = 14=#2aeddd
+palette = 15=#ffffff
+
+background = #001419
+foreground = #839395
+cursor-color = #839395
+selection-background = #1a6397
+selection-foreground = #839395
