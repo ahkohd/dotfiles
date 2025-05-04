@@ -1,4 +1,4 @@
-export PATH="$HOME/source/neovim/bin:$PATH"
+export PATH="$HOME/source/neovim/bin:$HOME/.local/bin:$PATH"
 
 fpath=(~/.local/share/zsh/site-functions $fpath)
 
