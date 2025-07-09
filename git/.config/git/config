@@ -1,0 +1,34 @@
+[commit]
+	gpgsign = true
+
+[core]
+	editor = "vim"
+	pager = "riff"
+
+[credential "https://gist.github.com"]
+	helper = "gh auth git-credential"
+
+[credential "https://github.com"]
+	helper = "gh auth git-credential"
+
+[diff]
+	colorMoved = "default"
+
+[github]
+	user = "ahkohd"
+
+[merge]
+	conflictstyle = "diff3"
+
+[user]
+	email = "me@victorare.mu"
+	name = "Victor Aremu"
+	signingkey = "1F76A9056C921C8A004F63E28D43F8A176DDC6BD"
+
+[pager]
+  diff = "riff"
+  show = "riff"
+  log = "riff"
+
+[interactive]
+  diffFilter = "riff --color=on"

@@ -1,0 +1,72 @@
+{
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
+  "schemes" : [
+    {
+      "pointer" : {
+        "acceleration" : 20,
+        "speed" : 0,
+        "disableAcceleration" : false
+      },
+      "scrolling" : {
+        "distance" : {
+          "vertical" : "auto"
+        },
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "speed" : 1,
+        "reverse" : {
+          "vertical" : false
+        }
+      },
+      "if" : {
+        "device" : {
+          "category" : "trackpad",
+          "vendorID" : "0x4c",
+          "productID" : "0x323",
+          "productName" : "Unbeliveably’s Magic Mouse",
+          "serialNumber" : "94:21:57:E3:7F:0D"
+        }
+      }
+    },
+    {
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        }
+      },
+      "if" : {
+        "device" : {
+          "productName" : "Apple Internal Keyboard \/ Trackpad",
+          "productID" : "0x0",
+          "vendorID" : "0x0",
+          "category" : "trackpad"
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "serialNumber" : "000000000000",
+          "productID" : "0x7d",
+          "vendorID" : "0x1532",
+          "category" : "mouse",
+          "productName" : "Razer DeathAdder V2 Pro"
+        }
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1.5
+        },
+        "speed" : {
+          "vertical" : 5
+        }
+      },
+      "pointer" : {
+        "speed" : 0.069,
+        "disableAcceleration" : false,
+        "acceleration" : 3
+      }
+    }
+  ]
+}

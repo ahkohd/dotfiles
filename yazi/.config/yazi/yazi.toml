@@ -1,0 +1,11 @@
+show_symlink = true
+[mgr]
+show_hidden = true
+
+[[plugin.prepend_previewers]]
+name = "*/"
+run = "eza-preview"
+
+[[plugin.prepend_previewers]]
+name = "*.md"
+run = "glow"

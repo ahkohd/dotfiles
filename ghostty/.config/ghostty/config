@@ -1,0 +1,102 @@
+font-family = TX-02-AREMU
+
+font-family = JetBrains Mono
+
+font-feature = -calt
+
+font-feature = -liga
+
+font-feature = -dlig
+
+font-size = 15
+
+adjust-cell-height = 35%
+
+freetype-load-flags = no-hinting
+
+# theme = tokyonight-theme
+
+window-padding-x = 5
+
+window-padding-y = 0
+
+window-colorspace = display-p3
+
+alpha-blending = native
+
+window-save-state = always
+
+keybind = alt+t=new_tab
+
+keybind = alt+s=new_split:right
+
+keybind = alt+x=new_split:down
+
+keybind = alt+i=previous_tab
+
+keybind = alt+o=next_tab
+
+keybind = alt+h=goto_split:left
+
+keybind = alt+l=goto_split:right
+
+keybind = alt+j=goto_split:bottom
+
+keybind = alt+k=goto_split:top
+
+keybind = alt+,=reload_config
+
+keybind = alt+w=close_surface
+
+keybind = alt+enter=toggle_split_zoom
+
+keybind = alt+u=scroll_page_up
+
+keybind = alt+d=scroll_page_down
+
+keybind = global:cmd+alt+ctrl+shift+enter=toggle_quick_terminal
+
+quick-terminal-screen = mouse
+
+mouse-hide-while-typing = true
+
+mouse-scroll-multiplier = 2
+
+cursor-style = bar
+
+cursor-style-blink = true
+
+shell-integration = zsh
+
+command = zsh
+
+macos-option-as-alt = true
+
+macos-icon = custom-style
+
+macos-icon-frame = plastic
+
+palette = 0=#15161e
+palette = 1=#f7768e
+palette = 2=#9ece6a
+palette = 3=#e0af68
+palette = 4=#7aa2f7
+palette = 5=#bb9af7
+palette = 6=#7dcfff
+palette = 7=#a9b1d6
+palette = 8=#414868
+palette = 9=#ff899d
+palette = 10=#9fe044
+palette = 11=#faba4a
+palette = 12=#8db0ff
+palette = 13=#c7a9ff
+palette = 14=#a4daff
+palette = 15=#c0caf5
+
+background = #1a1b26
+foreground = #c0caf5
+cursor-color = #c0caf5
+selection-background = #283457
+selection-foreground = #c0caf5
+
+custom-shader = ./shaders/cursor_smear_fade.glsl
