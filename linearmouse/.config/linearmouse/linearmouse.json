@@ -2,39 +2,33 @@
   "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
   "schemes" : [
     {
-      "pointer" : {
-        "acceleration" : 20,
-        "speed" : 0,
-        "disableAcceleration" : false
-      },
       "scrolling" : {
-        "distance" : {
-          "vertical" : "auto"
+        "speed" : 1,
+        "reverse" : {
+          "vertical" : false
         },
         "acceleration" : {
           "vertical" : 1
         },
-        "speed" : 1,
-        "reverse" : {
-          "vertical" : false
+        "distance" : {
+          "vertical" : "auto"
         }
+      },
+      "pointer" : {
+        "acceleration" : 20,
+        "disableAcceleration" : true
       },
       "if" : {
         "device" : {
-          "category" : "trackpad",
-          "vendorID" : "0x4c",
           "productID" : "0x323",
           "productName" : "Unbeliveably’s Magic Mouse",
-          "serialNumber" : "94:21:57:E3:7F:0D"
+          "category" : "trackpad",
+          "serialNumber" : "94:21:57:E3:7F:0D",
+          "vendorID" : "0x4c"
         }
       }
     },
     {
-      "scrolling" : {
-        "acceleration" : {
-          "vertical" : 1
-        }
-      },
       "if" : {
         "device" : {
           "productName" : "Apple Internal Keyboard \/ Trackpad",
@@ -42,18 +36,14 @@
           "vendorID" : "0x0",
           "category" : "trackpad"
         }
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        }
       }
     },
     {
-      "if" : {
-        "device" : {
-          "serialNumber" : "000000000000",
-          "productID" : "0x7d",
-          "vendorID" : "0x1532",
-          "category" : "mouse",
-          "productName" : "Razer DeathAdder V2 Pro"
-        }
-      },
       "scrolling" : {
         "acceleration" : {
           "vertical" : 1.5
@@ -62,10 +52,64 @@
           "vertical" : 5
         }
       },
+      "if" : {
+        "device" : {
+          "productID" : "0x7d",
+          "vendorID" : "0x1532",
+          "serialNumber" : "000000000000",
+          "category" : "mouse",
+          "productName" : "Razer DeathAdder V2 Pro"
+        }
+      },
       "pointer" : {
         "speed" : 0.069,
         "disableAcceleration" : false,
         "acceleration" : 3
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "productName" : "Magic Mouse",
+          "serialNumber" : "94:21:57:E3:7F:0D",
+          "productID" : "0x323",
+          "category" : "trackpad",
+          "vendorID" : "0x4c"
+        }
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        }
+      },
+      "pointer" : {
+        "acceleration" : 15,
+        "speed" : 0,
+        "disableAcceleration" : true
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "trackpad",
+          "productName" : "Magic Trackpad",
+          "serialNumber" : "CC2HCL00JPA000050A",
+          "productID" : "0x324",
+          "vendorID" : "0x5ac"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 20,
+        "disableAcceleration" : false,
+        "speed" : 1
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 2
+        },
+        "speed" : {
+          "vertical" : 1
+        }
       }
     }
   ]
