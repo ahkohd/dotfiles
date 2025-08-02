@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "ahkohd/eza-preview"
-rev = "b114b01"
-hash = "7676d7da18953f4351048004ab45f0f4"
+rev = "4727dae"
+hash = "a83ced838b2a9e665f0eef3827827626"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:no-status"
-rev = "b886025"
+rev = "de53d90"
 hash = "3e023d31f29201efdac2a6ae35fedb78"
 
 [[plugin.deps]]
