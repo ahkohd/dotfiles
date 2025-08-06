@@ -7,8 +7,6 @@
   border: none;
   border-radius: 0;
   min-height: 0;
-  font-family: TX-02-AREMU;
-  font-size: 16px;
 }
 
 .modules-left {
@@ -26,6 +24,10 @@
   min-width: 9px;
 }
 
+#workspaces button.empty {
+  opacity: 0.5;
+}
+
 #tray,
 #cpu,
 #battery,
@@ -33,7 +35,7 @@
 #bluetooth,
 #pulseaudio,
 #clock,
-#custom-power-menu {
+#custom-omarchy {
   min-width: 12px;
   margin: 0 7.5px;
 }
@@ -45,3 +47,5 @@
 tooltip {
   padding: 2px;
 }
+
+@import "./extend.css";
