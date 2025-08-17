@@ -1,3 +1,5 @@
+--- @since 25.5.31
+
 local M = {}
 
 local function fail(s, ...)
@@ -8,7 +10,15 @@ local function get_or_init_state(state)
 	if state.initialized then
 		return
 	end
-	state.opts = { level = 3, follow_symlinks = false, dereference = false, all = true }
+	state.opts = {
+		level = 3,
+		follow_symlinks = true,
+		dereference = false,
+		all = true,
+		ignore_glob = {},
+		git_ignore = true,
+		git_status = false,
+	}
 	state.tree = true
 	state.initialized = true
 end
@@ -71,6 +81,18 @@ local toggle_hidden = ya.sync(function(state)
 	ya.manager_emit("refresh", {})
 end)
 
+local toggle_git_ignore = ya.sync(function(state)
+	get_or_init_state(state)
+	state.opts.git_ignore = not state.opts.git_ignore
+	ya.manager_emit("refresh", {})
+end)
+
+local toggle_git_status = ya.sync(function(state)
+	get_or_init_state(state)
+	state.opts.git_status = not state.opts.git_status
+	ya.manager_emit("refresh", {})
+end)
+
 function M:entry(job)
 	local args = string.gsub(job.args[1] or "", "^%s*(.-)%s*$", "%1")
 	if args == "inc-level" then
@@ -81,6 +103,10 @@ function M:entry(job)
 		toggle_follow_symlinks()
 	elseif args == "toggle-hidden" then
 		toggle_hidden()
+	elseif args == "toggle-git-ignore" then
+		toggle_git_ignore()
+	elseif args == "toggle-git-status" then
+		toggle_git_status()
 	else
 		toggle_view_mode()
 	end
@@ -110,6 +136,26 @@ function M:peek(job)
 		end
 		if opts.dereference then
 			table.insert(args, "--dereference")
+		end
+		if opts.git_status then
+			table.insert(args, "--long")
+			table.insert(args, "--no-permissions")
+			table.insert(args, "--no-user")
+			table.insert(args, "--no-time")
+			table.insert(args, "--no-filesize")
+			table.insert(args, "--git")
+			table.insert(args, "--git-repos")
+		end
+		if opts.git_ignore then
+			table.insert(args, "--git-ignore")
+		end
+		if opts.ignore_glob and type(opts.ignore_glob) == "table" and #opts.ignore_glob > 0 then
+			local pattern_str = table.concat(opts.ignore_glob, "|")
+			table.insert(args, "-I")
+			table.insert(args, pattern_str)
+		elseif opts.ignore_glob and type(opts.ignore_glob) == "string" and opts.ignore_glob ~= "" then
+			table.insert(args, "-I")
+			table.insert(args, opts.ignore_glob)
 		end
 	end
 	local child = Command("eza"):arg(args):stdout(Command.PIPED):stderr(Command.PIPED):spawn()
