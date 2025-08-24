@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Niri (UWSM)
+Comment=Niri compositor managed by UWSM
+Exec=uwsm start -F -- niri --session
+DesktopNames=niri
+Type=Application
+

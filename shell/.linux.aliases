@@ -1,0 +1,3 @@
+alias u='uwsm'
+alias us='uwsm start default'
+alias ux='uwsm stop'
