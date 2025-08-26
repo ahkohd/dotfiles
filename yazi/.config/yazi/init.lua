@@ -10,3 +10,5 @@ require("eza-preview"):setup({
 })
 
 require("no-status"):setup()
+
+require("starship"):setup()
