@@ -1,4 +1,6 @@
-font-family = TX-02-AREMU
+#font-family = TX-02-AREMU
+
+font-family = Lotion
 
 font-feature = -calt
 
