@@ -10,6 +10,7 @@ alias -- gst='git status'
 alias -- j=jj
 alias -- ja='jj abandon'
 alias -- jb='jj bookmark set $(j bookmark list --template '\''name ++ "\n"'\'' --no-pager | sort -u | fzf)'
+alias -- jbd='jj bookmark delete $(j bookmark list -r "all()" --template '\''name ++ "\n"'\'' --no-pager | sort -u | fzf)'
 alias -- jbi='jb --ignore-immutable'
 alias -- jbk='jj bookmark'
 alias -- jbs='jj bookmark set'
