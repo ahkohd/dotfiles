@@ -24,6 +24,8 @@ alpha-blending = native
 
 window-save-state = always
 
+macos-option-as-alt = true
+
 keybind = alt+t=new_tab
 
 keybind = alt+s=new_split:right
@@ -67,8 +69,6 @@ cursor-style-blink = true
 shell-integration = zsh
 
 command = zsh
-
-macos-option-as-alt = true
 
 macos-icon = custom-style
 

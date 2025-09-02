@@ -8,11 +8,11 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent": {
+    "play_sound_when_agent_done": true,
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-3-5-sonnet-latest"
     },
-    "version": "2"
   },
   "telemetry": {
     "metrics": false,
