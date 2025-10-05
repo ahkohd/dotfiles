@@ -1,49 +1,73 @@
-@import "../omarchy/current/theme/waybar.css";
+@define-color bg_module rgba(0, 0, 0, 0.25);
+@define-color border_color rgba(0, 0, 0, 0.05);
+@define-color shadow_color rgba(0, 0, 0, 0.3);
+@define-color text_color rgba(255, 255, 255, 0.70);
 
 * {
-  background-color: @background;
-  color: @foreground;
-
   border: none;
   border-radius: 0;
   min-height: 0;
-	font-family: TX-02-AREMU;
-	font-size: 16px;
+  /* font-family: TX-02-AREMU; */
+  font-family: Nimbus Sans;
+  font-size: 10px;
+  color: @text_color;
+  background: transparent;
+  text-shadow: 0 0px 1.5px @shadow_color;
 }
 
 .modules-left {
+  background: @bg_module;
+  border-radius: 10px;
+  padding: 0 5px;
+  margin-top: 5px;
   margin-left: 8px;
+  border: 1px solid @border_color;
+}
+
+.modules-center {
+  font-weight: 600;
+  background: @bg_module;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin-top: 5px;
+  border: 1px solid @border_color;
 }
 
 .modules-right {
+  background: @bg_module;
+  border-radius: 10px;
+  padding: 0 7px;
+  margin-top: 5px;
   margin-right: 8px;
+  border: 1px solid @border_color;
+}
+
+#clock {
+  font-size: 9.75px;
+}
+
+#workspaces {
+  padding: 0px;
+  margin: 0px;
 }
 
 #workspaces button {
   all: initial;
-  padding: 0 6px;
-  margin: 0 1.5px;
+  padding: 0 4px;
+  margin: 0px;
   min-width: 9px;
 }
 
 #workspaces button.empty {
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
-#tray,
-#cpu,
-#battery,
-#network,
-#bluetooth,
-#pulseaudio,
-#clock,
-#custom-omarchy {
-  min-width: 12px;
-  margin: 0 7.5px;
+#pulseaudio {
+  margin: 0 2px 0 2px;
 }
 
-#custom-expand-icon {
-  margin-right: 7px;
+#tray {
+  margin: 0 6px 0px 0px;
 }
 
 tooltip {

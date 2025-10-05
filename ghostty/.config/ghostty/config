@@ -6,13 +6,11 @@ font-feature = -liga
 
 font-feature = -dlig
 
-font-size = 14
+font-size = 9
 
 adjust-cell-height = 35%
 
 freetype-load-flags = no-hinting
-
-# theme = tokyonight-theme
 
 window-padding-x = 5
 

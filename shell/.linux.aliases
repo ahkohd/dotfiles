@@ -1,3 +1,4 @@
 alias u='uwsm'
 alias us='uwsm start default'
 alias ux='uwsm stop'
+alias wallpaper='WallRizz -z list -d ~/Pictures/wallpapers'
