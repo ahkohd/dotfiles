@@ -16,6 +16,8 @@ eval "$(zoxide init zsh)"
 
 eval "$(direnv hook zsh)"
 
+eval "$(atuin init zsh --disable-up-arrow)"
+
 function yy() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
   yazi "$@" --cwd-file="$tmp"
