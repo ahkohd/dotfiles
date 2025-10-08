@@ -41,6 +41,7 @@ alias -- lla='eza -la'
 alias -- ls='eza --tree --level=1'
 alias -- lt='eza --tree'
 alias -- nv=nvim
+alias -- nvd=neovide
 alias -- nvc='~/Developer/nvim/scripts/nvim-config'
 alias -- p=pnpm
 alias -- speed=speedtest-cli

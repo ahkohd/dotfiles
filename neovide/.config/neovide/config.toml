@@ -1,0 +1,15 @@
+fork = true
+frame = "transparent"
+srgb = true
+vsync = true
+
+[font]
+bold = ["TX-02-AREMU", "Symbols Nerd Font Mono"]
+bold_italic = ["TX-02-AREMU", "Symbols Nerd Font Mono"]
+italic = ["TX-02-AREMU", "Symbols Nerd Font Mono"]
+normal = ["TX-02-AREMU", "Symbols Nerd Font Mono"]
+size = 14
+
+[font.features]
+TX-02-AREMU = ["-calt", "-liga", "-dlig"]
+"Symbols Nerd Font Mono" = ["-calt", "-liga", "-dlig"]

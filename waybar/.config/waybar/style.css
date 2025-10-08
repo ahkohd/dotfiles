@@ -1,4 +1,4 @@
-@define-color bg_module rgba(0, 0, 0, 0.25);
+@define-color bg_module rgba(0, 0, 0, 0.3);
 @define-color border_color rgba(0, 0, 0, 0.05);
 @define-color shadow_color rgba(0, 0, 0, 0.3);
 @define-color text_color rgba(255, 255, 255, 0.70);
@@ -7,9 +7,9 @@
   border: none;
   border-radius: 0;
   min-height: 0;
-  /* font-family: TX-02-AREMU; */
-  font-family: Nimbus Sans;
-  font-size: 10px;
+  font-family: TX-02-AREMU;
+  /* font-family: Nimbus Sans; */
+  font-size: 18px;
   color: @text_color;
   background: transparent;
   text-shadow: 0 0px 1.5px @shadow_color;
@@ -17,8 +17,8 @@
 
 .modules-left {
   background: @bg_module;
-  border-radius: 10px;
-  padding: 0 5px;
+  border-radius: 20px;
+  padding: 0 10px;
   margin-top: 5px;
   margin-left: 8px;
   border: 1px solid @border_color;
@@ -27,23 +27,19 @@
 .modules-center {
   font-weight: 600;
   background: @bg_module;
-  border-radius: 10px;
-  padding: 0 10px;
+  border-radius: 40px;
+  padding: 0 14px;
   margin-top: 5px;
   border: 1px solid @border_color;
 }
 
 .modules-right {
   background: @bg_module;
-  border-radius: 10px;
-  padding: 0 7px;
+  border-radius: 40px;
+  padding: 0 8px;
   margin-top: 5px;
   margin-right: 8px;
   border: 1px solid @border_color;
-}
-
-#clock {
-  font-size: 9.75px;
 }
 
 #workspaces {
@@ -63,11 +59,11 @@
 }
 
 #pulseaudio {
-  margin: 0 2px 0 2px;
+  margin: 0 2px 0 0;
 }
 
 #tray {
-  margin: 0 6px 0px 0px;
+  margin: 0 8px 0px 0px;
 }
 
 tooltip {
