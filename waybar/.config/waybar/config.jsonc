@@ -3,7 +3,7 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "height": 25,
+  "height": 40,
   "modules-left": [
     "hyprland/workspaces"
   ],
@@ -44,7 +44,7 @@
     "tooltip": false
   },
   "tray": {
-    "icon-size": 10,
+    "icon-size": 20,
     "spacing": 10
   },
   "pulseaudio": {
