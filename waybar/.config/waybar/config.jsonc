@@ -11,7 +11,7 @@
     "clock"
   ],
   "modules-right": [
-    "tray",
+    // "tray",
     "pulseaudio"
   ],
   "hyprland/workspaces": {
