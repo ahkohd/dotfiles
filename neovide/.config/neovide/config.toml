@@ -1,5 +1,5 @@
 fork = true
-frame = "transparent"
+# frame = "transparent"
 srgb = true
 vsync = true
 
@@ -8,7 +8,7 @@ bold = ["TX-02-AREMU", "Symbols Nerd Font Mono"]
 bold_italic = ["TX-02-AREMU", "Symbols Nerd Font Mono"]
 italic = ["TX-02-AREMU", "Symbols Nerd Font Mono"]
 normal = ["TX-02-AREMU", "Symbols Nerd Font Mono"]
-size = 14
+size = 12
 
 [font.features]
 TX-02-AREMU = ["-calt", "-liga", "-dlig"]
