@@ -1,0 +1,117 @@
+[manager]
+cwd = { fg = "#CEDEAD" }
+
+hovered         = { reversed = true }
+preview_hovered = { underline = true }
+
+find_keyword  = { fg = "#ACB490", bold = true, italic = true, underline = true }
+find_position = { fg = "#DEF9B7", bg = "reset", bold = true, italic = true }
+
+marker_copied   = { fg = "#B0C58D", bg = "#B0C58D" }
+marker_cut      = { fg = "#A1AA93", bg = "#A1AA93" }
+marker_marked   = { fg = "#CEDEAD", bg = "#CEDEAD" }
+marker_selected = { fg = "#ACB490", bg = "#ACB490" }
+
+tab_active   = { reversed = true }
+tab_inactive = {}
+tab_width    = 1
+
+count_copied   = { fg = "#ACA5B7", bg = "#B0C58D" }
+count_cut      = { fg = "#ACA5B7", bg = "#A1AA93" }
+count_selected = { fg = "#ACA5B7", bg = "#ACB490" }
+
+border_symbol = "│"
+border_style  = { fg = "#B0C58D" }
+
+syntect_theme = ""
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#ACA5B7", bg = "#ACA5B7" }
+
+mode_normal = { bg = "#CEDEAD", bold = true }
+mode_select = { bg = "#A1AA93", bold = true }
+mode_unset  = { bg = "#A1AA93", bold = true }
+
+progress_label  = { bold = true }
+progress_normal = { fg = "#CEDEAD", bg = "#04000B" }
+progress_error  = { fg = "#A1AA93", bg = "#04000B" }
+
+permissions_t = { fg = "#B0C58D" }
+permissions_r = { fg = "#ACB490" }
+permissions_w = { fg = "#A1AA93" }
+permissions_x = { fg = "#CEDEAD" }
+permissions_s = { fg = "#ACA5B7" }
+
+[select]
+border   = { fg = "#CEDEAD" }
+active   = { fg = "#DEF9B7", bold = true }
+inactive = {}
+
+[input]
+border   = { fg = "#CEDEAD" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[completion]
+border   = { fg = "#CEDEAD" }
+active   = { reversed = true }
+inactive = {}
+
+icon_file    = ""
+icon_folder  = ""
+icon_command = ""
+
+[tasks]
+border  = { fg = "#CEDEAD" }
+title   = {}
+hovered = { fg = "#DEF9B7", underline = true }
+
+[which]
+cols            = 3
+mask            = { bg = "#04000B" }
+cand            = { fg = "#D3CADB" }
+rest            = { fg = "#ACB490" }
+desc            = { fg = "#DEF9B7" }
+separator       = "  "
+separator_style = { fg = "#ACB490" }
+
+[help]
+on      = { fg = "#CEDEAD" }
+run     = { fg = "#DEF9B7" }
+desc    = {}
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#ACA5B7", bg = "#CEDEAD" }
+
+[notify]
+title_info  = { fg = "#B0C58D" }
+title_warn  = { fg = "#ACB490" }
+title_error = { fg = "#A1AA93" }
+
+icon_info  = ""
+icon_warn  = ""
+icon_error = ""
+
+[filetype]
+
+rules = [
+	# Images
+	{ mime = "image/*", fg = "#CEDEAD" },
+
+	# Media
+	{ mime = "{audio,video}/*", fg = "#DEF9B7" },
+
+	# Archives
+	{ mime = "application/*zip", fg = "#A1AA93" },
+	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#A1AA93" },
+
+	# Documents
+	{ mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#CEDEAD" },
+
+	# Fallback
+	{ name = "*", fg = "#D3CADB" },
+	{ name = "*/", fg = "#B0C58D" }
+]
+

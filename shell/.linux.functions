@@ -1,0 +1,233 @@
+wallpaper() {
+  # Display help message
+  if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
+    cat << EOF
+Usage: wallpaper [OPTIONS]
+
+Interactive wallpaper manager with automatic processing and theming.
+
+OPTIONS:
+  (none)              Open fzf to select from all wallpapers
+  --fav               Filter and show only favorite wallpapers (fav-* or fav_*)
+  --path <file>       Set wallpaper from specific file path (skip fzf)
+  --post=bright       Apply brightened blur gradient to top (default: +10)
+  --post=dark         Apply darkened blur gradient to top (default: -15)
+  --strength=<value>  Custom magnitude (0-100), inherits sign from --post mode
+  --blur-height=<s,g> Custom blur region: solid%,gradient% (default: 3,5)
+  --help, -h          Show this help message
+
+PROCESSING:
+  - Extracts colors with wallust for theme generation
+  - Optionally applies top gradient blur for waybar visibility (use --post)
+  - Generates 1000x400 preview with vignette blur for rofi/hyprlock
+
+OUTPUT FILES:
+  ~/.wallpaper.post     Full-size processed wallpaper (used by desktop)
+  ~/.wallpaper.preview  Small cropped preview (used by rofi/hyprlock)
+
+EXAMPLES:
+  wallpaper                                # Browse all wallpapers (no blur)
+  wallpaper --fav                          # Browse only favorites
+  wallpaper --path ~/image.jpg             # Set specific wallpaper
+  wallpaper --fav --post=dark              # Browse favorites with dark blur (-15)
+  wallpaper --post=bright                  # Browse all with brightened blur (+10)
+  wallpaper --post=dark --strength=35      # Dark blur with -35 brightness
+  wallpaper --strength=-20                 # Explicit -20 brightness (no post mode)
+  wallpaper --post=dark --blur-height=5,8  # Larger blur region
+EOF
+    return 0
+  fi
+
+  local dir=~/Pictures/wallpapers
+  local img
+
+  # === Configuration variables (easy to tweak) ===
+  local brightness_bright="+10"   # Brightness for bright mode
+  local brightness_dark="-15"     # Brightness for dark mode
+  local blur_strength="0x50"      # Gaussian blur strength (0xSIGMA)
+  local blur_solid_pct=3          # Top percentage with solid blur
+  local blur_gradient_pct=5       # Percentage for blur gradient fade
+  local compose_blur_amount=15    # Blur composition strength
+
+  # === Runtime variables ===
+  local brightness="$brightness_bright"  # Default: brighten the blur
+  local skip_post=true                   # Default: skip postprocessing
+  local post_mode=""                     # Track post mode (bright/dark)
+  local custom_strength=""               # Track custom strength value
+
+  # Verify wallpapers directory exists
+  if [[ ! -d "$dir" ]]; then
+    echo "Error: Wallpapers directory not found: $dir"
+    return 1
+  fi
+
+  # Parse all arguments - collect flags first
+  for arg in "$@"; do
+    case "$arg" in
+      --post=dark)
+        post_mode="dark"
+        ;;
+      --post=bright)
+        post_mode="bright"
+        ;;
+      --strength=*)
+        custom_strength="${arg#*=}"
+        if [[ -z "$custom_strength" ]]; then
+          echo "Error: --strength requires a value (e.g., --strength=20)"
+          return 1
+        fi
+        ;;
+      --blur-height=*)
+        local height_values="${arg#*=}"
+        if [[ "$height_values" =~ ^([0-9]+),([0-9]+)$ ]]; then
+          blur_solid_pct="${BASH_REMATCH[1]}"
+          blur_gradient_pct="${BASH_REMATCH[2]}"
+        else
+          echo "Error: --blur-height must be in format: solid,gradient (e.g., 3,5)"
+          return 1
+        fi
+        ;;
+    esac
+  done
+
+  # Apply post mode and strength logic
+  if [[ -n "$custom_strength" ]]; then
+    # Custom strength specified - inherit sign from post mode
+    local magnitude="${custom_strength#[+-]}"  # Strip any sign
+    if [[ ! "$magnitude" =~ ^[0-9]+$ ]]; then
+      echo "Error: --strength must be a number (0 to 100)"
+      return 1
+    fi
+
+    if [[ "$post_mode" == "dark" ]]; then
+      brightness="-${magnitude}"
+    elif [[ "$post_mode" == "bright" ]]; then
+      brightness="+${magnitude}"
+    else
+      # No post mode - use explicit sign from input or default to positive
+      if [[ "$custom_strength" =~ ^- ]]; then
+        brightness="-${magnitude}"
+      else
+        brightness="+${magnitude}"
+      fi
+    fi
+    skip_post=false
+  elif [[ "$post_mode" == "dark" ]]; then
+    brightness="$brightness_dark"
+    skip_post=false
+  elif [[ "$post_mode" == "bright" ]]; then
+    brightness="$brightness_bright"
+    skip_post=false
+  fi
+
+  # Enable postprocessing if blur-height was specified
+  if [[ -n "${blur_solid_pct}" ]] && [[ "${blur_solid_pct}" != "3" ]]; then
+    skip_post=false
+  fi
+
+  # Parse arguments and select wallpaper
+  local use_path=false
+  local use_fav=false
+  local path_file=""
+
+  for arg in "$@"; do
+    case "$arg" in
+      --path)
+        use_path=true
+        ;;
+      --fav)
+        use_fav=true
+        ;;
+      --post=*|--strength=*|--blur-height=*|--help|-h)
+        # Skip these, already handled
+        ;;
+      *)
+        # If --path was specified, this is the file path
+        if [[ "$use_path" == true ]] && [[ -z "$path_file" ]]; then
+          path_file="$arg"
+        fi
+        ;;
+    esac
+  done
+
+  if [[ "$use_path" == true ]]; then
+    # Direct path mode: use specified file without fzf
+    if [[ -z "$path_file" ]]; then
+      echo "Error: --path requires a file path"
+      return 1
+    fi
+    if [[ ! -f "$path_file" ]]; then
+      echo "Error: File not found: $path_file"
+      return 1
+    fi
+    img="$path_file"
+    dir="$(dirname "$img")"
+    img="$(basename "$img")"
+  elif [[ "$use_fav" == true ]]; then
+    # Favorites mode: filter files starting with fav- or fav_
+    img="$(cd "$dir" && command ls | grep -E '^fav[-_]' | fzf \
+      --preview "kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 {}")" \
+      || return 1
+  else
+    # Default mode: show all wallpapers
+    img="$(cd "$dir" && command ls | fzf \
+      --preview "kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 {}")" \
+      || return 1
+  fi
+
+  [ -z "$img" ] && return 0
+
+  echo "Selected: $dir/$img"
+
+  # Extract colors from ORIGINAL image for wallust theme generation
+  wallust run "$dir/$img"
+
+  # === Full-size wallpaper with top gradient blur for waybar visibility ===
+  if [[ "$skip_post" == true ]]; then
+    echo "Skipping postprocessing (using original)..."
+    cp "$dir/$img" ~/.wallpaper.post
+  else
+    echo "Postprocessing wallpaper..."
+    local width=$(identify -format "%w" "$dir/$img" 2>/dev/null)
+    local height=$(identify -format "%h" "$dir/$img" 2>/dev/null)
+
+    # Verify identify succeeded
+    if [[ -z "$width" ]] || [[ -z "$height" ]]; then
+      echo "Warning: Failed to get image dimensions, using original file"
+      cp "$dir/$img" ~/.wallpaper.post
+    else
+      local solid_height=$((height * blur_solid_pct / 100))
+      local gradient_height=$((height * blur_gradient_pct / 100))
+      local total_blur=$((solid_height + gradient_height))
+
+      # Process: blur + brightness adjustment, then apply gradient mask (white=blur, black=normal)
+      if ! magick "$dir/$img" \
+        \( +clone -blur ${blur_strength} -brightness-contrast ${brightness}x0 \) \
+        \( -size ${width}x${solid_height} xc:white -size ${width}x${gradient_height} gradient:white-black -size ${width}x$((height-total_blur)) xc:black -append \) \
+        -composite -quality 100 \
+        ~/.wallpaper.post; then
+        echo "Warning: Top blur processing failed, using original file"
+        cp "$dir/$img" ~/.wallpaper.post
+      fi
+    fi
+  fi
+
+  # Set the processed wallpaper
+  swww img ~/.wallpaper.post --transition-type=any
+
+  # === Rofi preview: 1000x400 crop with edge vignette blur ===
+  echo "Generating preview..."
+  # Creates elliptical mask (center sharp, edges blurred)
+  if ! magick "$dir/$img" -resize 1000x400^ -gravity center -extent 1000x400 \
+    \( +clone -fill white -colorize 100% -fill black -draw "ellipse 500,200 480,190 0,360" -blur ${blur_strength} \) \
+    -compose blur -set option:compose:args ${compose_blur_amount} -composite -quality 100 ~/.wallpaper.preview; then
+    echo "Warning: Image processing failed, using original file"
+    cp "$dir/$img" ~/.wallpaper.preview
+  fi
+
+  # Create/update symlink for rofi (force overwrite if needed)
+  ln -sf ~/.wallpaper.preview ~/.config/rofi/.wallpaper.preview
+
+  # Reload Hyprland to apply changes
+  hyprctl reload
+}

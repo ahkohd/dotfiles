@@ -48,16 +48,3 @@ alias -- speed=speedtest-cli
 alias -- x=exit
 alias -- y=yy
 alias -- zz='z -'
-
-# jj navigation functions
-j-() {
-    local count=${1:-1}
-    local suffix=$(printf '%*s' "$count" | tr ' ' '-')
-    jj edit "@${suffix}" --ignore-immutable
-}
-
-j+() {
-    local count=${1:-1}
-    local suffix=$(printf '%*s' "$count" | tr ' ' '+')
-    jj edit "@${suffix}" --ignore-immutable
-}

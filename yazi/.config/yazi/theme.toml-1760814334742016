@@ -1,0 +1,117 @@
+[manager]
+cwd = { fg = "#ECAFAE" }
+
+hovered         = { reversed = true }
+preview_hovered = { underline = true }
+
+find_keyword  = { fg = "#E0938D", bold = true, italic = true, underline = true }
+find_position = { fg = "#FABBAC", bg = "reset", bold = true, italic = true }
+
+marker_copied   = { fg = "#D69BA1", bg = "#D69BA1" }
+marker_cut      = { fg = "#AB9590", bg = "#AB9590" }
+marker_marked   = { fg = "#ECAFAE", bg = "#ECAFAE" }
+marker_selected = { fg = "#E0938D", bg = "#E0938D" }
+
+tab_active   = { reversed = true }
+tab_inactive = {}
+tab_width    = 1
+
+count_copied   = { fg = "#C798AC", bg = "#D69BA1" }
+count_cut      = { fg = "#C798AC", bg = "#AB9590" }
+count_selected = { fg = "#C798AC", bg = "#E0938D" }
+
+border_symbol = "│"
+border_style  = { fg = "#D69BA1" }
+
+syntect_theme = ""
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#C798AC", bg = "#C798AC" }
+
+mode_normal = { bg = "#ECAFAE", bold = true }
+mode_select = { bg = "#AB9590", bold = true }
+mode_unset  = { bg = "#AB9590", bold = true }
+
+progress_label  = { bold = true }
+progress_normal = { fg = "#ECAFAE", bg = "#464242" }
+progress_error  = { fg = "#AB9590", bg = "#464242" }
+
+permissions_t = { fg = "#D69BA1" }
+permissions_r = { fg = "#E0938D" }
+permissions_w = { fg = "#AB9590" }
+permissions_x = { fg = "#ECAFAE" }
+permissions_s = { fg = "#C798AC" }
+
+[select]
+border   = { fg = "#ECAFAE" }
+active   = { fg = "#FABBAC", bold = true }
+inactive = {}
+
+[input]
+border   = { fg = "#ECAFAE" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[completion]
+border   = { fg = "#ECAFAE" }
+active   = { reversed = true }
+inactive = {}
+
+icon_file    = ""
+icon_folder  = ""
+icon_command = ""
+
+[tasks]
+border  = { fg = "#ECAFAE" }
+title   = {}
+hovered = { fg = "#FABBAC", underline = true }
+
+[which]
+cols            = 3
+mask            = { bg = "#464242" }
+cand            = { fg = "#F4A392" }
+rest            = { fg = "#E0938D" }
+desc            = { fg = "#FABBAC" }
+separator       = "  "
+separator_style = { fg = "#E0938D" }
+
+[help]
+on      = { fg = "#ECAFAE" }
+run     = { fg = "#FABBAC" }
+desc    = {}
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#C798AC", bg = "#ECAFAE" }
+
+[notify]
+title_info  = { fg = "#D69BA1" }
+title_warn  = { fg = "#E0938D" }
+title_error = { fg = "#AB9590" }
+
+icon_info  = ""
+icon_warn  = ""
+icon_error = ""
+
+[filetype]
+
+rules = [
+	# Images
+	{ mime = "image/*", fg = "#ECAFAE" },
+
+	# Media
+	{ mime = "{audio,video}/*", fg = "#FABBAC" },
+
+	# Archives
+	{ mime = "application/*zip", fg = "#AB9590" },
+	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#AB9590" },
+
+	# Documents
+	{ mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#ECAFAE" },
+
+	# Fallback
+	{ name = "*", fg = "#F4A392" },
+	{ name = "*/", fg = "#D69BA1" }
+]
+

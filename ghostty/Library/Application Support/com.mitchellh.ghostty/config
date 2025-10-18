@@ -1,1 +1,5 @@
-font-size = 14
+font-size = 20
+
+background-opacity = 1
+
+config-file = colors

@@ -27,7 +27,7 @@ function yy() {
   rm -f -- "$tmp"
 }
 
-if [[ "$(uname)" == "Linux" ]]; then
+if [[ "$OSTYPE" == "linux"* ]]; then
     if [ -f ~/.linux.sh ]; then
         source ~/.linux.sh
     fi
@@ -43,7 +43,7 @@ if [ -f ~/.env ]; then
     . ~/.env
 fi
 
-if [[ "$(uname)" == "Linux" ]]; then
+if [[ "$OSTYPE" == "linux"* ]]; then
     if [ -f ~/.linux.env ]; then
         source ~/.linux.env
     fi
@@ -59,12 +59,30 @@ if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
-if [[ "$(uname)" == "Linux" ]]; then
+if [[ "$OSTYPE" == "linux"* ]]; then
     if [ -f ~/.linux.aliases ]; then
         source ~/.linux.aliases
     fi
 fi
 
-if [ -f ~/.darwin.aliases ]; then
-    source ~/.darwin.aliases
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    if [ -f ~/.darwin.aliases ]; then
+        source ~/.darwin.aliases
+    fi
+fi
+
+if [ -f ~/.functions ]; then
+    . ~/.functions
+fi
+
+if [[ "$OSTYPE" == "linux"* ]]; then
+    if [ -f ~/.linux.functions ]; then
+        source ~/.linux.functions
+    fi
+fi
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    if [ -f ~/.darwin.functions ]; then
+        source ~/.darwin.functions
+    fi
 fi

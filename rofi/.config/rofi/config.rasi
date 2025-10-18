@@ -1,0 +1,241 @@
+configuration {
+	modi:                       "drun,run,filebrowser";
+    show-icons:                 true;
+    display-drun:               " ";
+    display-run:                " ";
+    display-filebrowser:        " ";
+    display-window:             " ";
+	drun-display-format:        "{name}";
+	hover-select:               true;
+	me-select-entry:            "MouseSecondary";
+    me-accept-entry:            "MousePrimary";
+	window-format:              "{w} · {c} · {t}";
+	dpi:						1;
+}
+
+@theme "~/.config/rofi/wallust/rofi.rasi"
+
+/* ---- Global Properties ---- */
+* {
+
+    background-alt:              @selected-active-background; // Buttons background
+    selected:                    @selected-urgent-background; // Button selected
+    active:                      @selected-normal-background; // Window activated
+    urgent:                      @selected; // When hovering the activated window (maybe more?)
+
+    text-selected:               @background;
+    text-color:                  @foreground;
+    border-color:                @selected;
+}
+
+/* ---- Window ---- */
+window {
+    // Default
+    enabled:                    true;
+    fullscreen:                 false;
+    transparency:               "real";
+    cursor:                     "default";
+    spacing:                    0px;
+    border:                     1px;
+    border-radius:              45px;
+    location:                   center;
+    anchor:                     center;
+
+    // Style Values
+    width:                      24%;
+    height:                     37%;
+    background-color:           @background;
+    border-color:               @alternate-border;
+
+}
+
+/* ----- Main Box ----- */
+mainbox {
+	padding:					 5px 8px 10px 8px;
+    enabled:                     true;
+    orientation:                 vertical;
+    children:                    [ "inputbar", "listbox" ];
+    background-color:            transparent;
+}
+
+
+/* ---- Inputbar ---- */
+inputbar {
+    enabled:                     true;
+    padding:                     10px 10px 100px 10px;
+    margin:                      20px 15px 5px 15px;
+    background-color:            transparent;
+    border-radius:               25px;
+    orientation:                 horizontal;
+    children:                    ["entry", "dummy", "mode-switcher" ];
+    background-image:            url("~/.config/rofi/.wallpaper.preview", width);
+}
+
+/* ---- Entry input ---- */
+entry {
+    enabled:                     true;
+    expand:                      false;
+    width:                       10%;
+    padding:                     6px 10px;
+    border-radius:               17px;
+    background-color:            @background;
+    text-color:                  @foreground;
+    cursor:                      text;
+    placeholder:                 "                                                      ";
+    placeholder-color:           inherit;
+}
+
+/* ---- Listbox ---- */
+listbox {
+    spacing:                     2px;
+    padding:                     10px 18px 15px 18px;
+    background-color:            transparent;
+    orientation:                 vertical;
+    children:                    [ "message", "listview" ];
+}
+
+/* ---- Listview ---- */
+listview {
+    enabled:                     true;
+    columns:                     1;
+    lines:                       6;
+    cycle:                       true;
+    dynamic:                     false;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    spacing:                     5px;
+    background-color:            transparent;
+
+//  Adapt rofi theme
+    border:                      0px;
+}
+
+/* ---- Dummy ---- */
+dummy {
+    expand:                      true;
+    background-color:            transparent;
+}
+
+/* ---- Mode Switcher ---- */
+mode-switcher{
+    enabled:                     true;
+    spacing:                     0px;
+    background-color:            transparent;
+}
+button {
+    width:                       2%;
+    padding:                     0px;
+    border-radius:               12px;
+    background-color:            transparent;
+    text-color:                  @text-color;
+    cursor:                      pointer;
+    font:                        "Inter Medium 12";
+}
+button selected {
+    background-color:            transparent;
+    text-color:                  @alternate-active-foreground;
+    font:                        "Inter Bold 12";
+}
+
+/* ---- Scrollbar ---- */
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-color: @border-color;
+    handle-width: 8px ;
+    padding:      0;
+}
+
+/* ---- Elements ---- */
+element {
+    enabled:                     true;
+    spacing:                     5px;
+    padding:                     9px;
+    border-radius:               12px;
+    background-color:            transparent;
+    cursor:                      pointer;
+}
+
+element normal.normal {
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+element normal.urgent {
+    background-color:            @urgent;
+    text-color:                  @foreground;
+}
+element normal.active {
+    background-color:            @active;
+    text-color:                  @background;
+}
+
+element selected.normal {
+    background-color:            @selected;
+    text-color:                  @text-selected;
+}
+element selected.urgent {
+    background-color:            @selected;
+    text-color:                  @text-selected;
+}
+element selected.active {
+    background-color:            @selected;
+    text-color:                  @text-selected;
+}
+// Adapt rofi theme
+element alternate.normal {
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+element alternate.urgent {
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+element alternate.active {
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+element-icon {
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        20px;
+    cursor:                      inherit;
+}
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+/* ---- Message ---- */
+message {
+    background-color:            transparent;
+    border:                      0px;
+}
+textbox {
+    padding:                     12px;
+    border-radius:               10px;
+    background-color:            @background-alt;
+    text-color:                  @background;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+error-message {
+    padding:                     12px;
+    border-radius:               20px;
+    background-color:            @background-alt;
+    text-color:                  @background;
+}
+/* ---- Configuration ---- */
+configuration {
+	font: "Inter Medium 12";
+}
+
+element-text {
+    font:	"Inter Medium 12";
+}
+
