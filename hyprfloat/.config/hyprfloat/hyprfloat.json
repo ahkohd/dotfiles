@@ -1,0 +1,22 @@
+{
+	"terminal_classes":[
+		"kitty",
+		"alacritty",
+		"com.mitchellh.ghostty"
+	],
+	"ignore_titles":[
+		"btop"
+	],
+	"monitors":{
+		"HDMI-A-1":{
+			"width":767,
+			"height":1364,
+			"offset": [0, 0]
+		},
+		"DP-1":{
+			"width":1000,
+			"height":800,
+			"offset": [0, 0]
+		}
+	}
+}
