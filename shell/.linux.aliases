@@ -1,4 +1,26 @@
 alias u='uwsm'
 alias us='uwsm start default'
 alias ux='uwsm stop'
-alias wallpaper='swww img ~/Pictures/wallpapers/$(cd ~/Pictures/wallpapers && command ls | fzf --preview "kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 {}")'
+
+wallpaper() {
+  local dir=~/Pictures/wallpapers
+  local img
+
+  img="$(cd "$dir" && command ls | fzf \
+    --preview "kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 {}")" \
+    || return 1
+
+  [ -z "$img" ] && return 0
+
+  swww img "$dir/$img" --transition-type=any
+  wallust run "$dir/$img"
+
+  # Copy wallpaper to home and create symlink for rofi if needed
+  cp "$dir/$img" ~/.current_wallpaper
+  if [ ! -L ~/.config/rofi/.current_wallpaper ]; then
+    ln -sf ~/.current_wallpaper ~/.config/rofi/.current_wallpaper
+  fi
+
+  hyprctl reload
+}
+

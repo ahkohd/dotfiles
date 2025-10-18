@@ -3,7 +3,7 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "height": 40,
+  "height": 35,
   "modules-left": [
     "hyprland/workspaces"
   ],
@@ -11,14 +11,13 @@
     "clock"
   ],
   "modules-right": [
-    // "tray",
     "pulseaudio"
   ],
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
-      "default": "",
+      "default": "",
       "1": "╻",
       "2": "╻",
       "3": "╻",
@@ -33,9 +32,7 @@
     "persistent-workspaces": {
       "1": [],
       "2": [],
-      "3": [],
-      "4": [],
-      "5": []
+      "3": []
     }
   },
   "clock": {
@@ -53,9 +50,14 @@
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
-    "format-muted": "󰝟",
+    "format-muted": "▓",
+    // variant: quadrant blocks ["▖", "▗", "▘", "▝", "▞", "▚", "▟", "█"]
+    // variant: shade blocks doubled ["░", "░", "▒", "▒", "▓", "▓", "█", "█"]
+    // variant: height blocks ["▁", "▁", "▂", "▃", "▄", "▅", "▆", "▇"]
+    // variant: top blocks ["▔", "▔", "▀", "▀", "█", "█", "█", "█"]
+    // variant: "default": ["█", "█▉", "█▉▊", "█▉▊▋", "█▉▊▋▌", "█▉▊▋▌▍", "█▉▊▋▌▍▎", "█▉▊▋▌▍▎▏"]
     "format-icons": {
-      "default": ["", "", ""]
+      "default": ["█▓", "█▉", "█▉▊", "█▉▊▋", "█▉▊▋▌", "█▉▊▋▌▍", "█▉▊▋▌▍▎", "█▉▊▋▌▍▎▏"]
     }
   }
 }

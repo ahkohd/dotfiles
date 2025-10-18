@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Stow all GTK-related configurations
+
+cd "$(dirname "$0")" || exit 1
+
+stow gtk-2.0
+stow gtk-3.0
+stow gtk-4.0
+stow xsettingsd
+stow icons
+
+echo "✓ All GTK configs stowed successfully"
