@@ -1,0 +1,5 @@
+{
+  "background": "{{background}}",
+  "foreground": "{{foreground}}",
+  "border": "{{foreground}}1A"
+}

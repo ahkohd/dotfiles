@@ -47,6 +47,7 @@ check_contrast = true
 threshold = 5
 
 [templates]
+alacritty = { template = "alacritty", dst = "~/.config/alacritty/colors.toml" }
 hypr = { template = "hyprland", dst = "~/.config/hypr/colors.conf" }
 waybar = { template = "waybar", dst = "~/.config/waybar/colors.css" }
 neovim = { template = "neovim", dst = "~/.cache/wallust/neovim.lua" }
@@ -55,3 +56,4 @@ kitty = { template = "kitty", dst = "~/.config/kitty/kitty-colors.conf" }
 yazi = { template = "yazi-flavor", dst = "~/.config/yazi/theme.toml" }
 yazi-tmtheme = { template = "yazi-tmtheme", dst = "~/.config/yazi/tmtheme.xml" }
 rofi = { template = "rofi", dst = "~/.config/rofi/wallust/rofi.rasi" }
+launcher = { template = "launcher", dst = "~/.config/launcher/colors.json" }
