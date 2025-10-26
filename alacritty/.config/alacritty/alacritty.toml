@@ -9,9 +9,12 @@ y = 6
 
 [window]
 opacity = 0.85
+decorations = "Buttonless"
+blur = true
+level = "AlwaysOnTop"
 
 [window.padding]
-x = 5
+x = 0
 y = 0
 
 [cursor.style]
