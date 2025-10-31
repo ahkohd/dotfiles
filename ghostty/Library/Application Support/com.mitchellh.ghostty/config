@@ -1,5 +1,3 @@
 font-size = 20
-
 background-opacity = 1
-
-config-file = colors
+theme = Gruvbox Dark Hard
