@@ -8,6 +8,8 @@ Assume the reader understands idioms and abstractions.
 - Explain only *why*, never *what* the code does.
 - Favor explicit contracts, invariants, and pre/post conditions.
 - Add tags to all debug logs to enable efficient filtering and analysis.
+- Check and suggest corrections for typographical errors.
+- Never use mathematical or arrow symbols in comments. Only use characters available on a standard US keyboard. Example: write "x to y" not "x → y".
 
 ## Reasoning
 - State all assumptions. Label confidence as **high**, **medium**, or **low**.
