@@ -3,9 +3,8 @@ autoload -Uz compinit; compinit -u
 
 . "$HOME/.cargo/env"
 
-eval "$(starship init zsh)"
-
-source <(jj util completion zsh)
+setopt PROMPT_SUBST
+PS1='$(prmt --no-version --code $? "{path:cyan.bold}{git:purple:f: on }{rust:red.bold:s: 🦀}{node:green.bold:s: ⬢ }\n{ok:green}{fail:red}") '
 
 # Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

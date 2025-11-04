@@ -11,8 +11,6 @@ require("eza-preview"):setup({
 
 require("no-status"):setup()
 
-require("starship"):setup()
-
 local bookmarks = {}
 local path_sep = package.config:sub(1, 1)
 local home_path = ya.target_family() == "windows" and os.getenv("USERPROFILE") or os.getenv("HOME")
