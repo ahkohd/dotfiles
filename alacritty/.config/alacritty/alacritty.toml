@@ -1,28 +1,25 @@
 [font]
-size = 11.0
+size = 14.0
 
 [font.normal]
 family = "TX-02-AREMU"
 
 [font.offset]
-y = 6
+y = 7
 
 [window]
 opacity = 0.85
 decorations = "Buttonless"
 blur = true
-level = "AlwaysOnTop"
+dynamic_padding = true
 
 [window.padding]
-x = 0
+x = 5
 y = 0
 
 [cursor.style]
 shape = "Beam"
 blinking = "On"
-
-[mouse]
-hide_when_typing = true
 
 [scrolling]
 multiplier = 2
