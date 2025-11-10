@@ -2,7 +2,7 @@ alias -- c=clear
 alias -- cat=bat
 alias -- cd=z
 alias -- dev='~/developer/personal'
-alias -- eza='eza --icons auto --git'
+alias -- eza='eza --icons never --git'
 alias -- glg='git log -n 10 --graph --decorate --oneline'
 alias -- gpg-check='gpg --decrypt ~/test.gpg'
 alias -- grep='grep --color=auto'

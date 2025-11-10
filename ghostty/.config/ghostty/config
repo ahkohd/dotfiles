@@ -10,7 +10,7 @@ freetype-load-flags = no-hinting
 window-padding-balance = true
 window-padding-x = 5
 window-padding-y = 0
-alpha-blending = native
+# alpha-blending = native
 window-save-state = always
 macos-option-as-alt = true
 keybind = alt+t=new_tab
@@ -38,4 +38,3 @@ command = zsh
 macos-icon = custom-style
 macos-icon-frame = plastic
 macos-titlebar-style = transparent
-# background-opacity = 0.85

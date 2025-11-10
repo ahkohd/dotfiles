@@ -12,6 +12,7 @@ opacity = 0.85
 decorations = "Buttonless"
 blur = true
 dynamic_padding = true
+# level = "AlwaysOnTop"
 
 [window.padding]
 x = 5
