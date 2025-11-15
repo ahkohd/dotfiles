@@ -10,6 +10,7 @@ freetype-load-flags = no-hinting
 window-padding-balance = true
 window-padding-x = 5
 window-padding-y = 0
+window-colorspace = display-p3
 # alpha-blending = native
 window-save-state = always
 macos-option-as-alt = true
