@@ -1,0 +1,7 @@
+[ui]
+theme = "base16-gruvbox-material-dark-hard-tweaked"
+
+[leader.e]
+context = ["$change_id"]
+help = "Edit change (ignore immutable)"
+send = ["edit --ignore-immutable $change_id"]
