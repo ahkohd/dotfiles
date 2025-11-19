@@ -85,3 +85,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         source ~/.darwin.functions
     fi
 fi
+
+# Added by Antigravity
+export PATH="/Users/bird/.antigravity/antigravity/bin:$PATH"
