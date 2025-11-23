@@ -1,5 +1,49 @@
 {
+  "collaboration_panel": {
+    "button": false
+  },
+  "notification_panel": {
+    "button": false
+  },
+  "git_panel": {
+    "button": false
+  },
+  "outline_panel": {
+    "button": false,
+    "git_status": false,
+    "folder_icons": false,
+    "file_icons": false
+  },
+  "use_system_window_tabs": true,
+  "bottom_dock_layout": "full",
+  "title_bar": {
+    "show_sign_in": false,
+    "show_user_picture": false,
+    "show_onboarding_banner": false,
+    "show_project_items": false,
+    "show_branch_name": true
+  },
+  "diagnostics": {
+    "button": false
+  },
+  "debugger": {
+    "button": false
+  },
+  "search": {
+    "button": false
+  },
+  "project_panel": {
+    "indent_size": 11.0,
+    "git_status": false,
+    "folder_icons": false,
+    "file_icons": false,
+    "button": false
+  },
+  "show_wrap_guides": true,
+  "soft_wrap": "editor_width",
+  "ui_font_family": ".SystemUIFont",
   "agent": {
+    "button": false,
     "play_sound_when_agent_done": true,
     "default_model": {
       "provider": "zed.dev",
@@ -11,26 +55,24 @@
     "diagnostics": false
   },
   "vim_mode": true,
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "cursor_blink": false,
-  "ui_font_size": 14,
-  "buffer_font_size": 14,
+  "ui_font_size": 30.0,
+  "buffer_font_size": 38.0,
   "buffer_font_family": "TX-02-AREMU",
   "buffer_line_height": {
-    "custom": 1.8
+    "custom": 2.299999952316284
   },
   "terminal": {
+    "dock": "left",
+    "button": false,
     "font_family": "TX-02-AREMU",
-    "font_size": 14,
+    "font_size": 19.0,
     "line_height": {
       "custom": 1.7
     }
   },
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "Tokyo Night"
-  },
+  "theme": "Tokyo Night",
   "scrollbar": {
     "show": "never"
   },
@@ -46,6 +88,7 @@
     "quick_actions": false
   },
   "tab_bar": {
+    "show_nav_history_buttons": false,
     "show": false
   },
   "status_bar": {
