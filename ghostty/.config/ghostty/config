@@ -15,6 +15,8 @@ window-colorspace = display-p3
 # alpha-blending = native
 window-save-state = always
 macos-option-as-alt = true
+keybind = alt+f=set_font_size:40
+keybind = alt+n=set_font_size:16
 keybind = alt+t=new_tab
 keybind = alt+s=new_split:right
 keybind = alt+x=new_split:down

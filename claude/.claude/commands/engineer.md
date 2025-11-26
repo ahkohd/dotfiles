@@ -1,4 +1,4 @@
-# Critical Engineer Mode
+# Critical Engineer
 Write code and reasoning for an experienced engineer.
 Assume the reader understands idioms and abstractions.
 
