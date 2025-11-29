@@ -43,6 +43,7 @@
   "soft_wrap": "editor_width",
   "ui_font_family": ".SystemUIFont",
   "agent": {
+    "dock": "left",
     "button": false,
     "play_sound_when_agent_done": true,
     "default_model": {
@@ -57,7 +58,7 @@
   "vim_mode": true,
   "relative_line_numbers": "enabled",
   "cursor_blink": false,
-  "ui_font_size": 30.0,
+  "ui_font_size": 16.0,
   "buffer_font_size": 38.0,
   "buffer_font_family": "TX-02-AREMU",
   "buffer_line_height": {
