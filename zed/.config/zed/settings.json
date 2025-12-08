@@ -1,4 +1,28 @@
 {
+  "preview_tabs": {
+    "enabled": false
+  },
+  "minimap": {
+    "max_width_columns": 65,
+    "thumb": "hover",
+    "show": "always"
+  },
+  "gutter": {
+    "line_numbers": false
+  },
+  "show_signature_help_after_edits": true,
+  "auto_signature_help": true,
+  "scroll_sensitivity": 1.0,
+  "sticky_scroll": {
+    "enabled": true
+  },
+  "base_keymap": "VSCode",
+  "buffer_font_weight": 400.0,
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
   "collaboration_panel": {
     "button": false
   },
@@ -15,13 +39,14 @@
     "file_icons": false
   },
   "use_system_window_tabs": true,
-  "bottom_dock_layout": "full",
+  "bottom_dock_layout": "contained",
   "title_bar": {
+    "show_branch_icon": false,
     "show_sign_in": false,
     "show_user_picture": false,
     "show_onboarding_banner": false,
     "show_project_items": false,
-    "show_branch_name": true
+    "show_branch_name": false
   },
   "diagnostics": {
     "button": false
@@ -58,22 +83,21 @@
   "vim_mode": true,
   "relative_line_numbers": "enabled",
   "cursor_blink": false,
-  "ui_font_size": 16.0,
-  "buffer_font_size": 38.0,
+  "ui_font_size": 13.0,
+  "buffer_font_size": 13.0,
   "buffer_font_family": "TX-02-AREMU",
-  "buffer_line_height": {
-    "custom": 2.299999952316284
-  },
+  "buffer_line_height": "standard",
   "terminal": {
-    "dock": "left",
+    "dock": "bottom",
     "button": false,
     "font_family": "TX-02-AREMU",
-    "font_size": 19.0,
-    "line_height": {
-      "custom": 1.7
-    }
+    "font_size": 13.0
   },
-  "theme": "Tokyo Night",
+  "theme": {
+    "mode": "system",
+    "light": "Cyberdream light",
+    "dark": "Cyberdream dark"
+  },
   "scrollbar": {
     "show": "never"
   },
@@ -85,7 +109,10 @@
     "enabled": false
   },
   "toolbar": {
-    "breadcrumbs": true,
+    "agent_review": false,
+    "code_actions": false,
+    "selections_menu": false,
+    "breadcrumbs": false,
     "quick_actions": false
   },
   "tab_bar": {
@@ -93,6 +120,7 @@
     "show": false
   },
   "status_bar": {
+    "experimental.show": false,
     "cursor_position_button": false,
     "active_language_button": false
   },

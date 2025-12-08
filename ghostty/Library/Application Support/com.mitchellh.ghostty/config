@@ -1,5 +1,3 @@
-font-size = 40
-theme = Gruvbox Dark Hard
-# background-opacity = 0.95
-# background-blur = true
+background-opacity = 0.9
+background-blur = true
 

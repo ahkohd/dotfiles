@@ -26,5 +26,39 @@
     "bindings": {
       "; j": "terminal_panel::ToggleFocus"
     }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "; j": "terminal_panel::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "; f": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "; i": "project_symbols::Toggle"
+    }
+  },
+  {
+    "bindings": {
+      "; a": "agent::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "; p": "command_palette::Toggle"
+    }
+  },
+  {
+    "bindings": {
+      "; p": "command_palette::Toggle"
+    }
   }
 ]
