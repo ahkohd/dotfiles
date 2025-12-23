@@ -1,40 +1,40 @@
 {
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.2",
   "schemes" : [
     {
-      "scrolling" : {
-        "speed" : 1,
-        "reverse" : {
-          "vertical" : false
-        },
-        "acceleration" : {
-          "vertical" : 1
-        },
-        "distance" : {
-          "vertical" : "auto"
+      "if" : {
+        "device" : {
+          "category" : "trackpad",
+          "productID" : "0x323",
+          "productName" : "Unbeliveably’s Magic Mouse",
+          "serialNumber" : "94:21:57:E3:7F:0D",
+          "vendorID" : "0x4c"
         }
       },
       "pointer" : {
         "acceleration" : 20,
         "disableAcceleration" : true
       },
-      "if" : {
-        "device" : {
-          "productID" : "0x323",
-          "productName" : "Unbeliveably’s Magic Mouse",
-          "category" : "trackpad",
-          "serialNumber" : "94:21:57:E3:7F:0D",
-          "vendorID" : "0x4c"
-        }
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "distance" : {
+          "vertical" : "auto"
+        },
+        "reverse" : {
+          "vertical" : false
+        },
+        "speed" : 1
       }
     },
     {
       "if" : {
         "device" : {
-          "productName" : "Apple Internal Keyboard \/ Trackpad",
+          "category" : "trackpad",
           "productID" : "0x0",
-          "vendorID" : "0x0",
-          "category" : "trackpad"
+          "productName" : "Apple Internal Keyboard \/ Trackpad",
+          "vendorID" : "0x0"
         }
       },
       "scrolling" : {
@@ -44,6 +44,20 @@
       }
     },
     {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x7d",
+          "productName" : "Razer DeathAdder V2 Pro",
+          "serialNumber" : "000000000000",
+          "vendorID" : "0x1532"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 3,
+        "disableAcceleration" : false,
+        "speed" : 0.069
+      },
       "scrolling" : {
         "acceleration" : {
           "vertical" : 1.5
@@ -51,50 +65,36 @@
         "speed" : {
           "vertical" : 5
         }
-      },
-      "if" : {
-        "device" : {
-          "productID" : "0x7d",
-          "vendorID" : "0x1532",
-          "serialNumber" : "000000000000",
-          "category" : "mouse",
-          "productName" : "Razer DeathAdder V2 Pro"
-        }
-      },
-      "pointer" : {
-        "speed" : 0.069,
-        "disableAcceleration" : false,
-        "acceleration" : 3
       }
     },
     {
       "if" : {
         "device" : {
+          "category" : "trackpad",
+          "productID" : "0x323",
           "productName" : "Magic Mouse",
           "serialNumber" : "94:21:57:E3:7F:0D",
-          "productID" : "0x323",
-          "category" : "trackpad",
           "vendorID" : "0x4c"
         }
+      },
+      "pointer" : {
+        "acceleration" : 15,
+        "disableAcceleration" : true,
+        "speed" : 0
       },
       "scrolling" : {
         "acceleration" : {
           "vertical" : 1
         }
-      },
-      "pointer" : {
-        "acceleration" : 15,
-        "speed" : 0,
-        "disableAcceleration" : true
       }
     },
     {
       "if" : {
         "device" : {
           "category" : "trackpad",
+          "productID" : "0x324",
           "productName" : "Magic Trackpad",
           "serialNumber" : "CC2HCL00JPA000050A",
-          "productID" : "0x324",
           "vendorID" : "0x5ac"
         }
       },
@@ -110,6 +110,24 @@
         "speed" : {
           "vertical" : 1
         }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "trackpad",
+          "productID" : "0x324",
+          "productName" : "Unbeliveably’s Magic Trackpad",
+          "serialNumber" : "3C:50:02:BE:EA:23",
+          "vendorID" : "0x4c"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 20,
+        "speed" : 1
+      },
+      "scrolling" : {
+        "acceleration" : 10
       }
     }
   ]
