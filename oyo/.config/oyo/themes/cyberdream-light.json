@@ -1,0 +1,90 @@
+{
+  "$schema": "https://oyo.dev/theme.schema.json",
+  "defs": {
+    "bg": "#ffffff",
+    "bgAlt": "#eaeaea",
+    "bgHighlight": "#acacac",
+    "fg": "#16181a",
+    "grey": "#7b8496",
+    "blue": "#0057d1",
+    "green": "#008b0c",
+    "cyan": "#008c99",
+    "red": "#d11500",
+    "yellow": "#997b00",
+    "magenta": "#d100bf",
+    "pink": "#f40064",
+    "orange": "#d17c00",
+    "purple": "#a018ff"
+  },
+  "theme": {
+    "text": {
+      "dark": "fg"
+    },
+    "textMuted": {
+      "dark": "grey"
+    },
+    "primary": {
+      "dark": "cyan"
+    },
+    "secondary": {
+      "dark": "purple"
+    },
+    "accent": {
+      "dark": "cyan"
+    },
+    "error": {
+      "dark": "red"
+    },
+    "warning": {
+      "dark": "orange"
+    },
+    "success": {
+      "dark": "green"
+    },
+    "info": {
+      "dark": "cyan"
+    },
+    "background": {
+      "dark": "bg"
+    },
+    "backgroundPanel": {
+      "dark": "bgAlt"
+    },
+    "backgroundElement": {
+      "dark": "bgAlt"
+    },
+    "border": {
+      "dark": "grey"
+    },
+    "borderActive": {
+      "dark": "blue"
+    },
+    "borderSubtle": {
+      "dark": "bgHighlight"
+    },
+    "diffAdded": {
+      "dark": "green"
+    },
+    "diffAddedBg": {
+      "dark": "#cce7ce"
+    },
+    "diffRemoved": {
+      "dark": "red"
+    },
+    "diffRemovedBg": {
+      "dark": "#f5d0cc"
+    },
+    "diffContext": {
+      "dark": "grey"
+    },
+    "diffLineNumber": {
+      "dark": "grey"
+    },
+    "diffModifiedBg": {
+      "dark": "#f5eacc"
+    },
+    "diffExtMarker": {
+      "dark": "grey"
+    }
+  }
+}

@@ -5,7 +5,7 @@
   "minimap": {
     "max_width_columns": 65,
     "thumb": "hover",
-    "show": "always"
+    "show": "never"
   },
   "gutter": {
     "line_numbers": false
@@ -66,7 +66,7 @@
   },
   "show_wrap_guides": true,
   "soft_wrap": "editor_width",
-  "ui_font_family": ".SystemUIFont",
+  "ui_font_family": "TX-02-AREMU",
   "agent": {
     "dock": "left",
     "button": false,

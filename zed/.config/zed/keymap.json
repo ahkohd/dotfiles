@@ -11,7 +11,6 @@
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      "space f": "file_finder::Toggle",
       "space r": "workspace::NewSearch",
       "space k": "editor::ToggleCodeActions",
       "space h": "workspace::ToggleLeftDock",
@@ -40,9 +39,8 @@
     }
   },
   {
-    "context": "Workspace",
     "bindings": {
-      "; i": "project_symbols::Toggle"
+      "; o": "project_symbols::Toggle"
     }
   },
   {
@@ -58,7 +56,23 @@
   },
   {
     "bindings": {
-      "; p": "command_palette::Toggle"
+      "; space": "command_palette::Toggle"
+    }
+  },
+  {
+    "bindings": {
+      "; i": "outline::Toggle"
+    }
+  },
+  {
+    "bindings": {
+      "; p": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)",
+    "bindings": {
+      "space f": null
     }
   }
 ]
