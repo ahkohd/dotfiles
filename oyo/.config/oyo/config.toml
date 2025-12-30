@@ -6,12 +6,16 @@ view_mode = "single"
 gutter_signs = false
 topbar = true
 
+[ui.blame]
+enabled = true
+
 [ui.diff]
 fg = "syntax"
 bg = true
 highlight = "text"
 extent_marker = "diff"
 extent_marker_scope = "hunk"
+max_bytes = 2097152          # 2 MiB
 
 [ui.theme]
 name = "cyberdream"
