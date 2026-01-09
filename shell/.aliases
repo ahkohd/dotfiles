@@ -48,3 +48,4 @@ alias -- speed=speedtest-cli
 alias -- x=exit
 alias -- y=yy
 alias -- zz='z -'
+alias -- z0='zenith -d 0 -n 0'
