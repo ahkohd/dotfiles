@@ -46,7 +46,9 @@
     "context": "Workspace",
     "bindings": {
       "; j": "terminal_panel::Toggle",
-      "space escape": "pane::CloseActiveItem"
+      "space escape": "pane::CloseActiveItem",
+      "alt-f": ["workspace::SendKeystrokes", "cmd-0 cmd-= cmd-= cmd-="],
+      "alt-g": "zed::ResetBufferFontSize",
     }
   },
   {
