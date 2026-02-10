@@ -33,7 +33,11 @@
       "left": "workspace::ActivatePaneLeft",
       "down": "workspace::ActivatePaneDown",
       "up": "workspace::ActivatePaneUp",
-      "right": "workspace::ActivatePaneRight"
+      "right": "workspace::ActivatePaneRight",
+      "space .": "editor::ToggleLineNumbers",
+      "space g g": "git_panel::ToggleFocus",
+      "space g b": "editor::ToggleGitBlame",
+      "space n": "editor::ReloadFile"
     }
   },
   {
@@ -48,7 +52,7 @@
       "; j": "terminal_panel::Toggle",
       "space escape": "pane::CloseActiveItem",
       "alt-f": ["workspace::SendKeystrokes", "cmd-0 cmd-= cmd-= cmd-="],
-      "alt-g": "zed::ResetBufferFontSize",
+      "alt-g": "zed::ResetBufferFontSize"
     }
   },
   {
