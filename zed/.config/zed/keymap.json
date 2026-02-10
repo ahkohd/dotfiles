@@ -11,13 +11,29 @@
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
+      "space f": "file_finder::Toggle",
+      "space space": "project_panel::ToggleFocus",
       "space r": "workspace::NewSearch",
       "space k": "editor::ToggleCodeActions",
       "space h": "workspace::ToggleLeftDock",
-      "; a": "workspace::ToggleRightDock",
+      "space a": ["workspace::SendKeystrokes", ": w enter"],
+      "space i": "outline::Toggle",
+      "space o": "project_symbols::Toggle",
+      "space e": "diagnostics::Deploy",
+      "space j": "tab_switcher::Toggle",
+      "space tab": "workspace::ToggleZoom",
+      "space enter": ["workspace::SendKeystrokes", ": n o h enter"],
+      "space g o": "editor::OpenPermalinkToLine",
+      "space g c": "editor::CopyPermalinkToLine",
+      "g R": "editor::Rename",
+      "n": ["workspace::SendKeystrokes", "n z z"],
+      "shift-n": ["workspace::SendKeystrokes", "shift-n z z"],
       "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
       "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
-      "space j": "tab_switcher::Toggle"
+      "left": "workspace::ActivatePaneLeft",
+      "down": "workspace::ActivatePaneDown",
+      "up": "workspace::ActivatePaneUp",
+      "right": "workspace::ActivatePaneRight"
     }
   },
   {
@@ -29,50 +45,14 @@
   {
     "context": "Workspace",
     "bindings": {
-      "; j": "terminal_panel::Toggle"
+      "; j": "terminal_panel::Toggle",
+      "space escape": "pane::CloseActiveItem"
     }
   },
   {
-    "context": "Workspace",
+    "context": "Dock",
     "bindings": {
-      "; f": "file_finder::Toggle"
-    }
-  },
-  {
-    "bindings": {
-      "; o": "project_symbols::Toggle"
-    }
-  },
-  {
-    "bindings": {
-      "; a": "agent::ToggleFocus"
-    }
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "; p": "command_palette::Toggle"
-    }
-  },
-  {
-    "bindings": {
-      "; space": "command_palette::Toggle"
-    }
-  },
-  {
-    "bindings": {
-      "; i": "outline::Toggle"
-    }
-  },
-  {
-    "bindings": {
-      "; p": "project_panel::ToggleFocus"
-    }
-  },
-  {
-    "context": "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)",
-    "bindings": {
-      "space f": null
+      "space escape": "workspace::ActivatePaneLeft"
     }
   }
 ]

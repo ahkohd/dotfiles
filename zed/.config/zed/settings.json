@@ -1,4 +1,6 @@
 {
+  "ui_font_weight": 450.0,
+  "disable_ai": true,
   "preview_tabs": {
     "enabled": false
   },
@@ -62,7 +64,8 @@
     "git_status": false,
     "folder_icons": false,
     "file_icons": false,
-    "button": false
+    "button": false,
+    "indent_guides": { "show": "never" }
   },
   "show_wrap_guides": true,
   "soft_wrap": "editor_width",
@@ -83,7 +86,7 @@
   "vim_mode": true,
   "relative_line_numbers": "enabled",
   "cursor_blink": false,
-  "ui_font_size": 13.0,
+  "ui_font_size": 14.0,
   "buffer_font_size": 13.0,
   "buffer_font_family": "TX-02-AREMU",
   "buffer_line_height": "standard",
@@ -93,11 +96,7 @@
     "font_family": "TX-02-AREMU",
     "font_size": 13.0
   },
-  "theme": {
-    "mode": "system",
-    "light": "Cyberdream light",
-    "dark": "Cyberdream dark"
-  },
+  "theme": "Everforest Dark Hard (blur)",
   "scrollbar": {
     "show": "never"
   },
