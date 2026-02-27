@@ -1,0 +1,9 @@
+pi/.pi/agent/auth.json
+pi/.pi/agent/sessions/
+pi/.pi/web-search.json
+pi/.pi/packages/*/node_modules/
+.pi/
+!pi/.pi/
+yazi/.config/yazi/bookmark
+llama.log
+*.log
