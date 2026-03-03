@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.55.3",
   "defaultProvider": "gpu0",
-  "defaultModel": "step-3.5-flash",
+  "defaultModel": "qwen3.5-397b",
   "defaultThinkingLevel": "high",
   "skills": [
     "~/.claude/skills"

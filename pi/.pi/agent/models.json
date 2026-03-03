@@ -49,10 +49,24 @@
         },
         {
           "id": "step-3.5-flash",
-          "name": "Step 3.5 Flash (GPU 0)",
+          "name": "Step 3.5 Flash Q8 (ik_llama)",
           "reasoning": true,
           "input": ["text"],
-          "contextWindow": 262144,
+          "contextWindow": 65536,
+          "maxTokens": 32768,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        },
+        {
+          "id": "qwen3.5-397b",
+          "name": "Qwen3.5 397B IQ4_KSS (ik_llama)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 131072,
           "maxTokens": 32768,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "compat": {
