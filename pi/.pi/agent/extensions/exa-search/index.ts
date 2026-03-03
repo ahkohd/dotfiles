@@ -1,6 +1,7 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { Type } from "@sinclair/typebox";
 import { StringEnum } from "@mariozechner/pi-ai";
+import { Text } from "@mariozechner/pi-tui";
 import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
@@ -82,6 +83,9 @@ export default function (pi: ExtensionAPI) {
       "Search the web for any topic and get clean, ready-to-use content.\n\n" +
       "Best for: Finding current information, news, facts, or answering questions about any topic.\n" +
       "Returns: Clean text content from top search results, ready for LLM use.",
+    renderCall(args: any, theme: any) {
+      return new Text(`${theme.bold("web_search")} ${theme.fg("muted", args.query || "")}`, 0, 0);
+    },
     parameters: Type.Object({
       query: Type.String({ description: "Web search query" }),
       numResults: Type.Optional(
@@ -132,6 +136,9 @@ export default function (pi: ExtensionAPI) {
       "Find code examples, documentation, and programming solutions. Searches GitHub, Stack Overflow, and official docs.\n\n" +
       "Best for: Any programming question - API usage, library examples, code snippets, debugging help.\n" +
       "Returns: Relevant code and documentation, formatted for easy reading.",
+    renderCall(args: any, theme: any) {
+      return new Text(`${theme.bold("get_code_context")} ${theme.fg("muted", args.query || "")}`, 0, 0);
+    },
     parameters: Type.Object({
       query: Type.String({
         description:
@@ -167,6 +174,9 @@ export default function (pi: ExtensionAPI) {
       "Get the full content of a specific webpage. Use when you have an exact URL.\n\n" +
       "Best for: Extracting content from a known URL.\n" +
       "Returns: Full text content and metadata from the page.",
+    renderCall(args: any, theme: any) {
+      return new Text(`${theme.bold("fetch_content")} ${theme.fg("muted", args.url || "")}`, 0, 0);
+    },
     parameters: Type.Object({
       url: Type.String({ description: "URL to crawl and extract content from" }),
       maxCharacters: Type.Optional(
@@ -200,6 +210,9 @@ export default function (pi: ExtensionAPI) {
       "Research any company to get business information, news, and insights.\n\n" +
       "Best for: Learning about a company's products, services, recent news, or industry position.\n" +
       "Returns: Company information from trusted business sources.",
+    renderCall(args: any, theme: any) {
+      return new Text(`${theme.bold("company_research")} ${theme.fg("muted", args.companyName || "")}`, 0, 0);
+    },
     parameters: Type.Object({
       companyName: Type.String({ description: "Name of the company to research" }),
       numResults: Type.Optional(
@@ -234,6 +247,9 @@ export default function (pi: ExtensionAPI) {
       "Best for: When you need specific filters like date ranges, domain restrictions, or category filters.\n" +
       "Not recommended for: Simple searches - use web_search instead.\n" +
       "Returns: Search results with optional highlights, summaries, and subpage content.",
+    renderCall(args: any, theme: any) {
+      return new Text(`${theme.bold("web_search_advanced")} ${theme.fg("muted", args.query || "")}`, 0, 0);
+    },
     parameters: Type.Object({
       query: Type.String({ description: "Search query" }),
       numResults: Type.Optional(Type.Number({ description: "Number of results (1-100, default: 10)" })),
@@ -307,6 +323,9 @@ export default function (pi: ExtensionAPI) {
     label: "Exa Similar",
     description:
       "Find web pages similar to a given URL. Useful for finding alternatives, related resources, or similar documentation.",
+    renderCall(args: any, theme: any) {
+      return new Text(`${theme.bold("find_similar")} ${theme.fg("muted", args.url || "")}`, 0, 0);
+    },
     parameters: Type.Object({
       url: Type.String({ description: "URL to find similar pages for" }),
       numResults: Type.Optional(Type.Number({ description: "Number of results (default: 5)" })),
@@ -337,6 +356,10 @@ export default function (pi: ExtensionAPI) {
       "Best for: Complex research questions needing deep analysis and synthesis.\n" +
       "Returns: Research ID - use deep_research_check to get results.\n" +
       "Important: Call deep_research_check with the returned research ID to get the report.",
+    renderCall(args: any, theme: any) {
+      const preview = (args.instructions || "").slice(0, 80);
+      return new Text(`${theme.bold("deep_research_start")} ${theme.fg("muted", preview)}`, 0, 0);
+    },
     parameters: Type.Object({
       instructions: Type.String({
         description: "Complex research question or detailed instructions for the AI researcher.",
@@ -382,6 +405,9 @@ export default function (pi: ExtensionAPI) {
       "Best for: Getting the research report after calling deep_research_start.\n" +
       "Returns: Research report when complete, or status update if still running.\n" +
       "Important: Keep calling with the same research ID until status is 'completed'.",
+    renderCall(args: any, theme: any) {
+      return new Text(`${theme.bold("deep_research_check")} ${theme.fg("muted", args.researchId || "")}`, 0, 0);
+    },
     parameters: Type.Object({
       researchId: Type.String({
         description: "The research ID returned from deep_research_start",
