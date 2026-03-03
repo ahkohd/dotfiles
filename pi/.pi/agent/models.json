@@ -35,10 +35,10 @@
         },
         {
           "id": "qwen3.5-122b",
-          "name": "Qwen3.5 122B Q8 (GPU 0, llama.cpp)",
+          "name": "Qwen3.5 122B-A10B FP8 (vLLM)",
           "reasoning": true,
           "input": ["text", "image"],
-          "contextWindow": 262144,
+          "contextWindow": 170000,
           "maxTokens": 32768,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "compat": {
@@ -49,10 +49,10 @@
         },
         {
           "id": "step-3.5-flash",
-          "name": "Step 3.5 Flash Q8 (ik_llama)",
+          "name": "Step 3.5 Flash IQ5_K (ik_llama)",
           "reasoning": true,
           "input": ["text"],
-          "contextWindow": 65536,
+          "contextWindow": 131072,
           "maxTokens": 32768,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "compat": {
@@ -63,9 +63,9 @@
         },
         {
           "id": "qwen3.5-397b",
-          "name": "Qwen3.5 397B IQ4_KSS (ik_llama)",
+          "name": "Qwen3.5 397B (ik_llama)",
           "reasoning": true,
-          "input": ["text"],
+          "input": ["text", "image"],
           "contextWindow": 131072,
           "maxTokens": 32768,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
