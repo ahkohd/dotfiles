@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.55.4",
   "defaultProvider": "gpu0",
-  "defaultModel": "kimi-k2.5",
+  "defaultModel": "minimax-m2.5",
   "defaultThinkingLevel": "high",
   "skills": [
     "~/.claude/skills"
