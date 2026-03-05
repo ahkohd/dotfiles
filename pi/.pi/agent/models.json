@@ -62,6 +62,21 @@
           }
         },
         {
+          "id": "kimi-k2.5",
+          "name": "Kimi K2.5 smol-IQ2_KS (ik_llama)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 81920,
+          "maxTokens": 16384,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        },
+
+        {
           "id": "minimax-m2.5",
           "name": "MiniMax M2.5 IQ5_K (ik_llama)",
           "reasoning": true,
