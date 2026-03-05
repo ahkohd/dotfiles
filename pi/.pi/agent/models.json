@@ -80,7 +80,7 @@
           "name": "Kimi K2.5 smol-IQ2_KS (ik_llama)",
           "reasoning": true,
           "input": ["text", "image"],
-          "contextWindow": 81920,
+          "contextWindow": 196608,
           "maxTokens": 16384,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "compat": {
