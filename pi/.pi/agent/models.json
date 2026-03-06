@@ -104,20 +104,6 @@
           }
         },
         {
-          "id": "kimi-k2.5",
-          "name": "Kimi K2.5 smol-IQ2_KS (ik_llama)",
-          "reasoning": true,
-          "input": ["text", "image"],
-          "contextWindow": 196608,
-          "maxTokens": 16384,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
           "id": "qwen3.5-397b",
           "name": "Qwen3.5 397B IQ4_KSS (ik_llama)",
           "reasoning": true,
