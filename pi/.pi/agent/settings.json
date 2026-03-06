@@ -12,7 +12,10 @@
   "images": {
     "autoResize": true
   },
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "packages": [],
-  "editorPaddingX": 1
+  "editorPaddingX": 1,
+  "compaction": {
+    "enabled": false
+  }
 }
