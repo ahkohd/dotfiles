@@ -20,8 +20,22 @@
           }
         },
         {
+          "id": "devstral-small-2",
+          "name": "Devstral Small 2 24B FP8 (vLLM)",
+          "reasoning": false,
+          "input": ["text"],
+          "contextWindow": 131072,
+          "maxTokens": 32768,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        },
+        {
           "id": "qwen3.5-27b",
-          "name": "Qwen3.5 27B Dense BF16 (vLLM)",
+          "name": "Qwen3.5 27B Dense FP8 (vLLM)",
           "reasoning": true,
           "input": ["text", "image"],
           "contextWindow": 170000,
@@ -35,7 +49,7 @@
         },
         {
           "id": "qwen3.5-35b",
-          "name": "Qwen3.5 35B-A3B BF16 (vLLM)",
+          "name": "Qwen3.5 35B-A3B FP8 (vLLM)",
           "reasoning": true,
           "input": ["text", "image"],
           "contextWindow": 170000,
@@ -68,6 +82,20 @@
           "input": ["text"],
           "contextWindow": 202752,
           "maxTokens": 128000,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        },
+        {
+          "id": "devstral-2",
+          "name": "Devstral 2 123B FP8 (vLLM TP2)",
+          "reasoning": false,
+          "input": ["text"],
+          "contextWindow": 131072,
+          "maxTokens": 32768,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "compat": {
             "supportsDeveloperRole": false,
@@ -112,7 +140,7 @@
       "models": [
         {
           "id": "qwen3.5-27b",
-          "name": "Qwen3.5 27B Dense BF16 (GPU1, vLLM)",
+          "name": "Qwen3.5 27B Dense FP8 (GPU1, vLLM)",
           "reasoning": true,
           "input": ["text", "image"],
           "contextWindow": 170000,
@@ -126,10 +154,24 @@
         },
         {
           "id": "qwen3.5-35b",
-          "name": "Qwen3.5 35B-A3B BF16 (GPU1, vLLM)",
+          "name": "Qwen3.5 35B-A3B FP8 (GPU1, vLLM)",
           "reasoning": true,
           "input": ["text", "image"],
           "contextWindow": 170000,
+          "maxTokens": 32768,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        },
+        {
+          "id": "devstral-small-2",
+          "name": "Devstral Small 2 24B FP8 (GPU1, vLLM)",
+          "reasoning": false,
+          "input": ["text"],
+          "contextWindow": 131072,
           "maxTokens": 32768,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "compat": {

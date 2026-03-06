@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.56.1",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-6",
-  "defaultThinkingLevel": "xhigh",
+  "lastChangelogVersion": "0.56.2",
+  "defaultProvider": "gpu0",
+  "defaultModel": "devstral-2",
+  "defaultThinkingLevel": "off",
   "skills": [
     "~/.claude/skills"
   ],
