@@ -1,0 +1,16 @@
+[git]
+sign-on-push = true
+
+[signing]
+backend = "gpg"
+behaviour = "own"
+key = "1F76A9056C921C8A004F63E28D43F8A176DDC6BD"
+
+[ui]
+diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+diff-formatter = ["difft", "$left", "$right"]
+paginate = "never"
+
+[user]
+email = "me@victorare.mu"
+name = "Victor Aremu"

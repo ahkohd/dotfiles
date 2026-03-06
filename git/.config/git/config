@@ -1,3 +1,6 @@
+[alias]
+	d = "difftool --tool=difft"
+
 [commit]
 	gpgsign = true
 
@@ -14,6 +17,12 @@
 [diff]
 	colorMoved = "default"
 
+[difftool]
+	prompt = false
+
+[difftool "difft"]
+	cmd = "difft \"$LOCAL\" \"$REMOTE\""
+
 [github]
 	user = "ahkohd"
 
@@ -26,9 +35,9 @@
 	signingkey = "1F76A9056C921C8A004F63E28D43F8A176DDC6BD"
 
 [pager]
-  diff = "riff"
-  show = "riff"
-  log = "riff"
+	diff = "riff"
+	show = "riff"
+	log = "riff"
 
 [interactive]
-  diffFilter = "riff --color=on"
+	diffFilter = "riff --color=on"

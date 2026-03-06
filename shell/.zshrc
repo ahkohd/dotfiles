@@ -8,8 +8,8 @@ PS1='$(prmt --no-version --code $? "{path:cyan.bold}{git:purple:f: on }{rust:red
 
 # Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source <(fzf --zsh)
-source ~/.fzf-tab/fzf-tab.plugin.zsh
+command -v fzf &>/dev/null && source <(fzf --zsh)
+[ -f ~/.fzf-tab/fzf-tab.plugin.zsh ] && source ~/.fzf-tab/fzf-tab.plugin.zsh
 
 eval "$(zoxide init zsh)"
 
@@ -86,5 +86,3 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 fi
 
-# Added by Antigravity
-export PATH="/Users/bird/.antigravity/antigravity/bin:$PATH"

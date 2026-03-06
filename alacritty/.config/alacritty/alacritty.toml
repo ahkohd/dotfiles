@@ -1,5 +1,11 @@
+[general]
+import = ["~/.config/alacritty/themes/cyberdream.toml"]
+
+[terminal.shell]
+program = "zsh"
+
 [font]
-size = 14.0
+size = 13.0
 
 [font.normal]
 family = "TX-02-AREMU"
@@ -8,11 +14,10 @@ family = "TX-02-AREMU"
 y = 7
 
 [window]
-opacity = 0.85
-decorations = "Buttonless"
+opacity = 0.9
 blur = true
 dynamic_padding = true
-# level = "AlwaysOnTop"
+startup_mode = "Windowed"
 
 [window.padding]
 x = 5
@@ -25,8 +30,5 @@ blinking = "On"
 [scrolling]
 multiplier = 2
 
-[general]
-import = ["~/.config/alacritty/colors.toml"]
-
-[terminal.shell]
-program = "zsh"
+[mouse]
+hide_when_typing = true

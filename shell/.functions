@@ -38,3 +38,20 @@ j+() {
     local suffix=$(printf '%*s' "$count" | tr ' ' '+')
     jj edit "@${suffix}" --ignore-immutable
 }
+
+ta() {
+    local session
+    if [ -n "$1" ]; then
+        session="$1"
+    else
+        session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --prompt="attach> ") || return
+    fi
+    if [ -n "$TMUX" ]; then
+        tmux switch-client -t "$session"
+    else
+        tmux attach-session -t "$session"
+    fi
+}
+
+
+

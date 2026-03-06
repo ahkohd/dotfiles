@@ -45,7 +45,9 @@ alias -- nvd=neovide
 alias -- nvc='~/Developer/nvim/scripts/nvim-config'
 alias -- p=pnpm
 alias -- speed=speedtest-cli
+alias -- tm=tmux
+alias -- tn='tmux new-session -s'
+
 alias -- x=exit
 alias -- y=yy
 alias -- zz='z -'
-alias -- z0='zenith -d 0 -n 0'
