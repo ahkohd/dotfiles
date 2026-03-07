@@ -6,8 +6,8 @@
       "apiKey": "none",
       "models": [
         {
-          "id": "minimax-m2.5",
-          "name": "MiniMax M2.5 IQ5_K (ik_llama)",
+          "id": "gpt-oss-120b",
+          "name": "GPT-OSS 120B",
           "reasoning": true,
           "input": ["text"],
           "contextWindow": 131072,
@@ -20,25 +20,11 @@
           }
         },
         {
-          "id": "devstral-small-2",
-          "name": "Devstral Small 2 24B FP8 (vLLM)",
+          "id": "qwen3-coder-next",
+          "name": "Qwen3 Coder Next",
           "reasoning": false,
           "input": ["text"],
-          "contextWindow": 131072,
-          "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
-          "id": "qwen3.5-27b",
-          "name": "Qwen3.5 27B Dense FP8 (vLLM)",
-          "reasoning": true,
-          "input": ["text", "image"],
-          "contextWindow": 170000,
+          "contextWindow": 262144,
           "maxTokens": 32768,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "compat": {
@@ -49,7 +35,7 @@
         },
         {
           "id": "qwen3.5-35b",
-          "name": "Qwen3.5 35B-A3B FP8 (vLLM)",
+          "name": "Qwen3.5 35B-A3B",
           "reasoning": true,
           "input": ["text", "image"],
           "contextWindow": 170000,
@@ -62,53 +48,11 @@
           }
         },
         {
-          "id": "qwen3.5-122b",
-          "name": "Qwen3.5 122B-A10B FP8 (vLLM TP2)",
+          "id": "qwen3.5-27b",
+          "name": "Qwen3.5 27B",
           "reasoning": true,
           "input": ["text", "image"],
           "contextWindow": 170000,
-          "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
-          "id": "glm-4.7-flash",
-          "name": "GLM-4.7-Flash BF16 (vLLM)",
-          "reasoning": true,
-          "input": ["text"],
-          "contextWindow": 202752,
-          "maxTokens": 128000,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
-          "id": "devstral-2",
-          "name": "Devstral 2 123B FP8 (vLLM TP2)",
-          "reasoning": false,
-          "input": ["text"],
-          "contextWindow": 131072,
-          "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
-          "id": "qwen3.5-397b",
-          "name": "Qwen3.5 397B IQ4_KSS (ik_llama)",
-          "reasoning": true,
-          "input": ["text", "image"],
-          "contextWindow": 131072,
           "maxTokens": 32768,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "compat": {
@@ -125,37 +69,9 @@
       "apiKey": "none",
       "models": [
         {
-          "id": "qwen3.5-27b",
-          "name": "Qwen3.5 27B Dense FP8 (GPU1, vLLM)",
+          "id": "gpt-oss-120b",
+          "name": "GPT-OSS 120B",
           "reasoning": true,
-          "input": ["text", "image"],
-          "contextWindow": 170000,
-          "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
-          "id": "qwen3.5-35b",
-          "name": "Qwen3.5 35B-A3B FP8 (GPU1, vLLM)",
-          "reasoning": true,
-          "input": ["text", "image"],
-          "contextWindow": 170000,
-          "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
-          "id": "devstral-small-2",
-          "name": "Devstral Small 2 24B FP8 (GPU1, vLLM)",
-          "reasoning": false,
           "input": ["text"],
           "contextWindow": 131072,
           "maxTokens": 32768,
@@ -167,12 +83,40 @@
           }
         },
         {
-          "id": "glm-4.7-flash",
-          "name": "GLM-4.7-Flash BF16 (GPU1, vLLM)",
-          "reasoning": true,
+          "id": "qwen3-coder-next",
+          "name": "Qwen3 Coder Next",
+          "reasoning": false,
           "input": ["text"],
-          "contextWindow": 202752,
-          "maxTokens": 128000,
+          "contextWindow": 262144,
+          "maxTokens": 32768,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        },
+        {
+          "id": "qwen3.5-35b",
+          "name": "Qwen3.5 35B-A3B",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 170000,
+          "maxTokens": 32768,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        },
+        {
+          "id": "qwen3.5-27b",
+          "name": "Qwen3.5 27B",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 170000,
+          "maxTokens": 32768,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "compat": {
             "supportsDeveloperRole": false,
