@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.56.3",
   "defaultProvider": "gpu0",
-  "defaultModel": "qwen3-coder-next",
+  "defaultModel": "gpt-oss-120b",
   "defaultThinkingLevel": "high",
   "skills": [
     "~/.claude/skills"
