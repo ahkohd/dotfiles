@@ -1,8 +1,8 @@
 {
   "lastChangelogVersion": "0.56.3",
-  "defaultProvider": "gpu0",
-  "defaultModel": "qwen3.5-35b-claude",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-6",
+  "defaultThinkingLevel": "xhigh",
   "skills": [
     "~/.claude/skills"
   ],
@@ -12,7 +12,7 @@
   "images": {
     "autoResize": true
   },
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "packages": [],
   "editorPaddingX": 1,
   "compaction": {
