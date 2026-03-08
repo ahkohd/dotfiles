@@ -34,20 +34,6 @@
           }
         },
         {
-          "id": "qwen3.5-35b",
-          "name": "Qwen3.5 35B-A3B",
-          "reasoning": true,
-          "input": ["text", "image"],
-          "contextWindow": 170000,
-          "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
           "id": "qlaude-27b",
           "name": "Qlaude 27B",
           "reasoning": true,
@@ -102,20 +88,6 @@
           "reasoning": false,
           "input": ["text"],
           "contextWindow": 262144,
-          "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
-          "id": "qwen3.5-35b",
-          "name": "Qwen3.5 35B-A3B",
-          "reasoning": true,
-          "input": ["text", "image"],
-          "contextWindow": 170000,
           "maxTokens": 32768,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "compat": {
