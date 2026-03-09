@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.56.3",
-  "defaultProvider": "gpu0",
-  "defaultModel": "gpt-oss-120b",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-6",
   "defaultThinkingLevel": "high",
   "skills": [
     "~/.claude/skills"
