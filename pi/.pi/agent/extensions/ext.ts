@@ -1,26 +1,38 @@
-import { existsSync, readdirSync, renameSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, renameSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 
 const EXT_DIR = join(homedir(), ".pi", "agent", "extensions");
+const AVAILABLE_DIR = join(homedir(), ".pi", "agent", "extensions-available");
 const PROTECTED_EXTENSION = "ext";
 
 function normalizeExtensionName(name: string): string {
-    return name.trim().replace(/\.ts(?:\.disabled)?$/i, "");
+    return name.trim().replace(/\.ts$/i, "");
+}
+
+function ensureAvailableDir(): void {
+    if (!existsSync(AVAILABLE_DIR)) mkdirSync(AVAILABLE_DIR, { recursive: true });
 }
 
 function listExtensions(): Array<{ name: string; enabled: boolean }> {
-    if (!existsSync(EXT_DIR)) return [];
     const map = new Map<string, { name: string; enabled: boolean }>();
 
-    for (const file of readdirSync(EXT_DIR)) {
-        if (file.endsWith(".ts")) {
-            const name = normalizeExtensionName(file);
-            map.set(name, { name, enabled: true });
-        } else if (file.endsWith(".ts.disabled")) {
-            const name = normalizeExtensionName(file);
-            if (!map.has(name)) map.set(name, { name, enabled: false });
+    if (existsSync(EXT_DIR)) {
+        for (const file of readdirSync(EXT_DIR)) {
+            if (file.endsWith(".ts")) {
+                const name = normalizeExtensionName(file);
+                map.set(name, { name, enabled: true });
+            }
+        }
+    }
+
+    if (existsSync(AVAILABLE_DIR)) {
+        for (const file of readdirSync(AVAILABLE_DIR)) {
+            if (file.endsWith(".ts")) {
+                const name = normalizeExtensionName(file);
+                if (!map.has(name)) map.set(name, { name, enabled: false });
+            }
         }
     }
 
@@ -30,22 +42,24 @@ function listExtensions(): Array<{ name: string; enabled: boolean }> {
 function setEnabled(name: string, enabled: boolean): string {
     const ext = normalizeExtensionName(name);
     const enabledPath = join(EXT_DIR, `${ext}.ts`);
-    const disabledPath = join(EXT_DIR, `${ext}.ts.disabled`);
+    const availablePath = join(AVAILABLE_DIR, `${ext}.ts`);
 
     if (!enabled && ext === PROTECTED_EXTENSION) {
         return "Cannot disable ext.ts (it contains the extension manager).";
     }
 
+    ensureAvailableDir();
+
     if (enabled) {
         if (existsSync(enabledPath)) return `${ext} is already enabled.`;
-        if (!existsSync(disabledPath)) return `Extension not found: ${ext}`;
-        renameSync(disabledPath, enabledPath);
+        if (!existsSync(availablePath)) return `Extension not found: ${ext}`;
+        renameSync(availablePath, enabledPath);
         return `Enabled ${ext}.`;
     }
 
-    if (existsSync(disabledPath)) return `${ext} is already disabled.`;
+    if (existsSync(availablePath)) return `${ext} is already disabled.`;
     if (!existsSync(enabledPath)) return `Extension not found: ${ext}`;
-    renameSync(enabledPath, disabledPath);
+    renameSync(enabledPath, availablePath);
     return `Disabled ${ext}.`;
 }
 
