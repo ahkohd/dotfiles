@@ -89,6 +89,20 @@
             "maxTokensField": "max_tokens"
           }
         },
+        {
+          "id": "minimax-m2.5",
+          "name": "MiniMax M2.5",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 196608,
+          "maxTokens": 32768,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        }
       ]
     },
     "gpu1": {

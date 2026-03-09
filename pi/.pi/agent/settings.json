@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.56.3",
   "defaultProvider": "gpu0",
-  "defaultModel": "minimax-m2.5",
+  "defaultModel": "step-3.5-flash",
   "defaultThinkingLevel": "high",
   "skills": [
     "~/.claude/skills"
