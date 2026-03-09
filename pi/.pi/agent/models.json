@@ -60,6 +60,20 @@
             "supportsReasoningEffort": false,
             "maxTokensField": "max_tokens"
           }
+        },
+        {
+          "id": "step-3.5-flash",
+          "name": "Step 3.5 Flash",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 131072,
+          "maxTokens": 32768,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
         }
       ]
     },

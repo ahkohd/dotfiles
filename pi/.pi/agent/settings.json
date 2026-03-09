@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.56.3",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-6",
+  "defaultProvider": "gpu0",
+  "defaultModel": "step-3.5-flash",
   "defaultThinkingLevel": "high",
   "skills": [
     "~/.claude/skills"
