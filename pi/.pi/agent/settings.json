@@ -1,6 +1,6 @@
 {
-  "lastChangelogVersion": "0.56.3",
-  "defaultProvider": "gpu0",
+  "lastChangelogVersion": "0.57.1",
+  "defaultProvider": "gpu0-ant",
   "defaultModel": "nemotron-3-super",
   "defaultThinkingLevel": "high",
   "skills": [
