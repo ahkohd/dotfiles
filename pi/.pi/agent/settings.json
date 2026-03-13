@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.57.1",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-6",
+  "defaultProvider": "gpu0-ant",
+  "defaultModel": "qwen3.5-27b",
   "defaultThinkingLevel": "high",
   "skills": [
     "~/.claude/skills"

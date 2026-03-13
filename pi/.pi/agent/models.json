@@ -48,27 +48,6 @@
           }
         },
         {
-          "id": "qlaude-27b",
-          "name": "Qlaude 27B",
-          "reasoning": true,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 131072,
-          "maxTokens": 32768,
-          "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
-            "cacheWrite": 0
-          },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
           "id": "qwen3.5-27b",
           "name": "Qwen3.5 27B",
           "reasoning": true,
@@ -223,16 +202,6 @@
           "maxTokens": 32768
         },
         {
-          "id": "qlaude-27b",
-          "name": "Qlaude 27B",
-          "reasoning": true,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 131072,
-          "maxTokens": 32768
-        },
-        {
           "id": "qwen3.5-27b",
           "name": "Qwen3.5 27B",
           "reasoning": true,
@@ -329,27 +298,6 @@
             "text"
           ],
           "contextWindow": 262144,
-          "maxTokens": 32768,
-          "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
-            "cacheWrite": 0
-          },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
-          "id": "qlaude-27b",
-          "name": "Qlaude 27B",
-          "reasoning": true,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 131072,
           "maxTokens": 32768,
           "cost": {
             "input": 0,
@@ -515,16 +463,6 @@
             "text"
           ],
           "contextWindow": 262144,
-          "maxTokens": 32768
-        },
-        {
-          "id": "qlaude-27b",
-          "name": "Qlaude 27B",
-          "reasoning": true,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 131072,
           "maxTokens": 32768
         },
         {
