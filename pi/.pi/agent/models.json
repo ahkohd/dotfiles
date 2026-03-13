@@ -9,10 +9,17 @@
           "id": "gpt-oss-120b",
           "name": "GPT-OSS 120B",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -23,10 +30,17 @@
           "id": "qwen3-coder-next",
           "name": "Qwen3 Coder Next",
           "reasoning": false,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 262144,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -37,10 +51,17 @@
           "id": "qlaude-27b",
           "name": "Qlaude 27B",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -51,10 +72,18 @@
           "id": "qwen3.5-27b",
           "name": "Qwen3.5 27B",
           "reasoning": true,
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "contextWindow": 170000,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -65,10 +94,17 @@
           "id": "step-3.5-flash",
           "name": "Step 3.5 Flash",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -79,10 +115,17 @@
           "id": "glm-4.7",
           "name": "GLM 4.7",
           "reasoning": false,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 184960,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -93,10 +136,17 @@
           "id": "minimax-m2.5",
           "name": "MiniMax M2.5",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -107,10 +157,38 @@
           "id": "nemotron-3-super",
           "name": "Nemotron 3 Super",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 1000000,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        },
+        {
+          "id": "qwen3.5-397b",
+          "name": "Qwen3.5 397B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 131072,
+          "maxTokens": 32768,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -128,7 +206,9 @@
           "id": "gpt-oss-120b",
           "name": "GPT-OSS 120B",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768
         },
@@ -136,7 +216,9 @@
           "id": "qwen3-coder-next",
           "name": "Qwen3 Coder Next",
           "reasoning": false,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 262144,
           "maxTokens": 32768
         },
@@ -144,7 +226,9 @@
           "id": "qlaude-27b",
           "name": "Qlaude 27B",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768
         },
@@ -152,7 +236,10 @@
           "id": "qwen3.5-27b",
           "name": "Qwen3.5 27B",
           "reasoning": true,
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "contextWindow": 170000,
           "maxTokens": 32768
         },
@@ -160,7 +247,9 @@
           "id": "step-3.5-flash",
           "name": "Step 3.5 Flash",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768
         },
@@ -168,7 +257,9 @@
           "id": "glm-4.7",
           "name": "GLM 4.7",
           "reasoning": false,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 184960,
           "maxTokens": 32768
         },
@@ -176,7 +267,9 @@
           "id": "minimax-m2.5",
           "name": "MiniMax M2.5",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768
         },
@@ -184,8 +277,20 @@
           "id": "nemotron-3-super",
           "name": "Nemotron 3 Super",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 1000000,
+          "maxTokens": 32768
+        },
+        {
+          "id": "qwen3.5-397b",
+          "name": "Qwen3.5 397B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 131072,
           "maxTokens": 32768
         }
       ]
@@ -199,10 +304,17 @@
           "id": "gpt-oss-120b",
           "name": "GPT-OSS 120B",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -213,10 +325,17 @@
           "id": "qwen3-coder-next",
           "name": "Qwen3 Coder Next",
           "reasoning": false,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 262144,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -227,10 +346,17 @@
           "id": "qlaude-27b",
           "name": "Qlaude 27B",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -241,10 +367,18 @@
           "id": "qwen3.5-27b",
           "name": "Qwen3.5 27B",
           "reasoning": true,
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "contextWindow": 170000,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -255,10 +389,17 @@
           "id": "nemotron-3-super",
           "name": "Nemotron 3 Super",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 1000000,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -269,10 +410,17 @@
           "id": "step-3.5-flash",
           "name": "Step 3.5 Flash",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -283,10 +431,17 @@
           "id": "glm-4.7",
           "name": "GLM 4.7",
           "reasoning": false,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 184960,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -297,10 +452,38 @@
           "id": "minimax-m2.5",
           "name": "MiniMax M2.5",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        },
+        {
+          "id": "qwen3.5-397b",
+          "name": "Qwen3.5 397B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 131072,
+          "maxTokens": 32768,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
             "supportsDeveloperRole": false,
             "supportsReasoningEffort": false,
@@ -318,7 +501,9 @@
           "id": "gpt-oss-120b",
           "name": "GPT-OSS 120B",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768
         },
@@ -326,7 +511,9 @@
           "id": "qwen3-coder-next",
           "name": "Qwen3 Coder Next",
           "reasoning": false,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 262144,
           "maxTokens": 32768
         },
@@ -334,7 +521,9 @@
           "id": "qlaude-27b",
           "name": "Qlaude 27B",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768
         },
@@ -342,7 +531,10 @@
           "id": "qwen3.5-27b",
           "name": "Qwen3.5 27B",
           "reasoning": true,
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "contextWindow": 170000,
           "maxTokens": 32768
         },
@@ -350,7 +542,9 @@
           "id": "nemotron-3-super",
           "name": "Nemotron 3 Super",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 1000000,
           "maxTokens": 32768
         },
@@ -358,7 +552,9 @@
           "id": "step-3.5-flash",
           "name": "Step 3.5 Flash",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768
         },
@@ -366,7 +562,9 @@
           "id": "glm-4.7",
           "name": "GLM 4.7",
           "reasoning": false,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 184960,
           "maxTokens": 32768
         },
@@ -374,7 +572,19 @@
           "id": "minimax-m2.5",
           "name": "MiniMax M2.5",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
+          "contextWindow": 131072,
+          "maxTokens": 32768
+        },
+        {
+          "id": "qwen3.5-397b",
+          "name": "Qwen3.5 397B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
           "contextWindow": 131072,
           "maxTokens": 32768
         }

@@ -1,6 +1,8 @@
 pi/.pi/agent/auth.json
+pi/.pi/agent/auth.json.lock
 pi/.pi/agent/env.json
 pi/.pi/agent/sessions/
+pi/.pi/agent/cache/
 pi/.pi/packages/*/node_modules/
 .pi/
 !pi/.pi/
