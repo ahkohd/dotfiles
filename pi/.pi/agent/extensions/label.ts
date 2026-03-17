@@ -1,8 +1,8 @@
 /**
- * Label — Simple session label for the footer
+ * Label — Persistent session label for the footer
  *
  * Commands:
- *   /label set <text>  — Set the label
+ *   /label set <text>  — Set the label (persists across restarts)
  *   /label clear       — Remove the label
  *   /label hide        — Hide the label from the footer
  *   /label show        — Show the label in the footer again
@@ -15,6 +15,19 @@ import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 let label: string | undefined;
 
 export default function (pi: ExtensionAPI) {
+    // Restore label from session on startup/resume
+    pi.on("session_start", async (_event, ctx) => {
+        label = undefined;
+        for (const entry of ctx.sessionManager.getEntries()) {
+            if (entry.type === "custom" && entry.customType === "label") {
+                label = (entry as any).data?.text;
+            }
+        }
+        if (label) {
+            ctx.ui.setStatus("__label", label);
+        }
+    });
+
     pi.registerCommand("label", {
         description: "Set, clear, hide, or show a session label",
         handler: async (args: string, ctx) => {
@@ -30,12 +43,14 @@ export default function (pi: ExtensionAPI) {
                         return;
                     }
                     label = rest;
+                    pi.appendEntry("label", { text: rest });
                     ctx.ui.setStatus("__label", rest);
                     ctx.ui.notify(`Label set: ${rest}`, "success");
                     break;
                 }
                 case "clear": {
                     label = undefined;
+                    pi.appendEntry("label", { text: undefined });
                     ctx.ui.setStatus("__label", undefined);
                     ctx.ui.notify("Label cleared", "success");
                     break;
