@@ -86,3 +86,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 fi
 
+
+# bun completions
+[ -s "/home/var/.bun/_bun" ] && source "/home/var/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

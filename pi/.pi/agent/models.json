@@ -173,6 +173,27 @@
             "supportsReasoningEffort": false,
             "maxTokensField": "max_tokens"
           }
+        },
+        {
+          "id": "qwen3.5-9b",
+          "name": "Qwen3.5 9B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 262144,
+          "maxTokens": 32768,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
         }
       ]
     },
@@ -260,6 +281,16 @@
             "text"
           ],
           "contextWindow": 131072,
+          "maxTokens": 32768
+        },
+        {
+          "id": "qwen3.5-9b",
+          "name": "Qwen3.5 9B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 262144,
           "maxTokens": 32768
         }
       ]
@@ -437,6 +468,27 @@
             "supportsReasoningEffort": false,
             "maxTokensField": "max_tokens"
           }
+        },
+        {
+          "id": "qwen3.5-9b",
+          "name": "Qwen3.5 9B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 262144,
+          "maxTokens": 32768,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
         }
       ]
     },
@@ -524,6 +576,16 @@
             "text"
           ],
           "contextWindow": 131072,
+          "maxTokens": 32768
+        },
+        {
+          "id": "qwen3.5-9b",
+          "name": "Qwen3.5 9B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 262144,
           "maxTokens": 32768
         }
       ]
