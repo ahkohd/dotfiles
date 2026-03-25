@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.58.4",
+  "lastChangelogVersion": "0.61.1",
   "defaultProvider": "gpu0-oai",
   "defaultModel": "minimax-m2.5",
   "defaultThinkingLevel": "high",

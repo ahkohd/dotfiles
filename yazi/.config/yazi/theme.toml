@@ -1,95 +1,246 @@
-[mgr]
-border_style = { fg = "#3c4048" }
-cwd = { fg = "#5ef1ff" }
-find_keyword = { bold = true, fg = "#5eff6c" }
-find_position = { fg = "#ffffff" }
-hovered = { bg = "#7b8496", bold = true, fg = "#ffffff" }
-marker_copied = { bg = "#f1ff5e", fg = "#f1ff5e" }
-marker_cut = { bg = "#ff6e5e", fg = "#ff6e5e" }
-marker_selected = { bg = "#3c4048", fg = "#5eff6c" }
-preview_hovered = { bg = "#3c4048", bold = true, fg = "#ffffff" }
-tab_active = { bg = "#5ea1ff", fg = "#16181a" }
-tab_inactive = { bg = "#3c4048", fg = "#ffffff" }
+[cmp.active]
+bg = "#2d393d"
+fg = "#f3c0e5"
 
-count_selected = { bg = "#5eff6c", fg = "#16181a" }
-count_copied = { bg = "#f1ff5e", fg = "#16181a" }
-count_cut = { bg = "#ff6e5e", fg = "#16181a" }
+[cmp.border]
+fg = "#cae0a7"
 
-[completion]
-active = { bg = "#7b8496", fg = "#bd5eff" }
-border = { fg = "#5ea1ff" }
-inactive = { fg = "#ffffff" }
+[cmp.inactive]
+fg = "#f8f9e8"
 
-[filetype]
-rules = [
-  { fg = "#5ef1ff", mime = "image/*" },
-  { fg = "#f1ff5e", mime = "video/*" },
-  { fg = "#f1ff5e", mime = "audio/*" },
-  { fg = "#bd5eff", mime = "application/zip" },
-  { fg = "#bd5eff", mime = "application/gzip" },
-  { fg = "#bd5eff", mime = "application/x-tar" },
-  { fg = "#bd5eff", mime = "application/x-bzip" },
-  { fg = "#bd5eff", mime = "application/x-bzip2" },
-  { fg = "#bd5eff", mime = "application/x-7z-compressed" },
-  { fg = "#bd5eff", mime = "application/x-rar" },
-  { fg = "#bd5eff", mime = "application/xz" },
-  { fg = "#5eff6c", mime = "application/doc" },
-  { fg = "#5eff6c", mime = "application/pdf" },
-  { fg = "#5eff6c", mime = "application/rtf" },
-  { fg = "#5eff6c", mime = "application/vnd.*" },
-  { bold = true, fg = "#5ea1ff", mime = "inode/directory" },
-  { fg = "#ffffff", mime = "*" },
-]
+[[filetype.rules]]
+fg = "#addeb9"
+mime = "image/*"
 
-[help]
-desc = { fg = "#ffffff" }
-footer = { fg = "#ffffff" }
-hovered = { bg = "#7b8496", fg = "#ffffff" }
-on = { fg = "#bd5eff" }
-run = { fg = "#5ef1ff" }
+[[filetype.rules]]
+fg = "#f5d098"
+mime = "video/*"
 
-[input]
-border = { fg = "#5ea1ff" }
-selected = { bg = "#7b8496" }
-title = { fg = "#ffffff" }
-value = { fg = "#ffffff" }
+[[filetype.rules]]
+fg = "#f5d098"
+mime = "audio/*"
 
-[select]
-active = { fg = "#bd5eff" }
-border = { fg = "#5ea1ff" }
-inactive = { fg = "#ffffff" }
+[[filetype.rules]]
+fg = "#f3c0e5"
+mime = "application/zip"
 
-[status]
-mode_normal = { bg = "#5ea1ff", bold = true, fg = "#16181a" }
-mode_select = { bg = "#5eff6c", bold = true, fg = "#16181a" }
-mode_unset = { bg = "#ff5ef1", bold = true, fg = "#16181a" }
-permissions_r = { fg = "#f1ff5e" }
-permissions_s = { fg = "#5ef1ff" }
-permissions_t = { fg = "#5ea1ff" }
-permissions_w = { fg = "#ff6e5e" }
-permissions_x = { fg = "#5eff6c" }
-progress_error = { bg = "#16181a", fg = "#ff6e5e" }
-progress_label = { bg = "#16181a", fg = "#ffffff" }
-progress_normal = { bg = "#16181a", fg = "#ffffff" }
-separator_style = { bg = "#3c4048", fg = "#3c4048" }
-sep_left = { open = "", close = "" }
-sep_right = { open = "", close = "" }
+[[filetype.rules]]
+fg = "#f3c0e5"
+mime = "application/gzip"
 
-[tasks]
-border = { fg = "#5ea1ff" }
-hovered = { bg = "#7b8496", fg = "#ffffff" }
-title = { fg = "#ffffff" }
+[[filetype.rules]]
+fg = "#f3c0e5"
+mime = "application/x-tar"
 
-[which]
-cand = { fg = "#5ef1ff" }
-desc = { fg = "#ffffff" }
-mask = { bg = "#3c4048" }
-rest = { fg = "#ff5ef1" }
-separator_style = { fg = "#7b8496" }
+[[filetype.rules]]
+fg = "#f3c0e5"
+mime = "application/x-bzip"
 
-[icon]
-globs = []
-dirs = []
-files = []
-exts = []
-conds = []
+[[filetype.rules]]
+fg = "#f3c0e5"
+mime = "application/x-bzip2"
+
+[[filetype.rules]]
+fg = "#f3c0e5"
+mime = "application/x-7z-compressed"
+
+[[filetype.rules]]
+fg = "#f3c0e5"
+mime = "application/x-rar"
+
+[[filetype.rules]]
+fg = "#f3c0e5"
+mime = "application/xz"
+
+[[filetype.rules]]
+fg = "#cae0a7"
+mime = "application/doc"
+
+[[filetype.rules]]
+fg = "#cae0a7"
+mime = "application/pdf"
+
+[[filetype.rules]]
+fg = "#cae0a7"
+mime = "application/rtf"
+
+[[filetype.rules]]
+fg = "#cae0a7"
+mime = "application/vnd.*"
+
+[[filetype.rules]]
+fg = "#839e9a"
+mime = "inode/directory"
+
+[[filetype.rules]]
+fg = "#adc9bc"
+mime = "*"
+
+[help.desc]
+fg = "#f8f9e8"
+
+[help.footer]
+fg = "#f8f9e8"
+
+[help.hovered]
+bg = "#2d393d"
+fg = "#f8f9e8"
+
+[help.on]
+fg = "#f3c0e5"
+
+[help.run]
+fg = "#addeb9"
+
+[input.border]
+fg = "#cae0a7"
+
+[input.selected]
+bg = "#2d393d"
+
+[input.title]
+fg = "#f8f9e8"
+
+[input.value]
+fg = "#f8f9e8"
+
+[mgr.border_style]
+fg = "#3d494d"
+
+[mgr.cwd]
+fg = "#addeb9"
+
+[mgr.find_keyword]
+fg = "#cae0a7"
+
+[mgr.find_position]
+fg = "#f8f9e8"
+
+[mgr.hovered]
+bg = "#2d393d"
+fg = "#f8f9e8"
+
+[mgr.marker_copied]
+bg = "#f5d098"
+fg = "#f5d098"
+
+[mgr.marker_cut]
+bg = "#f57f82"
+fg = "#f57f82"
+
+[mgr.marker_selected]
+bg = "#cae0a7"
+fg = "#cae0a7"
+
+[mgr.preview_hovered]
+bg = "#2d393d"
+fg = "#f8f9e8"
+
+[mgr.tab_active]
+bg = "#cae0a7"
+fg = "#1d2428"
+
+[mgr.tab_inactive]
+bg = "#adc9bc"
+fg = "#3d494d"
+
+[mode.normal_main]
+bg = "#cae0a7"
+fg = "#171c1f"
+[mode.normal_alt]
+bg = "#2d393d"
+fg = "#cae0a7"
+[mode.pick_main]
+bg = "#f3c0e5"
+fg = "#171c1f"
+[mode.pick_alt]
+bg = "#2d393d"
+fg = "#f3c0e5"
+[mode.unset_main]
+bg = "#96b4aa"
+fg = "#171c1f"
+[mode.unset_alt]
+bg = "#2d393d"
+fg = "#96b4aa"
+
+[pick.active]
+fg = "#f3c0e5"
+
+[pick.border]
+fg = "#cae0a7"
+
+[pick.inactive]
+fg = "#f8f9e8"
+
+[status.sep_left]
+open = ""
+close = ""
+
+[status.sep_right]
+open = ""
+close = ""
+
+[status.perm_read]
+fg = "#f5d098"
+
+[status.perm_sep]
+fg = "#addeb9"
+
+[status.perm_type]
+fg = "#b2cfed"
+
+[status.perm_write]
+fg = "#d0bbf0"
+
+[status.perm_exec]
+fg = "#cae0a7"
+
+[status.progress_error]
+bg = "#1d2428"
+fg = "#f57f82"
+
+[status.progress_label]
+bg = "#1d2428"
+fg = "#f8f9e8"
+
+[status.progress_normal]
+bg = "#1d2428"
+fg = "#f8f9e8"
+
+[status.separator_style]
+bg = "#2d393d"
+fg = "#2d393d"
+
+[tasks.border]
+fg = "#cae0a7"
+
+[tasks.hovered]
+bg = "#2d393d"
+fg = "#f8f9e8"
+
+[tasks.title]
+fg = "#f8f9e8"
+
+[which.cand]
+fg = "#addeb9"
+
+[which.desc]
+fg = "#f8f9e8"
+
+[which.mask]
+bg = "#3d494d"
+
+[which.rest]
+fg = "#58686d"
+
+[which.separator_style]
+fg = "#58686d"
+
+[tabs.active]
+bg = "#cae0a7"
+fg = "#171c1f"
+
+[tabs.inactive]
+bg = "#2d393d"
+fg = "#cae0a7"
+
