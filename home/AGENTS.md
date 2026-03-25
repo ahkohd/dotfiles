@@ -2,6 +2,5 @@
 
 ## Tool Use
 
-- **Always prefer `edit` over `write`** when modifying existing files. The `edit` tool makes surgical changes by matching exact text. Only use `write` when creating new files or when the majority of the file needs to change.
-- When fixing compile errors or bugs, use `edit` to change only the broken lines — do NOT rewrite the entire file.
-- Read the file first with `read` to find the exact text to replace, then use `edit` with that exact text.
+- **Use `gh` CLI** for GitHub operations: viewing PRs, fetching diffs, checking issues, browsing repo contents, API calls.
+- **Use `jj`** for version control. Prefer `jj` over `git` where possible.
