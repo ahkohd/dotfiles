@@ -194,6 +194,27 @@
             "supportsReasoningEffort": false,
             "maxTokensField": "max_tokens"
           }
+        },
+        {
+          "id": "gpt-oss-20b",
+          "name": "GPT-OSS 20B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 131072,
+          "maxTokens": 32768,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
         }
       ]
     },
@@ -291,6 +312,16 @@
             "text"
           ],
           "contextWindow": 262144,
+          "maxTokens": 32768
+        },
+        {
+          "id": "gpt-oss-20b",
+          "name": "GPT-OSS 20B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 131072,
           "maxTokens": 32768
         }
       ]
@@ -489,6 +520,27 @@
             "supportsReasoningEffort": false,
             "maxTokensField": "max_tokens"
           }
+        },
+        {
+          "id": "gpt-oss-20b",
+          "name": "GPT-OSS 20B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 131072,
+          "maxTokens": 32768,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
         }
       ]
     },
@@ -586,6 +638,16 @@
             "text"
           ],
           "contextWindow": 262144,
+          "maxTokens": 32768
+        },
+        {
+          "id": "gpt-oss-20b",
+          "name": "GPT-OSS 20B",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 131072,
           "maxTokens": 32768
         }
       ]
