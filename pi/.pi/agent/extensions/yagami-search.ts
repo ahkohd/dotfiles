@@ -1,37 +1,91 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { Type } from "@sinclair/typebox";
 import { StringEnum } from "@mariozechner/pi-ai";
 import { Text } from "@mariozechner/pi-tui";
+import { Type } from "@sinclair/typebox";
+import { existsSync, readFileSync } from "node:fs";
+import { homedir } from "node:os";
+import { join } from "node:path";
 
-const YAGAMI_BASE = process.env.YAGAMI_URL || "http://127.0.0.1:43111";
+const ENV_PATH = join(homedir(), ".pi", "agent", "env.json");
 
-async function yagamiPost(endpoint: string, body: Record<string, any>): Promise<any> {
-  const res = await fetch(`${YAGAMI_BASE}${endpoint}`, {
+function getYagamiBase(): string {
+  if (process.env.YAGAMI_URL && process.env.YAGAMI_URL.trim()) {
+    return process.env.YAGAMI_URL.trim();
+  }
+
+  try {
+    if (existsSync(ENV_PATH)) {
+      const env = JSON.parse(readFileSync(ENV_PATH, "utf8")) as { YAGAMI_URL?: unknown };
+      if (typeof env.YAGAMI_URL === "string" && env.YAGAMI_URL.trim()) {
+        return env.YAGAMI_URL.trim();
+      }
+    }
+  } catch {
+    // ignore malformed env.json and fall through to default
+  }
+
+  return "http://127.0.0.1:43111";
+}
+
+type YagamiResponse = {
+  ok?: boolean;
+  error?: string;
+  result?: unknown;
+};
+
+type RenderTheme = {
+  bold: (text: string) => string;
+  fg: (token: string, text: string) => string;
+};
+
+type RenderArgs = Record<string, unknown>;
+
+function asString(value: unknown): string {
+  return typeof value === "string" ? value : "";
+}
+
+function errorMessage(error: unknown): string {
+  if (error instanceof Error) return error.message;
+  return String(error);
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function renderCallLine(toolName: string, value: unknown, theme: RenderTheme): Text {
+  return new Text(`${theme.bold(toolName)} ${theme.fg("muted", asString(value))}`, 0, 0);
+}
+
+async function yagamiPost(endpoint: string, body: Record<string, unknown>): Promise<unknown> {
+  const res = await fetch(`${getYagamiBase()}${endpoint}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`Yagami error ${res.status}: ${text}`);
   }
-  const data = await res.json() as any;
+
+  const data = (await res.json()) as YagamiResponse;
   if (!data.ok) throw new Error(data.error || "Unknown yagami error");
   return data.result;
 }
 
-function errResult(msg: string) {
-  return { content: [{ type: "text" as const, text: msg }], details: {}, isError: true };
+function errResult(message: string) {
+  return { content: [{ type: "text" as const, text: message }], details: {}, isError: true };
 }
 
 function okResult(text: string) {
   return { content: [{ type: "text" as const, text }], details: {} };
 }
 
-function formatResult(result: any): string {
+function formatResult(result: unknown): string {
   if (typeof result === "string") return result;
-  if (result?.answer) return result.answer;
-  if (result?.text) return result.text;
+  if (isRecord(result) && typeof result.answer === "string") return result.answer;
+  if (isRecord(result) && typeof result.text === "string") return result.text;
   return JSON.stringify(result, null, 2);
 }
 
@@ -43,8 +97,8 @@ export default function (pi: ExtensionAPI) {
       "Search the web for any topic and get clean, ready-to-use content.\n\n" +
       "Best for: Finding current information, news, facts, or answering questions about any topic.\n" +
       "Returns: Clean text content from top search results, ready for LLM use.",
-    renderCall(args: any, theme: any) {
-      return new Text(`${theme.bold("web_search")} ${theme.fg("muted", args.query || "")}`, 0, 0);
+    renderCall(args: RenderArgs, theme: RenderTheme) {
+      return renderCallLine("web_search", args.query, theme);
     },
     parameters: Type.Object({
       query: Type.String({ description: "Web search query" }),
@@ -53,8 +107,8 @@ export default function (pi: ExtensionAPI) {
       try {
         const result = await yagamiPost("/search", { query: params.query });
         return okResult(formatResult(result));
-      } catch (e: any) {
-        return errResult(`Search error: ${e.message}`);
+      } catch (error: unknown) {
+        return errResult(`Search error: ${errorMessage(error)}`);
       }
     },
   });
@@ -66,8 +120,8 @@ export default function (pi: ExtensionAPI) {
       "Find code examples, documentation, and programming solutions. Searches GitHub, Stack Overflow, and official docs.\n\n" +
       "Best for: Any programming question - API usage, library examples, code snippets, debugging help.\n" +
       "Returns: Relevant code and documentation, formatted for easy reading.",
-    renderCall(args: any, theme: any) {
-      return new Text(`${theme.bold("get_code_context")} ${theme.fg("muted", args.query || "")}`, 0, 0);
+    renderCall(args: RenderArgs, theme: RenderTheme) {
+      return renderCallLine("get_code_context", args.query, theme);
     },
     parameters: Type.Object({
       query: Type.String({ description: "Search query for code context." }),
@@ -76,8 +130,8 @@ export default function (pi: ExtensionAPI) {
       try {
         const result = await yagamiPost("/code-context", { query: params.query });
         return okResult(formatResult(result));
-      } catch (e: any) {
-        return errResult(`Code search error: ${e.message}`);
+      } catch (error: unknown) {
+        return errResult(`Code search error: ${errorMessage(error)}`);
       }
     },
   });
@@ -89,14 +143,12 @@ export default function (pi: ExtensionAPI) {
       "Get the full content of a specific webpage. Use when you have an exact URL.\n\n" +
       "Best for: Extracting content from a known URL.\n" +
       "Returns: Full text content and metadata from the page.",
-    renderCall(args: any, theme: any) {
-      return new Text(`${theme.bold("fetch_content")} ${theme.fg("muted", args.url || "")}`, 0, 0);
+    renderCall(args: RenderArgs, theme: RenderTheme) {
+      return renderCallLine("fetch_content", args.url, theme);
     },
     parameters: Type.Object({
       url: Type.String({ description: "URL to crawl and extract content from" }),
-      maxCharacters: Type.Optional(
-        Type.Number({ description: "Maximum characters to extract (default: 3000)" })
-      ),
+      maxCharacters: Type.Optional(Type.Number({ description: "Maximum characters to extract (default: 3000)" })),
     }),
     async execute(_id, params) {
       try {
@@ -105,8 +157,8 @@ export default function (pi: ExtensionAPI) {
           maxCharacters: params.maxCharacters || 3000,
         });
         return okResult(formatResult(result));
-      } catch (e: any) {
-        return errResult(`Fetch error: ${e.message}`);
+      } catch (error: unknown) {
+        return errResult(`Fetch error: ${errorMessage(error)}`);
       }
     },
   });
@@ -118,8 +170,8 @@ export default function (pi: ExtensionAPI) {
       "Research any company to get business information, news, and insights.\n\n" +
       "Best for: Learning about a company's products, services, recent news, or industry position.\n" +
       "Returns: Company information from trusted business sources.",
-    renderCall(args: any, theme: any) {
-      return new Text(`${theme.bold("company_research")} ${theme.fg("muted", args.companyName || "")}`, 0, 0);
+    renderCall(args: RenderArgs, theme: RenderTheme) {
+      return renderCallLine("company_research", args.companyName, theme);
     },
     parameters: Type.Object({
       companyName: Type.String({ description: "Name of the company to research" }),
@@ -128,8 +180,8 @@ export default function (pi: ExtensionAPI) {
       try {
         const result = await yagamiPost("/company-research", { companyName: params.companyName });
         return okResult(formatResult(result));
-      } catch (e: any) {
-        return errResult(`Company research error: ${e.message}`);
+      } catch (error: unknown) {
+        return errResult(`Company research error: ${errorMessage(error)}`);
       }
     },
   });
@@ -142,27 +194,23 @@ export default function (pi: ExtensionAPI) {
       "Best for: When you need specific filters like date ranges, domain restrictions, or category filters.\n" +
       "Not recommended for: Simple searches - use web_search instead.\n" +
       "Returns: Search results with optional highlights, summaries, and subpage content.",
-    renderCall(args: any, theme: any) {
-      return new Text(`${theme.bold("web_search_advanced")} ${theme.fg("muted", args.query || "")}`, 0, 0);
+    renderCall(args: RenderArgs, theme: RenderTheme) {
+      return renderCallLine("web_search_advanced", args.query, theme);
     },
     parameters: Type.Object({
       query: Type.String({ description: "Search query" }),
       includeDomains: Type.Optional(
-        Type.Array(Type.String(), { description: "Only include results from these domains" })
+        Type.Array(Type.String(), { description: "Only include results from these domains" }),
       ),
-      excludeDomains: Type.Optional(
-        Type.Array(Type.String(), { description: "Exclude results from these domains" })
-      ),
-      category: Type.Optional(
-        Type.String({ description: "Filter results to a specific category" })
-      ),
+      excludeDomains: Type.Optional(Type.Array(Type.String(), { description: "Exclude results from these domains" })),
+      category: Type.Optional(Type.String({ description: "Filter results to a specific category" })),
     }),
     async execute(_id, params) {
       try {
         const result = await yagamiPost("/search/advanced", params);
         return okResult(formatResult(result));
-      } catch (e: any) {
-        return errResult(`Advanced search error: ${e.message}`);
+      } catch (error: unknown) {
+        return errResult(`Advanced search error: ${errorMessage(error)}`);
       }
     },
   });
@@ -172,8 +220,8 @@ export default function (pi: ExtensionAPI) {
     label: "Yagami Similar",
     description:
       "Find web pages similar to a given URL. Useful for finding alternatives, related resources, or similar documentation.",
-    renderCall(args: any, theme: any) {
-      return new Text(`${theme.bold("find_similar")} ${theme.fg("muted", args.url || "")}`, 0, 0);
+    renderCall(args: RenderArgs, theme: RenderTheme) {
+      return renderCallLine("find_similar", args.url, theme);
     },
     parameters: Type.Object({
       url: Type.String({ description: "URL to find similar pages for" }),
@@ -182,8 +230,8 @@ export default function (pi: ExtensionAPI) {
       try {
         const result = await yagamiPost("/find-similar", { url: params.url });
         return okResult(formatResult(result));
-      } catch (e: any) {
-        return errResult(`Find similar error: ${e.message}`);
+      } catch (error: unknown) {
+        return errResult(`Find similar error: ${errorMessage(error)}`);
       }
     },
   });
@@ -196,16 +244,16 @@ export default function (pi: ExtensionAPI) {
       "Best for: Complex research questions needing deep analysis and synthesis.\n" +
       "Returns: Research ID - use deep_research_check to get results.\n" +
       "Important: Call deep_research_check with the returned research ID to get the report.",
-    renderCall(args: any, theme: any) {
-      const preview = (args.instructions || "").slice(0, 80);
-      return new Text(`${theme.bold("deep_research_start")} ${theme.fg("muted", preview)}`, 0, 0);
+    renderCall(args: RenderArgs, theme: RenderTheme) {
+      const preview = asString(args.instructions).slice(0, 80);
+      return renderCallLine("deep_research_start", preview, theme);
     },
     parameters: Type.Object({
       instructions: Type.String({ description: "Complex research question or detailed instructions." }),
       effort: Type.Optional(
         StringEnum(["fast", "balanced", "thorough"] as const, {
           description: "'fast', 'balanced', or 'thorough'. Default: fast",
-        })
+        }),
       ),
     }),
     async execute(_id, params) {
@@ -215,8 +263,8 @@ export default function (pi: ExtensionAPI) {
           effort: params.effort || "fast",
         });
         return okResult(JSON.stringify(result, null, 2));
-      } catch (e: any) {
-        return errResult(`Research start error: ${e.message}`);
+      } catch (error: unknown) {
+        return errResult(`Research start error: ${errorMessage(error)}`);
       }
     },
   });
@@ -229,8 +277,8 @@ export default function (pi: ExtensionAPI) {
       "Best for: Getting the research report after calling deep_research_start.\n" +
       "Returns: Research report when complete, or status update if still running.\n" +
       "Important: Keep calling with the same research ID until status is 'completed'.",
-    renderCall(args: any, theme: any) {
-      return new Text(`${theme.bold("deep_research_check")} ${theme.fg("muted", args.researchId || "")}`, 0, 0);
+    renderCall(args: RenderArgs, theme: RenderTheme) {
+      return renderCallLine("deep_research_check", args.researchId, theme);
     },
     parameters: Type.Object({
       researchId: Type.String({ description: "The research ID returned from deep_research_start" }),
@@ -239,8 +287,8 @@ export default function (pi: ExtensionAPI) {
       try {
         const result = await yagamiPost("/deep-research/check", { researchId: params.researchId });
         return okResult(JSON.stringify(result, null, 2));
-      } catch (e: any) {
-        return errResult(`Research check error: ${e.message}`);
+      } catch (error: unknown) {
+        return errResult(`Research check error: ${errorMessage(error)}`);
       }
     },
   });
