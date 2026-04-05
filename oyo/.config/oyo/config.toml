@@ -6,6 +6,7 @@ view_mode = "single"
 gutter_signs = true
 topbar = true
 stepping = false
+overscroll = false
 
 [ui.blame]
 enabled = true

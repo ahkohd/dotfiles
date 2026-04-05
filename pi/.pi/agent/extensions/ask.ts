@@ -1,7 +1,7 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { Type } from "@sinclair/typebox";
 import { StringEnum } from "@mariozechner/pi-ai";
-import { Text, matchesKey, Key, truncateToWidth } from "@mariozechner/pi-tui";
+import { Text, matchesKey, Key, truncateToWidth, wrapTextWithAnsi } from "@mariozechner/pi-tui";
 
 export default function askExtension(pi: ExtensionAPI): void {
   // Simple single question tool
@@ -41,7 +41,7 @@ export default function askExtension(pi: ExtensionAPI): void {
             render: (w: number) => {
               const lines: string[] = [];
               lines.push("");
-              lines.push(truncateToWidth(`  ${theme.bold(params.question)}`, w));
+              wrapTextWithAnsi(params.question, w).forEach(l => lines.push(l));
               lines.push("");
 
               if (freeTextMode) {
@@ -144,14 +144,14 @@ export default function askExtension(pi: ExtensionAPI): void {
           const stepLabel = theme.fg("dim", `  ${currentQ + 1}/${questions.length}`);
 
           lines.push("");
-          lines.push(truncateToWidth(`  ${theme.bold(q.question)}${stepLabel}`, width));
+          wrapTextWithAnsi(`${q.question}${stepLabel}`, width).forEach(l => lines.push(l));
           lines.push("");
 
           // Previous answers
           for (let i = 0; i < currentQ; i++) {
             const prev = questions[i];
             const ans = answers[i] ?? theme.fg("dim", "(skipped)");
-            lines.push(truncateToWidth(`  ${theme.fg("dim", prev.question)} ${theme.fg("accent", ans)}`, width));
+            wrapTextWithAnsi(`  ${theme.fg("dim", prev.question)} ${theme.fg("accent", ans)}`, width).forEach(l => lines.push(l));
           }
           if (currentQ > 0) lines.push("");
 
