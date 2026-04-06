@@ -66,24 +66,23 @@ function runOyAndReadReview(cwd: string, args?: string): { comments: string; err
   return { comments: comments.trimEnd() };
 }
 
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 export default function oyoExtension(pi: ExtensionAPI): void {
   const cwd = process.cwd();
 
   pi.registerCommand("diff", {
     description: "Diff changes",
     handler: async (args, ctx) => {
-      const { comments, error } = runOyAndReadReview(cwd, args);
+      const { error } = runOyAndReadReview(cwd, args);
 
       if (error) {
         ctx.ui.notify(`Failed to run oy: ${error.message}`, "error");
-        return;
       }
-
-      if (!comments.trim()) {
-        return;
-      }
-
-      ctx.ui.pasteToEditor(`${comments}\n`);
     },
   });
 
@@ -102,11 +101,8 @@ export default function oyoExtension(pi: ExtensionAPI): void {
         return;
       }
 
-      if (ctx.isIdle()) {
-        pi.sendUserMessage(comments);
-      } else {
-        pi.sendUserMessage(comments, { deliverAs: "followUp" });
-      }
+      await delay(50);
+      ctx.ui.pasteToEditor(`${comments}\n`);
     },
   });
 }
