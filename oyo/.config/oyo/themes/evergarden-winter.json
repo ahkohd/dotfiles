@@ -1,0 +1,114 @@
+{
+    "$schema": "https://oyo.dev/theme.schema.json",
+    "defs": {
+        "bg": "#1d2428",
+        "bgAlt": "#2d393d",
+        "bgHighlight": "#3d494d",
+        "fg": "#f8f9e8",
+        "grey": "#6f8788",
+        "blue": "#b2cfed",
+        "green": "#cae0a7",
+        "cyan": "#addeb9",
+        "red": "#f57f82",
+        "yellow": "#f5d098",
+        "magenta": "#f3c0e5",
+        "pink": "#f3c0e5",
+        "orange": "#f5d098",
+        "purple": "#b2cfed"
+    },
+    "theme": {
+        "text": {
+            "dark": "fg"
+        },
+        "textMuted": {
+            "dark": "grey"
+        },
+        "primary": {
+            "dark": "green"
+        },
+        "secondary": {
+            "dark": "blue"
+        },
+        "accent": {
+            "dark": "cyan"
+        },
+        "border": {
+            "dark": "bgHighlight"
+        },
+        "borderFocused": {
+            "dark": "green"
+        },
+        "background": {
+            "dark": "bg"
+        },
+        "backgroundAlt": {
+            "dark": "bgAlt"
+        },
+        "backgroundPanel": {
+            "dark": "bgAlt"
+        },
+        "backgroundHighlight": {
+            "dark": "bgHighlight"
+        },
+        "added": {
+            "dark": "green"
+        },
+        "removed": {
+            "dark": "red"
+        },
+        "modified": {
+            "dark": "yellow"
+        },
+        "addedBg": {
+            "dark": "#2a3a2a"
+        },
+        "removedBg": {
+            "dark": "#3a2a2a"
+        },
+        "modifiedBg": {
+            "dark": "#3a3a2a"
+        },
+        "lineNumber": {
+            "dark": "grey"
+        },
+        "lineNumberActive": {
+            "dark": "fg"
+        },
+        "cursor": {
+            "dark": "green"
+        },
+        "selection": {
+            "dark": "bgHighlight"
+        },
+        "search": {
+            "dark": "yellow"
+        },
+        "searchActive": {
+            "dark": "orange"
+        },
+        "error": {
+            "dark": "red"
+        },
+        "warning": {
+            "dark": "yellow"
+        },
+        "info": {
+            "dark": "blue"
+        },
+        "success": {
+            "dark": "green"
+        },
+        "blame": {
+            "dark": "grey"
+        },
+        "stepMarker": {
+            "dark": "green"
+        },
+        "stepMarkerActive": {
+            "dark": "cyan"
+        },
+        "hunkHeader": {
+            "dark": "blue"
+        }
+    }
+}

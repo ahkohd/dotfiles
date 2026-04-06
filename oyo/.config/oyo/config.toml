@@ -20,11 +20,11 @@ extent_marker_scope = "hunk"
 max_bytes = 2097152          # 2 MiB
 
 [ui.theme]
-name = "cyberdream"
+name = "evergarden-winter"
 
 [ui.syntax]
 mode = "on"
-theme = "cyberdream"
+theme = "evergarden-winter"
 
 [ui.theme.defs]
 bg = "none"
