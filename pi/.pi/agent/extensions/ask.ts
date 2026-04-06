@@ -49,7 +49,7 @@ export default function askExtension(pi: ExtensionAPI): void {
               lines.push("");
 
               if (freeTextMode) {
-                lines.push(`  ${inputBuffer}█`);
+                wrapTextWithAnsi(`${inputBuffer}█`, w).forEach((l) => lines.push(l));
               } else {
                 for (let i = 0; i < opts.length; i++) {
                   const marker = i === selectIndex ? theme.fg("accent", "→ ") : "  ";
@@ -161,7 +161,7 @@ export default function askExtension(pi: ExtensionAPI): void {
 
           // Current question
           if (q.type === "text" || freeTextMode) {
-            lines.push(`  ${inputBuffer}█`);
+            wrapTextWithAnsi(`${inputBuffer}█`, width).forEach((l) => lines.push(l));
           } else if (q.type === "confirm") {
             const opts = ["Yes", "No"];
             for (let i = 0; i < opts.length; i++) {
