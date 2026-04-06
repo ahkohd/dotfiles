@@ -101,7 +101,7 @@ function loadPrompts(cwd: string): Prompt[] {
 export default function promptsExtension(pi: ExtensionAPI): void {
   const cwd = process.cwd();
 
-  pi.registerCommand("prompts", {
+  pi.registerCommand("prompt", {
     description: "Pick a saved prompt",
     handler: async (_args, ctx) => {
       const prompts = loadPrompts(cwd);
