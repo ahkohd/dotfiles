@@ -115,6 +115,7 @@ export default function promptsExtension(pi: ExtensionAPI): void {
         (p) => `${p.name}${p.description ? ` — ${p.description}` : ""}${p.source === "project" ? " (local)" : ""}`
       );
 
+      await new Promise((r) => setTimeout(r, 50));
       const choice = await ctx.ui.select("Pick a prompt:", labels);
       if (!choice) return;
 
