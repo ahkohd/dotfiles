@@ -1,5 +1,6 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { readFileSync, existsSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { homedir } from "node:os";
 
@@ -115,12 +116,19 @@ export default function promptsExtension(pi: ExtensionAPI): void {
         (p) => `${p.name}${p.description ? ` — ${p.description}` : ""}${p.source === "project" ? " (local)" : ""}`
       );
 
-      await new Promise((r) => setTimeout(r, 50));
-      const choice = await ctx.ui.select("Pick a prompt:", labels);
+      const result = spawnSync("fzf", ["--prompt", "prompt> "], {
+        input: labels.join("\n"),
+        cwd,
+        stdio: ["pipe", "pipe", "inherit"],
+      });
+
+      if (!result.stdout) return;
+      const choice = result.stdout.toString().trim();
       if (!choice) return;
 
       const index = labels.indexOf(choice);
       if (index >= 0) {
+        await new Promise((r) => setTimeout(r, 50));
         ctx.ui.pasteToEditor(prompts[index].prompt + " ");
       }
     },
