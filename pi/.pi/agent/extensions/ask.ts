@@ -3,6 +3,10 @@ import { Type } from "@sinclair/typebox";
 import { StringEnum } from "@mariozechner/pi-ai";
 import { Text, matchesKey, Key, truncateToWidth, wrapTextWithAnsi } from "@mariozechner/pi-tui";
 
+function clampLines(lines: string[], w: number): string[] {
+  return lines.map(l => truncateToWidth(l, w));
+}
+
 export default function askExtension(pi: ExtensionAPI): void {
   // Simple single question tool
   pi.registerTool({
@@ -57,7 +61,7 @@ export default function askExtension(pi: ExtensionAPI): void {
               lines.push("");
               const hint = freeTextMode ? "" : "/: type  ";
               lines.push(theme.fg("dim", `  ${hint}Enter: confirm  Esc: cancel`));
-              return lines;
+              return clampLines(lines, w);
             },
             handleInput: (data: string) => {
               if (matchesKey(data, Key.escape)) {
@@ -178,7 +182,7 @@ export default function askExtension(pi: ExtensionAPI): void {
             ? "/: type  " : "";
           lines.push(theme.fg("dim", `  ${freeTextHint}Tab: next  Shift+Tab: back  Enter: confirm  Esc: cancel`));
 
-          return lines;
+          return clampLines(lines, width);
         }
 
         const text = new Text("", 0, 0);
