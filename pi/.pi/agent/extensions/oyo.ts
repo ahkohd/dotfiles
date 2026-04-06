@@ -1,14 +1,112 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { spawnSync } from "node:child_process";
+import { randomBytes } from "node:crypto";
+import { readFileSync, unlinkSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+
+function parseArgs(args?: string): string[] {
+  if (!args) return [];
+  return args.split(/\s+/).filter(Boolean);
+}
+
+function stripManagedReviewFlags(args: string[]): string[] {
+  const out: string[] = [];
+
+  for (let i = 0; i < args.length; i++) {
+    const token = args[i]!;
+
+    if (token === "--no-print-review") continue;
+
+    if (token === "--review-output-file") {
+      i += 1;
+      continue;
+    }
+
+    if (token.startsWith("--review-output-file=")) continue;
+
+    out.push(token);
+  }
+
+  return out;
+}
+
+function runOyAndReadReview(cwd: string, args?: string): { comments: string; error?: Error } {
+  const outputFile = join(
+    tmpdir(),
+    `oy-review-${Date.now()}-${randomBytes(6).toString("hex")}.txt`,
+  );
+
+  const userArgs = stripManagedReviewFlags(parseArgs(args));
+  const oyArgs = [
+    ...userArgs,
+    "--review-output-file",
+    outputFile,
+    "--no-print-review",
+  ];
+
+  const result = spawnSync("oy", oyArgs, { cwd, stdio: "inherit" });
+  if (result.error) {
+    return { comments: "", error: result.error };
+  }
+
+  let comments = "";
+  try {
+    comments = readFileSync(outputFile, "utf8");
+  } catch {
+    comments = "";
+  }
+
+  try {
+    unlinkSync(outputFile);
+  } catch {
+    // ignore
+  }
+
+  return { comments: comments.trimEnd() };
+}
 
 export default function oyoExtension(pi: ExtensionAPI): void {
   const cwd = process.cwd();
 
   pi.registerCommand("diff", {
-    description: "Open oyo diff viewer",
-    handler: async (args) => {
-      const oyoArgs = args ? args.split(" ") : [];
-      spawnSync("oy", oyoArgs, { cwd, stdio: "inherit" });
+    description: "Diff changes",
+    handler: async (args, ctx) => {
+      const { comments, error } = runOyAndReadReview(cwd, args);
+
+      if (error) {
+        ctx.ui.notify(`Failed to run oy: ${error.message}`, "error");
+        return;
+      }
+
+      if (!comments.trim()) {
+        return;
+      }
+
+      ctx.ui.pasteToEditor(`${comments}\n`);
+    },
+  });
+
+  pi.registerCommand("review", {
+    description: "Review changes",
+    handler: async (args, ctx) => {
+      const { comments, error } = runOyAndReadReview(cwd, args);
+
+      if (error) {
+        ctx.ui.notify(`Failed to run oy: ${error.message}`, "error");
+        return;
+      }
+
+      if (!comments.trim()) {
+        ctx.ui.notify("No review comments", "info");
+        return;
+      }
+
+      if (ctx.isIdle()) {
+        pi.sendUserMessage(comments);
+      } else {
+        pi.sendUserMessage(comments, { deliverAs: "followUp" });
+      }
     },
   });
 }
