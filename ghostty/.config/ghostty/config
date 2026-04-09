@@ -2,8 +2,8 @@ font-family = TX-02-AREMU
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
-font-size = 13
-# adjust-cell-height = 35%
+font-size = 16
+adjust-cell-height = 45%
 freetype-load-flags = no-hinting
 window-padding-balance = true
 window-padding-x = 5
@@ -15,8 +15,6 @@ theme = evergarden-winter
 window-save-state = always
 unfocused-split-opacity = 1
 macos-option-as-alt = true
-keybind = alt+f=set_font_size:16
-keybind = alt+g=set_font_size:13
 keybind = alt+t=new_tab
 keybind = alt+s=new_split:right
 keybind = alt+x=new_split:down
