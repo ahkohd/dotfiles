@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.65.2",
+  "lastChangelogVersion": "0.67.68",
   "defaultProvider": "gpu0-oai",
   "defaultModel": "gemma-4-31b",
   "defaultThinkingLevel": "high",
@@ -13,7 +13,9 @@
     "autoResize": true
   },
   "hideThinkingBlock": false,
-  "packages": [],
+  "packages": [
+    "https://github.com/davebcn87/pi-autoresearch"
+  ],
   "editorPaddingX": 1,
   "compaction": {
     "enabled": false
