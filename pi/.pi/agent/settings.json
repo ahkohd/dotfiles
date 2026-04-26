@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.67.68",
-  "defaultProvider": "gpu0-oai",
-  "defaultModel": "gemma-4-31b",
-  "defaultThinkingLevel": "high",
+  "lastChangelogVersion": "0.70.2",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "xhigh",
   "skills": [
     "~/.claude/skills"
   ],

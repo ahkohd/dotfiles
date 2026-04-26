@@ -1,25 +1,8 @@
-[commit]
-description = "Commit with jj"
-prompt = """Describe the current change with `jj diff` for a commit message using `jj desc -m`. Be concise and follow conventional commit format. If the commit is immutable (error: 'Commit is immutable'), confirm with the user whether to run `jj desc -m` with `--ignore-immutable`. Don't squash unless you're asked to."""
+---
+description: Full implementation review
+---
 
-[test-review]
-description = "Review PR for code quality and test health"
-prompt = """Review this PR for code quality and test health:
-
-Code simplification:
-
-Identify dead code, duplicate logic, or overly complex blocks that can be simplified or removed.
-Test anti-patterns:
-
-Tests that only mock dependencies and assert on mock interactions without exercising real behavior.
-Tests that duplicate coverage of existing tests without adding new scenarios, branches, or edge cases.
-Tests that are overly brittle (e.g., asserting exact internal call sequences) instead of asserting user-visible behavior or final state.
-Tests that exist solely to satisfy coverage metrics and don't meaningfully protect against regressions.
-For each finding: name the file and location, explain why it's an issue, and recommend whether to delete, simplify, or refactor."""
-
-[implementation-review]
-description = "Full implementation review"
-prompt = """Please review this pull request and provide feedback on:
+Please review this pull request and provide feedback on:
 - Code quality and best practices
 - Potential bugs or issues
 - Performance considerations
@@ -40,21 +23,4 @@ A few other points to keep in mind while reviewing -
 - Ensure that tests are meaningful, follow best practices and not only for the sake of coverage.
 - Point out overly big functions and entities. If there is too much nesting, or high cyclomatic complexity point it out. Code should be easy to read and understand without high cognitive load.
 - Flag raw index access on data structures where typed abstractions exist. Prefer semantic accessors over positional indexing.
-- Flag unnecessary comments, redundant type imports, and AI-generated boilerplate."""
-
-[rust-check]
-description = "Rust: clippy, fmt, check"
-prompt = """Run the following checks and fix any issues:
-1. `cargo clippy -- -D warnings` — fix all warnings
-2. `cargo fmt --check` — if not formatted, run `cargo fmt`
-3. `cargo check` — fix any compilation errors
-Report what you fixed."""
-
-[js-check]
-description = "JS/TS: test, typecheck, lint, format"
-prompt = """Run the following checks and fix any issues:
-1. Run tests — fix failing tests
-2. Run the typechecker — fix type errors
-3. Run the linter — fix lint issues
-4. Run the formatter — format code
-Check the project config to determine which tools are used. Report what you fixed."""
+- Flag unnecessary comments, redundant type imports, and AI-generated boilerplate.

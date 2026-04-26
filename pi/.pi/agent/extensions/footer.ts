@@ -26,10 +26,9 @@ function installFooter(pi: ExtensionAPI, ctx: ExtensionContext) {
             const model = ctx.model?.id || "no-model";
             const thinking = pi.getThinkingLevel();
 
-            // Read label from extension status (set by label.ts)
-            const label = footerData.getExtensionStatuses().get("__label");
-            const leftText = label
-                ? `${project} • ${label}`
+            const sessionName = ctx.sessionManager.getSessionName();
+            const leftText = sessionName
+                ? `${project} • ${sessionName}`
                 : project;
             const left = theme.fg("dim", leftText);
             const right = theme.fg("dim", `${model} (${thinking}) ${percentStr}`);
@@ -45,9 +44,7 @@ function installFooter(pi: ExtensionAPI, ctx: ExtensionContext) {
             const gap = " ".repeat(Math.max(minGap, inner - visibleWidth(leftFitted) - rightWidth));
             const lines = [pl + truncateToWidth(leftFitted + gap + right, inner) + pr];
 
-            // Show extension statuses (excluding our internal __label key)
             const extensionStatuses = Array.from(footerData.getExtensionStatuses().entries())
-                .filter(([key]) => key !== "__label")
                 .sort(([a], [b]) => a.localeCompare(b))
                 .map(([, text]) => sanitizeStatusText(text))
                 .filter((text) => text.length > 0);

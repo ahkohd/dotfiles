@@ -783,6 +783,34 @@
           "maxTokens": 32768
         }
       ]
+    },
+    "fireworks-oai": {
+      "baseUrl": "https://api.fireworks.ai/inference/v1",
+      "api": "openai-completions",
+      "apiKey": "fw_BXTUjb18n3CNH7TUtUc2JF",
+      "models": [
+        {
+          "id": "accounts/fireworks/models/kimi-k2p6",
+          "name": "Kimi K2.6",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 262144,
+          "maxTokens": 49152,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        }
+      ]
     }
   }
 }
