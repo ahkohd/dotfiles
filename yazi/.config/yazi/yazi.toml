@@ -1,4 +1,4 @@
-show_symlink = true
+show-symlink = true
 
 [preview]
 image_filter = "triangle"
@@ -8,9 +8,9 @@ image_quality = 90
 show_hidden = true
 
 [[plugin.prepend_previewers]]
-name = "*/"
+url = "*/"
 run = "eza-preview"
 
 [[plugin.prepend_previewers]]
-name = "*.md"
+url = "*.md"
 run = "glow"
