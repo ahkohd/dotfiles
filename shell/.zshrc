@@ -4,8 +4,7 @@ autoload -Uz compinit; compinit -u
 . "$HOME/.cargo/env"
 
 setopt PROMPT_SUBST
-PS1='%F{yellow}%m%f $(prmt --no-version --code $? "{path:cyan.bold}{git:purple:f: on }{rust:red.bold:s: }{node:green.bold:s: }
-{ok:green}{fail:red}") '
+PS1='%F{yellow}%m%f $(prmt --no-version --code $? "{path:cyan.bold}{git:purple:f: on }{rust:red.bold:s: }{node:green.bold:s: }\n{ok:green}{fail:red}") '
 
 # Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

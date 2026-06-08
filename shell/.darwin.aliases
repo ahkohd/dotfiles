@@ -1,1 +1,1 @@
-alias brew='sudo -Hu var brew'
+# macOS-specific aliases

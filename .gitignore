@@ -7,5 +7,9 @@ pi/.pi/packages/*/node_modules/
 .pi/
 !pi/.pi/
 yazi/.config/yazi/bookmark
+
+# jj per-repo state (machine-local)
+jj/.config/jj/repos/
+
 llama.log
 *.log
