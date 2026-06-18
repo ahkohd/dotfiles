@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.74.0",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "xhigh",
+  "lastChangelogVersion": "0.79.6",
+  "defaultProvider": "ollama-victor",
+  "defaultModel": "glm-5.2:cloud",
+  "defaultThinkingLevel": "high",
   "skills": [
     "~/.claude/skills"
   ],
@@ -14,10 +14,11 @@
   },
   "hideThinkingBlock": false,
   "packages": [
-    "https://github.com/davebcn87/pi-autoresearch"
+    "git:github.com/DietrichGebert/ponytail"
   ],
   "editorPaddingX": 1,
   "compaction": {
-    "enabled": false
-  }
+    "enabled": true
+  },
+  "theme": "dark"
 }

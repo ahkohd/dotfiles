@@ -52,3 +52,5 @@ alias -- tn='tmux new-session -s'
 alias -- x=exit
 alias -- y=yy
 alias -- zz='z -'
+
+alias -- bdpush='bd linear sync --push'

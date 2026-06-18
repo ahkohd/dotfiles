@@ -91,27 +91,6 @@
           }
         },
         {
-          "id": "glm-4.7",
-          "name": "GLM 4.7",
-          "reasoning": false,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 184960,
-          "maxTokens": 32768,
-          "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
-            "cacheWrite": 0
-          },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
           "id": "minimax-m2.7",
           "name": "MiniMax M2.7",
           "reasoning": true,
@@ -309,16 +288,6 @@
           "maxTokens": 32768
         },
         {
-          "id": "glm-4.7",
-          "name": "GLM 4.7",
-          "reasoning": false,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 184960,
-          "maxTokens": 32768
-        },
-        {
           "id": "minimax-m2.7",
           "name": "MiniMax M2.7",
           "reasoning": true,
@@ -490,27 +459,6 @@
             "text"
           ],
           "contextWindow": 131072,
-          "maxTokens": 32768,
-          "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
-            "cacheWrite": 0
-          },
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": false,
-            "maxTokensField": "max_tokens"
-          }
-        },
-        {
-          "id": "glm-4.7",
-          "name": "GLM 4.7",
-          "reasoning": false,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 184960,
           "maxTokens": 32768,
           "cost": {
             "input": 0,
@@ -711,16 +659,6 @@
           "maxTokens": 32768
         },
         {
-          "id": "glm-4.7",
-          "name": "GLM 4.7",
-          "reasoning": false,
-          "input": [
-            "text"
-          ],
-          "contextWindow": 184960,
-          "maxTokens": 32768
-        },
-        {
           "id": "minimax-m2.7",
           "name": "MiniMax M2.7",
           "reasoning": true,
@@ -784,20 +722,20 @@
         }
       ]
     },
-    "fireworks-oai": {
-      "baseUrl": "https://api.fireworks.ai/inference/v1",
+    "ollama-victor": {
+      "baseUrl": "https://ollama.victor.computer/v1",
       "api": "openai-completions",
-      "apiKey": "fw_BXTUjb18n3CNH7TUtUc2JF",
+      "apiKey": "none",
       "models": [
         {
-          "id": "accounts/fireworks/models/kimi-k2p6",
-          "name": "Kimi K2.6",
+          "id": "glm-5.2:cloud",
+          "name": "GLM 5.2 Cloud",
           "reasoning": true,
           "input": [
             "text"
           ],
-          "contextWindow": 262144,
-          "maxTokens": 49152,
+          "contextWindow": 1000000,
+          "maxTokens": 131072,
           "cost": {
             "input": 0,
             "output": 0,
