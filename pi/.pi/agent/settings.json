@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.79.6",
+  "lastChangelogVersion": "0.79.9",
   "defaultProvider": "ollama-victor",
   "defaultModel": "glm-5.2:cloud",
   "defaultThinkingLevel": "high",
@@ -14,7 +14,8 @@
   },
   "hideThinkingBlock": false,
   "packages": [
-    "git:github.com/DietrichGebert/ponytail"
+    "git:github.com/ahkohd/ponytail",
+    "npm:@ahkohd/pi-mesh"
   ],
   "editorPaddingX": 1,
   "compaction": {
