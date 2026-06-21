@@ -1,6 +1,6 @@
 alias -- c=clear
 alias -- cat=bat
-alias -- cd=z
+alias -- cd=__zoxide_z
 alias -- dev='~/developer/personal'
 alias -- eza='eza --icons never --git'
 alias -- glg='git log -n 10 --graph --decorate --oneline'
@@ -51,6 +51,7 @@ alias -- tn='tmux new-session -s'
 
 alias -- x=exit
 alias -- y=yy
-alias -- zz='z -'
+alias -- z=zmx
+alias -- zz='__zoxide_z -'
 
 alias -- bdpush='bd linear sync --push'

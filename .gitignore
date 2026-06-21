@@ -13,3 +13,5 @@ jj/.config/jj/repos/
 
 llama.log
 *.log
+__pycache__/
+*.py[cod]

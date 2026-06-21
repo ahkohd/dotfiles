@@ -1,8 +1,8 @@
 {
   "lastChangelogVersion": "0.79.9",
-  "defaultProvider": "ollama-victor",
-  "defaultModel": "glm-5.2:cloud",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "xhigh",
   "skills": [
     "~/.claude/skills"
   ],
@@ -12,7 +12,7 @@
   "images": {
     "autoResize": true
   },
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "packages": [
     "git:github.com/ahkohd/ponytail",
     "npm:@ahkohd/pi-mesh"

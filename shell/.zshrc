@@ -1,17 +1,21 @@
 # autoload completions
 autoload -Uz compinit; compinit -u
 
+if command -v zmx &> /dev/null; then
+  eval "$(zmx completions zsh)"
+fi
+
 . "$HOME/.cargo/env"
 
 setopt PROMPT_SUBST
-PS1='%F{yellow}%m%f $(prmt --no-version --code $? "{path:cyan.bold}{git:purple:f: on }{rust:red.bold:s: }{node:green.bold:s: }\n{ok:green}{fail:red}") '
+PS1='%F{yellow}%m%f $(prmt --no-version --code $? "{env:magenta:ZMX_SESSION:: }{path:cyan.bold}{git:purple:f: on }{rust:red.bold:s: }{node:green.bold:s: }\n{ok:green}{fail:red}") '
 
 # Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 command -v fzf &>/dev/null && source <(fzf --zsh)
 [ -f ~/.fzf-tab/fzf-tab.plugin.zsh ] && source ~/.fzf-tab/fzf-tab.plugin.zsh
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --no-cmd zsh)"
 
 eval "$(direnv hook zsh)"
 
