@@ -49,3 +49,4 @@ autoplay = false
 
 [files]
 panel_width = 30
+panel_position = "right"
