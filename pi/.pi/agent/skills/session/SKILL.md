@@ -15,7 +15,7 @@ Two modes: **save** and **resume**. Detect from `$ARGUMENTS` or conversation con
 
 ## State File Path
 
-`~/Developer/claude/{project}-session-state.md` where `{project}` is the basename of the current working directory.
+`~/Developer/sessions/{project}-session-state.md` where `{project}` is the basename of the current working directory.
 
 ## Mode: save
 
@@ -68,7 +68,7 @@ Format: "exact quote" -- context of what it corrected
 
 ## Mode: resume
 
-1. Read the state file from `~/Developer/claude/{project}-session-state.md`
+1. Read the state file from `~/Developer/sessions/{project}-session-state.md`
 2. Read any files referenced in the state (memory files, linked docs)
 3. Confirm restoration with a brief summary:
    - Current task
