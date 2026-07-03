@@ -7,6 +7,8 @@ alias -- glg='git log -n 10 --graph --decorate --oneline'
 alias -- gpg-check='gpg --decrypt ~/test.gpg'
 alias -- grep='grep --color=auto'
 alias -- gst='git status'
+alias -- h=herdr
+alias -- hd='herdr --remote var@devbox.victor.computer --remote-keybindings server'
 alias -- j=jj
 alias -- ja='jj abandon'
 alias -- jb='jj bookmark set $(j bookmark list --template '\''name ++ "\n"'\'' --no-pager | sort -u | fzf)'

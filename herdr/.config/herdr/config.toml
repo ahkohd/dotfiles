@@ -1,0 +1,68 @@
+onboarding = false
+[ui]
+agent_panel_sort = "priority"
+pane_borders = false
+pane_gaps = true
+
+show_agent_labels_on_pane_borders = true
+[theme]
+name = "terminal"
+auto_switch = false
+
+[theme.custom]
+accent = "#cae0a7"
+panel_bg = "#1d2428"
+surface0 = "#3d494d"
+surface1 = "#6f8788"
+surface_dim = "#20272b"
+overlay0 = "#6f8788"
+overlay1 = "#96b4aa"
+text = "#f8f9e8"
+subtext0 = "#adc9bc"
+mauve = "#f3c0e5"
+green = "#cae0a7"
+yellow = "#f5d098"
+red = "#f57f82"
+blue = "#b2cfed"
+teal = "#addeb9"
+peach = "#f5d098"
+
+[ui.toast]
+delivery = "herdr"
+
+[keys]
+prefix = "ctrl+alt+f"
+new_tab = "prefix+n"
+previous_tab = "prefix+i"
+next_tab = "prefix+o"
+rename_tab = "prefix+comma"
+rename_workspace = "prefix+shift+w"
+settings = ""
+detach = "prefix+q"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+zoom = "prefix+enter"
+goto = "prefix+p"
+reload_config = "prefix+r"
+close_tab = "prefix+x"
+toggle_sidebar = "prefix+s"
+workspace_picker = ""
+previous_agent = "prefix+a"
+next_agent = "prefix+semicolon"
+new_workspace = "prefix+w"
+previous_workspace = "prefix+c"
+next_workspace = "prefix+v"
+close_pane = "prefix+shift+x"
+
+[[keys.command]]
+key = "prefix+y"
+type = "plugin_action"
+command = "local.oyo.toggle"
+description = "toggle oyo sidebar"
+
+[experimental]
+pane_history = true

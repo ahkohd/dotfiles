@@ -1,0 +1,18 @@
+id = "local.oyo"
+name = "oyo"
+version = "0.1.0"
+min_herdr_version = "0.7.0"
+description = "Open oy as a right split."
+platforms = ["macos", "linux"]
+
+[[panes]]
+id = "sidebar"
+title = "oyo"
+placement = "split"
+command = ["bash", "-c", "exec \"$HERDR_PLUGIN_ROOT/run.sh\""]
+
+[[actions]]
+id = "toggle"
+title = "oyo: toggle sidebar"
+contexts = ["pane", "workspace"]
+command = ["bash", "toggle.sh"]
