@@ -1,25 +1,9 @@
-# Guidelines
+---
+name: model-delegation
+description: Pick the right model and delegate work through Pi task-runner, pi-mesh, and handoff. Use when choosing models for workflows, subagents, reviews, rescue work, bulk mechanical work, or model escalation.
+---
 
-## Tool Use
-
-- **Use `gh` CLI** for GitHub operations: viewing PRs, fetching diffs, checking issues, browsing repo contents, API calls.
-- **Use `fd` and `rg`** for filesystem and text search. Prefer `fd` over `find`, and `rg` over `grep`.
-
-## VCS
-
-- **Use `jj`** for version control. Prefer `jj` over `git` where possible.
-- **Disable GPG signing** when running jj write commands. Always pass `--config 'signing.behavior="drop"'` to commands like `jj commit`, `jj describe`, `jj new`, `jj bookmark`, etc.
-- **Disable GPG signing** for git commits. Always pass `-c commit.gpgsign=false` to git write commands. E.g. `git -c commit.gpgsign=false commit -m "message"`.
-
-## Writing Style
-
-- Never use `+` or `&` as conjunctions in prose, commit messages, or comments. Write "and" instead. E.g. "add debug and tracking", not "add debug + tracking".
-- For reports, summaries, guidance, or other prose, use the `govuk-style` skill.
-- Stick to plain ASCII in text. No unicode symbols that aren't on a standard keyboard. E.g. write "to" not "→", write "-" not "•", write ">=" not "≥".
-- Be concise. Humans skim — cut filler, keep it short. This includes code comments, documentation, commit messages, PR descriptions, and chat responses.
-- No emojis. Not in commit messages, comments, or docs.
-
-## Picking the right models for workflows and subagents
+# Picking the right models for workflows and subagents
 
 Rankings, higher = better. Cost reflects what I actually pay (OpenAI has really generous limits), not list price. Intelligence is how hard a problem you can hand the model unsupervised. Taste covers UI/UX, code quality, API design, and copy.
 
