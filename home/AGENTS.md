@@ -38,14 +38,15 @@ How to apply:
 - Anything user-facing (UI, copy, API design) needs taste >= 7.
 - Reviews of plans/implementations: fable-5 or opus-4.8, optionally gpt-5.5 as an extra independent perspective.
 - Never use Haiku.
-- Mechanics: gpt-5.5 is handled natively by Pi through the OpenAI Codex provider, automatically adopting user-level Pi configuration from `~/.pi/agent/settings.json`. Avoid writing new custom bash scripts; instead, use Pi's built-in model selection, skills, and pi-mesh infrastructure:
+- Mechanics: gpt-5.5 is handled natively by Pi through the OpenAI Codex provider, automatically adopting user-level Pi configuration from `~/.pi/agent/settings.json`. Avoid custom bash wrappers. Use Pi model selection and herdr skills:
   - `/model` - Change the current session model.
-  - `/skill:task-runner` - Load the background Pi agent workflow.
-  - `~/.pi/agent/skills/task-runner/spawn.sh <model> <cwd> <task> --reply-to <current-agent>` - Spawn a local or remote Pi subagent through zmx and pi-mesh.
-  - `mesh_on`, `agent_list`, `agent_request`, `agent_send` - Register this session, find agents, and send or request replies over pi-mesh.
-  - `/skill:handoff` - Move work into another Pi session when context needs to transfer.
-- Claude models (sonnet-5, opus-4.8, fable-5) run via Pi's `/model` selector in the main session or the `task-runner` `<model>` argument for subagents and workflows.
+  - `/skill:model-selection` - Choose model, provider and harness.
+  - `/skill:herdr-subagents` - Spawn async subagents in background herdr workspaces. Defaults to Pi.
+  - `/skill:herdr-messaging` - Message or reply to existing agents.
+  - `/skill:herdr-handoff` - Create a fresh human-facing herdr session when context needs to transfer.
+- For Anthropic models (sonnet-5, opus-4.8, fable-5), prefer Claude CLI. Use Pi with `--provider anthropic --model <claude-model>` only when you need Pi tooling or the user asks for Pi or API access.
 
 Using gpt-5.5 inside workflows and subagents:
-- Subagents and automated workflows should call Pi's native skills and pi-mesh tools to delegate tasks directly, omitting the need for raw terminal wrappers.
-- For closed-loop quality assurance, keep a Pi review gate in the workflow: use `task-runner` to ask a fresh reviewer before finalizing. This ensures another model challenges outputs before finalizing, preventing broken code or weak design assumptions from reaching the main session unvetted.
+- Use `herdr-subagents` by default for async grunt work, review, search, testing and investigations.
+- For Pi subagents using gpt-5.5, use `pi --provider openai-codex --model gpt-5.5 --thinking xhigh`.
+- For closed-loop quality assurance, spawn a fresh reviewer with `herdr-subagents` before finalizing.

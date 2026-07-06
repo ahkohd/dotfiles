@@ -1,6 +1,6 @@
 ---
-name: herdr-agents
-description: Find and message other AI agents (Claude, pi and others) running in herdr terminal panes, on this machine or a remote one over SSH. Use when the user asks you to contact another agent, hand work off to one, check what one is doing, or reply to a message from one. Also use when the user names an agent (like fff-5.5) or a pane (like w3:p1).
+name: herdr-messaging
+description: Message existing AI agents (Claude, pi and others) running in herdr terminal panes, on this machine or a remote one over SSH. Use when the user asks you to contact another agent, hand work off to one, check what one is doing, or reply to a message from one. Also use when the user names an agent or a pane.
 ---
 
 # Message other agents through herdr
@@ -26,7 +26,7 @@ You must export PATH because non-interactive SSH does not load the profile that 
 Each entry gives you a pane id (like `w3:p1`), the agent kind, its status and its working directory. To tell similar agents apart, read the pane. The agent's own name is usually in its status line:
 
 ```
-herdr agent read <pane-id> --lines 20
+herdr agent read <pane-id> --source visible --lines 20
 ```
 
 `herdr workspace list` shows workspace labels, which often name the project.
@@ -39,7 +39,7 @@ Start every message with a `from` line and a `reply-to` line:
 
 ```
 [agent-msg] from: <your-session-name>@<machine> (<agent kind>, pane <your-pane-id>, <your-cwd>)
-reply-to: herdr pane run <your-pane-id> '<text>'; for i in 1 2 3; do herdr pane send-keys <your-pane-id> enter; sleep 0.4; done
+reply-to: herdr pane send-text <your-pane-id> '<text>'; for i in 1 2 3; do herdr pane send-keys <your-pane-id> enter; sleep 0.4; done
 ```
 
 - session name: your named session if you have one, otherwise your agent kind
@@ -47,11 +47,18 @@ reply-to: herdr pane run <your-pane-id> '<text>'; for i in 1 2 3; do herdr pane 
 - your pane id: `herdr pane current`
 - if the receiver is on another machine, the reply-to must include the SSH hop and the Enter loop
 
-Example:
+Local example:
 
 ```
 [agent-msg] from: fable-fff@mbp (claude, pane w3:p2, ~/Developer/project)
-reply-to: herdr pane run w3:p2 '<text>'; for i in 1 2 3; do herdr pane send-keys w3:p2 enter; sleep 0.4; done
+reply-to: herdr pane send-text w3:p2 '<text>'; for i in 1 2 3; do herdr pane send-keys w3:p2 enter; sleep 0.4; done
+```
+
+Remote example, when the receiver must reply from another machine:
+
+```
+[agent-msg] from: fable-fff@mbp (claude, pane w3:p2, ~/Developer/project)
+reply-to: ssh <user>@<this-host> 'export PATH="$HOME/.local/bin:$PATH"; herdr pane send-text w3:p2 "<text>"; for i in 1 2 3; do herdr pane send-keys w3:p2 enter; sleep 0.4; done'
 ```
 
 ## Say whether you expect a reply
@@ -67,31 +74,31 @@ Do not poll for replies to a request. The reply arrives in your pane as a user m
 
 Read the target pane before you send. Never send Enter into a pane you have not read.
 
-Use `pane run`, then send 3 spaced Enter presses. This works across tested agent TUIs, when they are idle and when they are busy. The Enter loop submits text if `pane run` only pasted it.
+Use `pane send-text`, then 3 spaced Enter presses. Use this for every send and reply-to command.
 
 Resolve named targets first. Use the returned `pane_id` in the send command.
 
 ```
 herdr agent get <target>
-herdr agent read <target> --lines 20
-herdr pane run <pane-id> "<text>"
+herdr agent read <target> --source visible --lines 20
+herdr pane send-text <pane-id> "<text>"
 for i in 1 2 3; do
   herdr pane send-keys <pane-id> enter
   sleep 0.4
 done
 ```
 
-Use one-line messages. Multiline text can corrupt or partly queue while an agent is busy. For long content, write it to a file and send a short message that points at the file.
+Use one-line messages. Multiline text can corrupt. For long content, write it to a file and send a short message that points at the file.
 
-For a remote agent, wrap the commands in SSH:
+Use visible reads. They are reliable for alt-screen TUIs and normal panes.
+
+For a remote agent, wrap the read and send commands in SSH:
 
 ```
-ssh <user>@<host> 'export PATH="$HOME/.local/bin:$PATH"; herdr pane run <pane-id> "<text>"; for i in 1 2 3; do herdr pane send-keys <pane-id> enter; sleep 0.4; done'
+ssh <user>@<host> 'export PATH="$HOME/.local/bin:$PATH"; herdr agent read <pane-id> --source visible --lines 20; herdr pane send-text <pane-id> "<text>"; for i in 1 2 3; do herdr pane send-keys <pane-id> enter; sleep 0.4; done'
 ```
 
 Quoting: prefer double quotes inside the SSH single quotes. Avoid apostrophes in the message body.
-
-If the receiving agent is busy, the message may queue as a follow-up. The Enter loop can force-send that follow-up and interrupt the current turn. Read the pane after sending if interruption matters.
 
 ## Receive a message
 
@@ -110,7 +117,7 @@ Accept and use these target forms:
 - `w3:p1` - pane on this machine
 - `<user>@<host>:w3:p1` - pane on a remote machine
 
-Resolve agent names and labels with `herdr agent get <target>`, then use the returned `pane_id` with `pane run`.
+Resolve agent names and labels with `herdr agent get <target>`, then use the returned `pane_id` with `pane send-text`.
 
 ## Safety rules
 

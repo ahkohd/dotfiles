@@ -12,7 +12,7 @@
   "images": {
     "autoResize": true
   },
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "packages": [
     "git:github.com/ahkohd/ponytail",
     "npm:@ahkohd/pi-mesh"
