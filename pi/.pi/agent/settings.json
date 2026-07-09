@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.80.3",
+  "lastChangelogVersion": "0.80.5",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "defaultModel": "gpt-5.6-sol",
   "defaultThinkingLevel": "xhigh",
   "skills": [
     "~/.claude/skills"

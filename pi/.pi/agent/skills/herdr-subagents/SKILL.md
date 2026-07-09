@@ -107,13 +107,13 @@ Use official providers for named models unless the user asks otherwise:
 - OpenAI models: `pi --provider openai-codex --model <model>`
 - Claude models: `pi --provider anthropic --model <model>`
 
-Use xhigh thinking for gpt-5.5.
+Use xhigh thinking for gpt-5.6-sol.
 
 Examples:
 
 ```
 herdr agent start review-api --cwd "$PWD" --tab <tab-id> --no-focus -- pi
-herdr agent start gpt55-review --cwd "$PWD" --tab <tab-id> --no-focus -- pi --provider openai-codex --model gpt-5.5 --thinking xhigh
+herdr agent start gpt56-review --cwd "$PWD" --tab <tab-id> --no-focus -- pi --provider openai-codex --model gpt-5.6-sol --thinking xhigh
 herdr agent start claude-pi-review --cwd "$PWD" --tab <tab-id> --no-focus -- pi --provider anthropic --model <claude-model>
 ```
 

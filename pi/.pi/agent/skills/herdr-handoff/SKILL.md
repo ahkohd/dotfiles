@@ -117,7 +117,7 @@ Use `model-selection` for model choice. Common commands:
 
 ```
 pi
-pi --provider openai-codex --model gpt-5.5 --thinking xhigh
+pi --provider openai-codex --model gpt-5.6-sol --thinking xhigh
 claude --model <model> --dangerously-skip-permissions
 agent --model <model> --yolo --sandbox disabled
 codex --model <model> --ask-for-approval never --sandbox danger-full-access --cd "$cwd"
