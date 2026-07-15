@@ -24,7 +24,7 @@ type CommandContext = {
 };
 
 const ENTRY_TYPE = "wake-state";
-const DEFAULT_AFTER_MS = 7.5 * 60 * 1000;
+const DEFAULT_AFTER_MS = 30 * 60 * 1000;
 const MAX_TIMER_MS = 2_147_483_647;
 
 const BASE_WAKE_PROMPT = [
