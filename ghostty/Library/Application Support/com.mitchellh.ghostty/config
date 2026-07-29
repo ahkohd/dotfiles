@@ -1,2 +1,3 @@
 background-opacity = 0.9
 background-blur = true
+adjust-cell-height = 45%

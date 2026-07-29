@@ -98,3 +98,5 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export BAT_THEME="evergarden-winter"
+
+export PATH="$HOME/.local/bin:$PATH"

@@ -1,0 +1,17 @@
+{% if projectStructure %}Project structure{% if xcodeToolNameHintEnabled %} (these are Xcode workspace-relative paths and do not correspond to filesystem paths. Use XcodeRead, XcodeWrite, XcodeGrep, and XcodeGlob to interact with these files){% endif %}:
+{{ projectStructure }}{% endif %}{% if packageDependencies %}
+
+Package dependencies: {{ packageDependencies }}{% endif %}{% if currentFile %}
+
+The user is currently inside this file: {{ currentFile.filePath }}{% if currentFile.selection %}
+
+The user has selected the following code from that file (lines {{ currentFile.selection.startLine }}-{{ currentFile.selection.endLine }}):
+{{ currentFile.selection.text }}{% else %}
+
+The user has no code selected.{% endif %}{% else %}
+
+The user has no file currently open.{% endif %}{% if activeAgents %}
+
+Other agents are currently working in this workspace. Files they touch may change while you work:
+{% for agent in activeAgents %}- {{ agent.name }}
+{% endfor %}{% endif %}
