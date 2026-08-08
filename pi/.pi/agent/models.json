@@ -1,7 +1,7 @@
 {
   "providers": {
     "gpu0-oai": {
-      "baseUrl": "http://100.101.223.8:1234/v1",
+      "baseUrl": "http://192.168.50.71:1234/v1",
       "api": "openai-completions",
       "apiKey": "none",
       "models": [
@@ -218,12 +218,33 @@
           }
         },
         {
-          "id": "qwen3.6-35b",
-          "name": "Qwen3.6 35B",
+          "id": "qwen3.6-27b",
+          "name": "Qwen3.6 27B",
           "reasoning": true,
           "input": [
             "text",
             "image"
+          ],
+          "contextWindow": 262144,
+          "maxTokens": 32768,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        },
+        {
+          "id": "qwen3.6-35b-a3b-fp8",
+          "name": "Qwen3.6 35B A3B FP8",
+          "reasoning": true,
+          "input": [
+            "text"
           ],
           "contextWindow": 262144,
           "maxTokens": 32768,

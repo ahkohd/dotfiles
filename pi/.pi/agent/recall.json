@@ -1,0 +1,11 @@
+{
+  "model": "gpu0-oai/qwen3.6-35b-a3b-fp8",
+  "thinkingLevel": "off",
+  "display": true,
+  "libraries": [
+    "~/.claude/skills",
+    "~/.pi/agent/skills",
+    "~/.agents/skills",
+    "/Users/var/Developer/notate/**/**.md"
+  ]
+}
