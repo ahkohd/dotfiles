@@ -37,6 +37,7 @@ const MAX_LIBRARY_PATHS = 1000;
 const RECALL_JOB_TIMEOUT_MS = 120_000;
 const ACTIVE_TOOLS = ["search_library", "read_item", "submit_recommendations"];
 const STATUS_KEY = "recall";
+const STATUS_THROTTLE_MS = 100;
 const SYSTEM_PROMPT = `You are Recall, an agent that provides recall guidance to another coding agent.
 
 Given a new user prompt or completed agent run and your previous recommendation set, decide whether the main agent needs updated recall guidance. Search the configured libraries. You may reformulate queries and search more than once.
@@ -179,10 +180,43 @@ export default async function recall(pi: ExtensionAPI): Promise<void> {
   let shuttingDown = false;
   let statusUI: ExtensionUIContext | undefined;
   let currentStep = "idle";
+  let statusTimer: ReturnType<typeof setTimeout> | undefined;
+  let statusPending = false;
+  let pendingStatus: string | undefined;
+  let lastStatusUpdate = 0;
 
-  function setActivity(step: string | undefined): void {
+  function flushActivity(): void {
+    statusTimer = undefined;
+    if (!statusPending) return;
+    statusPending = false;
+    lastStatusUpdate = Date.now();
+    statusUI?.setStatus(STATUS_KEY, pendingStatus ? `Recall: ${pendingStatus}` : undefined);
+  }
+
+  function setActivity(step: string | undefined, immediate = false): void {
     currentStep = step ?? "idle";
-    statusUI?.setStatus(STATUS_KEY, step ? `Recall: ${step}` : undefined);
+    pendingStatus = step;
+    statusPending = true;
+    const delay = STATUS_THROTTLE_MS - (Date.now() - lastStatusUpdate);
+    if (immediate || delay <= 0) {
+      if (statusTimer) clearTimeout(statusTimer);
+      flushActivity();
+      return;
+    }
+    if (!statusTimer) {
+      statusTimer = setTimeout(flushActivity, delay);
+      statusTimer.unref();
+    }
+  }
+
+  function clearActivity(): void {
+    if (statusTimer) clearTimeout(statusTimer);
+    statusTimer = undefined;
+    statusPending = false;
+    pendingStatus = undefined;
+    lastStatusUpdate = 0;
+    currentStep = "idle";
+    statusUI?.setStatus(STATUS_KEY, undefined);
   }
 
   function describeTool(toolName: string, args: unknown): string {
@@ -571,9 +605,8 @@ export default async function recall(pi: ExtensionAPI): Promise<void> {
     }
 
     const unsubscribe = session.subscribe((event) => {
-      if (event.type === "turn_start") setActivity("analysing");
       if (event.type === "tool_execution_start") setActivity(describeTool(event.toolName, event.args));
-      if (event.type === "tool_execution_end" && event.isError) setActivity(`tool failed: ${event.toolName}`);
+      if (event.type === "tool_execution_end" && event.isError) setActivity(`tool failed: ${event.toolName}`, true);
     });
     return { session, collector, unsubscribe };
   }
@@ -740,7 +773,7 @@ export default async function recall(pi: ExtensionAPI): Promise<void> {
   pi.on("session_start", async (_event, ctx) => {
     shuttingDown = false;
     statusUI = ctx.ui;
-    setActivity(undefined);
+    clearActivity();
     lastAgentRun = undefined;
     sessionLibraries = [];
     await loadProjectLibraries(ctx.cwd);
@@ -789,7 +822,7 @@ export default async function recall(pi: ExtensionAPI): Promise<void> {
     job.timer = setTimeout(() => {
       if (recallJob !== job) return;
       pendingError = "Recall timed out";
-      setActivity("timed out");
+      setActivity("timed out", true);
       void stopSidecar(false).then(startCapturedRecall);
     }, RECALL_JOB_TIMEOUT_MS);
     job.timer.unref();
@@ -802,7 +835,7 @@ export default async function recall(pi: ExtensionAPI): Promise<void> {
 
         if (result.error) {
           pendingError = result.error;
-          setActivity("error");
+          setActivity("error", true);
         } else {
           pendingError = undefined;
           setActivity(undefined);
@@ -827,7 +860,7 @@ export default async function recall(pi: ExtensionAPI): Promise<void> {
         if (job.timer) clearTimeout(job.timer);
         recallJob = undefined;
         pendingError = errorMessage(error);
-        setActivity("error");
+        setActivity("error", true);
         startCapturedRecall();
       },
     );
@@ -870,7 +903,7 @@ export default async function recall(pi: ExtensionAPI): Promise<void> {
   pi.on("session_shutdown", async () => {
     shuttingDown = true;
     await stopSidecar();
-    statusUI?.setStatus(STATUS_KEY, undefined);
+    clearActivity();
     statusUI = undefined;
   });
 

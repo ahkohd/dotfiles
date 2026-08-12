@@ -770,6 +770,34 @@
           }
         }
       ]
+    },
+    "moonstead": {
+      "baseUrl": "https://llm.victor.computer/v1",
+      "api": "openai-completions",
+      "apiKey": "none",
+      "models": [
+        {
+          "id": "default",
+          "name": "Moonstead",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 774656,
+          "maxTokens": 32768,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "maxTokensField": "max_tokens"
+          }
+        }
+      ]
     }
   }
 }
