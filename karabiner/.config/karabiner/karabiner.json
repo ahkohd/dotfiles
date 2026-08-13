@@ -32,6 +32,21 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Globe key to Ctrl + Option + F",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "fn" },
+                                "to": [
+                                    {
+                                        "key_code": "f",
+                                        "modifiers": ["control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },

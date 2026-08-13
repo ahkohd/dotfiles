@@ -3,6 +3,9 @@ pi/.pi/agent/auth.json.lock
 pi/.pi/agent/env.json
 pi/.pi/agent/sessions/
 pi/.pi/agent/cache/
+pi/.pi/agent/settings.json
+pi/.pi/agent/trust.json
+pi/.pi/agent/models-store.json
 pi/.pi/packages/*/node_modules/
 .pi/
 !pi/.pi/
