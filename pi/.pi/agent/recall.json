@@ -5,7 +5,6 @@
   "libraries": [
     "~/.claude/skills",
     "~/.pi/agent/skills",
-    "~/.agents/skills",
-    "/Users/var/Developer/notate/**/**.md"
+    "~/.agents/skills"
   ]
 }
