@@ -10,6 +10,7 @@ pi/.pi/packages/*/node_modules/
 .pi/
 !pi/.pi/
 yazi/.config/yazi/bookmark
+zed/.config/zed/prompts/prompts-library-db.0.mdb/
 
 # jj per-repo state (machine-local)
 jj/.config/jj/repos/
