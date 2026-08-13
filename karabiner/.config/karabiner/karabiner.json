@@ -1,4 +1,7 @@
 {
+    "global": {
+        "show_in_menu_bar": false
+    },
     "profiles": [
         {
             "complex_modifications": {
@@ -34,10 +37,10 @@
                         ]
                     },
                     {
-                        "description": "Globe key to Ctrl + Option + F",
+                        "description": "Map Globe/Fn to Control+Option+F",
                         "manipulators": [
                             {
-                                "from": { "key_code": "fn" },
+                                "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
                                 "to": [
                                     {
                                         "key_code": "f",
