@@ -5,3 +5,5 @@ if [[ "$(uname)" == "Linux" ]]; then
         source ~/.profile.linux
     fi
 fi
+
+export PATH="$HOME/.local/bin:$PATH"

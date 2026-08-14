@@ -1,19 +1,26 @@
 {
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "theme": "Flexoki Light",
   "ui_font_weight": 450.0,
   "disable_ai": true,
   "preview_tabs": {
-    "enabled": false
+    "enabled": true
   },
   "minimap": {
     "max_width_columns": 65,
     "thumb": "hover",
-    "show": "never"
+    "show": "auto"
   },
   "gutter": {
-    "line_numbers": false
+    "line_numbers": true
   },
-  "show_signature_help_after_edits": false,
-  "auto_signature_help": false,
+  "show_signature_help_after_edits": true,
+  "auto_signature_help": true,
+  "hover_popover_enabled": false,
   "scroll_sensitivity": 1.0,
   "sticky_scroll": {
     "enabled": true
@@ -26,15 +33,15 @@
     "dark": "Zed (Default)"
   },
   "collaboration_panel": {
-    "button": false
-  },
-  "notification_panel": {
+    "dock": "left",
     "button": false
   },
   "git_panel": {
+    "dock": "left",
     "button": false
   },
   "outline_panel": {
+    "dock": "left",
     "button": false,
     "git_status": false,
     "folder_icons": false,
@@ -43,69 +50,54 @@
   "use_system_window_tabs": true,
   "bottom_dock_layout": "contained",
   "title_bar": {
-    "show_branch_icon": false,
+    "show_branch_status_icon": false,
     "show_sign_in": false,
     "show_user_picture": false,
     "show_onboarding_banner": false,
-    "show_project_items": false,
-    "show_branch_name": false
+    "show_project_items": true,
+    "show_branch_name": true
   },
   "diagnostics": {
-    "button": false
+    "button": true
   },
   "debugger": {
-    "button": false
+    "button": true
   },
   "search": {
-    "button": false
+    "button": true
   },
   "project_panel": {
     "indent_size": 11.0,
-    "git_status": false,
+    "git_status": true,
     "folder_icons": false,
     "file_icons": false,
     "button": false,
-    "indent_guides": { "show": "never" }
+    "indent_guides": { "show": "always" }
   },
   "show_wrap_guides": true,
   "soft_wrap": "editor_width",
-  "ui_font_family": "TX-02-AREMU",
-  "agent": {
-    "dock": "left",
-    "button": false,
-    "play_sound_when_agent_done": true,
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
-    }
-  },
   "telemetry": {
     "metrics": false,
     "diagnostics": false
   },
   "vim_mode": true,
   "relative_line_numbers": "enabled",
-  "cursor_blink": false,
-  "ui_font_size": 14.0,
-  "buffer_font_size": 13.0,
+  "ui_font_family": "SF Pro",
+  "ui_font_size": 13.0,
+  "buffer_font_size": 12.0,
   "buffer_font_family": "TX-02-AREMU",
-  "buffer_line_height": "standard",
+  "buffer_line_height": "comfortable",
   "terminal": {
     "dock": "bottom",
     "button": false,
     "font_family": "TX-02-AREMU",
     "font_size": 13.0
   },
-  "theme": "Everforest Dark Hard (blur)",
-  "scrollbar": {
-    "show": "never"
-  },
   "vertical_scroll_margin": 0,
   "inlay_hints": {
-    "enabled": false
-  },
-  "indent_guides": {
-    "enabled": false
+    "scroll_debounce_ms": 0,
+    "show_background": true,
+    "enabled": true
   },
   "toolbar": {
     "agent_review": false,
@@ -116,12 +108,12 @@
   },
   "tab_bar": {
     "show_nav_history_buttons": false,
-    "show": false
+    "show": true
   },
   "status_bar": {
     "experimental.show": false,
     "cursor_position_button": false,
     "active_language_button": false
   },
-  "current_line_highlight": "none"
+  "current_line_highlight": "all"
 }

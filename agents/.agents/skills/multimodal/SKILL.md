@@ -1,30 +1,33 @@
 ---
 name: multimodal
-description: Use when you cannot inspect media directly and the user provides images, screenshots, image-heavy PDFs, video, or audio. Send the media blob to the configured multimodal alt model, read its response, then continue the task using that response as context.
+description: Use when you cannot inspect media directly and the user provides images, screenshots, image-heavy PDFs, or video frames. Send each image blob to the configured multimodal alternate, read its response, then continue using that response as context.
 ---
 
 # Multimodal fallback
 
 ```text
-media -> alternate -> context for you
+image -> alternate -> context for you
 ```
 
 ## Image
 
 ```bash
 IMG=/path/to/image.png
+MIME=$(file -b --mime-type "$IMG")
 B64=$(base64 < "$IMG" | tr -d '\n')
 
-curl -s https://llm.victor.computer/v1/chat/completions \
+curl -fsS https://llm.victor.computer/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d @- <<JSON | jq -r '.choices[0].message.content'
 {
   "model": "alternate",
+  "reasoning_effort": "none",
+  "chat_template_kwargs": {"enable_thinking": false, "preserve_thinking": false},
   "messages": [{
     "role": "user",
     "content": [
-      {"type": "text", "text": "Describe this image concisely and factually."},
-      {"type": "image_url", "image_url": {"url": "data:image/png;base64,$B64"}}
+      {"type": "image_url", "image_url": {"url": "data:$MIME;base64,$B64"}},
+      {"type": "text", "text": "Describe this image concisely and factually."}
     ]
   }]
 }
@@ -35,27 +38,7 @@ Read the response, then continue the user's task.
 
 ## Audio
 
-```bash
-AUDIO=/path/to/audio.wav
-B64=$(base64 < "$AUDIO" | tr -d '\n')
-
-curl -s https://llm.victor.computer/v1/chat/completions \
-  -H 'Content-Type: application/json' \
-  -d @- <<JSON | jq -r '.choices[0].message.content'
-{
-  "model": "alternate",
-  "messages": [{
-    "role": "user",
-    "content": [
-      {"type": "text", "text": "Transcribe this audio. Return only the transcript."},
-      {"type": "input_audio", "input_audio": {"data": "$B64", "format": "wav"}}
-    ]
-  }]
-}
-JSON
-```
-
-Read the transcript, then continue the user's task.
+The alternate is vision-only. Do not send it audio. Use configured local speech-to-text. If none is available, say so.
 
 ## If unavailable
 

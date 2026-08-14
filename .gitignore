@@ -17,5 +17,7 @@ jj/.config/jj/repos/
 
 llama.log
 *.log
+*.profraw
+pi/.pi/pi-acp/session-map.json
 __pycache__/
 *.py[cod]
