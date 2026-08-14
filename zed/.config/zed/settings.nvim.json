@@ -1,25 +1,19 @@
 {
-  "agent": {
-    "dock": "right",
-    "favorite_models": [],
-    "model_parameters": []
-  },
-  "theme": "Flexoki Light",
   "ui_font_weight": 450.0,
   "disable_ai": true,
   "preview_tabs": {
-    "enabled": true
+    "enabled": false
   },
   "minimap": {
     "max_width_columns": 65,
     "thumb": "hover",
-    "show": "auto"
+    "show": "never"
   },
   "gutter": {
-    "line_numbers": true
+    "line_numbers": false
   },
-  "show_signature_help_after_edits": true,
-  "auto_signature_help": true,
+  "show_signature_help_after_edits": false,
+  "auto_signature_help": false,
   "scroll_sensitivity": 1.0,
   "sticky_scroll": {
     "enabled": true
@@ -32,18 +26,15 @@
     "dark": "Zed (Default)"
   },
   "collaboration_panel": {
-    "dock": "left",
     "button": false
   },
   "notification_panel": {
     "button": false
   },
   "git_panel": {
-    "dock": "left",
     "button": false
   },
   "outline_panel": {
-    "dock": "left",
     "button": false,
     "git_status": false,
     "folder_icons": false,
@@ -56,51 +47,65 @@
     "show_sign_in": false,
     "show_user_picture": false,
     "show_onboarding_banner": false,
-    "show_project_items": true,
-    "show_branch_name": true
+    "show_project_items": false,
+    "show_branch_name": false
   },
   "diagnostics": {
-    "button": true
+    "button": false
   },
   "debugger": {
-    "button": true
+    "button": false
   },
   "search": {
-    "button": true
+    "button": false
   },
   "project_panel": {
-    "dock": "left",
     "indent_size": 11.0,
-    "git_status": true,
+    "git_status": false,
     "folder_icons": false,
     "file_icons": false,
     "button": false,
-    "indent_guides": { "show": "always" }
+    "indent_guides": { "show": "never" }
   },
   "show_wrap_guides": true,
   "soft_wrap": "editor_width",
+  "ui_font_family": "TX-02-AREMU",
+  "agent": {
+    "dock": "left",
+    "button": false,
+    "play_sound_when_agent_done": true,
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    }
+  },
   "telemetry": {
     "metrics": false,
     "diagnostics": false
   },
   "vim_mode": true,
   "relative_line_numbers": "enabled",
-  "ui_font_family": "SF Pro",
-  "ui_font_size": 13.0,
-  "buffer_font_size": 12.0,
+  "cursor_blink": false,
+  "ui_font_size": 14.0,
+  "buffer_font_size": 13.0,
   "buffer_font_family": "TX-02-AREMU",
-  "buffer_line_height": "comfortable",
+  "buffer_line_height": "standard",
   "terminal": {
     "dock": "bottom",
     "button": false,
     "font_family": "TX-02-AREMU",
     "font_size": 13.0
   },
+  "theme": "Everforest Dark Hard (blur)",
+  "scrollbar": {
+    "show": "never"
+  },
   "vertical_scroll_margin": 0,
   "inlay_hints": {
-    "scroll_debounce_ms": 0,
-    "show_background": true,
-    "enabled": true
+    "enabled": false
+  },
+  "indent_guides": {
+    "enabled": false
   },
   "toolbar": {
     "agent_review": false,
@@ -111,12 +116,12 @@
   },
   "tab_bar": {
     "show_nav_history_buttons": false,
-    "show": true
+    "show": false
   },
   "status_bar": {
     "experimental.show": false,
     "cursor_position_button": false,
     "active_language_button": false
   },
-  "current_line_highlight": "all"
+  "current_line_highlight": "none"
 }

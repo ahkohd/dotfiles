@@ -1,4 +1,5 @@
 [
+  // Editor controls available in every Vim mode.
   {
     "context": "Editor",
     "bindings": {
@@ -8,57 +9,129 @@
       "ctrl-a": "editor::ShowCompletions"
     }
   },
+  // Completion menu navigation overrides the general editor controls above.
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-y": "editor::ConfirmCompletion"
+    }
+  },
+  // Vim normal-mode movement and editing.
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      "space f": "file_finder::Toggle",
-      "space space": "project_panel::ToggleFocus",
-      "space r": "workspace::NewSearch",
-      "space k": "editor::ToggleCodeActions",
-      "space h": "workspace::ToggleLeftDock",
-      "space a": ["workspace::SendKeystrokes", ": w enter"],
-      "space i": "outline::Toggle",
-      "space o": "project_symbols::Toggle",
-      "space e": "diagnostics::Deploy",
-      "space j": "tab_switcher::Toggle",
-      "space tab": "workspace::ToggleZoom",
-      "space enter": ["workspace::SendKeystrokes", ": n o h enter"],
-      "space g o": "editor::OpenPermalinkToLine",
-      "space g c": "editor::CopyPermalinkToLine",
       "g R": "editor::Rename",
+      // Keep search matches and page movements centred.
       "n": ["workspace::SendKeystrokes", "n z z"],
       "shift-n": ["workspace::SendKeystrokes", "shift-n z z"],
       "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
       "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+      // Arrow keys cross pane boundaries instead of moving the cursor.
       "left": "workspace::ActivatePaneLeft",
       "down": "workspace::ActivatePaneDown",
       "up": "workspace::ActivatePaneUp",
       "right": "workspace::ActivatePaneRight",
+      // Escape closes only after Vim has reached normal mode.
+      "escape": "pane::CloseActiveItem",
+    }
+  },
+  // Space leader: normal editors, special views, and non-editor panels.
+  // It stays disabled in insert-mode editors and terminals.
+  {
+    "context": "(Editor && vim_mode == normal) || ProjectSearchView || KeymapEditor || Diagnostics || (!Editor && !Terminal)",
+    "bindings": {
+      // Find files and focus the Project panel.
+      "space f": "file_finder::Toggle",
+      "space space": "project_panel::ToggleFocus",
+      // Move between splits.
+      "space h": "workspace::ActivatePaneLeft",
+      "space j": "workspace::ActivatePaneDown",
+      "space k": "workspace::ActivatePaneUp",
+      "space l": "workspace::ActivatePaneRight",
+      // Save, switch tabs, and open workspace views.
+      "space a": ["workspace::SendKeystrokes", ": w enter"],
+      "space i": "vim::GoToPreviousTab",
+      "space o": "vim::GoToTab",
+      "space e": "diagnostics::Deploy",
+      "space t h": "editor::ToggleInlayHints",
+      "space tab": "workspace::ToggleZoom",
+      "space enter": ["workspace::SendKeystrokes", ": n o h enter"],
+      // Links, line numbers, and Git.
+      "space g o": "editor::OpenPermalinkToLine",
+      "space g c": "editor::CopyPermalinkToLine",
       "space .": "editor::ToggleLineNumbers",
       "space g g": "git_panel::ToggleFocus",
-      "space g b": "editor::ToggleGitBlame",
-      "space n": "editor::ReloadFile"
-    }
-  },
-  {
-    "context": "Editor && VimControl && !VimWaiting && !menu",
-    "bindings": {
-      "; j": "terminal_panel::ToggleFocus"
-    }
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "; j": "terminal_panel::Toggle",
-      "space escape": "pane::CloseActiveItem",
+      "space g h": ["workspace::SendKeystrokes", "space g g cmd-2"],
+      "space g b": "git::Blame",
+      // Reload or restore workspace items.
+      "space n": "editor::ReloadFile",
+      "space u": "pane::ReopenClosedItem",
+      // Buffer font size shortcuts.
       "alt-f": ["workspace::SendKeystrokes", "cmd-0 cmd-= cmd-= cmd-="],
       "alt-g": "zed::ResetBufferFontSize"
     }
   },
+  // Open a new project search outside an existing search view.
   {
-    "context": "Dock",
+    "context": "((Editor && vim_mode == normal) || (!Editor && !Terminal)) && !ProjectSearchView",
     "bindings": {
-      "space escape": "workspace::ActivatePaneLeft"
+      "space r": "workspace::NewSearch"
     }
-  }
+  },
+  // Semicolon leader for focusing the terminal outside terminal input.
+  {
+    "context": "(Editor && VimControl && !VimWaiting && !menu) || ProjectSearchView || KeymapEditor || (!Editor && !Terminal)",
+    "bindings": {
+      "; j": "terminal_panel::ToggleFocus"
+    }
+  },
+  // The same chord hides the terminal when it already has focus.
+  {
+    "context": "Terminal",
+    "bindings": {
+      "; j": "terminal_panel::Toggle"
+    }
+  },
+  // Escape closes special editable workspace surfaces.
+  {
+    "context": "(ProjectSearchBar > Editor) || (ProjectSearchView > Editor) || (KeymapEditor > Editor) || (Diagnostics > Editor)",
+    "bindings": {
+      "escape": "pane::CloseActiveItem"
+    }
+  },
+  // In search results, Space-R returns focus to the query field.
+  {
+    "context": "ProjectSearchView",
+    "bindings": {
+      "space r": "search::FocusSearch"
+    }
+  },
+  // Escape also closes non-editor states of these workspace views.
+  {
+    "context": "KeymapEditor || Diagnostics",
+    "bindings": {
+      "escape": "pane::CloseActiveItem"
+    }
+  },
+  // Git panel closing and tab switching.
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "escape": "git_panel::Toggle",
+      "space g g": "git_panel::Toggle",
+      "space g h": "git_panel::Toggle",
+      "space i": "git_panel::ActivateChangesTab",
+      "space o": "git_panel::ActivateHistoryTab"
+    }
+  },
+  // Project panel closing and toggling.
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "escape": "project_panel::Toggle",
+      "space space": "project_panel::Toggle"
+    }
+  },
 ]
