@@ -1,10 +1,11 @@
 {
+  "cli_default_open_behavior": "existing_window",
   "agent": {
     "dock": "right",
     "favorite_models": [],
     "model_parameters": []
   },
-  "theme": "Flexoki Light",
+  "theme": "VSCode Dark Modern",
   "ui_font_weight": 450.0,
   "disable_ai": true,
   "preview_tabs": {
@@ -82,7 +83,7 @@
   },
   "vim_mode": true,
   "relative_line_numbers": "enabled",
-  "ui_font_family": "SF Pro",
+  "ui_font_family": "SF Pro Text",
   "ui_font_size": 13.0,
   "buffer_font_size": 12.0,
   "buffer_font_family": "TX-02-AREMU",
