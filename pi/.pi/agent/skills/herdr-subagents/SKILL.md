@@ -107,7 +107,7 @@ Use official providers for named models unless the user asks otherwise:
 - OpenAI models: `pi --provider openai-codex --model <model>`
 - Claude models: `pi --provider anthropic --model <model>`
 
-Use xhigh thinking for gpt-5.6-sol.
+Use xhigh thinking for gpt-5.6-sol and gpt-6-astra.
 
 Examples:
 
