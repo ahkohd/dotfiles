@@ -1,4 +1,13 @@
 {
+  "cursor_animation": {
+    "enabled": true
+  },
+  "agent_buffer_font_size": 13.0,
+  "markdown_preview": {
+    "font_size": 16.0,
+    "code_font_family": "ABC Areal Mono Variable",
+    "font_family": "ABC Areal Variable"
+  },
   "cli_default_open_behavior": "existing_window",
   "ssh_connections": [
     {
@@ -21,11 +30,11 @@
     "model_parameters": []
   },
   "theme": {
-    "mode": "light",
-    "light": "Eyecandy Light",
-    "dark": "One Dark"
+    "mode": "system",
+    "light": "JetBrains Light",
+    "dark": "JetBrains Islands Dark"
   },
-  "ui_font_weight": 450.0,
+  "ui_font_weight": 400.0,
   "disable_ai": true,
   "preview_tabs": {
     "enabled": true
@@ -61,10 +70,10 @@
     "button": false
   },
   "outline_panel": {
+    "folder_indicator": "chevron",
     "dock": "left",
     "button": false,
     "git_status": false,
-    "folder_icons": false,
     "file_icons": false
   },
   "use_system_window_tabs": true,
@@ -87,9 +96,9 @@
     "button": true
   },
   "project_panel": {
+    "folder_indicator": "chevron",
     "indent_size": 11.0,
     "git_status": true,
-    "folder_icons": false,
     "file_icons": false,
     "button": false,
     "indent_guides": { "show": "always" }
@@ -102,15 +111,17 @@
   },
   "vim_mode": true,
   "relative_line_numbers": "enabled",
-  "ui_font_family": "SF Pro",
-  "ui_font_size": 13.0,
-  "buffer_font_size": 12.0,
-  "buffer_font_family": "TX-02-AREMU",
-  "buffer_line_height": "comfortable",
+  "ui_font_family": "ABC Areal Variable",
+  "ui_font_size": 14.0,
+  "buffer_font_size": 13.0,
+  "buffer_font_family": "ABC Areal Mono Variable",
+  "buffer_line_height": {
+    "custom": 2.0
+  },
   "terminal": {
     "dock": "bottom",
     "button": false,
-    "font_family": "TX-02-AREMU",
+    "font_family": "ABC Areal Mono Variable",
     "font_size": 13.0
   },
   "vertical_scroll_margin": 0,
@@ -135,5 +146,93 @@
     "cursor_position_button": false,
     "active_language_button": false
   },
-  "current_line_highlight": "all"
+  "current_line_highlight": "all",
+  "semantic_tokens": "combined",
+  "global_lsp_settings": {
+    "semantic_token_rules": [
+      {
+        "token_type": "variable",
+        "token_modifiers": ["mutable"],
+        "underline": true
+      },
+      {
+        "token_type": "selfKeyword",
+        "token_modifiers": ["mutable"],
+        "underline": true
+      },
+      {
+        "token_type": "parameter",
+        "token_modifiers": ["mutable"],
+        "underline": true
+      },
+      {
+        "token_type": "namespace",
+        "token_modifiers": ["procMacro", "attribute"],
+        "style": ["string"]
+      },
+      {
+        "token_type": "enum",
+        "token_modifiers": ["procMacro", "attribute"],
+        "style": ["string"]
+      },
+      {
+        "token_type": "namespace",
+        "token_modifiers": ["crateRoot"],
+        "style": ["namespace.crateRoot"]
+      },
+      {
+        "token_type": "attributeBracket",
+        "style": ["attribute"]
+      },
+      {
+        "token_type": "operator",
+        "token_modifiers": ["attribute"],
+        "style": ["attribute"]
+      },
+      {
+        "token_type": "derive",
+        "token_modifiers": ["defaultLibrary"],
+        "style": ["type.interface"]
+      },
+      {
+        "token_type": "derive",
+        "token_modifiers": ["library"],
+        "style": ["function"]
+      },
+      {
+        "token_type": "operator",
+        "token_modifiers": ["controlFlow"],
+        "style": ["operator.controlFlow"]
+      },
+      {
+        "token_type": "macro",
+        "style": ["function.special"]
+      },
+      {
+        "token_type": "procMacro",
+        "style": ["function.special"]
+      },
+      {
+        "token_type": "builtinType",
+        "style": ["type.builtin"]
+      },
+      {
+        "token_type": "method",
+        "token_modifiers": ["trait"],
+        "font_style": "italic"
+      },
+      {
+        "token_type": "typeParameter",
+        "style": ["type.parameter"]
+      },
+      {
+        "token_type": "selfTypeKeyword",
+        "style": ["keyword"]
+      },
+      {
+        "token_type": "formatSpecifier",
+        "style": ["keyword"]
+      }
+    ]
+  }
 }

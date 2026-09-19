@@ -1,10 +1,30 @@
 {
+  "cli_default_open_behavior": "existing_window",
+  "ssh_connections": [
+    {
+      "host": "devbox.victor.computer",
+      "username": "var",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/var/Developer/littlebird-workspaces/fresh-main/./"
+          ]
+        }
+      ],
+      "nickname": "devbox"
+    }
+  ],
   "agent": {
     "dock": "right",
     "favorite_models": [],
     "model_parameters": []
   },
-  "theme": "Flexoki Light",
+  "theme": {
+    "mode": "dark",
+    "light": "Eyecandy Light",
+    "dark": "Ayu Dark"
+  },
   "ui_font_weight": 450.0,
   "disable_ai": true,
   "preview_tabs": {
@@ -20,6 +40,7 @@
   },
   "show_signature_help_after_edits": true,
   "auto_signature_help": true,
+  "hover_popover_enabled": false,
   "scroll_sensitivity": 1.0,
   "sticky_scroll": {
     "enabled": true
@@ -27,15 +48,12 @@
   "base_keymap": "VSCode",
   "buffer_font_weight": 400.0,
   "icon_theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "Zed (Default)",
     "dark": "Zed (Default)"
   },
   "collaboration_panel": {
     "dock": "left",
-    "button": false
-  },
-  "notification_panel": {
     "button": false
   },
   "git_panel": {
@@ -52,7 +70,7 @@
   "use_system_window_tabs": true,
   "bottom_dock_layout": "contained",
   "title_bar": {
-    "show_branch_icon": false,
+    "show_branch_status_icon": false,
     "show_sign_in": false,
     "show_user_picture": false,
     "show_onboarding_banner": false,
@@ -69,7 +87,6 @@
     "button": true
   },
   "project_panel": {
-    "dock": "left",
     "indent_size": 11.0,
     "git_status": true,
     "folder_icons": false,
@@ -85,15 +102,15 @@
   },
   "vim_mode": true,
   "relative_line_numbers": "enabled",
-  "ui_font_family": "SF Pro",
+  "ui_font_family": "ABC Areal Variable",
   "ui_font_size": 13.0,
   "buffer_font_size": 12.0,
-  "buffer_font_family": "TX-02-AREMU",
+  "buffer_font_family": "ABC Areal Mono Variable",
   "buffer_line_height": "comfortable",
   "terminal": {
     "dock": "bottom",
     "button": false,
-    "font_family": "TX-02-AREMU",
+    "font_family": "ABC Areal Mono Variable",
     "font_size": 13.0
   },
   "vertical_scroll_margin": 0,
