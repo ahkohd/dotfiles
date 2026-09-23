@@ -22,10 +22,5 @@
     "enabled": true
   },
   "theme": "dark",
-  "enabledModels": [
-    "moonstead/default",
-    "openai-codex/gpt-5.6-sol",
-    "openai-codex/gpt-6-astra"
-  ],
   "steeringMode": "one-at-a-time"
 }
