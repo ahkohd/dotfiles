@@ -50,30 +50,3 @@ Companion starts that command once when the request finishes and writes the resu
 Keep callbacks short: they have a 5-second timeout. Delivery status appears in the result's `callbackDelivery` field. Failed deliveries are not retried automatically; use `companion status` or `companion wait` to recover the result. The queue is not persistent across bridge restarts.
 
 The callback should notify the originating agent, which checks the matching request ID, outcome and action before deciding what to do. Avoid notifying again about receipt and creating a notification loop.
-
-### Tip for agents running in Herdr
-
-You can use the generic callback to send the result back to your own pane with `herdr agent prompt`. Companion has no Herdr-specific delivery logic. Capture your explicit pane and socket from your agent environment; never use the UI-focused pane. If these are unavailable, use `companion wait` or resolve your caller context using Herdr's instructions.
-
-For example, construct a request from inside your Herdr pane:
-
-```sh
-node <<'JS' | companion show --json -
-const { HERDR_ENV, HERDR_PANE_ID, HERDR_SOCKET_PATH } = process.env;
-if (HERDR_ENV !== '1' || !HERDR_PANE_ID || !HERDR_SOCKET_PATH) {
-  throw Error('Resolve your explicit Herdr pane and socket before adding a callback.');
-}
-console.log(JSON.stringify({
-  owner: `review-${HERDR_PANE_ID}`,
-  kind: 'decision', title: 'Review ready', description: 'Tap to make a choice',
-  callback: {
-    command: '/bin/sh',
-    args: ['-c', 'result=$(cat); exec herdr agent prompt "$1" "$result"',
-      'companion-response', HERDR_PANE_ID],
-    env: { HERDR_SOCKET_PATH }
-  }
-}));
-JS
-```
-
-The result stays data passed as one argument; do not evaluate it as shell code. If your pane moves or your agent session is replaced, update or clear the outstanding request. Ignore callback messages for request IDs you do not own.
