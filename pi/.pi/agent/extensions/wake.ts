@@ -41,7 +41,7 @@ const SCHEDULE_REMINDER = [
 ].join("\n");
 
 const defaultState = (): WakeState => ({
-  enabled: true,
+  enabled: false,
   afterMs: DEFAULT_AFTER_MS,
   schedule: null,
 });
@@ -76,7 +76,7 @@ function validState(value: unknown): WakeState | undefined {
   if (schedule === undefined) return undefined;
 
   return {
-    enabled: typeof value.enabled === "boolean" ? value.enabled : true,
+    enabled: typeof value.enabled === "boolean" ? value.enabled : false,
     afterMs: typeof value.afterMs === "number" && value.afterMs > 0 ? value.afterMs : DEFAULT_AFTER_MS,
     schedule,
   };
