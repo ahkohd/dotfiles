@@ -12,7 +12,7 @@
           "input": [
             "text"
           ],
-          "contextWindow": 774656,
+          "contextWindow": 272000,
           "maxTokens": 32768,
           "cost": {
             "input": 0,
