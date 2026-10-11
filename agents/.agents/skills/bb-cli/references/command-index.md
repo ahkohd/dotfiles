@@ -10,8 +10,13 @@ This index lists every command path that the core CLI registers, including alias
 
 - `bb settings`
 - `bb settings show`
+- `bb settings mobile-app`
 - `bb settings ai-services`
+- `bb settings ai-services show`
+- `bb settings ai-services set`
+- `bb settings ai-services test`
 - `bb settings general`
+- `bb settings replay-onboarding`
 - `bb settings completed-turns`
 - `bb settings experiment`
 - `bb settings keyboard`
@@ -28,6 +33,8 @@ This index lists every command path that the core CLI registers, including alias
 - `bb settings version`
 - `bb settings reload`
 
+`bb settings usage` accepts `--refresh` to fetch fresh provider usage.
+
 ## project
 
 - `bb project`
@@ -39,6 +46,7 @@ This index lists every command path that the core CLI registers, including alias
 - `bb project attachment upload`
 - `bb project attachment download`
 - `bb project list`
+- `bb project discover`
 - `bb project history`
 - `bb project reorder`
 - `bb project branches`
@@ -53,19 +61,18 @@ This index lists every command path that the core CLI registers, including alias
 
 `bb project show <id>` accepts `proj_personal` to inspect Personal.
 
+## prompt-history
+
+- `bb prompt-history`
+- `bb prompt-history list`
+
 ## provider
 
 - `bb provider`
 - `bb provider list`
+- `bb provider enable`
+- `bb provider disable`
 - `bb provider models`
-
-## manager
-
-- `bb manager`
-- `bb manager hire`
-- `bb manager list`
-- `bb manager status`
-- `bb manager delete`
 
 ## machine
 
@@ -79,6 +86,7 @@ This index lists every command path that the core CLI registers, including alias
 - `bb machine create`
 - `bb machine list`
 - `bb machine show`
+- `bb machine reconnect`
 - `bb machine rename`
 - `bb machine remove`
 - `bb machine suspend`
@@ -107,17 +115,25 @@ configures the machine with optional configured `preset` and `image` names;
 - `bb server unlock`
 - `bb server allow-connect`
 - `bb server delete-old-copy`
+- `bb server install-machine-service`
 
 `move`, `move status`, `move cancel`, and `export` call the running server.
+Server moves are experimental; agents run `move` (without `--check`),
+`move cancel`, and `unlock` only after the user explicitly confirms.
 `import`, `unlock`, `allow-connect`, and `delete-old-copy` act on a local data
 directory (`--data-dir`, else `BB_DATA_DIR`, else `~/.bb`) and never call a
-server.
+server. `install-machine-service` acts on the same local data directory after a
+move and downloads the new server's bb-app package for its service.
 
 ## updates
 
 - `bb updates`
 - `bb updates status`
 - `bb updates apply`
+- `bb updates app`
+- `bb updates app status`
+- `bb updates app apply`
+- `bb updates app dismiss`
 
 ## terminal
 
@@ -181,6 +197,7 @@ server.
 - `bb thread update`
 - `bb thread archive`
 - `bb thread unarchive`
+- `bb thread restore-environment`
 - `bb thread pin`
 - `bb thread unpin`
 - `bb thread delete`
@@ -210,6 +227,7 @@ server.
 - `bb environment providers`
 - `bb environment list`
 - `bb environment delete`
+- `bb environment cleanup`
 - `bb environment show`
 - `bb environment get`
 - `bb environment status`
@@ -258,8 +276,11 @@ server.
 - `bb plugin list`
 - `bb plugin source`
 - `bb plugin install`
+- `bb plugin install-jobs`
+- `bb plugin cancel-install`
 - `bb plugin outdated`
 - `bb plugin update`
+- `bb plugin update-jobs`
 - `bb plugin new`
 - `bb plugin types`
 - `bb plugin migrate`
@@ -272,6 +293,8 @@ server.
 - `bb plugin rpc call`
 - `bb plugin enable`
 - `bb plugin disable`
+- `bb plugin safe-mode`
+- `bb plugin prune`
 - `bb plugin config`
 - `bb plugin token`
 - `bb plugin run`
@@ -344,3 +367,6 @@ Standalone `bb machine create` machines remain until explicitly removed.
 To enroll an existing machine, run `bb machine create --provider manual`, then
 run its printed enrollment command on the target. The CLI waits until the daemon
 connects. With `--no-wait`, it returns the creating host ID immediately.
+
+- `bb plugin update <id> --yes --no-wait`: start a background update.
+- `bb plugin update-jobs [job-id] [--json]`: inspect update progress and recent results.

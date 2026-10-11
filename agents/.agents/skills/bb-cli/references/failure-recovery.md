@@ -6,8 +6,8 @@
   `bb thread log <id>` before deciding whether to retry, clarify, or update the
   user.
 - Use `bb thread retry <thread-id>` to re-send a failed turn's original message
-  verbatim. It re-submits the same input - it does not add a new user message to
-  the timeline - and increments the attempt number (2 is the first retry). With
+  verbatim. It re-submits the same input — it does not add a new user message to
+  the timeline — and increments the attempt number (2 is the first retry). With
   no `--turn` it retries the most recent turn, the one whose failure put the
   thread in `error`; `--turn <requestId>` asserts which turn you mean and fails
   when the thread has moved on. It errors when the thread has not failed or
@@ -29,7 +29,8 @@ sendAt?, reason? })`.
 - Use `bb thread compact <id>` to send the built-in `/compact` command to an idle or errored thread. Completion or failure appears in the timeline. Provider support varies; consult its skill and reported capabilities.
 - Use `bb thread clear <id>` on an idle or failed thread to reset its active
   timeline and model context in place while keeping the same BB thread,
-  workspace, durable event history, and sticky execution settings.
+  workspace, durable event history, and sticky execution settings. The
+  `keepHistoryAfterContextClear` general setting keeps earlier messages visible.
 - A send that fails with `provider_session_unavailable` means the thread's
   recorded provider session belongs to another thread (`details.reason:
 "foreign"`) or was announced by another thread in the same millisecond

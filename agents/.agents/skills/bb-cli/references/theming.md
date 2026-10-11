@@ -14,7 +14,7 @@ that handles both modes.
 - [Model](#model)
 - [Stylesheet structure](#stylesheet-structure)
 - [What to set (quick start)](#what-to-set-quick-start)
-- [Token reference - what each variable drives](#token-reference)
+- [Token reference — what each variable drives](#token-reference)
 - [Changing fonts](#changing-fonts)
 - [Worked example](#worked-example)
 - [Applying a theme](#applying-a-theme)
@@ -22,9 +22,9 @@ that handles both modes.
 ## Where themes live
 
 A custom theme is a folder under the app data dir:
-`<bb-data-dir>/theme/<name>/theme.css` (the packaged app uses `~/.bb/theme/...`).
+`<bb-data-dir>/theme/<name>/theme.css` (the packaged app uses `~/.bb/theme/…`).
 The folder name is the theme id. Run `bb theme dir` to print the exact directory
-rather than guessing it. Always put custom app-theme CSS here - not in a stray
+rather than guessing it. Always put custom app-theme CSS here — not in a stray
 `.css` file elsewhere in a repo. To edit a theme, change its `theme.css` in place
 and re-run `bb theme set <name>` (or just re-select it) to re-apply.
 
@@ -32,8 +32,8 @@ and re-run `bb theme set <name>` (or just re-select it) to re-apply.
 
 The app's colors flow through CSS custom properties. The whole **neutral ramp**
 (backgrounds, cards, borders, sidebar, hover/active states, inset surfaces) is
-**derived from two anchors** - `--canvas` (the base surface) and `--ink` (the
-base text color) - by mixing `--ink` into `--canvas` at increasing percentages
+**derived from two anchors** — `--canvas` (the base surface) and `--ink` (the
+base text color) — by mixing `--ink` into `--canvas` at increasing percentages
 (higher % = more contrast / further from the surface). Accent-tinted surfaces
 (focus ring, selection, destructive surfaces) derive from `--primary` /
 `--destructive`. So you mostly set the **anchors + accent + text tiers +
@@ -44,7 +44,7 @@ the last stylesheet, so its rules win.
 
 ## Stylesheet structure
 
-Provide two blocks using these exact selectors - `:root, .light` for light mode
+Provide two blocks using these exact selectors — `:root, .light` for light mode
 and `.dark` for dark:
 
 ```css
@@ -68,13 +68,13 @@ The stylesheet is capped at ~256 KB.
 
 Set tokens in this order:
 
-1. **The two anchors - `--canvas` and `--ink`.** Nearly everything derives from
-   them. Keep them high-contrast - aim for >= 4.5:1 between `--ink` and
+1. **The two anchors — `--canvas` and `--ink`.** Nearly everything derives from
+   them. Keep them high-contrast — aim for ≥ 4.5:1 between `--ink` and
    `--canvas`.
-2. **The accent - `--primary` and `--primary-foreground`** (text/icons drawn on
+2. **The accent — `--primary` and `--primary-foreground`** (text/icons drawn on
    the accent). The focus ring, selection highlight, and sidebar ring derive from
    `--primary`.
-3. **The secondary text tiers - `--muted-foreground`, `--subtle-foreground`,
+3. **The secondary text tiers — `--muted-foreground`, `--subtle-foreground`,
    `--readback-foreground`.** These do NOT derive by default; derive them from the
    anchors so contrast tracks the theme:
    ```css
@@ -86,8 +86,8 @@ Set tokens in this order:
    `--destructive-text` (a text-legible variant), `--warning`, `--warning-text`,
    `--attention`, `--success`, `--diff-added`, `--diff-removed`, `--pr-merged`,
    and `--file-accent` (file-path tint).
-5. **Terminal palette (optional): `--ansi-0` ... `--ansi-15`.** If you remap these,
-   also set `--ansi-bg-fg-0` ... `--ansi-bg-fg-15` - the readable text color
+5. **Terminal palette (optional): `--ansi-0` … `--ansi-15`.** If you remap these,
+   also set `--ansi-bg-fg-0` … `--ansi-bg-fg-15` — the readable text color
    (usually black or white) drawn on top of each ANSI color when used as a
    background.
 6. **Terminal font (optional): `--font-terminal`.** This controls the
@@ -98,14 +98,14 @@ Set tokens in this order:
 What each variable drives. You mainly set the **anchors + accent + text tiers +
 semantic** tokens; the rest derive.
 
-**Anchors - set first; everything below keys off them:**
+**Anchors — set first; everything below keys off them:**
 
 | token      | drives                                                                                                                          |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `--canvas` | base surface: page/content background, cards, popovers, sidebar, and (via mixes) every neutral fill, border, and chrome surface |
 | `--ink`    | base text/foreground color, and the strength of every neutral fill/border (ink mixed into canvas)                               |
 
-**Surfaces & chrome - auto-derive from `--canvas`/`--ink`; leave alone unless you want one element to differ:**
+**Surfaces & chrome — auto-derive from `--canvas`/`--ink`; leave alone unless you want one element to differ:**
 
 | token                                                                       | drives                                                                        | derives           |
 | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------- |
@@ -115,16 +115,16 @@ semantic** tokens; the rest derive.
 | `--muted`                                                                   | muted fill: badges, chips, inset blocks                                       | ink 11%           |
 | `--border`                                                                  | default component borders (cards, dividers)                                   | ink 14%           |
 | `--border-hairline`                                                         | the finest 1px separators                                                     | ink ~15%          |
-| `--border-seam`                                                             | resizable app-shell boundaries: sidebar and content, split panes, and side panels | ink ~10%          |
+| `--border-seam`                                                             | resizable app-shell boundaries: sidebar↔content, split panes, and side panels | ink ~10%          |
 | `--border-seam-vertical`                                                    | compatibility alias for `--border-seam`; prefer the orientation-neutral token | `= --border-seam` |
 | `--input`                                                                   | input/control field borders                                                   | ink ~30%          |
 | `--surface-recessed`                                                        | sunken inset wells (code/diagram backgrounds)                                 | translucent ink   |
 | `--surface-raised`                                                          | faintly lifted panels                                                         | translucent ink   |
-| `--surface-scrim`                                                           | **frosted top bars** - the thread/page header (`bg-surface-scrim`, blurred)   | canvas 92%        |
+| `--surface-scrim`                                                           | **frosted top bars** — the thread/page header (`bg-surface-scrim`, blurred)   | canvas 92%        |
 | `--state-hover`, `--state-active`                                           | translucent hover / pressed overlays on rows & buttons                        | translucent ink   |
 | `--sidebar`, `--sidebar-foreground`, `--sidebar-accent`, `--sidebar-border` | left sidebar surface, its text, hovered items, borders                        | canvas/ink mixes  |
 
-**Accent - set `--primary` (+ foreground); these follow it:**
+**Accent — set `--primary` (+ foreground); these follow it:**
 
 | token                                             | drives                                                                    | derives           |
 | ------------------------------------------------- | ------------------------------------------------------------------------- | ----------------- |
@@ -134,7 +134,7 @@ semantic** tokens; the rest derive.
 | `--surface-selected`, `--surface-selected-border` | selected-row tint and its outline                                         | primary 16% / 35% |
 | `--file-accent`                                   | file-path titles in the timeline (the one tint in otherwise-neutral text) | set               |
 
-**Text tiers - set these (they do NOT auto-derive; use the `color-mix` recipe so contrast tracks the anchors):**
+**Text tiers — set these (they do NOT auto-derive; use the `color-mix` recipe so contrast tracks the anchors):**
 
 | token                   | drives                                                                         |
 | ----------------------- | ------------------------------------------------------------------------------ |
@@ -143,13 +143,13 @@ semantic** tokens; the rest derive.
 | `--subtle-foreground`   | low-emphasis text: captions, hints, placeholders                               |
 | `--readback-foreground` | settled/closed-turn machinery text (recede tier between muted and subtle)      |
 
-**Semantic / status - set each to a recognizable hue (these carry meaning; don't flatten them to neutral):**
+**Semantic / status — set each to a recognizable hue (these carry meaning; don't flatten them to neutral):**
 
 | token                                                   | drives                                                                                   |
 | ------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `--destructive`                                         | destructive buttons/fills (delete; failing/closed PR)                                    |
 | `--destructive-foreground`                              | text/icons on a `--destructive` fill                                                     |
-| `--destructive-text`                                    | text-only destructive (must clear ~4.5:1 on the canvas - give dark mode a lighter value) |
+| `--destructive-text`                                    | text-only destructive (must clear ~4.5:1 on the canvas — give dark mode a lighter value) |
 | `--surface-destructive`, `--surface-destructive-border` | destructive-tinted surfaces/outlines (auto-derive from `--destructive`)                  |
 | `--warning`, `--warning-text`                           | warning fills / warning text                                                             |
 | `--attention`                                           | attention indicator (amber dot)                                                          |
@@ -157,13 +157,13 @@ semantic** tokens; the rest derive.
 | `--diff-added`, `--diff-removed`                        | added/removed line colors in diffs                                                       |
 | `--pr-merged`                                           | merged-PR purple (the universal merged color)                                            |
 
-**Terminal - set only if remapping:** `--ansi-0` ... `--ansi-15` (the 16 ANSI
-colors) and `--ansi-bg-fg-0` ... `--ansi-bg-fg-15` (the readable text drawn on each
+**Terminal — set only if remapping:** `--ansi-0` … `--ansi-15` (the 16 ANSI
+colors) and `--ansi-bg-fg-0` … `--ansi-bg-fg-15` (the readable text drawn on each
 ANSI color when used as a background).
 
 **Non-color (optional):** `--radius` (corner rounding) and `--shadow-*`
 (elevation); fonts are below. Decorative `--pill-*` (prompt mention chips) are
-fixed literals - override only if needed.
+fixed literals — override only if needed.
 
 ## Changing fonts
 
@@ -180,7 +180,7 @@ generic family (`sans-serif` / `monospace` / `serif`) as a fallback.
 
 The browser must be able to load the family. Three ways:
 
-1. **A system or already-bundled font** - just name it. Inter is bundled (always
+1. **A system or already-bundled font** — just name it. Inter is bundled (always
    available); common OS fonts like `Menlo`, `"SF Mono"`, `Consolas`, `Georgia`
    work by name:
    ```css
@@ -191,7 +191,7 @@ The browser must be able to load the family. Three ways:
      --font-terminal: "Berkeley Mono", monospace;
    }
    ```
-2. **A web font via `@import`** - the `@import` must be the VERY FIRST statement
+2. **A web font via `@import`** — the `@import` must be the VERY FIRST statement
    in the file (an `@import` after any other rule is ignored), then reference it:
    ```css
    @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Sora&display=swap");
@@ -214,7 +214,7 @@ The browser must be able to load the family. Three ways:
    }
    ```
 
-Options 2-3 fetch the font over the network when the theme applies, so keep the
+Options 2–3 fetch the font over the network when the theme applies, so keep the
 generic fallback in the stack so text still renders if the font is slow or fails.
 
 ## Worked example
@@ -252,11 +252,11 @@ and semantics:
 
 ## Applying a theme
 
-1. `bb theme dir` - print the custom-theme directory (e.g. `~/.bb/theme`).
+1. `bb theme dir` — print the custom-theme directory (e.g. `~/.bb/theme`).
 2. Write your stylesheet to `<that-dir>/<name>/theme.css`. Start the name with
    a letter or digit. Use at most 64 letters, digits, dots, underscores, or
    hyphens.
-3. `bb theme set <name>` - activate it. To edit later, change the file in place
+3. `bb theme set <name>` — activate it. To edit later, change the file in place
    and re-run `bb theme set <name>`.
 
 ## Code themes (diffs and file previews)
@@ -291,4 +291,4 @@ with `{ name, type, colors, tokenColors }`. See https://diffs.com/theme.
 There is no separate code-theme setting. `bb theme show` prints the resolved
 Pierre names for the active palette.
 
-Changes apply live to every open window - no reload needed.
+Changes apply live to every open window — no reload needed.

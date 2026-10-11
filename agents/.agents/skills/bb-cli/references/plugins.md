@@ -3,7 +3,7 @@
 ## Plugins
 
 - A bb plugin is a TypeScript package running inside the bb server, extending
-  it with services, schedules, HTTP/RPC endpoints, settings - and `bb` CLI
+  it with services, schedules, HTTP/RPC endpoints, settings — and `bb` CLI
   subcommands that agents run through bash like any other command.
 - Use `bb plugin list` to inspect installed plugins and their current state.
 - **BB plugin catalog** (store under `/api/v1/plugin-catalog`):
@@ -22,9 +22,10 @@
     git or npm source through the normal install pipeline. A refresh only
     updates discovery metadata and icons; it never installs, updates, or runs
     plugin code, and a failed refresh keeps the last catalog bb validated.
-  - `bb plugin search <query> [--json]` - search the catalog by id,
+  - `bb plugin search <query> [--json]` — search the catalog by id,
     name, description, category, or tag; status shows installed / compatible /
-    requires newer bb. The table includes a **Category** column. An
+    requires newer bb / id in use by `<source>` (another installed plugin, such
+    as a local `path:` checkout, already uses the entry's id). The table includes a **Category** column. An
     **Installs** column appears once the curated
     marketplace's `stats.json` sidecar has been read (`installs` in `--json`,
     null when unknown): anonymous-telemetry install counts for published
@@ -33,7 +34,7 @@
     the marketplace publishes one; the detail page renders it below the short
     description.
 - **Third-party marketplaces** (routes under `/api/v1/marketplaces`):
-  - `bb marketplace add <source>` - add a marketplace from an https manifest
+  - `bb marketplace add <source>` — add a marketplace from an https manifest
     URL, `git:<url>[@<ref>]` (bb reads `marketplace.json` from the checkout),
     or `path:<directory>`. The CLI resolves a relative path from its current
     directory before it sends the request. BB validates the
@@ -46,11 +47,11 @@
     BB ignores unknown v2 fields, except in npm and git source objects. BB
     rejects unknown source keys because a source key changes the installed
     code.
-  - `bb marketplace list [--json]` - name, source, entry count, last refresh.
-  - `bb marketplace refresh [name] [--json]` - re-read one catalog or every
+  - `bb marketplace list [--json]` — name, source, entry count, last refresh.
+  - `bb marketplace refresh [name] [--json]` — re-read one catalog or every
     one of them. Discovery metadata and icons only. A failed refresh keeps the
     last catalog bb validated and exits non-zero.
-  - `bb marketplace remove <name> [--json]` - forget a marketplace. Its
+  - `bb marketplace remove <name> [--json]` — forget a marketplace. Its
     catalog rows and cached icons are deleted; every plugin it listed keeps
     running as a direct install with its full source intent and exact
     resolution, so `bb plugin outdated`/`update` keep working from the
@@ -60,20 +61,20 @@
     across every marketplace. Exactly one match installs. Several matches fail
     and list the `id@marketplace` choices.
   - A third-party marketplace install first resolves and
-    prints the true source - npm package with its range or dist-tag, or git
+    prints the true source — npm package with its range or dist-tag, or git
     URL with its ref or semver range, subdirectory, and the exact release tag
-    and commit that range currently lands on - plus the marketplace and the
+    and commit that range currently lands on — plus the marketplace and the
     entry's author. `--yes` skips the prompt, not the resolution. The install
     fails if the listing or its resolved git commit changes after confirmation.
   - Install a bundled plugin by its bare name or with
     `<entry-id>@bb-official`. bb copies it from the app bundle.
 - Commands:
-  - `bb plugin install <src>` - `<entry-id>@<marketplace>`, an HTTP(S) Git
+  - `bb plugin install <src>` — `<entry-id>@<marketplace>`, an HTTP(S) Git
     repository URL, a local path,
     `git:<url>[@<ref|semver-range>]`, or `npm:<package>[@<version|tag|range>]`
     (using BB's shipped npm). Repository URLs and prefixes `path:` /
     `npm:` / `git:` skip catalog resolution. To pin or
-    range an npm package, install with `npm:<package>@...`.
+    range an npm package, install with `npm:<package>@…`.
     Omit the npm spec to track compatible stable releases; ranges and dist-tags
     track, while exact versions are pinned. Omit the Git ref to track the
     repository's default branch; explicit branches track, while tags and
@@ -85,10 +86,10 @@
     on its own. bb records the selected tag and its commit and refuses to
     resolve that tag again if it moved. A bare spec that reads as a range
     resolves over tags only when no branch or tag has that literal name; when
-    both exist the install fails - write `@semver:<range>` or `@ref:<name>`.
+    both exist the install fails — write `@semver:<range>` or `@ref:<name>`.
     Installs prompt for confirmation (plugins are full-trust code);
     pass `--yes` to skip. Reinstalling an already-installed managed plugin is
-    refused - use `bb plugin update`. Installing a local path for an id that
+    refused — use `bb plugin update`. Installing a local path for an id that
     is already installed from another local path moves the plugin to the new
     directory and keeps its settings, secrets, and schedules. Plugins that
     declare a frontend (`bb.app`) are built at install time for path sources
@@ -109,11 +110,22 @@
     Installs from one repository and commit share a single checkout.
     A repository that has a collection manifest and is not a plugin itself
     refuses an unselected install and lists its entry names.
-  - `bb plugin outdated` - check installed plugins for compatible updates
+    Every install (CLI, SDK, or app) is a server job. Jobs run one at a time
+    in request order and keep going when the client disconnects or the app
+    reloads; a second request for the same source or catalog entry joins the
+    active job. `--no-wait` starts the job and prints its id instead of
+    waiting.
+  - `bb plugin install-jobs` — list queued, running, and recently finished
+    installs (finished jobs stay for ten minutes; `--json` for the jobs).
+  - `bb plugin cancel-install <job-id>` — a queued install is dropped. A
+    running install kills its git/npm step and installs nothing; once it has
+    started registering the plugin, it finishes and reports success (remove
+    it afterwards if unwanted).
+  - `bb plugin outdated` — check installed plugins for compatible updates
     (table; `--json` for raw results). Shows latest compatible candidate and
     any blocked incompatible newer release. Dev builds (bb `0.0.0`) annotate
     that `engines.bb` is not enforced.
-  - `bb plugin update <id>` / `bb plugin update --all` - apply compatible
+  - `bb plugin update <id>` / `bb plugin update --all` — apply compatible
     updates for tracking sources, including newer tags that satisfy a Git
     semver range. Same full-trust confirmation as install (`--yes` skips;
     non-TTY refuses without it). Use `bb plugin outdated` to preview available
@@ -122,27 +134,45 @@
     install. A local path plugin is never removed to change it: edit it in
     place and `bb plugin reload <id>`, or `bb plugin install path:<new dir>`
     to move it; both keep its configuration.
-  - `bb plugin list` - status, background services, schedules, handler timings,
+  - `bb plugin list` — status, background services, schedules, handler timings,
     and each plugin's contributed `bb` command.
-  - `bb plugin source <id> [--json]` - requested and resolved source, the
+  - `bb plugin source <id> [--json]` — requested and resolved source, the
     repository subdirectory for a nested plugin, the semver range with its tag
     prefix and resolved tag for a Git range install, engine ranges, install
     time, integrity/registry details, and recent activation history.
-  - `bb plugin enable|disable <id>`, `bb plugin reload [id]` (exits 1 when a
+  - `bb plugin enable|disable <id>` — a plugin included with bb that you have
+    never enabled or disabled follows bb's default, so a later release can turn
+    it on; once you enable or disable it, that choice survives every release.
+  - `bb plugin reload [id]` (exits 1 when a
     reloaded plugin does not come up on its current sources: the previous
     instance was kept, or it is degraded because a service ignored its abort),
     `bb plugin remove <id>` (deletes the plugin's settings, secrets, and
     schedules; managed git/npm files are deleted, and local path sources stay
     on disk).
-  - `bb plugin config <id> [set <key> <value> | unset <key>]` - declared
+  - `bb plugin prune [--dry-run] [--json]` — delete cached git:/npm: plugin
+    versions under `<data>/plugins/cache` that no installed plugin uses
+    (left by earlier bb releases, rolled-back updates, or interrupted
+    operations) and unrecorded cache directories. A successful update already
+    deletes the version it replaced, and `bb plugin remove` deletes the
+    plugin's versions. Prints each removed version
+    with its size and the total freed; `--dry-run` only lists them. Active
+    versions, pending rollbacks, and local path sources are never touched.
+    The command palette's Clean up plugin cache runs the same prune.
+  - `bb plugin safe-mode [on|off] [--json]` — show or change plugin safe
+    mode. `on` stops every plugin you installed, official store plugins
+    included, while keeping each plugin's enabled setting; plugins included
+    with bb keep running. `off` restarts the ones that were enabled and exits 1
+    naming any that fail to start. Installing or updating a stopped plugin is
+    refused while safe mode is on. The command palette offers the same toggle.
+  - `bb plugin config <id> [set <key> <value> | unset <key>]` — declared
     settings; boolean and number arguments are converted to their declared
     types. Reload the plugin after configuring (`bb plugin reload <id>`).
-  - `bb plugin token <id>` - print a short-lived bearer token for that plugin.
+  - `bb plugin token <id>` — print a short-lived bearer token for that plugin.
   - List, reload, enable, disable, config, and remove support `--json`.
-  - `bb plugin logs <id> [-n N] [-f]` - the plugin's `bb.log` output.
-  - `bb plugin run <id> [args...]` - explicit form; collisions log an activation
+  - `bb plugin logs <id> [-n N] [-f]` — the plugin's `bb.log` output.
+  - `bb plugin run <id> [args...]` — explicit form; collisions log an activation
     warning and are annotated by `bb plugin list`.
-  - `bb plugin new <name>` - scaffold a todo-list plugin (`server.ts`,
+  - `bb plugin new <name>` — scaffold a todo-list plugin (`server.ts`,
     `app.tsx` with a sidebar page, a `bb <name>` CLI command, a skill, and
     vendored UI components) and install its npm dependencies (scaffold sets
     `engines.bbPluginSdk` to `>=0.4.3`). The
@@ -153,7 +183,7 @@
     still scaffolds. The
     install is best-effort and verified: if npm is missing or leaves a package
     out, it says so and prints the manual `npm install --include=dev` step
-    rather than reporting success; `bb plugin build [path]` -
+    rather than reporting success; `bb plugin build [path]` —
     compile the plugin into `dist/`: the backend bundle (`server.js` +
     `server.meta.json` stamped with SDK/identity metadata; preferred by
     git/npm installs over source), when `bb.app` is declared, `app.js` +
@@ -162,28 +192,28 @@
     `host.meta.json` (its digest; host daemons download and verify the bundle
     by that digest, and run it as a host RPC worker, a provider bridge, or
     both). None of it needs the server.
-  - `bb plugin types [path]` - sync the plugin's `@get-bb/plugin-sdk` surface
+  - `bb plugin types [path]` — sync the plugin's `@get-bb/plugin-sdk` surface
     to the running bb (default: cwd). It rewrites the exact `devDependencies`
     pin to this bb's SDK
     version and brings the type-only devDependencies of the packages bb shims
     at runtime (sonner, vaul, the portal radix families, @pierre/diffs, clsx,
-    tailwind-merge, class-variance-authority) to this bb's versions - adding
+    tailwind-merge, class-variance-authority) to this bb's versions — adding
     any an app plugin is missing and moving one out of `dependencies`
-    (reporting old to new, and reminding you to `npm install`). A plugin that
+    (reporting old → new, and reminding you to `npm install`). A plugin that
     still vendors declarations must run `bb plugin migrate`; `types` and
     `types --check` exit non-zero with that instruction. Run `types` in a
     cloned or older package-layout plugin: the SDK surface grows every release.
     `--check` writes nothing and exits non-zero on a mismatch (for CI).
     `bb plugin build` and `bb plugin dev` warn for a vendored layout, skip the
     type update, and continue with its checked-in declarations. Needs no server.
-  - `bb plugin migrate [path] [--yes]` - convert a plugin that still vendors
+  - `bb plugin migrate [path] [--yes]` — convert a plugin that still vendors
     `types/` to the `@get-bb/plugin-sdk` npm package (default: cwd): add the
     exact `devDependencies` pin, raise `engines.bbPluginSdk` when this bb's SDK
     is newer than the declared floor, move an SDK entry declared in
     `dependencies` into `devDependencies`, drop the `@get-bb/plugin-sdk` (and
     pre-rename `@bb/plugin-sdk`) entries from `compilerOptions.paths` (other
     paths like `@/*` are untouched), and delete `types/bb-plugin-sdk*.d.ts`
-    plus `types/` if that empties it - a `types/` still holding your own
+    plus `types/` if that empties it — a `types/` still holding your own
     declarations is kept, along with the `include` entries that compile it. It
     also rewrites quoted `@bb/plugin-sdk` import/export specifiers (and their
     subpaths) in the plugin's own `.ts`/`.tsx` sources to `@get-bb/plugin-sdk`,
@@ -197,7 +227,7 @@
     The vendored layout still builds and runs in development with its existing
     declarations, but SDK type updates require migration.
     Re-running on a migrated plugin is a no-op. Needs no server.
-  - `bb plugin dev [path]` - watch loop for an installed plugin (default:
+  - `bb plugin dev [path]` — watch loop for an installed plugin (default:
     cwd): on every change it rebuilds the frontend bundle (when `bb.app` is
     declared; unminified, unlike `bb plugin build`) and reloads the plugin;
     open app pages pick the new UI up live.
@@ -210,8 +240,8 @@
     useBbNavigate, useComposer for scoped text editing / quote / mention /
     focus access); components are vendored shadcn source the
     plugin owns. Installed
-    plugins and their settings also appear under Settings to Installed plugins.
-- **Writing a plugin?** Use the `bb-plugin-authoring` skill - the complete
+    plugins and their settings also appear under Settings → Installed plugins.
+- **Writing a plugin?** Use the `bb-plugin-authoring` skill — the complete
   authoring reference for the backend `BbPluginApi` (settings, storage, sdk,
   http/rpc/realtime, background services and schedules, CLI commands, agent
   tools and context, host-rendered UI, lifecycle) and the frontend
@@ -223,3 +253,9 @@
 `bb plugin rpc list [plugin-id] [--method <exact-name>] [--json]` lists discoverable methods from running plugins, optionally restricted to one plugin. `bb plugin rpc inspect <plugin-id> [method] [--json]` dumps registration and method descriptions plus input/output JSON Schemas. Copy the relevant schema into your consumer and call the existing plugin RPC endpoint. Discovery is opt-in advertising, not access control; method names may carry versions such as `provider-usage.v1.listResources`.
 
 `bb plugin rpc call <plugin-id> <method> [--input-file <json-path>] [--json]` invokes a method using server-side schema validation. Omitting the input file sends JSON null. Input files avoid putting sensitive values in command arguments.
+
+### Background updates
+
+`bb plugin update <id> --yes` starts a server job and waits by polling, so the activation stability check does not hold one HTTP request open. Add `--no-wait` to return immediately. Use `bb plugin update-jobs [job-id] --json` for progress and results, including automatic rollback. Queued/running updates continue after the CLI or app disconnects. Finished jobs remain for ten minutes; jobs do not survive server restarts. Running updates cannot be cancelled midway through activation.
+
+SDK: `plugins.applyUpdate({ pluginId })` waits; `plugins.experimental_startUpdate({ pluginId })` returns the job. Inspect with `plugins.experimental_updateJobs.list()` or `.get({ jobId })`. Raw HTTP callers opt in with `Prefer: respond-async`; legacy callers still receive the completed result.
