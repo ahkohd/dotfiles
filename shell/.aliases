@@ -1,11 +1,8 @@
 alias -- c=clear
-alias -- cat=bat
-alias -- cd=__zoxide_z
 alias -- dev='~/developer/personal'
 alias -- eza='eza --icons never --git'
 alias -- glg='git log -n 10 --graph --decorate --oneline'
 alias -- gpg-check='gpg --decrypt ~/test.gpg'
-alias -- grep='grep --color=auto'
 alias -- gst='git status'
 alias -- h=herdr
 alias -- hd='herdr --remote var@devbox.victor.computer --remote-keybindings server'
@@ -39,7 +36,6 @@ alias -- la='eza -a'
 alias -- lg=lazygit
 alias -- ll='eza -l'
 alias -- lla='eza -la'
-alias -- ls='eza --tree --level=1'
 alias -- lt='eza --tree'
 
 alias -- nv=nvim
@@ -53,7 +49,6 @@ alias -- tn='tmux new-session -s'
 
 alias -- x=exit
 alias -- y=yy
-alias -- z=zmx
-alias -- zz='__zoxide_z -'
+alias -- zz='cd -'
 
 alias -- bdpush='bd linear sync --push'

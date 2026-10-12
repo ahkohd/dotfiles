@@ -1,21 +1,13 @@
 # autoload completions
 autoload -Uz compinit; compinit -u
 
-if command -v zmx &> /dev/null; then
-  eval "$(zmx completions zsh)"
-fi
-
-. "$HOME/.cargo/env"
-
-setopt PROMPT_SUBST
-PS1='%F{yellow}%m%f $(prmt --no-version --code $? "{env:magenta:ZMX_SESSION:: }{path:cyan.bold}{git:purple:f: on }{rust:red.bold:s: }{node:green.bold:s: }\n{ok:green}{fail:red}") '
+PROMPT='%~ %# '
 
 # Set up fzf key bindings and fuzzy completion
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 command -v fzf &>/dev/null && source <(fzf --zsh)
 [ -f ~/.fzf-tab/fzf-tab.plugin.zsh ] && source ~/.fzf-tab/fzf-tab.plugin.zsh
 
-eval "$(zoxide init --no-cmd zsh)"
+eval "$(zoxide init zsh)"
 
 eval "$(direnv hook zsh)"
 
@@ -40,10 +32,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     if [ -f ~/.darwin.sh ]; then
         source ~/.darwin.sh
     fi
-fi
-
-if [ -f ~/.env ]; then
-    . ~/.env
 fi
 
 if [[ "$OSTYPE" == "linux"* ]]; then
@@ -90,13 +78,5 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 fi
 
-
-# bun completions
-[ -s "/home/var/.bun/_bun" ] && source "/home/var/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export BAT_THEME="evergarden-winter"
-
-export PATH="$HOME/.local/bin:$PATH"
+# Bun completions
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
