@@ -14,7 +14,6 @@
   },
   "hideThinkingBlock": false,
   "packages": [
-    "git:github.com/ahkohd/ponytail",
     "git:github.com/ahkohd/emil-design-engineering-skills@7bb7061b5cf7de15ea1aeaf00fbd9e6592a20fce"
   ],
   "editorPaddingX": 1,

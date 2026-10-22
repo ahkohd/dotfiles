@@ -1,6 +1,6 @@
 # Run from the repo: /bin/zsh -lic 'source scripts/check-shell.zsh'
 () {
-  local name tool
+  local name tool resolved
   [[ $PROMPT == '%~ %# ' && $PAGER == moor ]] || return 1
   [[ ${aliases[zz]} == 'cd -' ]] || return 1
   for name in ls cat cd grep z; do
@@ -12,8 +12,9 @@
   (( ! $+functions[za] && ! $+functions[zk] )) || return 1
   local -a unique_path=("${(@u)path}")
   (( $#path == $#unique_path )) || return 1
-  for tool in pi node npm bun cargo nvim jj fzf atuin moor; do
-    command -v "$tool" >/dev/null || return 1
+  for tool in pi node npm bun cargo nvim jj fzf atuin moor brew; do
+    resolved=$(command -v "$tool") || return 1
+    [[ ${resolved:A} != /nix/* ]] || return 1
   done
   print 'PASS: shell startup, native commands, integrations, unique PATH and tools'
 }

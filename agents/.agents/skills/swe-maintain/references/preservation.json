@@ -1,0 +1,635 @@
+{
+  "revision": "02b59d7f73a693d40ad2090d00789f3e3a772151",
+  "normalization": "prepare-upstream.py name normalization; review-triage filename adapted locally",
+  "excluded_skill_roots": {
+    "setup-swe": "Replaced by shared model-selection policy",
+    "make-bot-ui": "Vendor-specific webhook UI"
+  },
+  "files": {
+    "skills/figure-it-out/SKILL.md": {
+      "upstream": "skills/figure-it-out/SKILL.md",
+      "unchanged_sha256": "8c3aeb8dfef5c65d7d9e8bdb4e3edd3997d1ac08a960c1a354386a52f80a0aa9"
+    },
+    "skills/bro/SKILL.md": {
+      "upstream": "skills/bro/SKILL.md",
+      "unchanged_sha256": "aa329d0ceeeecb6822a7174ad76bb07a7826a3c52ceb6a588dec4138815084bb"
+    },
+    "skills/interrogate/SKILL.md": {
+      "upstream": "skills/interrogate/SKILL.md"
+    },
+    "skills/benchmark-checklist/SKILL.md": {
+      "upstream": "skills/benchmark-checklist/SKILL.md",
+      "unchanged_sha256": "ba109e96c8f6c1c391baccf19e5d11e14370df7b3f2605e1572cd565a6c0fca0"
+    },
+    "skills/principle-boundary-discipline/SKILL.md": {
+      "upstream": "skills/principle-boundary-discipline/SKILL.md",
+      "unchanged_sha256": "62ac2862c2caa22dd14531f51c9c6bb445ceb198ca98a687e25b4d47c1f10a28"
+    },
+    "skills/swarm/SKILL.md": {
+      "upstream": "skills/swarm/SKILL.md"
+    },
+    "skills/principle-model-the-domain/SKILL.md": {
+      "upstream": "skills/principle-model-the-domain/SKILL.md",
+      "unchanged_sha256": "52c0d85e0c3827c41c18299b642657d7b47eaf77b7b31609e42e0df42b84c75f"
+    },
+    "skills/correct/SKILL.md": {
+      "upstream": "skills/correct/SKILL.md",
+      "unchanged_sha256": "e347045d00c967a0b831ef883cc6ac79d21329aa10b5968637df95de7febf0ba"
+    },
+    "skills/technical-writing/SKILL.md": {
+      "upstream": "skills/technical-writing/SKILL.md",
+      "unchanged_sha256": "61fe9c424a798ebf36ad94941f87be049cb8827bdf86d21474a0dde37b513c43"
+    },
+    "skills/principle-fix-root-causes/SKILL.md": {
+      "upstream": "skills/principle-fix-root-causes/SKILL.md",
+      "unchanged_sha256": "8df3c8c3fe57eb0055a5c8efab8ab144557fdf301da70b1cdc77a3a3ef3f3052"
+    },
+    "skills/why/SKILL.md": {
+      "upstream": "skills/why/SKILL.md"
+    },
+    "skills/in-your-own-words/SKILL.md": {
+      "upstream": "skills/in-your-own-words/SKILL.md",
+      "unchanged_sha256": "fa8ba74e27d7be371dc270ec78bbf816411477d0dfab185356c861ac8dd413ad"
+    },
+    "skills/principle-encode-lessons-in-structure/SKILL.md": {
+      "upstream": "skills/principle-encode-lessons-in-structure/SKILL.md",
+      "unchanged_sha256": "228963799189f481827d6f28065f278bc2008ffa37030b1234cbd5814d36b9e9"
+    },
+    "skills/how/SKILL.md": {
+      "upstream": "skills/how/SKILL.md"
+    },
+    "skills/sharpen/SKILL.md": {
+      "upstream": "skills/sharpen/SKILL.md",
+      "unchanged_sha256": "563dfc460c605d311e650726288e2f1cbd61eab817db178d6e7e29643e07e7a2"
+    },
+    "skills/blast-radius/SKILL.md": {
+      "upstream": "skills/blast-radius/SKILL.md",
+      "unchanged_sha256": "2e10745b97f5862323dcda3b29ca60d56b5c3c98e37020085d26b48efbe0a436"
+    },
+    "skills/maintain-formal-verification-skill/SKILL.md": {
+      "upstream": "skills/maintain-formal-verification-skill/SKILL.md",
+      "unchanged_sha256": "0c96f54293542d3818b68754562b338073958781a9684454611dca37592e2d2c"
+    },
+    "skills/principle-guard-the-context-window/SKILL.md": {
+      "upstream": "skills/principle-guard-the-context-window/SKILL.md",
+      "unchanged_sha256": "af0b9dd70b43628ce4a59a4d332e9d9ad055084e460f430e7a757495c627e81a"
+    },
+    "skills/principle-subtract-before-you-add/SKILL.md": {
+      "upstream": "skills/principle-subtract-before-you-add/SKILL.md",
+      "unchanged_sha256": "8c93bb9d1a7f38e2ef37655d93f0e790fa59903105af3d500cc8a663ebe45f3f"
+    },
+    "skills/create-formal-verification-skill/SKILL.md": {
+      "upstream": "skills/create-formal-verification-skill/SKILL.md"
+    },
+    "skills/reflect/SKILL.md": {
+      "upstream": "skills/reflect/SKILL.md"
+    },
+    "skills/principle-foundational-thinking/SKILL.md": {
+      "upstream": "skills/principle-foundational-thinking/SKILL.md",
+      "unchanged_sha256": "864b827e8199d946ce58beca0f89c4ed4099ed6e426fb698a3aaa45de2a9eea2"
+    },
+    "skills/show-me-your-work/SKILL.md": {
+      "upstream": "skills/show-me-your-work/SKILL.md"
+    },
+    "skills/principle-build-the-lever/SKILL.md": {
+      "upstream": "skills/principle-build-the-lever/SKILL.md",
+      "unchanged_sha256": "3434b0ad0c640c6f1d7960be7a8986c3bcdc14e26060360dec29903df60074ff"
+    },
+    "skills/ketchup-video/SKILL.md": {
+      "upstream": "skills/ketchup-video/SKILL.md",
+      "unchanged_sha256": "74f1b9e61f8479e2be5b91a4f53136f6ad8e144fd950c9848de6aa1cdbb7645c"
+    },
+    "skills/swe-help/SKILL.md": {
+      "upstream": "skills/swe-help/SKILL.md"
+    },
+    "skills/swe/SKILL.md": {
+      "upstream": "skills/swe/SKILL.md"
+    },
+    "skills/principle-make-operations-idempotent/SKILL.md": {
+      "upstream": "skills/principle-make-operations-idempotent/SKILL.md",
+      "unchanged_sha256": "7aa9327cf1f1aa057e95d47a0a78bd88a8f9d556b608866fee939d455a53a019"
+    },
+    "skills/statechart/SKILL.md": {
+      "upstream": "skills/statechart/SKILL.md",
+      "unchanged_sha256": "b1c544782b1527ba09e63311e4faa4c277c86aa33b0506590f8082b7b4bea505"
+    },
+    "skills/recall/SKILL.md": {
+      "upstream": "skills/recall/SKILL.md"
+    },
+    "skills/ketchup/SKILL.md": {
+      "upstream": "skills/ketchup/SKILL.md"
+    },
+    "skills/principle-sequence-verifiable-units/SKILL.md": {
+      "upstream": "skills/principle-sequence-verifiable-units/SKILL.md",
+      "unchanged_sha256": "2ccbbacc56ace5afdfb8670cef19d7bd009fb2a0033b9a741cbdf2b6baf72187"
+    },
+    "skills/principle-test-behavior-not-implementation/SKILL.md": {
+      "upstream": "skills/principle-test-behavior-not-implementation/SKILL.md",
+      "unchanged_sha256": "f7223698623b6a26fea49c751e466b38e6691b1f32ce841d3983e7ffbe2b74a6"
+    },
+    "skills/principle-explain-the-number/SKILL.md": {
+      "upstream": "skills/principle-explain-the-number/SKILL.md",
+      "unchanged_sha256": "cd5a25f9e7cf023627ccb470dc5faa97542f29b4319496a32b839a8e1e988047"
+    },
+    "skills/maintain-verification-skill/SKILL.md": {
+      "upstream": "skills/maintain-verification-skill/SKILL.md"
+    },
+    "skills/principle-outcome-oriented-execution/SKILL.md": {
+      "upstream": "skills/principle-outcome-oriented-execution/SKILL.md",
+      "unchanged_sha256": "10eb91633aa570355ba4bb37088fcade2b22e498df7a58edc749e65bc5a78e2d"
+    },
+    "skills/typescript-best-practices/SKILL.md": {
+      "upstream": "skills/typescript-best-practices/SKILL.md",
+      "unchanged_sha256": "ec1dac086d3708e5940d45d250c30a37dd953b4e3cb2ca0692f5851d7a039e27"
+    },
+    "skills/architect/SKILL.md": {
+      "upstream": "skills/architect/SKILL.md"
+    },
+    "skills/principle-never-block-on-the-human/SKILL.md": {
+      "upstream": "skills/principle-never-block-on-the-human/SKILL.md",
+      "unchanged_sha256": "05030a7a083c337676f793881b4e93cd218e8f1dd676529f56e6ac1d3efb8d1f"
+    },
+    "skills/principle-redesign-from-first-principles/SKILL.md": {
+      "upstream": "skills/principle-redesign-from-first-principles/SKILL.md",
+      "unchanged_sha256": "170e0a658783e43fee8ec5a8c2422a4abb8f69cef621dd1819a95910b8207034"
+    },
+    "skills/principle-minimize-reader-load/SKILL.md": {
+      "upstream": "skills/principle-minimize-reader-load/SKILL.md",
+      "unchanged_sha256": "1ea2b7fef2391cae5844c4efdbd59031f775e8a52d06b7495d707229a200dcca"
+    },
+    "skills/principle-exhaust-the-design-space/SKILL.md": {
+      "upstream": "skills/principle-exhaust-the-design-space/SKILL.md",
+      "unchanged_sha256": "2de83d99f93f60ec6313455b0bc9aa9f0bfb93dd59f414f403691322db00d4db"
+    },
+    "skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md": {
+      "upstream": "skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md",
+      "unchanged_sha256": "580ad9bb1a0994ecb924321ba49efc38a2f85c64e22c76fb133f57a78272a2e6"
+    },
+    "skills/automate-me/SKILL.md": {
+      "upstream": "skills/automate-me/SKILL.md"
+    },
+    "skills/teach/SKILL.md": {
+      "upstream": "skills/teach/SKILL.md",
+      "unchanged_sha256": "bd286e5a6290673be2cd28aef7af2ec7f1fb138e6bce156ea657368c7e7fc8a4"
+    },
+    "skills/arena/SKILL.md": {
+      "upstream": "skills/arena/SKILL.md"
+    },
+    "skills/principle-attack-the-premise/SKILL.md": {
+      "upstream": "skills/principle-attack-the-premise/SKILL.md",
+      "unchanged_sha256": "6a932884daad4aa189e9b5d1665226bbc75621d4d2a398fd4003bebd382f4599"
+    },
+    "skills/create-verification-skill/SKILL.md": {
+      "upstream": "skills/create-verification-skill/SKILL.md"
+    },
+    "skills/no-comments/SKILL.md": {
+      "upstream": "skills/no-comments/SKILL.md"
+    },
+    "skills/principle-laziness-protocol/SKILL.md": {
+      "upstream": "skills/principle-laziness-protocol/SKILL.md",
+      "unchanged_sha256": "1be6e7a435f26a75a76eb848b9c3d611b9977d0f5822361753244da25ca3ca45"
+    },
+    "skills/principle-experience-first/SKILL.md": {
+      "upstream": "skills/principle-experience-first/SKILL.md",
+      "unchanged_sha256": "58903529d733b1c1a7c9ccf127d45ef3c7d0d9f0b81164a4dc6b80efe6f2912b"
+    },
+    "skills/unslop/SKILL.md": {
+      "upstream": "skills/unslop/SKILL.md",
+      "unchanged_sha256": "ccab208e315ce05e2fab8eeee2f7879f1289b5c6844840b2d307adf31c79144f"
+    },
+    "skills/tdd/SKILL.md": {
+      "upstream": "skills/tdd/SKILL.md",
+      "unchanged_sha256": "eeb868e2dfebee528d730a67d7b17498fac4bb85dec2e38bc5c5176aca4d5d2f"
+    },
+    "skills/principle-prove-it-works/SKILL.md": {
+      "upstream": "skills/principle-prove-it-works/SKILL.md",
+      "unchanged_sha256": "ec79a15025bac8d33d62011c54f3b612733fd2a024e623b531b3637aa75070e2"
+    },
+    "skills/principle-separate-before-serializing-shared-state/SKILL.md": {
+      "upstream": "skills/principle-separate-before-serializing-shared-state/SKILL.md",
+      "unchanged_sha256": "05294b40448e927c5da1c7b6f5c6b9fed3744637e3833d2d948b9154a9dd00bb"
+    },
+    "skills/principle-type-system-discipline/SKILL.md": {
+      "upstream": "skills/principle-type-system-discipline/SKILL.md",
+      "unchanged_sha256": "5cdaf79785e3c12b2592b9469ee8c272143eb86ab7a18d8382197cea5fd30106"
+    },
+    "skills/no-comments/references/comment-sicko.md": {
+      "upstream": "skills/no-comments/references/comment-sicko.md",
+      "unchanged_sha256": "73c0bcb8c258981131c00f09c2c56e300c7225803bd4e1093ef41362e0073d98"
+    },
+    "skills/create-verification-skill/references/feature-map-example/search.md": {
+      "upstream": "skills/create-verification-skill/references/feature-map-example/search.md",
+      "unchanged_sha256": "6e87b9e7f2791a7776ba1bb83f371cd285c306c67f19d245cc4dd6ca3015c823"
+    },
+    "skills/create-verification-skill/references/feature-map-example/create-note.md": {
+      "upstream": "skills/create-verification-skill/references/feature-map-example/create-note.md",
+      "unchanged_sha256": "644a44c74f35d38c2feb7cd05a0121fdebbb623e8dc376c185b565a581d1ccf7"
+    },
+    "skills/create-verification-skill/references/feature-map-example/README.md": {
+      "upstream": "skills/create-verification-skill/references/feature-map-example/README.md",
+      "unchanged_sha256": "cb7bd782cf89968a4ba3d58a5151db837430db92d19a6f52a906973b77b516ba"
+    },
+    "skills/architect/references/design-red-flags.md": {
+      "upstream": "skills/architect/references/design-red-flags.md",
+      "unchanged_sha256": "d0e639e4cc588ec865f930d3a4111faad60987ae36925917e319d7ceca7c69ce"
+    },
+    "skills/architect/references/rationale-template.md": {
+      "upstream": "skills/architect/references/rationale-template.md",
+      "unchanged_sha256": "0cedfccdc7b47fc881febd5a8293eecbc542c20f8df825639904a8102d2eb5d3"
+    },
+    "skills/architect/references/runner-prompt.md": {
+      "upstream": "skills/architect/references/runner-prompt.md",
+      "unchanged_sha256": "21dd5314aab778c5007228027a4591d97693fbec6ab86524037772b63f40948e"
+    },
+    "skills/typescript-best-practices/references/patterns.md": {
+      "upstream": "skills/typescript-best-practices/references/patterns.md",
+      "unchanged_sha256": "12e70c9419a8b3f5d6a1ab80e272c1f00a43ac0b3bbf72d68199033570e5de77"
+    },
+    "skills/statechart/scripts/spec-text.mjs": {
+      "upstream": "skills/statechart/scripts/spec-text.mjs",
+      "unchanged_sha256": "494f56d5577a09f9e93057fb6bfe5e3e74df53644e9992f4452ed7008f6f5aab"
+    },
+    "skills/statechart/scripts/tlc-tools.mjs": {
+      "upstream": "skills/statechart/scripts/tlc-tools.mjs",
+      "unchanged_sha256": "50fba780bb36edeb20804964f2e93f8c5fa85b6fe1e0e1e8d32e4b933eb69e84"
+    },
+    "skills/statechart/scripts/lib.mjs": {
+      "upstream": "skills/statechart/scripts/lib.mjs",
+      "unchanged_sha256": "ae8ebe18e09419a63b23465f9a53c9117e04de12a7bc945b1f75ce66a367cc5b"
+    },
+    "skills/statechart/scripts/second-replay.mjs": {
+      "upstream": "skills/statechart/scripts/second-replay.mjs",
+      "unchanged_sha256": "033325ff5440a81a11aebdd485de4e2fd2f703db9f9b84c4fe24bc274d9df285"
+    },
+    "skills/statechart/scripts/render.mjs": {
+      "upstream": "skills/statechart/scripts/render.mjs",
+      "unchanged_sha256": "b813236db10ce50a4d04efa68953eabbee0cdc30e3fa96c03b8a2e1f477f3e57"
+    },
+    "skills/statechart/scripts/read-check.mjs": {
+      "upstream": "skills/statechart/scripts/read-check.mjs",
+      "unchanged_sha256": "f4124d09512b62c056ca81fcde91d9dd1a4d07a99de950ec945df83f044772a9"
+    },
+    "skills/statechart/scripts/property-loop.mjs": {
+      "upstream": "skills/statechart/scripts/property-loop.mjs",
+      "unchanged_sha256": "437b66fa85d45bddc8f743fc96af3f3a358f6c3d4da5d55e23dd04c4468f00e7"
+    },
+    "skills/statechart/scripts/chart-edges.mjs": {
+      "upstream": "skills/statechart/scripts/chart-edges.mjs",
+      "unchanged_sha256": "bb1896c1e0eb6b2bfe0f1e5ef71b194a3096c4a6db1879514bcfc3818d3d644a"
+    },
+    "skills/statechart/scripts/compare-charts.mjs": {
+      "upstream": "skills/statechart/scripts/compare-charts.mjs",
+      "unchanged_sha256": "1fa3c1aad875d38d6d1702fcbbcdb7592bc9a3dbe871cdbd4f9ddeda1bc859fc"
+    },
+    "skills/statechart/scripts/statechart.mjs": {
+      "upstream": "skills/statechart/scripts/statechart.mjs",
+      "unchanged_sha256": "c24a83dda26aec03a3a0e5a961ece983a8283f6c4c66334fd229c2d2e8d7bb36"
+    },
+    "skills/statechart/scripts/statechart-help.mjs": {
+      "upstream": "skills/statechart/scripts/statechart-help.mjs",
+      "unchanged_sha256": "ab38345c41028ad76d2866b03b3f5aa2c8303c3223c87dc9979effbeec79e46b"
+    },
+    "skills/statechart/scripts/chart-to-tla.mjs": {
+      "upstream": "skills/statechart/scripts/chart-to-tla.mjs",
+      "unchanged_sha256": "e26b0decb4762ee4c05cc96f4ba1454bd87ab6ae49f0f4bde74a29a4b493117d"
+    },
+    "skills/statechart/scripts/regions-chart.mjs": {
+      "upstream": "skills/statechart/scripts/regions-chart.mjs",
+      "unchanged_sha256": "c234623411a2d5368737c8ef4f4012ec92f902340d8fdd527d08d015a448bde9"
+    },
+    "skills/statechart/scripts/map-view.mjs": {
+      "upstream": "skills/statechart/scripts/map-view.mjs",
+      "unchanged_sha256": "d9ca92ba29a9d5e4143c64826c24b34cc41d5cac28aeee6a25db485e5b2c7d4f"
+    },
+    "skills/statechart/scripts/tlc-to-chart.mjs": {
+      "upstream": "skills/statechart/scripts/tlc-to-chart.mjs",
+      "unchanged_sha256": "2fc9c866ed1217cd5f107ec059eb9df2d32268c1f582929321a0a4cdbb26b15a"
+    },
+    "skills/statechart/scripts/rule-book.mjs": {
+      "upstream": "skills/statechart/scripts/rule-book.mjs",
+      "unchanged_sha256": "d26a8da74d105b5807ef8333172470660853e61069cc2573817ab7811755dde2"
+    },
+    "skills/statechart/scripts/bug-states.mjs": {
+      "upstream": "skills/statechart/scripts/bug-states.mjs",
+      "unchanged_sha256": "8c138f76542997f4fc8aa00ccb42f5b3510a4bcb475e04e422cf06c77ae6bbf4"
+    },
+    "skills/statechart/scripts/ways-in.mjs": {
+      "upstream": "skills/statechart/scripts/ways-in.mjs",
+      "unchanged_sha256": "4728ad85dbd12d192c6bfb5c4374ef3f63ce8d61e03aa120f159dfc607b2af06"
+    },
+    "skills/statechart/scripts/tlc-to-chart-args.mjs": {
+      "upstream": "skills/statechart/scripts/tlc-to-chart-args.mjs",
+      "unchanged_sha256": "6cfff1104d7024ecb079ac4c6fa539279e2b537824e01a1c8eb3c7f8e9320ffd"
+    },
+    "skills/statechart/scripts/snapshot.mjs": {
+      "upstream": "skills/statechart/scripts/snapshot.mjs",
+      "unchanged_sha256": "9ae5040255945474f45d09a150cf4659acdff780e18d62f8a084bcb5c79543eb"
+    },
+    "skills/statechart/scripts/chart-parts.mjs": {
+      "upstream": "skills/statechart/scripts/chart-parts.mjs",
+      "unchanged_sha256": "567b4700cba97881ec129cc9b2ed6cdbe9e1f041819ea37957dd3def5261b754"
+    },
+    "skills/statechart/scripts/test/band.mmd": {
+      "upstream": "skills/statechart/scripts/test/band.mmd",
+      "unchanged_sha256": "9ae80a75bce87c8126095b6d9de3669cc69ae65d850acd6d4328ea9b8538d5ed"
+    },
+    "skills/statechart/scripts/test/regions.mmd": {
+      "upstream": "skills/statechart/scripts/test/regions.mmd",
+      "unchanged_sha256": "53d12de8df0e4269c2fbee7399285ead307952c98bb8f8e2eefeba4492e42e25"
+    },
+    "skills/statechart/scripts/test/statechart.test.mjs": {
+      "upstream": "skills/statechart/scripts/test/statechart.test.mjs",
+      "unchanged_sha256": "65b090975ad970f38e7ed06ff3212802705948ce682f0ee90a616a95f874f800"
+    },
+    "skills/statechart/scripts/test/sync.mmd": {
+      "upstream": "skills/statechart/scripts/test/sync.mmd",
+      "unchanged_sha256": "cb1f5387058a0f79d6187eb217690588a2e2d384637b4d53cbc4bb050c570757"
+    },
+    "skills/statechart/scripts/test/upload.mmd": {
+      "upstream": "skills/statechart/scripts/test/upload.mmd",
+      "unchanged_sha256": "bbc1fa70e26cbcbcc7cde5d8fb7eda26df34b6d973053bf13c40b18527ff0e76"
+    },
+    "skills/swe/references/review-triage.md": {
+      "upstream": "skills/swe/references/bugbot-triage.md"
+    },
+    "skills/swe/playbooks/bug-fix.md": {
+      "upstream": "skills/swe/playbooks/bug-fix.md"
+    },
+    "skills/swe/playbooks/shipping.md": {
+      "upstream": "skills/swe/playbooks/shipping.md"
+    },
+    "skills/swe/playbooks/trace-forensics.md": {
+      "upstream": "skills/swe/playbooks/trace-forensics.md",
+      "unchanged_sha256": "ef0bbf79856a4ae1a8993d54c1a1da159cb97623941b652c0069cf75a017e0f5"
+    },
+    "skills/swe/playbooks/multi-phase-plan.md": {
+      "upstream": "skills/swe/playbooks/multi-phase-plan.md"
+    },
+    "skills/swe/playbooks/autonomous-run.md": {
+      "upstream": "skills/swe/playbooks/autonomous-run.md"
+    },
+    "skills/swe/playbooks/authoring-a-skill.md": {
+      "upstream": "skills/swe/playbooks/authoring-a-skill.md"
+    },
+    "skills/swe/playbooks/session-pickup.md": {
+      "upstream": "skills/swe/playbooks/session-pickup.md"
+    },
+    "skills/swe/playbooks/eval.md": {
+      "upstream": "skills/swe/playbooks/eval.md"
+    },
+    "skills/swe/playbooks/prototype.md": {
+      "upstream": "skills/swe/playbooks/prototype.md",
+      "unchanged_sha256": "7aa1f52c691c3d46d5afc527b23f90977fce869ce33573c73c81a4c7f0cde962"
+    },
+    "skills/swe/playbooks/investigation.md": {
+      "upstream": "skills/swe/playbooks/investigation.md",
+      "unchanged_sha256": "dc66bcf6af3a074fc7f67aa5e12b93ef571a4fb4d8e17f2f1af5ae5359f42e46"
+    },
+    "skills/swe/playbooks/worktree-cleanup.md": {
+      "upstream": "skills/swe/playbooks/worktree-cleanup.md"
+    },
+    "skills/swe/playbooks/opening-a-pr.md": {
+      "upstream": "skills/swe/playbooks/opening-a-pr.md"
+    },
+    "skills/swe/playbooks/autopilot-full.md": {
+      "upstream": "skills/swe/playbooks/autopilot-full.md"
+    },
+    "skills/swe/playbooks/hillclimb.md": {
+      "upstream": "skills/swe/playbooks/hillclimb.md"
+    },
+    "skills/swe/playbooks/pause-safely.md": {
+      "upstream": "skills/swe/playbooks/pause-safely.md",
+      "unchanged_sha256": "77968cfe5f4a71a8cd33e0ae8ffcdbd88dd693a212c240457773e6c40c96c21d"
+    },
+    "skills/swe/playbooks/autopilot-stack.md": {
+      "upstream": "skills/swe/playbooks/autopilot-stack.md"
+    },
+    "skills/swe/playbooks/babysit.md": {
+      "upstream": "skills/swe/playbooks/babysit.md"
+    },
+    "skills/swe/playbooks/orchestrate.md": {
+      "upstream": "skills/swe/playbooks/orchestrate.md"
+    },
+    "skills/swe/playbooks/feature.md": {
+      "upstream": "skills/swe/playbooks/feature.md"
+    },
+    "skills/swe/playbooks/visual-parity.md": {
+      "upstream": "skills/swe/playbooks/visual-parity.md"
+    },
+    "skills/swe/playbooks/perf-issue.md": {
+      "upstream": "skills/swe/playbooks/perf-issue.md"
+    },
+    "skills/swe/playbooks/runtime-forensics.md": {
+      "upstream": "skills/swe/playbooks/runtime-forensics.md",
+      "unchanged_sha256": "3463372b578c28f27c236f2627f09b5c5b1e85e86db7399fb984f3892fb450f5"
+    },
+    "skills/swe/playbooks/refactoring.md": {
+      "upstream": "skills/swe/playbooks/refactoring.md"
+    },
+    "skills/swe/scripts/check-plan.test.ts": {
+      "upstream": "skills/swe/scripts/check-plan.test.ts"
+    },
+    "skills/swe/scripts/bun.lock": {
+      "upstream": "skills/swe/scripts/bun.lock"
+    },
+    "skills/swe/scripts/package.json": {
+      "upstream": "skills/swe/scripts/package.json"
+    },
+    "skills/swe/scripts/check-plan.mjs": {
+      "upstream": "skills/swe/scripts/check-plan.mjs"
+    },
+    "skills/swe/scripts/worktree-audit.sh": {
+      "upstream": "skills/swe/scripts/worktree-audit.sh"
+    },
+    "skills/swe/scripts/bootstrap.ts": {
+      "upstream": "skills/swe/scripts/bootstrap.ts",
+      "unchanged_sha256": "88a7d9b93c98acea915f6354c3466701f9806aeb60c21370d392fa860c9e71e8"
+    },
+    "skills/swe/scripts/watch-pr/watch-pr": {
+      "upstream": "skills/swe/scripts/watch-pr/watch-pr",
+      "unchanged_sha256": "d955603be6cc0e8b8ffcec722f635192b2261410b1f2929abea94480e47eb5d4"
+    },
+    "skills/swe/scripts/watch-pr/policy.test.ts": {
+      "upstream": "skills/swe/scripts/watch-pr/policy.test.ts",
+      "unchanged_sha256": "7ee38c20ed605f4a255f1f78e5a4be56b3563fcd8d3d65cfeea58d44c3f58d53"
+    },
+    "skills/swe/scripts/watch-pr/github.ts": {
+      "upstream": "skills/swe/scripts/watch-pr/github.ts"
+    },
+    "skills/swe/scripts/watch-pr/types.compile.ts": {
+      "upstream": "skills/swe/scripts/watch-pr/types.compile.ts",
+      "unchanged_sha256": "621af4c9a664fbf699a9737efccdc248abb416df8819c9dc5f824beae2b9b1d6"
+    },
+    "skills/swe/scripts/watch-pr/cli.ts": {
+      "upstream": "skills/swe/scripts/watch-pr/cli.ts",
+      "unchanged_sha256": "89c08863089181a232be782c4b2ed90a1552f44aeecb0dcb7aac2c623620e680"
+    },
+    "skills/swe/scripts/watch-pr/github.test.ts": {
+      "upstream": "skills/swe/scripts/watch-pr/github.test.ts"
+    },
+    "skills/swe/scripts/watch-pr/fakes.test-helper.ts": {
+      "upstream": "skills/swe/scripts/watch-pr/fakes.test-helper.ts",
+      "unchanged_sha256": "cf0c5ee61b4a73444c1b775cfb6c81a40d312e055dd21a1f5eae6276e54de13f"
+    },
+    "skills/swe/scripts/watch-pr/types.ts": {
+      "upstream": "skills/swe/scripts/watch-pr/types.ts"
+    },
+    "skills/swe/scripts/watch-pr/policy.ts": {
+      "upstream": "skills/swe/scripts/watch-pr/policy.ts"
+    },
+    "skills/swe/scripts/watch-pr/tsconfig.json": {
+      "upstream": "skills/swe/scripts/watch-pr/tsconfig.json",
+      "unchanged_sha256": "1ecccc72320b086c63ce3f73c959896fd747363e63553b3b1136296ea4069e45"
+    },
+    "skills/swe/scripts/watch-pr/render.ts": {
+      "upstream": "skills/swe/scripts/watch-pr/render.ts"
+    },
+    "skills/swe/scripts/watch-pr/cli.test.ts": {
+      "upstream": "skills/swe/scripts/watch-pr/cli.test.ts",
+      "unchanged_sha256": "a35592b4c6da96caf8d47987e9cd503fab6c7774ab87d11a43f24b4b5df2a9d1"
+    },
+    "skills/swe/scripts/orch/orch.test.ts": {
+      "upstream": "skills/swe/scripts/orch/orch.test.ts",
+      "unchanged_sha256": "a5e6037ab5a2400e07f477005f92bffcd8077f865460959770ec08c4fd2f1abc"
+    },
+    "skills/swe/scripts/orch/orch.ts": {
+      "upstream": "skills/swe/scripts/orch/orch.ts",
+      "unchanged_sha256": "8e36177069f2b4d22d92e3cd1b3e5fb9c606a83cd47344a80adf57191607cd01"
+    },
+    "skills/swe/scripts/orch/store.ts": {
+      "upstream": "skills/swe/scripts/orch/store.ts",
+      "unchanged_sha256": "adfb255a86a407075b9d937fa55b955eaf8a3bbfb9eda6c13cdbeaacbda99bb2"
+    },
+    "skills/swe-help/references/recipes.md": {
+      "upstream": "skills/swe-help/references/recipes.md"
+    },
+    "skills/swe-help/references/prompting.md": {
+      "upstream": "skills/swe-help/references/prompting.md"
+    },
+    "skills/show-me-your-work/references/decision-log-template.tsv": {
+      "upstream": "skills/show-me-your-work/references/decision-log-template.tsv",
+      "unchanged_sha256": "6779378006a2f5225e8c06deb84f1d913fb532041ebbb6e50d94600bfe3f4b76"
+    },
+    "skills/show-me-your-work/scripts/log.sh": {
+      "upstream": "skills/show-me-your-work/scripts/log.sh",
+      "unchanged_sha256": "a65a4bc5fb7cdeadbdb7b7ff1ca4682f4d9c42420942b2977cd17b46c4ac338e"
+    },
+    "skills/reflect/references/synthesizer.md": {
+      "upstream": "skills/reflect/references/synthesizer.md"
+    },
+    "skills/reflect/references/judgment-reviewer.md": {
+      "upstream": "skills/reflect/references/judgment-reviewer.md"
+    },
+    "skills/reflect/references/tooling-reviewer.md": {
+      "upstream": "skills/reflect/references/tooling-reviewer.md"
+    },
+    "skills/reflect/references/divergent-reviewer.md": {
+      "upstream": "skills/reflect/references/divergent-reviewer.md"
+    },
+    "skills/how/references/explorer-prompt.md": {
+      "upstream": "skills/how/references/explorer-prompt.md",
+      "unchanged_sha256": "6300128385ee940fd42ecb84b0e623435440a2dc283eae54ee4a52ba56947ba1"
+    },
+    "skills/how/references/explainer-prompt.md": {
+      "upstream": "skills/how/references/explainer-prompt.md",
+      "unchanged_sha256": "ddb89cebefc24e2b54517a331aedfe045b6971e101f45c71b8cef4cccff45bff"
+    },
+    "skills/why/references/investigator-prompt.md": {
+      "upstream": "skills/why/references/investigator-prompt.md",
+      "unchanged_sha256": "c44afba186f899094f3694e6c9d6de5d14ff7c4ce28b787a9f50fc789c9a7fc3"
+    },
+    "skills/why/references/epistemics.md": {
+      "upstream": "skills/why/references/epistemics.md",
+      "unchanged_sha256": "d54a2361b2d5973bc3fe2edf62f446d87935974d4b40d47f23b9529f956ca758"
+    },
+    "skills/why/references/synthesizer-prompt.md": {
+      "upstream": "skills/why/references/synthesizer-prompt.md",
+      "unchanged_sha256": "11c62671aa7b7a6e3d36929ffe2b59bf95e6ca664eee4d93e6ee527dd3390ddb"
+    },
+    "skills/why/references/source-playbook.md": {
+      "upstream": "skills/why/references/source-playbook.md",
+      "unchanged_sha256": "9ae9dcb9d09111c9facc68510331c5aba4aed9b1b057314ff1fc0e166ad3993a"
+    },
+    "skills/why/references/sources/incident-postmortem.md": {
+      "upstream": "skills/why/references/sources/incident-postmortem.md",
+      "unchanged_sha256": "bf2661f1a81c37700884a45b77d6289be0c802b065febced31990e6564510839"
+    },
+    "skills/why/references/sources/slack.md": {
+      "upstream": "skills/why/references/sources/slack.md",
+      "unchanged_sha256": "3bc6309f5c7b26ace3b919dbd7f7b048861dd2020f910fe24f656cc74b3b661c"
+    },
+    "skills/why/references/sources/datadog.md": {
+      "upstream": "skills/why/references/sources/datadog.md",
+      "unchanged_sha256": "b139faac5dc11b8f26c8255dce6033c1a6ac143b038d3dd103f2034c5dbec9cd"
+    },
+    "skills/why/references/sources/notion.md": {
+      "upstream": "skills/why/references/sources/notion.md",
+      "unchanged_sha256": "3bcfa695c49dfad4ac036d5d7181c12585f55ac04f1936198d16ab75a2788997"
+    },
+    "skills/why/references/sources/databricks.md": {
+      "upstream": "skills/why/references/sources/databricks.md",
+      "unchanged_sha256": "236ede7aab6454662a992db088a5393537a5233a4c26719c93188f9e174488f6"
+    },
+    "skills/why/references/sources/sentry.md": {
+      "upstream": "skills/why/references/sources/sentry.md",
+      "unchanged_sha256": "2d4f83048eac1df530b399e2aed75dd7c9c18577b7665420aaeb96d0ceb0b702"
+    },
+    "skills/why/references/sources/linear.md": {
+      "upstream": "skills/why/references/sources/linear.md",
+      "unchanged_sha256": "01304e7f1badfcfb78babbb0edcadeb3cc8dd3f713793420cdff24ba190f907c"
+    },
+    "skills/why/references/sources/code-archaeology.md": {
+      "upstream": "skills/why/references/sources/code-archaeology.md",
+      "unchanged_sha256": "a4a3970e9db448054aed676f3f7feeee667b4b69f0bd57c8fd72b751be687cc7"
+    },
+    "skills/interrogate/references/code-quality-review.md": {
+      "upstream": "skills/interrogate/references/code-quality-review.md",
+      "unchanged_sha256": "79162fda183eafd40d51661fbb5e151c7ba250f89e506ba17f5bd135dcbd50a8"
+    },
+    "skills/interrogate/references/reviewer-prompt.md": {
+      "upstream": "skills/interrogate/references/reviewer-prompt.md",
+      "unchanged_sha256": "f6005cc2b535006fca97a96c5bfda49df57312eedf1ffd8d1aaaf3eb33817c25"
+    },
+    "skills/interrogate/references/rubric.md": {
+      "upstream": "skills/interrogate/references/rubric.md",
+      "unchanged_sha256": "0f9c6bdb0b96e26dbde5f6407f417e0c02f54080e7a1268d8994f3c3ec6c5ac0"
+    },
+    "skills/interrogate/references/lead-judgment.md": {
+      "upstream": "skills/interrogate/references/lead-judgment.md",
+      "unchanged_sha256": "355f5195a76bc75a655125292369f2a8231a2b61fabe5188d8f1386060922b87"
+    },
+    "docs/guide/02-swe.md": {
+      "upstream": "docs/guide/02-swe.md"
+    },
+    "docs/guide/08-principles.md": {
+      "upstream": "docs/guide/08-principles.md"
+    },
+    "docs/guide/07-overnight.md": {
+      "upstream": "docs/guide/07-overnight.md"
+    },
+    "docs/guide/06-verify-and-ship.md": {
+      "upstream": "docs/guide/06-verify-and-ship.md"
+    },
+    "docs/guide/10-recipes-and-pitfalls.md": {
+      "upstream": "docs/guide/10-recipes-and-pitfalls.md"
+    },
+    "docs/guide/04-design.md": {
+      "upstream": "docs/guide/04-design.md"
+    },
+    "docs/guide/01-setup.md": {
+      "upstream": "docs/guide/01-setup.md"
+    },
+    "docs/guide/README.md": {
+      "upstream": "docs/guide/README.md"
+    },
+    "docs/guide/09-make-it-yours.md": {
+      "upstream": "docs/guide/09-make-it-yours.md"
+    },
+    "docs/guide/03-understand.md": {
+      "upstream": "docs/guide/03-understand.md"
+    },
+    "docs/guide/05-build-and-clean.md": {
+      "upstream": "docs/guide/05-build-and-clean.md"
+    }
+  }
+}

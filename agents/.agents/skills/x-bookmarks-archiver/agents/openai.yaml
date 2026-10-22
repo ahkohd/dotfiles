@@ -1,0 +1,4 @@
+interface:
+  display_name: "X Bookmarks Archiver"
+  short_description: "Archive X bookmarks and media through browser automation."
+  default_prompt: "Archive my X bookmarks into a local media folder."

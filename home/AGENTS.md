@@ -18,7 +18,6 @@ Use the `companion-attention` skill at `/Users/var/.codex/skills/companion-atten
 ## Writing Style
 
 - Never use `+` or `&` as conjunctions in prose, commit messages, or comments. Write "and" instead. E.g. "add debug and tracking", not "add debug + tracking".
-- For reports, summaries, guidance, or other prose, use the `govuk-style` skill.
 - Stick to plain ASCII in text. Use words or ASCII equivalents instead of Unicode arrows, bullets or comparison symbols.
 - Be concise. Humans skim: cut filler and keep it short. This includes code comments, documentation, commit messages, PR descriptions and chat responses.
 - No emojis. Not in commit messages, comments, or docs.
