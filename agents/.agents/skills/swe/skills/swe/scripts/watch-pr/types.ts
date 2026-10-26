@@ -46,6 +46,7 @@ export interface PullRequestFacts {
   readonly headRefOid: string | null;
   readonly headRefName: string;
   readonly baseRefName: string;
+  readonly baseRefOid: string;
   readonly state: "OPEN" | "CLOSED" | "MERGED";
   readonly mergedAt: string | null;
   readonly isDraft: boolean;
@@ -162,6 +163,12 @@ export interface ReadyPr {
   readonly context: PrContext;
   readonly proof: {
     readonly mergeability: "clear";
+    readonly revision: {
+      readonly context: PrContext;
+      readonly headRefOid: string;
+      readonly baseRefOid: string;
+      readonly baseRefName: string;
+    };
     readonly threads: readonly [];
     readonly ci: CiClean;
     readonly gate: {
@@ -206,6 +213,11 @@ export type MergeBlocker =
       readonly reason: MergeGateReason;
     };
 export type QueryFailure =
+  | {
+      readonly kind: "snapshot-changed";
+      readonly retryable: true;
+      readonly detail: string;
+    }
   | {
       readonly kind: "json-parse";
       readonly retryable: true;

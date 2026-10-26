@@ -399,7 +399,8 @@
     },
     "skills/swe/playbooks/pause-safely.md": {
       "upstream": "skills/swe/playbooks/pause-safely.md",
-      "unchanged_sha256": "77968cfe5f4a71a8cd33e0ae8ffcdbd88dd693a212c240457773e6c40c96c21d"
+      "baseline_sha256": "77968cfe5f4a71a8cd33e0ae8ffcdbd88dd693a212c240457773e6c40c96c21d",
+      "adaptation": "Approved audit fix: durable validated checkpoint publication and authorized VCS writes only"
     },
     "skills/swe/playbooks/autopilot-stack.md": {
       "upstream": "skills/swe/playbooks/autopilot-stack.md"
@@ -451,14 +452,16 @@
     },
     "skills/swe/scripts/watch-pr/policy.test.ts": {
       "upstream": "skills/swe/scripts/watch-pr/policy.test.ts",
-      "unchanged_sha256": "7ee38c20ed605f4a255f1f78e5a4be56b3563fcd8d3d65cfeea58d44c3f58d53"
+      "baseline_sha256": "7ee38c20ed605f4a255f1f78e5a4be56b3563fcd8d3d65cfeea58d44c3f58d53",
+      "adaptation": "Approved audit fix: snapshot tests expect a second stable-revision facts read"
     },
     "skills/swe/scripts/watch-pr/github.ts": {
       "upstream": "skills/swe/scripts/watch-pr/github.ts"
     },
     "skills/swe/scripts/watch-pr/types.compile.ts": {
       "upstream": "skills/swe/scripts/watch-pr/types.compile.ts",
-      "unchanged_sha256": "621af4c9a664fbf699a9737efccdc248abb416df8819c9dc5f824beae2b9b1d6"
+      "baseline_sha256": "621af4c9a664fbf699a9737efccdc248abb416df8819c9dc5f824beae2b9b1d6",
+      "adaptation": "Approved audit fix: READY proof includes head and base revision identity"
     },
     "skills/swe/scripts/watch-pr/cli.ts": {
       "upstream": "skills/swe/scripts/watch-pr/cli.ts",
@@ -469,7 +472,8 @@
     },
     "skills/swe/scripts/watch-pr/fakes.test-helper.ts": {
       "upstream": "skills/swe/scripts/watch-pr/fakes.test-helper.ts",
-      "unchanged_sha256": "cf0c5ee61b4a73444c1b775cfb6c81a40d312e055dd21a1f5eae6276e54de13f"
+      "baseline_sha256": "cf0c5ee61b4a73444c1b775cfb6c81a40d312e055dd21a1f5eae6276e54de13f",
+      "adaptation": "Approved audit fix: fake facts include the required base SHA"
     },
     "skills/swe/scripts/watch-pr/types.ts": {
       "upstream": "skills/swe/scripts/watch-pr/types.ts"
@@ -486,7 +490,8 @@
     },
     "skills/swe/scripts/watch-pr/cli.test.ts": {
       "upstream": "skills/swe/scripts/watch-pr/cli.test.ts",
-      "unchanged_sha256": "a35592b4c6da96caf8d47987e9cd503fab6c7774ab87d11a43f24b4b5df2a9d1"
+      "baseline_sha256": "a35592b4c6da96caf8d47987e9cd503fab6c7774ab87d11a43f24b4b5df2a9d1",
+      "adaptation": "Approved audit fix: CLI fixture includes the required base SHA"
     },
     "skills/swe/scripts/orch/orch.test.ts": {
       "upstream": "skills/swe/scripts/orch/orch.test.ts",
@@ -498,7 +503,8 @@
     },
     "skills/swe/scripts/orch/store.ts": {
       "upstream": "skills/swe/scripts/orch/store.ts",
-      "unchanged_sha256": "adfb255a86a407075b9d937fa55b955eaf8a3bbfb9eda6c13cdbeaacbda99bb2"
+      "baseline_sha256": "adfb255a86a407075b9d937fa55b955eaf8a3bbfb9eda6c13cdbeaacbda99bb2",
+      "adaptation": "Approved audit fix: serialize lock takeover and release; atomically publish PID-bearing locks; fail closed without hard links"
     },
     "skills/swe-help/references/recipes.md": {
       "upstream": "skills/swe-help/references/recipes.md"

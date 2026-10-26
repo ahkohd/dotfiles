@@ -75,12 +75,16 @@ for path in (SWE / 'skills').glob('*/SKILL.md'):
     check(f'../../{path.parent.name}/SKILL.md' in catalog, f'undiscoverable helper: {path.parent.name}')
 
 contracts = {
-    'skills/swe/SKILL.md': ['Fresh subagents by default', 'throughput checkpoint', 'No is an acceptable answer', 'copied in verbatim', 'references/runtime.md'],
+    'skills/swe/SKILL.md': ['Fresh subagents by default', 'throughput checkpoint', 'No is an acceptable answer', 'copied in verbatim', 'references/runtime.md', '.agents/playbooks/', 'check-playbooks.mjs', 'cannot override'],
     'skills/swe/playbooks/orchestrate.md': ['TIMEBOX', 'STANDING', '#### Queue and drain', '#### Stack safety', '**Pilot.**', 'Two retries', 'zombie', 'ledger.tsv', 'frontier.json'],
     'skills/swe/playbooks/babysit.md': ['threads-only', 'One babysitter per stack', 'Never mutate stack topology', 'Classify CI before any retrigger', 'One retry only', 'merge frontier'],
     'skills/swe/playbooks/multi-phase-plan.md': ['check-plan.mjs', 'Ten lanes', 'Regression lane against trunk', 'Review gate.', 'screenshots and a video', 'scheduled audit wake', 'installed skill files'],
     'skills/swe/playbooks/autopilot-full.md': ['countersign', 'stuck-after', 'gate', 'force-with-lease'],
-    'skills/swe/playbooks/shipping.md': ['patch-id', 'contiguous verified run', 'Stop at the ceiling', 'merge queue', 'base, callers or dependencies'],
+    'skills/swe/playbooks/shipping.md': ['patch-id', 'contiguous verified run', 'Stop at the ceiling', 'merge queue', 'base, callers or dependencies', '--match-head-commit', '--force-with-lease=refs/heads/', 'merge-safety.md'],
+    'skills/swe/references/merge-safety.md': ['cancel-pending', 'kind: cancelled', 'eventual revision', 'merge-base --is-ancestor'],
+    'skills/swe/playbooks/pause-safely.md': ['resume-storage.md', 'Commit only when authorized', 'requested artifacts'],
+    'skills/swe/playbooks/session-pickup.md': ['resume-storage.md', 'unavailable, changed or incomplete'],
+    'skills/swe/references/resume-storage.md': ['kind: missing', 'latest.json', 'kind: unavailable'],
     'skills/swe/references/review-triage.md': ['Ask by default', 'Confidence:', 'Do not skip when:', 'run the test first', 'ENOENT', 'permission-boundary'],
     'skills/create-formal-verification-skill/SKILL.md': ['~/.agents/skills/swe/skills/statechart/SKILL.md'],
     'skills/interrogate/SKILL.md': ['at least two independent reviewers on different models'],
@@ -89,7 +93,11 @@ contracts = {
     'skills/swe/references/runtime.md': ['active harness', 'model-selection', 'Independent review requires another agent', 'does not imply permission', 'Never guess', 'Unit tests do not replace this gate', 'Native tool calls can supply these capabilities'],
 }
 for relative, markers in contracts.items():
-    text = (SWE / relative).read_text()
+    path = SWE / relative
+    if not path.is_file():
+        check(False, f'missing safety artifact: {relative}')
+        continue
+    text = path.read_text()
     for marker in markers:
         check(marker in text, f'{relative}: lost behavioral contract {marker!r}')
 
@@ -108,6 +116,12 @@ check((SWE / 'skills/swe/scripts/watch-pr/readiness.test.ts').is_file(), 'missin
 comment_guide = (SWE / 'docs/guide/05-build-and-clean.md').read_text()
 check('scoped comment-only edits' in comment_guide and 'read-only request gets findings only' in comment_guide,
       'comment guide contradicts the authorization contract')
+
+for relative in ('skills/swe/scripts/resume.mjs', 'skills/swe/scripts/check-playbooks.mjs',
+                 'skills/swe/scripts/ship-pr.py', 'skills/swe/scripts/test-ship-pr.py',
+                 'skills/swe/scripts/workflow-safety.test.mjs', 'skills/swe/scripts/orch/locking.test.ts',
+                 'skills/swe/scripts/watch-pr/integrity.test.ts', 'LICENSE.pstack-claude'):
+    check((SWE / relative).is_file(), f'missing safety artifact: {relative}')
 
 for name in ('swe', 'swe-maintain'):
     check((HUB / name / 'SKILL.md').is_file(), f'missing shared entry: {name}')

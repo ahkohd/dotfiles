@@ -42,6 +42,7 @@ const readyPr = {
   context,
   proof: {
     mergeability: "clear",
+    revision: { context, headRefOid: "head", baseRefOid: "base", baseRefName: "main" },
     threads: [],
     ci: cleanCi,
     gate: {

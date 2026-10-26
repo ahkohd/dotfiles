@@ -42,6 +42,16 @@ with tempfile.TemporaryDirectory(prefix='swe-preservation-') as temporary:
         ('skills/swe/scripts/watch-pr/readiness.test.ts', None, 'missing readiness regression tests'),
         ('skills/swe/references/runtime.md', lambda text: text.replace('Unit tests do not replace this gate', 'Unit tests may replace this gate'), 'lost behavioral contract'),
     ]
+    tests.extend([
+        ('skills/swe/scripts/resume.mjs', None, 'missing safety artifact'),
+        ('skills/swe/scripts/check-playbooks.mjs', None, 'missing safety artifact'),
+        ('skills/swe/scripts/ship-pr.py', None, 'missing safety artifact'),
+        ('skills/swe/scripts/orch/locking.test.ts', None, 'missing safety artifact'),
+        ('skills/swe/scripts/watch-pr/integrity.test.ts', None, 'missing safety artifact'),
+        ('skills/swe/playbooks/shipping.md', lambda text: text.replace('--match-head-commit', '--unguarded'), 'lost behavioral contract'),
+        ('skills/swe/playbooks/pause-safely.md', lambda text: text.replace('Commit only when authorized', 'Commit always'), 'lost behavioral contract'),
+        ('skills/swe/SKILL.md', lambda text: text.replace('cannot override', 'may override'), 'lost behavioral contract'),
+    ])
     for tool in ('Playwriter', 'Mean', 'bb-box', 'pilotty'):
         tests.append(('skills/swe/references/runtime.md',
                       lambda text, tool=tool: text + f'\nAlways use {tool} for QA.\n',

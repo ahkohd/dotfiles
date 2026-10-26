@@ -11,9 +11,9 @@ import time
 PR_LIMIT = 1000
 
 
-def run(*args, cwd=None):
+def run(*args, cwd=None, input_text=None):
     try:
-        result = subprocess.run(args, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+        result = subprocess.run(args, cwd=cwd, input=input_text.encode() if input_text is not None else None, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
     except OSError:
         return None
     return result.stdout.decode(errors='replace').strip() if result.returncode == 0 else None
@@ -43,6 +43,28 @@ def classify(*, dirty, merged, remote, pr, activity, observed_at, now):
     if last is not None and now - last <= 4 * 86400:
         return 'verify-recent-chat'
     return 'safe-candidate' if merged else 'review'
+
+
+def preservation_holds(path, worktree):
+    holds = []
+    if 'locked' in worktree:
+        holds.append('hold-git-lock')
+    ignored = run('git', 'ls-files', '--others', '--ignored', '--exclude-standard', '-z', cwd=path)
+    index = run('git', 'ls-files', '--stage', '-z', cwd=path)
+    reflog = run('git', 'reflog', 'show', '--format=%H', 'HEAD', cwd=path)
+    if ignored is None or index is None or reflog is None:
+        holds.append('verify-preserved-state')
+    if ignored:
+        holds.append('hold-ignored')
+    if index and any(entry.startswith('160000 ') for entry in index.split('\0')):
+        holds.append('hold-submodule')
+    if reflog:
+        unreachable = run('git', 'rev-list', '--stdin', '--not', '--all', cwd=path, input_text=reflog + '\n')
+        if unreachable is None:
+            holds.append('verify-preserved-state')
+        elif unreachable:
+            holds.append('hold-reflog')
+    return holds
 
 
 def worktrees(repo):
@@ -121,17 +143,20 @@ def main():
         if recent > recorded:
             current['lastActivity'] = datetime.fromtimestamp(recent, timezone.utc).isoformat()
         bucket = classify(dirty=dirty, merged=merged, remote=remote, pr=state, activity=current, observed_at=observed, now=now)
+        holds = preservation_holds(path, wt)
+        if holds:
+            bucket = holds[0]
         if (pr_text is None or len(prs) >= PR_LIMIT) and bucket == 'safe-candidate':
             bucket = 'verify-pr-state'
         size = run('du', '-sk', path)
         head_time = run('git', 'show', '-s', '--format=%ct', head, cwd=repo)
-        result.append(dict(sizeKiB=int(size.split()[0]) if size else None, ageDays=int((now-int(head_time))/86400) if head_time else None, merged=merged, dirty=dirty, remote=remote, pr=f"#{pr['number']}/{state}" if pr else state, lastChat=current.get('lastActivity'), bucket=bucket, worktree=path))
+        result.append(dict(sizeKiB=int(size.split()[0]) if size else None, ageDays=int((now-int(head_time))/86400) if head_time else None, merged=merged, dirty=dirty, remote=remote, pr=f"#{pr['number']}/{state}" if pr else state, lastChat=current.get('lastActivity'), preservationHolds=holds, bucket=bucket, worktree=path))
     result.sort(key=lambda row: row['sizeKiB'] or 0, reverse=True)
     if args.json:
         print(json.dumps({'base': base, 'worktrees': result, 'warning': 'Candidates are advice, not deletion permission. Local refs may be stale; merged PRs must match the exact head and base.'}, indent=2))
     else:
         print(f'# base: {base}; local refs only; no deletion authorized')
-        print('SIZE_KiB\tAGE_DAYS\tMERGED\tDIRTY\tREMOTE\tPR\tLAST_CHAT\tBUCKET\tWORKTREE')
+        print('SIZE_KiB\tAGE_DAYS\tMERGED\tDIRTY\tREMOTE\tPR\tLAST_CHAT\tPRESERVATION_HOLDS\tBUCKET\tWORKTREE')
         for row in result:
             print('\t'.join(str(v) for v in row.values()))
 

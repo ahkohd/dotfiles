@@ -333,13 +333,16 @@ function isReviewbot(comment: T.ReviewComment | null): boolean {
     .split(",")
     .map((login) => login.trim().toLowerCase())
     .filter(Boolean);
-  return author.endsWith("[bot]") || author === "reviewbot" || configured.includes(author);
+  return author.endsWith("[bot]") || author === "reviewbot" || configured.includes(author)
+    || author.includes("bugbot")
+    || (author === "cursor" && /bugbot|cursor_automation_id|agentic security review|description start|severity/i.test(comment.body));
 }
 function passKey(comment: T.ReviewComment | null): string | null {
   if (comment === null) return null;
   for (const pattern of [
     /RUN_ID:\s*([a-zA-Z0-9_.:-]+)/,
     /REVIEW_AUTOMATION_ID:\s*([a-zA-Z0-9_.:-]+)/,
+    /CURSOR_AUTOMATION_ID:\s*([a-zA-Z0-9_.:-]+)/,
   ]) {
     const match = pattern.exec(comment.body);
     if (match?.[1]) return match[1];
@@ -374,7 +377,8 @@ export function parseReviewThreadPage(value: unknown): T.ReviewThreadPage {
     page.endCursor,
     "reviewThreads.pageInfo.endCursor"
   );
-  return { threads, endCursor: page.hasNextPage && cursor ? cursor : null };
+  if (page.hasNextPage && !cursor) missing("reviewThreads.pageInfo.endCursor", cursor);
+  return { threads, endCursor: page.hasNextPage ? cursor : null };
 }
 export function buildReviewThreads(
   threads: readonly T.RawReviewThread[]
@@ -420,6 +424,7 @@ export function parsePullRequest(
     headRefOid: optionalString(object.headRefOid, "pull request.headRefOid"),
     headRefName: string(object.headRefName, "pull request.headRefName"),
     baseRefName: string(object.baseRefName, "pull request.baseRefName"),
+    baseRefOid: string(object.baseRefOid, "pull request.baseRefOid"),
     state: enumValue(
       object.state,
       ["OPEN", "CLOSED", "MERGED"] as const,
@@ -474,7 +479,7 @@ export class GhGitHubReader implements T.GitHubReader {
         "--repo",
         `${context.owner}/${context.repo}`,
         "--json",
-        "mergeable,mergeStateStatus,reviewDecision,headRefOid,headRefName,baseRefName,state,mergedAt,isDraft",
+        "mergeable,mergeStateStatus,reviewDecision,headRefOid,headRefName,baseRefName,baseRefOid,state,mergedAt,isDraft",
       ]),
       context
     );
@@ -567,7 +572,8 @@ export class GhGitHubReader implements T.GitHubReader {
       page.endCursor,
       "contexts.pageInfo.endCursor"
     );
-    return { checks, endCursor: page.hasNextPage && cursor ? cursor : null };
+    if (page.hasNextPage && !cursor) missing("contexts.pageInfo.endCursor", cursor);
+    return { checks, endCursor: page.hasNextPage ? cursor : null };
   }
   async reviewThreadPage(
     context: T.PrContext,

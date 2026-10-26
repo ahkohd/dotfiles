@@ -80,6 +80,7 @@ export function fakeReader(
     headRefOid: "head",
     headRefName: "feature",
     baseRefName: "main",
+    baseRefOid: "base",
     state: "OPEN",
     mergedAt: null,
     isDraft: false,

@@ -53,6 +53,7 @@ async function mergeAssessment(
 }
 const AUTOMATION_TOKENS = [
   "reviewbot",
+  "bugbot",
   "security review",
   "pr review automation",
   "review automation",
@@ -123,6 +124,11 @@ export async function readSnapshot(args: {
         pending: [],
         github: merge.github,
       };
+  }
+  const observed = await args.reader.pullRequest(args.context);
+  const stableFields = ["state", "mergedAt", "headRefOid", "headRefName", "baseRefOid", "baseRefName", "mergeable", "mergeStateStatus", "reviewDecision", "isDraft"] as const;
+  if (!facts.headRefOid || !facts.baseRefOid || stableFields.some(field => facts[field] !== observed[field])) {
+    throw new WatcherQueryError({ kind: "snapshot-changed", retryable: true, detail: "PR revision or gates changed during observation; discard this snapshot and query again" });
   }
   return {
     kind: "open",
@@ -199,6 +205,8 @@ function readyContribution(
     };
   if (
     row.kind !== "open" ||
+    !row.facts.headRefOid ||
+    !row.facts.baseRefOid ||
     row.ci.kind !== "ci-clean" ||
     row.threads.length !== 0 ||
     conflictBlocker(row) !== null ||
@@ -213,6 +221,7 @@ function readyContribution(
     context: row.context,
     proof: {
       mergeability: "clear",
+      revision: { context: row.context, headRefOid: row.facts.headRefOid, baseRefOid: row.facts.baseRefOid, baseRefName: row.facts.baseRefName },
       threads: [],
       ci: row.ci,
       gate: {

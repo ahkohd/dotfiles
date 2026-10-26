@@ -141,6 +141,30 @@ class AuditIntegrationTests(unittest.TestCase):
         self.assertEqual(row['dirty'], 'scratch:1')
         self.assertEqual(draft.read_text(), 'keep this uncommitted work\n')
 
+    def test_ignored_personal_data_is_held(self):
+        self.git('config', 'core.excludesFile', str(self.root / 'ignore'))
+        (self.root / 'ignore').write_text('private-notes/\n')
+        notes = self.child / 'private-notes'
+        notes.mkdir()
+        (notes / 'draft.txt').write_text('keep me')
+        self.assertEqual(self.inspect([self.pr()])['bucket'], 'hold-ignored')
+        self.assertEqual((notes / 'draft.txt').read_text(), 'keep me')
+
+    def test_git_lock_is_held(self):
+        self.git('worktree', 'lock', '--reason', 'keep this work', str(self.child))
+        self.assertEqual(self.inspect([self.pr()])['bucket'], 'hold-git-lock')
+
+    def test_reflog_only_commit_is_held(self):
+        self.git('commit', '--allow-empty', '-qm', 'only in reflog', cwd=self.child)
+        abandoned = self.git('rev-parse', 'HEAD', cwd=self.child)
+        self.git('reset', '--hard', self.head, cwd=self.child)
+        self.assertEqual(self.inspect([self.pr()])['bucket'], 'hold-reflog')
+        self.assertEqual(self.git('cat-file', '-t', abandoned), 'commit')
+
+    def test_submodule_is_held_even_when_clean(self):
+        self.git('update-index', '--add', '--cacheinfo', f'160000,{self.head},module', cwd=self.child)
+        self.assertIn('hold-submodule', self.inspect([self.pr()])['preservationHolds'])
+
     def test_open_and_draft_prs_win_in_every_order(self):
         closed = self.pr(number=22, state='CLOSED', baseRefName='other-base')
         for draft in (False, True):

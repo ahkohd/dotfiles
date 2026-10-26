@@ -3,8 +3,8 @@ import { randomUUID } from "node:crypto";
 import type { Dirent } from "node:fs";
 import {
   access,
+  link,
   mkdir,
-  open,
   readFile,
   readdir,
   rename,
@@ -17,6 +17,7 @@ import { basename, dirname, join, resolve } from "node:path";
 const UNIT_HEADER = "id\ttrack\tstate\tbranch\tpr\tsha\tbrief";
 const LEDGER_HEADER = "pr\tsha\tverdict\tevidence\tverifier\tts";
 const LOCK_FILE = ".orch.lock";
+const TAKEOVER_DIR = ".orch.lock.takeover";
 
 export type Verdict =
   | "live-ui-verified"
@@ -385,59 +386,93 @@ async function acquireLock(
   options: OpenStoreOptions
 ): Promise<() => Promise<void>> {
   const path = join(store, LOCK_FILE);
+  const takeover = join(store, TAKEOVER_DIR);
   const pid = String(process.pid);
   const create = async (): Promise<void> => {
-    const handle = await open(path, "wx");
-    await handle.writeFile(`${pid}\n`);
-    await handle.close();
-  };
-
-  const takeOver = async (): Promise<void> => {
-    await unlink(path);
+    const pidFile = `${path}.${pid}.${randomUUID()}`;
+    await writeFile(pidFile, `${pid}\n`, { flag: "wx" });
     try {
-      await create();
-    } catch (retryError) {
-      if (errorCode(retryError) === "EEXIST") {
-        const retryHolder =
-          (await readFile(path, "utf8")).trim() || "unknown";
-        throw new UserError(`store lock held by pid ${retryHolder}`);
+      await link(pidFile, path);
+    } finally {
+      await unlink(pidFile).catch(() => {});
+    }
+  };
+  const lockOrHolder = async (): Promise<string | null> => {
+    for (let retries = 2; ; retries -= 1) {
+      try {
+        await create();
+        return null;
+      } catch (error) {
+        if (errorCode(error) !== "EEXIST") throw error;
       }
-      throw retryError;
+      try {
+        return (await readFile(path, "utf8")).trim() || "unknown";
+      } catch (error) {
+        if (errorCode(error) !== "ENOENT" || retries === 0) return "unknown";
+      }
     }
   };
-
-  try {
-    await create();
-  } catch (error) {
-    if (errorCode(error) !== "EEXIST") {
-      throw error;
-    }
-    let holder = "unknown";
+  const claimed = async (body: () => Promise<void>): Promise<boolean> => {
+    const staged = `${takeover}.${pid}.${randomUUID()}`;
+    const discard = (): Promise<void> =>
+      rm(staged, { recursive: true, force: true }).catch(() => {});
+    await mkdir(staged);
     try {
-      holder = (await readFile(path, "utf8")).trim() || "unknown";
-    } catch {
-      holder = "unknown";
+      await writeFile(join(staged, pid), "");
+      for (const claimant of await readdir(takeover).catch(() => [])) {
+        if (holderIsDead(claimant)) await rm(join(takeover, claimant), { force: true });
+      }
+      await rename(staged, takeover);
+    } catch (error) {
+      await discard();
+      const code = errorCode(error);
+      if (code !== "ENOTEMPTY" && code !== "EEXIST") throw error;
+      return false;
     }
+    try {
+      await body();
+    } finally {
+      await rename(takeover, staged).catch(() => {});
+      await discard();
+    }
+    return true;
+  };
+  const takeOver = async (holder: string): Promise<void> => {
+    const replaced = await claimed(async () => {
+      try {
+        const current = (await readFile(path, "utf8")).trim() || "unknown";
+        if (current !== holder) throw new UserError(`store lock held by pid ${current}`);
+        await unlink(path);
+      } catch (error) {
+        if (errorCode(error) !== "ENOENT") throw error;
+      }
+      const blocker = await lockOrHolder();
+      if (blocker !== null) throw new UserError(`store lock held by pid ${blocker}`);
+    });
+    if (!replaced) throw new UserError(`store lock held by pid ${holder} is being replaced by another writer; retry`);
+  };
+  const holder = await lockOrHolder();
+  if (holder !== null) {
     if (holderIsDead(holder)) {
       options.onStaleLock?.(holder);
-      await takeOver();
+      await takeOver(holder);
     } else if (options.force) {
       options.onLockStolen?.(holder);
-      await takeOver();
+      await takeOver(holder);
     } else {
       throw new UserError(`store lock held by pid ${holder}`);
     }
   }
-
   return async (): Promise<void> => {
-    try {
-      if ((await readFile(path, "utf8")).trim() === pid) {
-        await unlink(path);
+    const removeOwn = async (): Promise<void> => {
+      try {
+        if ((await readFile(path, "utf8")).trim() === pid) await unlink(path);
+      } catch (error) {
+        if (errorCode(error) !== "ENOENT") throw error;
       }
-    } catch (error) {
-      if (errorCode(error) !== "ENOENT") {
-        throw error;
-      }
+    };
+    while (!(await claimed(removeOwn))) {
+      await new Promise((resolve) => setTimeout(resolve, 10));
     }
   };
 }

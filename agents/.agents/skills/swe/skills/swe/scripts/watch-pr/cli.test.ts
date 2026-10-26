@@ -130,6 +130,7 @@ describe("rendering", () => {
           headRefOid: "head",
           headRefName: "feature",
           baseRefName: "main",
+          baseRefOid: "base",
           state: "MERGED",
           mergedAt: "now",
           isDraft: false,

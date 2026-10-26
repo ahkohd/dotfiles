@@ -62,6 +62,40 @@ copyright notice. Upstream attribution is not an active harness dependency.
   Generic guide content and the comment-reviewer prompt remain in the bundle.
 - No harness-specific prompt aliases or background updater are installed.
 
+## Approved safety ports
+
+The seven-finding audit also compared
+[michael-denyer/pstack-claude](https://github.com/michael-denyer/pstack-claude/tree/356c6e0f978df729eb16f227d795f34d221c5aad).
+That is a separate fork, not the baseline above. The approved repairs use its
+merge-safety protocol, serialized lock takeover and release, checkpoint/link
+validation design, and project-playbook anchoring contract. Its MIT notices are
+preserved in [LICENSE.pstack-claude](LICENSE.pstack-claude). UPSTREAM.json remains
+unchanged; this is a selective port, not a claim that every change in that fork
+has been integrated.
+
+- Shipping binds immediate merges to the verified head and checks the destination.
+  The new ship-pr helper inspects and cancels both pending merge mechanisms with
+  revision checks and readback. Auto-merge and queue admission require existing
+  repository-enforced verification; restacking uses captured explicit leases.
+- Orchestration serializes takeover and release and publishes a PID-bearing lock
+  through a hard link. Unlike the other fork, unsupported hard links fail closed
+  rather than falling back to a crash-vulnerable empty lock.
+- Cleanup holds ignored files, native Git locks, HEAD-reflog-only commits and
+  submodules, in addition to the existing activity and PR checks. It conservatively
+  holds all ignored files and all submodule entries, not just selected categories.
+- Watcher snapshots compare facts before and after checks and carry both head and
+  base identities in READY evidence. Empty or unreported checks remain unavailable
+  and never become READY. The audit initially overstated that part of the gap:
+  the earlier watcher already failed closed on absent checks. The requested fork's
+  timed acceptance of no-check projects is deliberately not ported.
+- External review markers remain compatible with their original service format.
+  Generic labels do not require rewriting incoming comment bodies.
+- Pause and pickup share validated checkpoint publication, artifact hashes and
+  cold-start readback. The Git common-directory default and explicit durable-store
+  override do not depend on a particular agent harness. Local VCS authority wins.
+- Project playbooks validate explicit frontmatter and unique step anchors before
+  application. Overrides cannot weaken authorization, review or evidence gates.
+
 The first local port over-pruned neutral content. This restoration supersedes
 those cuts. Further simplification requires explicit review, not mechanical
 removal of a whole file because one paragraph mentions a vendor.

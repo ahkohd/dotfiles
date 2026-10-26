@@ -184,6 +184,7 @@ describe("closed enum parsing", () => {
     headRefOid: "head",
     headRefName: "feature",
     baseRefName: "main",
+    baseRefOid: "base",
     state: "OPEN",
     mergedAt: null,
     isDraft: false,
