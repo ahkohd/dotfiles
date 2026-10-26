@@ -17,7 +17,7 @@ def check(root):
             errors.append(f'{path}: non-ASCII text')
         if re.search(r'[\w.%+*\-]+@[\w.\-]+\.[A-Za-z]{2,}\b', text):
             errors.append(f'{path}: literal email identity; use runtime variables')
-        if re.search(r'\b(?:AGENT_(?:EMAIL_DOMAIN|GMAIL_ADDRESS)|LINEAR_API_TOKEN)\s*=\s*\S+', text):
+        if re.search(r'\b(?:AGENT_(?:EMAIL_DOMAIN|GMAIL_ADDRESS|BROWSER_PROFILE)|LINEAR_API_TOKEN)\s*=\s*\S+', text):
             errors.append(f'{path}: identity or token assignment belongs in private configuration')
         if re.search(r'\blin_api_[A-Za-z0-9]+\b', text):
             errors.append(f'{path}: literal Linear token belongs in private configuration')
@@ -30,7 +30,10 @@ def check(root):
                    'without printing', 'request configuration', 'Keep this small',
                    'Linear organizations', 'Linearis', 'LINEAR_API_TOKEN',
                    'minimal read-only identity check', 'Do not silently fall back',
-                   'Authentication does not authorize ticket edits or comments'):
+                   'Authentication does not authorize ticket edits or comments',
+                   '## Browser profiles', 'AGENT_BROWSER_PROFILE', 'BB global default',
+                   'ask which profile to use', 'Do not silently choose another profile',
+                   'profile name does not establish identity or authorize actions'):
         if marker not in body:
             errors.append(f'SKILL.md: missing contract {marker}')
     cases = json.loads((root / 'evals/evals.json').read_text())

@@ -26,6 +26,27 @@ Read [tool discovery](references/tools.md) for the relevant capability.
   what is needed. Do not guess endpoints, flags, account routing or credentials,
   or replace a real-system check with a mock and call it equivalent.
 
+## Browser profiles
+
+Use an explicit user selection for the current task; otherwise resolve
+`AGENT_BROWSER_PROFILE` from the runtime that will access the target browser.
+It names the preferred browser profile, not an account, profile directory or
+browser-tool session ID. Configure it privately, including as a BB global default.
+Consult current BB configuration guidance for supported overrides, precedence and
+propagation; do not assume another machine, thread or existing process inherited it.
+Keep profile values and machine mappings out of tracked files and public reports.
+
+Before accessing signed-in content, resolve the selected name to an actual profile
+on the target browser's host through the tool's supported discovery. If the variable
+is unset or empty and the user has not selected a profile, ask which profile to use,
+even if only one is available. Also ask if the selection is unavailable or ambiguous,
+or the tool cannot verify or select it. Do not silently choose another profile,
+use the browser default, or import cookies to work around missing access.
+
+Verify the relevant signed-in account and organization separately: a matching
+profile name does not establish identity or authorize actions. A task-specific
+selection does not authorize changing the global default or shared browser login.
+
 ## Linear organizations
 
 Use Linearis for Linear issues and project work. Confirm the intended organization
