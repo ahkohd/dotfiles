@@ -36,6 +36,12 @@ observed head and base identity, but it is evidence, not merge authority or an
 atomic service lock. Empty or unreported checks remain unavailable and cannot
 become READY; bounded polling ends in TIMEOUT or a status-query blocker. Projects
 with no checks need explicit policy outside this watcher, not a synthetic pass.
+`--timeout` covers context discovery, queries and polling under one deadline.
+Every Git or GitHub command also has a 30-second ceiling, even with the overall
+deadline disabled. Expiry terminates the owned command (its process group on
+POSIX), escalating after a 250 ms grace period. An overall deadline returns
+TIMEOUT even when the query-error budget is one; per-command ceilings use the
+normal query-error budget.
 These gates apply to single PRs, stacks and queued stacks. `--allow-draft` waives
 only the draft gate for verification; it never waives approval or mergeability.
 The status table reports the same gates. This intentionally tightens upstream's
@@ -77,7 +83,9 @@ Any open or draft PR for the branch blocks cleanup, regardless of listing order.
 An unavailable PR query or a listing at its limit requires PR-state verification.
 A squash-merged PR counts only when its head and base match the inspected
 worktree. A candidate is advice, never deletion permission. Native Git locks, ignored files,
-HEAD-reflog-only commits and submodule entries are preservation holds. All ignored
+HEAD-reflog-only commits, submodule entries, and assume-unchanged or skip-worktree
+index flags are preservation holds. Index flags are inspected without changing
+them, including when both flags are set; an unreadable index-flag query fails closed. All ignored
 files and submodules are held conservatively; this tool does not decide which
 are disposable caches.
 

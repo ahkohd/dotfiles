@@ -150,6 +150,39 @@ class AuditIntegrationTests(unittest.TestCase):
         self.assertEqual(self.inspect([self.pr()])['bucket'], 'hold-ignored')
         self.assertEqual((notes / 'draft.txt').read_text(), 'keep me')
 
+    def assert_index_flag_is_held(self, flags):
+        artifact = self.child / 'tracked\nnotes.txt'
+        artifact.write_text('committed fixture')
+        self.git('add', artifact.name, cwd=self.child)
+        self.git('commit', '-qm', 'tracked fixture', cwd=self.child)
+        self.head = self.git('rev-parse', 'HEAD', cwd=self.child)
+        self.git('update-ref', 'refs/remotes/origin/topic', self.head)
+        for flag in flags:
+            self.git('update-index', flag, artifact.name, cwd=self.child)
+        artifact.write_text('uncommitted user data')
+        self.assertEqual(self.git('status', '--porcelain', cwd=self.child), '')
+        index_before = self.git('ls-files', '-v', '-z', cwd=self.child)
+        row = self.inspect([self.pr()])
+        self.assertEqual(row['bucket'], 'hold-index-flags')
+        self.assertEqual(artifact.read_text(), 'uncommitted user data')
+        self.assertEqual(self.git('ls-files', '-v', '-z', cwd=self.child), index_before)
+
+    def test_assume_unchanged_is_held(self):
+        self.assert_index_flag_is_held(['--assume-unchanged'])
+
+    def test_skip_worktree_is_held(self):
+        self.assert_index_flag_is_held(['--skip-worktree'])
+
+    def test_combined_index_flags_are_held(self):
+        self.assert_index_flag_is_held(['--assume-unchanged', '--skip-worktree'])
+
+    def test_unavailable_index_flags_fail_closed(self):
+        real_run = audit.run
+        def unavailable(*args, **kwargs):
+            return None if args[1:4] == ('ls-files', '-v', '-z') else real_run(*args, **kwargs)
+        with patch.object(audit, 'run', side_effect=unavailable):
+            self.assertIn('verify-preserved-state', audit.preservation_holds(str(self.child), {}))
+
     def test_git_lock_is_held(self):
         self.git('worktree', 'lock', '--reason', 'keep this work', str(self.child))
         self.assertEqual(self.inspect([self.pr()])['bucket'], 'hold-git-lock')

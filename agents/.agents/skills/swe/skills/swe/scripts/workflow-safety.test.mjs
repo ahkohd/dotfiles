@@ -34,6 +34,8 @@ test('checkpoint publishes and cold-reads exact requested material', () => fixtu
   const read = resume(root, 'read');
   assert.equal(readFileSync(read.checkpoint.artifacts[0].path, 'utf8'), requested);
   writeFileSync(artifact, 'changed');
+  assert.equal(readFileSync(resume(root, 'read').checkpoint.artifacts[0].path, 'utf8'), requested);
+  writeFileSync(read.checkpoint.artifacts[0].path, 'tampered snapshot');
   assert.equal(resume(root, 'read', [], 1).kind, 'unavailable');
 }));
 
@@ -42,12 +44,12 @@ test('failed publication leaves the prior complete pointer untouched', () => fix
   const first = resume(root, 'begin');
   const note = join(first.directory, 'resume.md');
   writeFileSync(note, 'first complete checkpoint');
-  resume(root, 'publish', ['--note', note]);
+  const published = resume(root, 'publish', ['--note', note]);
   const second = resume(root, 'begin');
   const bad = join(second.directory, 'resume.md');
   writeFileSync(bad, '[missing](missing.txt)');
   assert.equal(resume(root, 'publish', ['--note', bad], 1).kind, 'unavailable');
-  assert.equal(resume(root, 'read').checkpoint.note.path, note);
+  assert.equal(resume(root, 'read').checkpoint.note.path, published.checkpoint.note.path);
 }));
 
 test('unlinked artifacts and files outside project roots are rejected', () => fixture(root => {
@@ -113,11 +115,84 @@ test('Git worktrees share the checkpoint locator', () => fixture(root => {
   const artifact = join(child, 'requested.txt');
   writeFileSync(artifact, 'original worktree artifact');
   writeFileSync(note, `[Requested material](${artifact})`);
-  resume(child, 'publish', ['--note', note, '--artifact', artifact]);
-  assert.equal(resume(root, 'read').checkpoint.note.path, note);
+  const published = resume(child, 'publish', ['--note', note, '--artifact', artifact]);
+  assert.equal(resume(root, 'read').checkpoint.note.path, published.checkpoint.note.path);
   const sibling = join(root, 'sibling');
   execFileSync('git', ['-C', root, 'worktree', 'add', '-qb', 'sibling', sibling]);
-  assert.equal(resume(sibling, 'read').checkpoint.artifacts[0].path, artifact);
+  rmSync(child, { recursive: true });
+  assert.equal(readFileSync(resume(sibling, 'read').checkpoint.artifacts[0].path, 'utf8'), 'original worktree artifact');
+}));
+
+function publishWithRenameHook(root, note, artifact, hookBody, expectedStatus) {
+  const hook = join(root, 'rename-hook.cjs');
+  writeFileSync(hook, `const fs = require('node:fs');
+const original = fs.renameSync;
+fs.renameSync = function(from, to) {
+  if (String(to).endsWith('/latest.json')) { ${hookBody} }
+  return original.apply(this, arguments);
+};
+require('node:module').syncBuiltinESMExports();
+`);
+  const result = spawnSync(process.execPath, [join(scripts, 'resume.mjs'), 'publish', '--project', root, '--note', note, '--artifact', artifact], {
+    encoding: 'utf8', env: { ...process.env, NODE_OPTIONS: `--require=${hook}` }, timeout: 5000,
+  });
+  assert.equal(result.status, expectedStatus, result.stdout + result.stderr);
+  return JSON.parse(result.stdout);
+}
+
+test('publication snapshots bytes before a source artifact changes at pointer replacement', () => fixture(root => {
+  repository(root);
+  const first = resume(root, 'begin');
+  const oldNote = join(first.directory, 'resume.md');
+  writeFileSync(oldNote, 'previous checkpoint');
+  const previous = resume(root, 'publish', ['--note', oldNote]);
+  const { directory } = resume(root, 'begin');
+  const note = join(directory, 'resume.md');
+  const artifact = join(directory, 'questions.txt');
+  writeFileSync(note, '[Questions `exact`](questions.txt#section)\n`[example](not-real)`\n');
+  writeFileSync(artifact, 'exact requested material');
+  const published = publishWithRenameHook(root, note, artifact, `fs.writeFileSync(${JSON.stringify(artifact)}, 'concurrent source edit');`, 0);
+  const read = resume(root, 'read');
+  assert.deepEqual(read.checkpoint, published.checkpoint);
+  assert.equal(readFileSync(read.checkpoint.artifacts[0].path, 'utf8'), 'exact requested material');
+  assert.match(readFileSync(read.checkpoint.note.path, 'utf8'), /\[Questions `exact`\]\(<artifact-0-questions.txt#section>\)/);
+  assert.match(readFileSync(read.checkpoint.note.path, 'utf8'), /`\[example\]\(not-real\)`/);
+  assert.equal(readFileSync(previous.checkpoint.note.path, 'utf8'), 'previous checkpoint');
+}));
+
+test('failed pointer replacement preserves the previous checkpoint byte for byte', () => fixture(root => {
+  repository(root);
+  const { directory, store } = resume(root, 'begin');
+  const note = join(directory, 'resume.md');
+  const artifact = join(directory, 'questions.txt');
+  writeFileSync(note, '[Questions](questions.txt)');
+  writeFileSync(artifact, 'prior material');
+  resume(root, 'publish', ['--note', note, '--artifact', artifact]);
+  const before = readFileSync(join(store, 'latest.json'), 'utf8');
+  writeFileSync(artifact, 'next material');
+  assert.equal(publishWithRenameHook(root, note, artifact, "throw new Error('injected rename failure');", 1).kind, 'unavailable');
+  assert.equal(readFileSync(join(store, 'latest.json'), 'utf8'), before);
+  assert.equal(readFileSync(resume(root, 'read').checkpoint.artifacts[0].path, 'utf8'), 'prior material');
+}));
+
+test('a concurrent publisher cannot change the first publishers returned checkpoint', () => fixture(root => {
+  repository(root);
+  const { directory } = resume(root, 'begin');
+  const note = join(directory, 'resume.md');
+  const artifact = join(directory, 'questions.txt');
+  writeFileSync(note, '[Questions](questions.txt)');
+  writeFileSync(artifact, 'first material');
+  const second = resume(root, 'begin');
+  const secondNote = join(second.directory, 'resume.md');
+  writeFileSync(secondNote, 'second material');
+  const hookBody = `original.apply(this, arguments);
+fs.writeFileSync(${JSON.stringify(artifact)}, 'changed source');
+const env = {...process.env}; delete env.NODE_OPTIONS;
+require('node:child_process').execFileSync(process.execPath, ${JSON.stringify([join(scripts, 'resume.mjs'), 'publish', '--project', root, '--note', secondNote])}, {env});
+return;`;
+  const first = publishWithRenameHook(root, note, artifact, hookBody, 0);
+  assert.equal(readFileSync(first.checkpoint.artifacts[0].path, 'utf8'), 'first material');
+  assert.equal(readFileSync(resume(root, 'read').checkpoint.note.path, 'utf8'), 'second material');
 }));
 
 test('project overrides reject stale, ambiguous, malformed and unknown anchors', () => fixture(root => {

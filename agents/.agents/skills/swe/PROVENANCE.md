@@ -96,6 +96,21 @@ has been integrated.
 - Project playbooks validate explicit frontmatter and unique step anchors before
   application. Overrides cannot weaken authorization, review or evidence gates.
 
+## Follow-up audit repairs
+
+- Cleanup also holds assume-unchanged and skip-worktree index flags, including
+  combined flags. It never clears user flags to obtain a clean status.
+- Checkpoint publication creates self-contained snapshots before replacing the
+  locator. Original-file edits cannot invalidate that publication; failed staging
+  or pointer replacement preserves the previous locator. Returned evidence belongs
+  to that publication, not whichever writer most recently replaced the pointer.
+- The watcher shares one deadline from context discovery through polling. Git and
+  GitHub child commands have bounded lifetimes with termination escalation; watch
+  deadline failures return TIMEOUT rather than waiting forever or exhausting retries.
+
+These are local correctness fixes, not a new upstream import. The baseline pin,
+licenses, authority rules and independent-review requirements are unchanged.
+
 The first local port over-pruned neutral content. This restoration supersedes
 those cuts. Further simplification requires explicit review, not mechanical
 removal of a whole file because one paragraph mentions a vendor.

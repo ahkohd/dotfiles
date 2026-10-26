@@ -51,9 +51,12 @@ def preservation_holds(path, worktree):
         holds.append('hold-git-lock')
     ignored = run('git', 'ls-files', '--others', '--ignored', '--exclude-standard', '-z', cwd=path)
     index = run('git', 'ls-files', '--stage', '-z', cwd=path)
+    flags = run('git', 'ls-files', '-v', '-z', cwd=path)
     reflog = run('git', 'reflog', 'show', '--format=%H', 'HEAD', cwd=path)
-    if ignored is None or index is None or reflog is None:
+    if ignored is None or index is None or flags is None or reflog is None:
         holds.append('verify-preserved-state')
+    if flags and any(entry and (entry[0] == 'S' or entry[0].islower()) for entry in flags.split('\0')):
+        holds.append('hold-index-flags')
     if ignored:
         holds.append('hold-ignored')
     if index and any(entry.startswith('160000 ') for entry in index.split('\0')):

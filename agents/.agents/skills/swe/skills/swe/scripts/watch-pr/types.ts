@@ -230,6 +230,12 @@ export type QueryFailure =
       readonly rawValue?: string;
     }
   | {
+      readonly kind: "command-timeout";
+      readonly scope: "watch" | "query";
+      readonly retryable: boolean;
+      readonly detail: string;
+    }
+  | {
       readonly kind: "command-exit";
       readonly retryable: true;
       readonly detail: string;
@@ -406,6 +412,7 @@ export interface ReviewThreadPage {
   readonly endCursor: string | null;
 }
 export interface GitHubReader {
+  setDeadline?(deadline: number | null): void;
   originRepo(): Promise<Repository | null>;
   currentPr(pr: PrNumber | null): Promise<PrContext>;
   pullRequest(context: PrContext): Promise<PullRequestFacts>;

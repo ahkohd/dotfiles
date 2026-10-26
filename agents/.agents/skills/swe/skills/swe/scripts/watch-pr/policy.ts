@@ -356,12 +356,16 @@ export function statusQueryVerdict(
     blocker: { kind: "status-query", failures, failure },
   });
 }
+export function timeoutQueryVerdict(stamp: VerdictStamp, failure: T.QueryFailure): T.TimeoutVerdict {
+  return stamp({ kind: "TIMEOUT", terminal: true, exitCode: 5, reason: { kind: "status-unavailable", failure } });
+}
 export interface WatchClock {
   now(): number;
   observedAt(): string;
   sleep(seconds: number): Promise<void>;
 }
 export interface RunDependencies {
+  readonly startedAt?: number;
   readonly reader: T.GitHubReader;
   readonly clock: WatchClock;
   readonly emit: (verdict: T.ProgressVerdict) => void;
@@ -386,7 +390,7 @@ async function pollUntilTerminal<V>(args: {
   readonly step: () => Promise<StepResult<V>>;
 }): Promise<V | T.BlockerVerdict | T.TimeoutVerdict> {
   let failures = 0;
-  const started = args.dependencies.clock.now();
+  const started = args.dependencies.startedAt ?? args.dependencies.clock.now();
   const sleep = async (seconds: number): Promise<void> => {
     const remaining = args.options.timeout > 0
       ? Math.max(0, args.options.timeout - (args.dependencies.clock.now() - started))
@@ -401,6 +405,8 @@ async function pollUntilTerminal<V>(args: {
     } catch (error) {
       if (!(error instanceof WatcherQueryError)) throw error;
       failures += 1;
+      if (error.failure.kind === "command-timeout" && error.failure.scope === "watch")
+        return timeoutQueryVerdict(args.stamp, error.failure);
       if (!error.failure.retryable || failures >= args.options.maxQueryErrors)
         return statusQueryVerdict(args.stamp, failures, error.failure);
       const retryInSeconds = queryBackoffSeconds(
@@ -732,7 +738,7 @@ export async function runQueued(args: {
   readonly contexts: T.NonEmpty<T.PrContext>;
   readonly options: T.PollingOptions;
 }): Promise<T.QueueTerminalVerdict> {
-  let state = createQueueState(args.contexts, args.dependencies.clock.now());
+  let state = createQueueState(args.contexts, args.dependencies.startedAt ?? args.dependencies.clock.now());
   const stamp = verdictFactory(args.dependencies.clock, "queued-stack");
   args.dependencies.emit(
     stamp({ kind: "QUEUE", terminal: false, queue: args.contexts })

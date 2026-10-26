@@ -15,6 +15,7 @@ import {
   runQueued,
   runSimple,
   statusQueryVerdict,
+  timeoutQueryVerdict,
   verdictFactory,
   type WatchClock,
 } from "./policy.ts";
@@ -181,6 +182,8 @@ export async function main(
     if (!(error instanceof CommanderError)) throw error;
     return error.exitCode === 0 ? 0 : 64;
   }
+  const startedAt = runtime.clock.now();
+  runtime.reader.setDeadline?.(options.polling.timeout > 0 ? startedAt + options.polling.timeout : null);
   const render = options.pretty ? renderPretty : renderJson;
   const emit = (verdict: T.ProgressVerdict): void =>
     runtime.stdout(render(verdict));
@@ -199,15 +202,14 @@ export async function main(
         : await discoverStack(runtime.reader, seed));
   } catch (error) {
     if (!(error instanceof WatcherQueryError)) throw error;
-    const verdict = statusQueryVerdict(
-      verdictFactory(runtime.clock, options.mode),
-      1,
-      error.failure
-    );
+    const stamp = verdictFactory(runtime.clock, options.mode);
+    const verdict = error.failure.kind === "command-timeout" && error.failure.scope === "watch"
+      ? timeoutQueryVerdict(stamp, error.failure)
+      : statusQueryVerdict(stamp, 1, error.failure);
     runtime.stdout(render(verdict));
     return verdict.exitCode;
   }
-  const dependencies = { reader: runtime.reader, clock: runtime.clock, emit };
+  const dependencies = { reader: runtime.reader, clock: runtime.clock, emit, startedAt };
   const verdict =
     options.mode === "queued-stack" && !options.statusOnly
       ? await runQueued({ dependencies, contexts, options: options.polling })

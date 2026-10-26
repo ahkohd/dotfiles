@@ -29,23 +29,56 @@ export class ChecksUnavailable extends WatcherQueryError {
 }
 const firstLine = (value: string): string =>
   value.trim().split(/\r?\n/, 1)[0]?.slice(0, 240) ?? "";
-function run(argv: readonly [string, ...string[]]): Promise<CommandResult> {
+function run(argv: readonly [string, ...string[]], deadline: number | null): Promise<CommandResult> {
+  const remaining = deadline === null ? Infinity : (deadline - performance.now() / 1_000) * 1_000;
+  const scope = remaining <= 30_000 ? "watch" : "query";
+  const failure = new WatcherQueryError({
+    kind: "command-timeout", scope, retryable: scope === "query",
+    detail: `${argv[0]} exceeded the ${scope} deadline`,
+  });
+  if (remaining <= 0) return Promise.reject(failure);
   return new Promise((resolve, reject) => {
     const child = spawn(argv[0], argv.slice(1), {
       stdio: ["ignore", "pipe", "pipe"],
+      detached: process.platform !== "win32",
     });
     let stdout = "";
     let stderr = "";
+    let expired = false;
+    let escalation: ReturnType<typeof setTimeout> | undefined;
+    const terminate = (signal: NodeJS.Signals): void => {
+      if (child.pid === undefined) return;
+      try {
+        if (process.platform === "win32") child.kill(signal);
+        else process.kill(-child.pid, signal);
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== "ESRCH") reject(error);
+      }
+    };
+    const timer = setTimeout(() => {
+      expired = true;
+      terminate("SIGTERM");
+      escalation = setTimeout(() => terminate("SIGKILL"), 250);
+    }, Math.min(30_000, remaining));
+    const clearTimers = (): void => {
+      clearTimeout(timer);
+      clearTimeout(escalation);
+    };
     child.stdout.setEncoding("utf8");
     child.stderr.setEncoding("utf8");
-    child.stdout.on("data", (chunk: string) => {
-      stdout += chunk;
+    child.stdout.on("data", (chunk: string) => { stdout += chunk; });
+    child.stderr.on("data", (chunk: string) => { stderr += chunk; });
+    child.on("error", (error) => {
+      clearTimers();
+      reject(new WatcherQueryError({ kind: "command-exit", retryable: true, code: -1, detail: firstLine(error.message) }));
     });
-    child.stderr.on("data", (chunk: string) => {
-      stderr += chunk;
+    child.on("close", (code) => {
+      clearTimers();
+      if (deadline !== null && performance.now() / 1_000 >= deadline)
+        reject(new WatcherQueryError({ kind: "command-timeout", scope: "watch", retryable: false, detail: `${argv[0]} exceeded the watch deadline` }));
+      else if (expired) reject(failure);
+      else resolve({ code: code ?? -1, stdout, stderr });
     });
-    child.on("error", reject);
-    child.on("close", (code) => resolve({ code: code ?? -1, stdout, stderr }));
   });
 }
 function parseJson(text: string, label: string): unknown {
@@ -59,8 +92,8 @@ function parseJson(text: string, label: string): unknown {
     });
   }
 }
-async function runJson(argv: readonly [string, ...string[]]): Promise<unknown> {
-  const result = await run(argv);
+async function runJson(argv: readonly [string, ...string[]], deadline: number | null): Promise<unknown> {
+  const result = await run(argv, deadline);
   if (result.code !== 0)
     throw new WatcherQueryError({
       kind: "command-exit",
@@ -454,15 +487,19 @@ function graphqlArgs(
 }
 
 export class GhGitHubReader implements T.GitHubReader {
+  private deadline: number | null = null;
+  setDeadline(deadline: number | null): void { this.deadline = deadline; }
+  private run(argv: readonly [string, ...string[]]): Promise<CommandResult> { return run(argv, this.deadline); }
+  private runJson(argv: readonly [string, ...string[]]): Promise<unknown> { return runJson(argv, this.deadline); }
   async originRepo(): Promise<T.Repository | null> {
-    const result = await run(["git", "remote", "get-url", "origin"]);
+    const result = await this.run(["git", "remote", "get-url", "origin"]);
     return result.code === 0 ? parseRemote(result.stdout) : null;
   }
   async currentPr(pr: T.PrNumber | null): Promise<T.PrContext> {
     const argv: [string, ...string[]] = ["gh", "pr", "view"];
     if (pr !== null) argv.push(String(pr));
     argv.push("--json", "number,url");
-    const object = record(await runJson(argv), "current PR");
+    const object = record(await this.runJson(argv), "current PR");
     const parsed = parsePrUrl(string(object.url, "current PR.url"));
     return {
       ...parsed,
@@ -471,7 +508,7 @@ export class GhGitHubReader implements T.GitHubReader {
   }
   async pullRequest(context: T.PrContext): Promise<T.PullRequestFacts> {
     return parsePullRequest(
-      await runJson([
+      await this.runJson([
         "gh",
         "pr",
         "view",
@@ -487,7 +524,7 @@ export class GhGitHubReader implements T.GitHubReader {
   async openPullRequests(
     repository: T.Repository
   ): Promise<readonly T.OpenPullRequest[]> {
-    const value = await runJson([
+    const value = await this.runJson([
       "gh",
       "pr",
       "list",
@@ -519,7 +556,7 @@ export class GhGitHubReader implements T.GitHubReader {
     });
   }
   async checksFastPath(context: T.PrContext): Promise<T.ChecksFastPath> {
-    const result = await run([
+    const result = await this.run([
       "gh",
       "pr",
       "checks",
@@ -546,7 +583,7 @@ export class GhGitHubReader implements T.GitHubReader {
   ): Promise<T.RollupPage> {
     const argv = graphqlArgs(PR_CHECK_ROLLUP_QUERY, context);
     if (after !== null) argv.push("-f", `after=${after}`);
-    const value = await runJson(argv);
+    const value = await this.runJson(argv);
     const commits = list(
       at(value, ["data", "repository", "pullRequest", "commits", "nodes"]),
       "commits.nodes"
@@ -581,12 +618,12 @@ export class GhGitHubReader implements T.GitHubReader {
   ): Promise<T.ReviewThreadPage> {
     const argv = graphqlArgs(REVIEW_THREADS_QUERY, context);
     if (after !== null) argv.push("-f", `after=${after}`);
-    return parseReviewThreadPage(await runJson(argv));
+    return parseReviewThreadPage(await this.runJson(argv));
   }
   async commitRollups(
     context: T.PrContext
   ): Promise<readonly T.CommitRollup[]> {
-    const value = await runJson(graphqlArgs(PR_COMMIT_STATUS_QUERY, context));
+    const value = await this.runJson(graphqlArgs(PR_COMMIT_STATUS_QUERY, context));
     const commits = list(
       at(value, ["data", "repository", "pullRequest", "commits", "nodes"]),
       "commits.nodes"

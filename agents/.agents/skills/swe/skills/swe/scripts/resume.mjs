@@ -2,7 +2,7 @@
 import { execFileSync } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
 import { lstatSync, mkdirSync, readFileSync, realpathSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
-import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { parseArgs } from 'node:util';
 
 function inside(root, path) {
@@ -20,15 +20,45 @@ function verify(record, roots) {
   if (current.sha256 !== record.sha256) throw new Error(`checkpoint file changed: ${current.path}`);
   return current;
 }
-function verifyLinks(note, artifacts) {
-  const text = readFileSync(note.path, 'utf8')
-    .replace(/^ {0,3}((`|~)\2{2,}).*\n[\s\S]*?(?:^ {0,3}\1\2*[ \t]*$|(?![\s\S]))/gm, ' ')
-    .replace(/(?<!`)(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)/g, ' ');
+function verifyLinks(note, artifacts, contents = readFileSync(note.path, 'utf8')) {
+  const mask = text => text.replace(/[^\n]/g, ' ');
+  const text = contents
+    .replace(/^ {0,3}((`|~)\2{2,}).*\n[\s\S]*?(?:^ {0,3}\1\2*[ \t]*$|(?![\s\S]))/gm, mask)
+    .replace(/(?<!`)(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)/g, mask);
   const links = [...text.matchAll(/\[[^\]]*\]\((?:<([^<>]+)>|([^)]+))\)/g)]
-    .map(match => match[1] ?? match[2]).filter(path => !/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(path))
-    .map(path => realpathSync(resolve(dirname(note.path), decodeURIComponent(path.split('#')[0]))));
-  for (const artifact of artifacts) if (!links.includes(artifact.path)) throw new Error(`note must link artifact: ${artifact.path}`);
-  for (const path of links) if (path !== note.path && !artifacts.some(artifact => artifact.path === path)) throw new Error(`register local note link with --artifact: ${path}`);
+    .map(match => ({ match, destination: match[1] ?? match[2] }))
+    .filter(link => !/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(link.destination))
+    .map(link => ({ ...link, path: realpathSync(resolve(dirname(note.path), decodeURIComponent(link.destination.split('#')[0]))) }));
+  for (const artifact of artifacts) if (!links.some(link => link.path === artifact.path)) throw new Error(`note must link artifact: ${artifact.path}`);
+  for (const { path } of links) if (path !== note.path && !artifacts.some(artifact => artifact.path === path)) throw new Error(`register local note link with --artifact: ${path}`);
+  return links;
+}
+function checkedContents(record) {
+  const contents = readFileSync(record.path);
+  if (createHash('sha256').update(contents).digest('hex') !== record.sha256) throw new Error(`checkpoint file changed: ${record.path}`);
+  return contents;
+}
+function snapshot(note, artifacts, directory) {
+  let text = checkedContents(note).toString('utf8');
+  const links = verifyLinks(note, artifacts, text);
+  const savedNote = join(directory, 'resume.md');
+  const destinations = new Map([[note.path, savedNote]]);
+  const savedArtifacts = artifacts.map((artifact, index) => {
+    const path = join(directory, `artifact-${index}-${basename(artifact.path)}`);
+    writeFileSync(path, checkedContents(artifact), { flag: 'wx', mode: 0o600 });
+    destinations.set(artifact.path, path);
+    return file(path, [directory]);
+  });
+  for (const link of links.reverse()) {
+    const fragment = link.destination.includes('#') ? link.destination.slice(link.destination.indexOf('#')) : '';
+    const original = text.slice(link.match.index, link.match.index + link.match[0].length);
+    const replacement = original.slice(0, original.lastIndexOf('](') + 2) + `<${encodeURIComponent(basename(destinations.get(link.path)))}${fragment}>)`;
+    text = text.slice(0, link.match.index) + replacement + text.slice(link.match.index + link.match[0].length);
+  }
+  writeFileSync(savedNote, text, { flag: 'wx', mode: 0o600 });
+  const saved = { note: file(savedNote, [directory]), artifacts: savedArtifacts };
+  verifyLinks(saved.note, saved.artifacts);
+  return saved;
 }
 
 try {
@@ -89,17 +119,25 @@ try {
   } else {
     const note = file(values.note, [store]);
     const artifacts = values.artifact.map(path => file(path, roots));
-    if (new Set(artifacts.map(item => item.path)).size !== artifacts.length) throw new Error('duplicate artifact');
-    verifyLinks(note, artifacts);
-    const record = { schemaVersion: 1, project: identity, worktree: project, createdAt: new Date().toISOString(), note, artifacts };
+    if (new Set([note.path, ...artifacts.map(item => item.path)]).size !== artifacts.length + 1) throw new Error('duplicate artifact');
+    const directory = join(store, `checkpoint-${randomUUID()}`);
     const temporary = join(store, `.latest-${randomUUID()}.json`);
+    mkdirSync(directory, { mode: 0o700 });
+    let published = false;
+    let record;
     try {
+      const saved = snapshot(note, artifacts, directory);
+      record = { schemaVersion: 1, project: identity, worktree: project, createdAt: new Date().toISOString(), ...saved };
       writeFileSync(temporary, JSON.stringify(record) + '\n', { flag: 'wx', mode: 0o600 });
       renameSync(temporary, pointer);
+      published = true;
     } finally {
-      rmSync(temporary, { force: true });
+      if (!published) {
+        rmSync(temporary, { force: true });
+        rmSync(directory, { recursive: true, force: true });
+      }
     }
-    console.log(JSON.stringify({ kind: 'checkpoint', checkpoint: load() }));
+    console.log(JSON.stringify({ kind: 'checkpoint', checkpoint: record }));
   }
 } catch (error) {
   console.log(JSON.stringify({ kind: 'unavailable', detail: error.message }));

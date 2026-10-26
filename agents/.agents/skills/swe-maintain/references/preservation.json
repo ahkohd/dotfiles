@@ -465,7 +465,8 @@
     },
     "skills/swe/scripts/watch-pr/cli.ts": {
       "upstream": "skills/swe/scripts/watch-pr/cli.ts",
-      "unchanged_sha256": "89c08863089181a232be782c4b2ed90a1552f44aeecb0dcb7aac2c623620e680"
+      "baseline_sha256": "89c08863089181a232be782c4b2ed90a1552f44aeecb0dcb7aac2c623620e680",
+      "adaptation": "Approved follow-up audit fix: share the watch deadline across context discovery and queries; report command deadlines as TIMEOUT"
     },
     "skills/swe/scripts/watch-pr/github.test.ts": {
       "upstream": "skills/swe/scripts/watch-pr/github.test.ts"
