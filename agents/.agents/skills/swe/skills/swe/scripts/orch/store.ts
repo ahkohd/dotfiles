@@ -230,11 +230,13 @@ export interface NotFoundOutput {
 export class UserError extends Error {}
 export class UsageError extends UserError {}
 export class NotFoundError extends UserError {
+  public readonly output?: NotFoundOutput;
   public constructor(
     message: string,
-    public readonly output?: NotFoundOutput
+    output?: NotFoundOutput
   ) {
     super(message);
+    this.output = output;
   }
 }
 

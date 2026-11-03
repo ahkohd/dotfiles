@@ -1,4 +1,5 @@
-import { expect, test } from 'bun:test';
+import { test } from "node:test";
+import { expect } from "expect";
 import { buildReviewThreads, parseReviewThreadPage, resolveChecks } from './github.ts';
 import { fakeReader, pendingCheck } from './fakes.test-helper.ts';
 import { classifyPr, readSnapshot, runQueued, runSimple } from './policy.ts';

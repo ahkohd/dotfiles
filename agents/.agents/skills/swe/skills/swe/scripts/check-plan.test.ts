@@ -2,9 +2,10 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
-import { expect, test } from "bun:test";
+import { test } from "node:test";
+import { expect } from "expect";
 
-const checker = join(import.meta.dir, "check-plan.mjs");
+const checker = join(import.meta.dirname, "check-plan.mjs");
 const rule =
 	"Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked.";
 

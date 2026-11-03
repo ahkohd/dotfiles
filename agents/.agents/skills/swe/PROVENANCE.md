@@ -22,6 +22,10 @@ copyright notice. Upstream attribution is not an active harness dependency.
 
 ## Integration changes
 
+- Bundled TypeScript helpers run directly on Node.js 24.12 or newer. Dependency
+  bootstrap uses npm's lockfile and disables install scripts. Tests use Node's
+  test runner and the standalone expect assertion package. CLI behavior and
+  readiness gates are retained.
 - Renamed the local entry to SWE. Only SWE and its maintenance entry are exposed.
 - Core workflows use the active harness's documented capabilities. Models and
   local harness policy come from the existing model-selection skill, not SWE.

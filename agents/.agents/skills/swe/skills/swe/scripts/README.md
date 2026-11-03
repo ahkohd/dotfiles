@@ -2,9 +2,12 @@
 
 These tools do not spawn agents or require a particular agent harness.
 
+Use Node.js 24.12 or newer with npm on PATH. Node runs the TypeScript sources
+directly. GitHub commands also require authenticated `gh` and Git.
+
 - `node check-plan.mjs <plan.md>` validates the restored plan contract: evidence
   boxes, ten live lanes, performance baseline, review gate and scheduled audit.
-- `bun orch/orch.ts --help` exposes the durable unit, inbox, frontier and
+- `node orch/orch.ts --help` exposes the durable unit, inbox, frontier and
   verification store. Set the store path explicitly as documented by help.
 - `watch-pr/watch-pr --help` explains GitHub status, stack and queue modes.
   `--status-only` makes one query instead of polling. The watcher does not merge.
@@ -13,16 +16,17 @@ These tools do not spawn agents or require a particular agent harness.
   separately before making deletion decisions. It does not infer a harness's
   session directories. Use the project's VCS tools separately for other workspace types.
 
-The first orchestration or watcher invocation installs the locked Bun dependencies
-in this directory. Tests and typechecking can run with:
+The first orchestration or watcher invocation runs `npm ci --ignore-scripts`
+in this directory. It needs network access and a writable skill directory.
+Later invocations reuse the installation until the package manifest or lockfile
+changes. Tests and typechecking can run with:
 
 ```sh
-bun install --frozen-lockfile --ignore-scripts
-bun test orch watch-pr check-plan.test.ts
-bun run typecheck
+npm ci --ignore-scripts
+npm test
+npm run typecheck
 python3 test-worktree-audit.py
 python3 test-ship-pr.py
-node --test workflow-safety.test.mjs
 ```
 
 ## PR readiness

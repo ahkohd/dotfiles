@@ -1,4 +1,5 @@
-import { describe, expect, it } from "bun:test";
+import { describe, it } from "node:test";
+import { expect } from "expect";
 import { fakeReader } from "./fakes.test-helper.ts";
 import { classifyPr, readSnapshot, runQueued, runSimple, selectTierMajorStackDecision } from "./policy.ts";
 import { renderJson, renderPretty, renderStatusTable } from "./render.ts";

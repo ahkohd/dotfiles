@@ -5,6 +5,11 @@ applies to every helper, guide and playbook in the bundle.
 
 ## Resolve the environment
 
+- Bundled TypeScript helpers require Node.js 24.12 or newer and npm on PATH.
+  The watcher and orchestration CLI install their locked dependencies on first
+  use. That requires network access and a writable scripts directory. Install
+  ahead by running `watch-pr/watch-pr --help` there when preparing an offline host.
+  GitHub helpers also require Git and authenticated `gh`.
 - Follow the current project and user instructions for harness, VCS, signing,
   safety and publication policy. A skill never grants additional permissions.
 - Read the available model-selection skill before choosing models or effort.

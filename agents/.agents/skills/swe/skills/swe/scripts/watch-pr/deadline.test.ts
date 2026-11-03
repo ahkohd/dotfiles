@@ -1,4 +1,5 @@
-import { test, expect } from "bun:test";
+import { test } from "node:test";
+import { expect } from "expect";
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -69,13 +70,13 @@ test("context discovery also bounds the git subprocess", () => {
   expect(JSON.parse(result.stdout).kind).toBe("TIMEOUT");
 });
 
-test("disabled watch timeout still bounds an individual command", () => {
+test("disabled watch timeout still bounds an individual command", { timeout: 40000 }, () => {
   const result = stalledCommand(`const {GhGitHubReader} = await import(${JSON.stringify(reader)});
 try { await new GhGitHubReader().currentPr(null); process.exitCode = 1; }
 catch (error) { console.log(JSON.stringify(error.failure)); }`, "gh", 35000);
   expect(result.status).toBe(0);
   expect(JSON.parse(result.stdout)).toMatchObject({ kind: "command-timeout", scope: "query", retryable: true });
-}, 40000);
+});
 
 for (const flags of [[], ["--stack"], ["--queued-stack", "--stack-prs", "1"]]) {
   test(`discovery consumes the shared polling budget: ${flags.join(" ") || "single"}`, async () => {

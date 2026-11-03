@@ -3,14 +3,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "bun test orch watch-pr check-plan.test.ts",
-    "typecheck": "tsc --project watch-pr/tsconfig.json --noEmit --strict"
+    "test": "node --test orch/*.test.ts watch-pr/*.test.ts check-plan.test.ts workflow-safety.test.mjs",
+    "typecheck": "tsc --project tsconfig.json"
   },
   "dependencies": {
     "commander": "14.0.0"
   },
   "devDependencies": {
-    "bun-types": "latest",
-    "typescript": "latest"
+    "@types/node": "^24.0.0",
+    "expect": "^30.0.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=24.12.0"
   }
 }

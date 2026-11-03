@@ -29,6 +29,8 @@ with tempfile.TemporaryDirectory(prefix='swe-preservation-') as temporary:
     check(0)
     swe = target_hub / 'swe'
     tests = [
+        ('skills/swe/scripts/watch-pr/watch-pr', lambda text: text.replace('/usr/bin/env node', '/usr/bin/env bun'), 'non-Node runtime dependency'),
+        ('skills/swe/scripts/orch/orch.test.ts', lambda text: text.replace('"node:test"', '"bun:test"'), 'non-Node runtime dependency'),
         ('skills/swe/scripts/worktree-audit.sh', None, 'lost upstream content'),
         ('skills/swe/playbooks/multi-phase-plan.md', lambda text: text.replace('Ten lanes', 'Risk-sized lanes'), 'lost behavioral contract'),
         ('skills/swarm/SKILL.md', lambda text: text + '\nPass `cloud_base_branch`.\n', 'harness-specific wiring'),

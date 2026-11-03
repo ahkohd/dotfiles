@@ -1,4 +1,5 @@
-import { describe, expect, it } from "bun:test";
+import { describe, it } from "node:test";
+import { expect } from "expect";
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -459,7 +460,7 @@ describe("context and stack discovery", () => {
 
   it("terminates when an unrelated fork opens main against main", () => {
     // Bound the subprocess so this regression reports a failure instead of hanging the suite.
-    const program = `import { orderStack } from ${JSON.stringify(import.meta.dir + "/github.ts")};
+    const program = `import { orderStack } from ${JSON.stringify(import.meta.dirname + "/github.ts")};
       console.log(JSON.stringify(orderStack(${JSON.stringify(context)}, [
         { number: 41, headRefName: "main", baseRefName: "main", isCrossRepository: true },
         { number: 42, headRefName: "feature", baseRefName: "main", isCrossRepository: false }
@@ -480,7 +481,7 @@ case "$*" in
 esac
 printf '%s\\n' '[{"number":42,"headRefName":"feature","baseRefName":"main","isCrossRepository":true}]'
 `, { mode: 0o755 });
-      const program = `import { GhGitHubReader } from ${JSON.stringify(import.meta.dir + "/github.ts")};
+      const program = `import { GhGitHubReader } from ${JSON.stringify(import.meta.dirname + "/github.ts")};
         console.log(JSON.stringify(await new GhGitHubReader().openPullRequests({ owner: "owner", repo: "repo" })));`;
       const child = spawnSync(process.execPath, ["-e", program], {
         encoding: "utf8", timeout: 2000,

@@ -70,6 +70,11 @@ for relative, record in manifest['files'].items():
     if path.is_file() and 'unchanged_sha256' in record:
         check(hashlib.sha256(path.read_bytes()).hexdigest() == record['unchanged_sha256'], f'changed preserved source: {relative}; review the change before updating its manifest')
 
+for path in (SWE / 'skills/swe/scripts').rglob('*'):
+    if included(path) and path.is_file() and path.suffix in ('', '.ts', '.mjs', '.json', '.md'):
+        check(not re.search(r'\b(?:bun|Bun)\b', path.read_text()), f'{path}: non-Node runtime dependency')
+check(not (SWE / 'skills/swe/scripts/bun.lock').exists(), 'non-Node runtime lockfile')
+
 catalog = (SWE / 'skills/swe-help/references/catalog.md').read_text()
 for path in (SWE / 'skills').glob('*/SKILL.md'):
     check(f'../../{path.parent.name}/SKILL.md' in catalog, f'undiscoverable helper: {path.parent.name}')

@@ -7,7 +7,12 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "types": ["bun-types"]
+    "types": [
+      "node"
+    ],
+    "erasableSyntaxOnly": true
   },
-  "include": ["*.ts"]
+  "include": [
+    "**/*.ts"
+  ]
 }

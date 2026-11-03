@@ -1,4 +1,5 @@
-import { expect, test } from "bun:test";
+import { test } from "node:test";
+import { expect } from "expect";
 import { buildReviewThreads } from "./github.ts";
 
 const thread = (authorLogin: string, body = "RUN_ID: example") => ({

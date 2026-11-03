@@ -409,7 +409,8 @@
       "upstream": "skills/swe/playbooks/babysit.md"
     },
     "skills/swe/playbooks/orchestrate.md": {
-      "upstream": "skills/swe/playbooks/orchestrate.md"
+      "upstream": "skills/swe/playbooks/orchestrate.md",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe/playbooks/feature.md": {
       "upstream": "skills/swe/playbooks/feature.md"
@@ -428,13 +429,12 @@
       "upstream": "skills/swe/playbooks/refactoring.md"
     },
     "skills/swe/scripts/check-plan.test.ts": {
-      "upstream": "skills/swe/scripts/check-plan.test.ts"
-    },
-    "skills/swe/scripts/bun.lock": {
-      "upstream": "skills/swe/scripts/bun.lock"
+      "upstream": "skills/swe/scripts/check-plan.test.ts",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe/scripts/package.json": {
-      "upstream": "skills/swe/scripts/package.json"
+      "upstream": "skills/swe/scripts/package.json",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe/scripts/check-plan.mjs": {
       "upstream": "skills/swe/scripts/check-plan.mjs"
@@ -444,16 +444,18 @@
     },
     "skills/swe/scripts/bootstrap.ts": {
       "upstream": "skills/swe/scripts/bootstrap.ts",
-      "unchanged_sha256": "88a7d9b93c98acea915f6354c3466701f9806aeb60c21370d392fa860c9e71e8"
+      "baseline_sha256": "88a7d9b93c98acea915f6354c3466701f9806aeb60c21370d392fa860c9e71e8",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe/scripts/watch-pr/watch-pr": {
       "upstream": "skills/swe/scripts/watch-pr/watch-pr",
-      "unchanged_sha256": "d955603be6cc0e8b8ffcec722f635192b2261410b1f2929abea94480e47eb5d4"
+      "baseline_sha256": "d955603be6cc0e8b8ffcec722f635192b2261410b1f2929abea94480e47eb5d4",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe/scripts/watch-pr/policy.test.ts": {
       "upstream": "skills/swe/scripts/watch-pr/policy.test.ts",
       "baseline_sha256": "7ee38c20ed605f4a255f1f78e5a4be56b3563fcd8d3d65cfeea58d44c3f58d53",
-      "adaptation": "Approved audit fix: snapshot tests expect a second stable-revision facts read"
+      "adaptation": "Approved audit fix: snapshot tests expect a second stable-revision facts read; Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe/scripts/watch-pr/github.ts": {
       "upstream": "skills/swe/scripts/watch-pr/github.ts"
@@ -469,7 +471,8 @@
       "adaptation": "Approved follow-up audit fix: share the watch deadline across context discovery and queries; report command deadlines as TIMEOUT"
     },
     "skills/swe/scripts/watch-pr/github.test.ts": {
-      "upstream": "skills/swe/scripts/watch-pr/github.test.ts"
+      "upstream": "skills/swe/scripts/watch-pr/github.test.ts",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe/scripts/watch-pr/fakes.test-helper.ts": {
       "upstream": "skills/swe/scripts/watch-pr/fakes.test-helper.ts",
@@ -482,30 +485,28 @@
     "skills/swe/scripts/watch-pr/policy.ts": {
       "upstream": "skills/swe/scripts/watch-pr/policy.ts"
     },
-    "skills/swe/scripts/watch-pr/tsconfig.json": {
-      "upstream": "skills/swe/scripts/watch-pr/tsconfig.json",
-      "unchanged_sha256": "1ecccc72320b086c63ce3f73c959896fd747363e63553b3b1136296ea4069e45"
-    },
     "skills/swe/scripts/watch-pr/render.ts": {
       "upstream": "skills/swe/scripts/watch-pr/render.ts"
     },
     "skills/swe/scripts/watch-pr/cli.test.ts": {
       "upstream": "skills/swe/scripts/watch-pr/cli.test.ts",
       "baseline_sha256": "a35592b4c6da96caf8d47987e9cd503fab6c7774ab87d11a43f24b4b5df2a9d1",
-      "adaptation": "Approved audit fix: CLI fixture includes the required base SHA"
+      "adaptation": "Approved audit fix: CLI fixture includes the required base SHA; Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe/scripts/orch/orch.test.ts": {
       "upstream": "skills/swe/scripts/orch/orch.test.ts",
-      "unchanged_sha256": "a5e6037ab5a2400e07f477005f92bffcd8077f865460959770ec08c4fd2f1abc"
+      "baseline_sha256": "a5e6037ab5a2400e07f477005f92bffcd8077f865460959770ec08c4fd2f1abc",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe/scripts/orch/orch.ts": {
       "upstream": "skills/swe/scripts/orch/orch.ts",
-      "unchanged_sha256": "8e36177069f2b4d22d92e3cd1b3e5fb9c606a83cd47344a80adf57191607cd01"
+      "baseline_sha256": "8e36177069f2b4d22d92e3cd1b3e5fb9c606a83cd47344a80adf57191607cd01",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe/scripts/orch/store.ts": {
       "upstream": "skills/swe/scripts/orch/store.ts",
       "baseline_sha256": "adfb255a86a407075b9d937fa55b955eaf8a3bbfb9eda6c13cdbeaacbda99bb2",
-      "adaptation": "Approved audit fix: serialize lock takeover and release; atomically publish PID-bearing locks; fail closed without hard links"
+      "adaptation": "Approved audit fix: serialize lock takeover and release; atomically publish PID-bearing locks; fail closed without hard links; Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/swe-help/references/recipes.md": {
       "upstream": "skills/swe-help/references/recipes.md"
@@ -522,7 +523,8 @@
       "unchanged_sha256": "a65a4bc5fb7cdeadbdb7b7ff1ca4682f4d9c42420942b2977cd17b46c4ac338e"
     },
     "skills/reflect/references/synthesizer.md": {
-      "upstream": "skills/reflect/references/synthesizer.md"
+      "upstream": "skills/reflect/references/synthesizer.md",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
     },
     "skills/reflect/references/judgment-reviewer.md": {
       "upstream": "skills/reflect/references/judgment-reviewer.md"
@@ -637,6 +639,15 @@
     },
     "docs/guide/05-build-and-clean.md": {
       "upstream": "docs/guide/05-build-and-clean.md"
+    },
+    "skills/swe/scripts/package-lock.json": {
+      "upstream": "skills/swe/scripts/bun.lock",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
+    },
+    "skills/swe/scripts/tsconfig.json": {
+      "upstream": "skills/swe/scripts/watch-pr/tsconfig.json",
+      "baseline_sha256": "1ecccc72320b086c63ce3f73c959896fd747363e63553b3b1136296ea4069e45",
+      "adaptation": "Node.js migration: use native Node execution and tests with npm dependencies"
     }
   }
 }
