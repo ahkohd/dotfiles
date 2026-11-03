@@ -4,8 +4,6 @@ alias -- eza='eza --icons never --git'
 alias -- glg='git log -n 10 --graph --decorate --oneline'
 alias -- gpg-check='gpg --decrypt ~/test.gpg'
 alias -- gst='git status'
-alias -- h=herdr
-alias -- hd='herdr --remote var@devbox.victor.computer --remote-keybindings server'
 alias -- j=jj
 alias -- ja='jj abandon'
 alias -- jb='jj bookmark set $(j bookmark list --template '\''name ++ "\n"'\'' --no-pager | sort -u | fzf)'
@@ -39,7 +37,6 @@ alias -- lla='eza -la'
 alias -- lt='eza --tree'
 
 alias -- nv=nvim
-alias -- nvd=neovide
 alias -- nvc='~/Developer/nvim/scripts/nvim-config'
 alias -- p=pnpm
 alias -- speed=speedtest-cli
