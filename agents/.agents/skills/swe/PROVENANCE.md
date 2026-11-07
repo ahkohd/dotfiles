@@ -57,6 +57,20 @@ copyright notice. Upstream attribution is not an active harness dependency.
   writer. A changed merge base can require fresh verification even with an
   unchanged patch-id.
 
+## Local Council helper
+
+Council is a local adaptation of the user-supplied Council brief attributed to
+[tstack](https://github.com/t3dotgg/tstack), approved on 7 November 2026. This is
+not a verified upstream snapshot or a change to the pinned pstack baseline.
+The 56 retained helper roots now have one additional locally authored helper.
+
+Council reuses Interrogate's review references without changing Interrogate.
+It adds explicit routing, three-provider availability checks, authorised fixes,
+fresh review rounds and score reporting. Harness commands, fixed model lineups
+and personal reviewer roles remain outside SWE. Missing members, incomplete
+reviews, publication boundaries and stalled consensus remain explicit gates.
+Only SWE and its maintenance entry remain exposed.
+
 ## Deliberate exclusions
 
 - The model-setup skill is replaced by shared model-selection.

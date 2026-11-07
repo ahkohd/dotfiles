@@ -56,7 +56,7 @@ for removed in ('plugin.json', '.cursor-plugin', 'agents', 'automations', 'docs/
                 'skills/setup-swe', 'skills/make-bot-ui'):
     check(not (SWE / removed).exists(), f'removed packaging returned: {removed}')
 check(len(list((SWE / 'skills').glob('principle-*/SKILL.md'))) == 24, 'expected 24 principles')
-check(len(list((SWE / 'skills').glob('*/SKILL.md'))) == 56, 'expected 56 helper roots')
+check(len(list((SWE / 'skills').glob('*/SKILL.md'))) == 57, 'expected 56 retained helper roots and the local council helper')
 check(len(list((SWE / 'skills/swe/playbooks').glob('*.md'))) == 23, 'expected 23 playbooks')
 check('Lauren Tan' in (SWE / 'LICENSE').read_text(), 'missing upstream copyright')
 metadata = json.loads((SWE / 'UPSTREAM.json').read_text())
@@ -80,7 +80,7 @@ for path in (SWE / 'skills').glob('*/SKILL.md'):
     check(f'../../{path.parent.name}/SKILL.md' in catalog, f'undiscoverable helper: {path.parent.name}')
 
 contracts = {
-    'skills/swe/SKILL.md': ['Fresh subagents by default', 'throughput checkpoint', 'No is an acceptable answer', 'copied in verbatim', 'references/runtime.md', '.agents/playbooks/', 'check-playbooks.mjs', 'cannot override'],
+    'skills/swe/SKILL.md': ['Fresh subagents by default', 'throughput checkpoint', 'No is an acceptable answer', 'copied in verbatim', 'references/runtime.md', '.agents/playbooks/', 'check-playbooks.mjs', 'cannot override', '../council/SKILL.md', 'does not start delegates'],
     'skills/swe/playbooks/orchestrate.md': ['TIMEBOX', 'STANDING', '#### Queue and drain', '#### Stack safety', '**Pilot.**', 'Two retries', 'zombie', 'ledger.tsv', 'frontier.json'],
     'skills/swe/playbooks/babysit.md': ['threads-only', 'One babysitter per stack', 'Never mutate stack topology', 'Classify CI before any retrigger', 'One retry only', 'merge frontier'],
     'skills/swe/playbooks/multi-phase-plan.md': ['check-plan.mjs', 'Ten lanes', 'Regression lane against trunk', 'Review gate.', 'screenshots and a video', 'scheduled audit wake', 'installed skill files'],
@@ -92,7 +92,24 @@ contracts = {
     'skills/swe/references/resume-storage.md': ['kind: missing', 'latest.json', 'kind: unavailable'],
     'skills/swe/references/review-triage.md': ['Ask by default', 'Confidence:', 'Do not skip when:', 'run the test first', 'ENOENT', 'permission-boundary'],
     'skills/create-formal-verification-skill/SKILL.md': ['~/.agents/skills/swe/skills/statechart/SKILL.md'],
-    'skills/interrogate/SKILL.md': ['at least two independent reviewers on different models'],
+    'skills/interrogate/SKILL.md': ['at least two independent reviewers on different models', 'Do NOT auto-apply changes.'],
+    'skills/council/SKILL.md': [
+        '/swe council', '../swe/references/runtime.md', 'model-selection',
+        'three distinct model providers', 'high\nreasoning effort',
+        'choose the latest flagship\nmodel from each provider',
+        'stop before launching a substitute panel', 'Do not silently substitute',
+        'Keep all\ndelegates read-only', 'same request, objective, scope, revision',
+        'review-only request stays read-only', 'Run relevant checks',
+        '../interrogate/references/reviewer-prompt.md',
+        '../interrogate/references/rubric.md',
+        '../interrogate/references/code-quality-review.md',
+        '../interrogate/references/lead-judgment.md',
+        'use fresh delegates for a new round',
+        'Record incomplete attempts\nseparately', 'Never invent a score',
+        'write `no score`', 'stop and report the disagreement or limit',
+        'When PR-description edits are authorised',
+        'Do not post a PR comment', 'Do not create a PR just to record a council',
+    ],
     'skills/arena/SKILL.md': ['Default to two candidates'],
     'skills/no-comments/SKILL.md': ['scoped comment-only edits', 'read-only request gets findings only'],
     'skills/swe/references/runtime.md': ['active harness', 'model-selection', 'Independent review requires another agent', 'does not imply permission', 'Never guess', 'Unit tests do not replace this gate', 'Native tool calls can supply these capabilities'],

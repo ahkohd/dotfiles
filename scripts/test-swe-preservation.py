@@ -54,6 +54,38 @@ with tempfile.TemporaryDirectory(prefix='swe-preservation-') as temporary:
         ('skills/swe/playbooks/pause-safely.md', lambda text: text.replace('Commit only when authorized', 'Commit always'), 'lost behavioral contract'),
         ('skills/swe/SKILL.md', lambda text: text.replace('cannot override', 'may override'), 'lost behavioral contract'),
     ])
+    tests.append(('skills/council/SKILL.md', None, 'missing safety artifact'))
+    tests.append(('skills/swe-help/references/catalog.md',
+                  lambda text: text.replace('../../council/SKILL.md', '../../how/SKILL.md'),
+                  'undiscoverable helper'))
+    for marker in (
+        'three distinct model providers',
+        'choose the latest flagship\nmodel from each provider',
+        'high\nreasoning effort',
+        'stop before launching a substitute panel',
+        'Do not silently substitute',
+        'Keep all\ndelegates read-only',
+        'same request, objective, scope, revision',
+        'review-only request stays read-only',
+        'Run relevant checks',
+        'use fresh delegates for a new round',
+        'Record incomplete attempts\nseparately',
+        'Never invent a score',
+        'write `no score`',
+        'stop and report the disagreement or limit',
+        'When PR-description edits are authorised',
+        'Do not post a PR comment',
+        'Do not create a PR just to record a council',
+    ):
+        tests.append(('skills/council/SKILL.md',
+                      lambda text, marker=marker: text.replace(marker, 'removed contract'),
+                      'lost behavioral contract'))
+    tests.append(('skills/interrogate/SKILL.md',
+                  lambda text: text.replace('Do NOT auto-apply changes.', 'Apply changes.'),
+                  'lost behavioral contract'))
+    tests.append(('skills/swe/SKILL.md',
+                  lambda text: text.replace('does not start delegates', 'starts delegates'),
+                  'lost behavioral contract'))
     for tool in ('Playwriter', 'Mean', 'bb-box', 'pilotty'):
         tests.append(('skills/swe/references/runtime.md',
                       lambda text, tool=tool: text + f'\nAlways use {tool} for QA.\n',

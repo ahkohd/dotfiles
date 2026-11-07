@@ -49,7 +49,8 @@ Important distinctions:
   implements unless asked for a checkpoint.
 - arena compares attempts at one brief, selects a base and grafts improvements;
   swarm partitions coverage or runs a declared race.
-- interrogate reviews the diff; blast-radius investigates effects outside it.
+- interrogate reviews the diff without applying fixes; council adds three-provider review, authorised fixes and tracked fresh rounds through `/swe council`.
+- blast-radius investigates effects outside the diff.
 - recall reconstructs recent project context; ketchup summarizes this chat;
   session-pickup resumes one specific trail.
 - figure-it-out designs one bespoke run; autonomous-run drives one predicate;
