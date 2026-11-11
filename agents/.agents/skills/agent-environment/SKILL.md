@@ -26,10 +26,41 @@ Read [tool discovery](references/tools.md) for the relevant capability.
   what is needed. Do not guess endpoints, flags, account routing or credentials,
   or replace a real-system check with a mock and call it equivalent.
 
+## Credential vaults
+
+Use two 1Password service accounts supplied privately to the executing runtime:
+
+- `AGENT_OP_SERVICE_ACCOUNT_READ`: read access to the user-maintained vault.
+  Only the user updates this vault; agents use its approved identities and settings.
+- `AGENT_OP_SERVICE_ACCOUNT_WRITE`: read/write access to a separate agent-maintained
+  vault. Save task-authorized agent-created credentials there for user inspection.
+  This account must not have write access to the user-maintained vault.
+
+These names describe the intended policy, not verified permissions. Enforce vault
+scope in 1Password and check accessible vaults and permission metadata when available.
+Do not test permissions by modifying existing items. Never substitute the write
+account when a read fails, or promote agent-written entries into the user-maintained
+vault. Treat agent-written entries as unreviewed until the user approves them.
+
+Select the appropriate token only for the scoped operation. For the 1Password CLI,
+supply it as `OP_SERVICE_ACCOUNT_TOKEN` in the child process environment, without
+printing it or placing it in command arguments. Do not overwrite shared CLI login
+state. Check presence without displaying values; never dump environment files,
+credentials, item contents or tokens into logs, reports or tracked files.
+
+Resolve vault, item and field mappings through private configuration. An item title
+alone is not an unambiguous mapping. Browser profiles and account identities may be
+resolved from the user-maintained vault using those mappings; explicit user choices
+still take precedence. If neither an approved vault mapping nor the runtime setting
+below is available, request configuration instead of guessing. Keep the same browser
+and signed-in identity checks regardless of where the value came from. Access to a
+vault does not authorize unrelated account actions or credential changes.
+
 ## Browser profiles
 
 Use an explicit user selection for the current task; otherwise resolve
-`AGENT_BROWSER_PROFILE` from the runtime that will access the target browser.
+`AGENT_BROWSER_PROFILE` through its approved private vault mapping or from the
+runtime that will access the target browser.
 It names the preferred browser profile, not an account, profile directory or
 browser-tool session ID. Configure it privately, including as a BB global default.
 Consult current BB configuration guidance for supported overrides, precedence and
@@ -37,8 +68,8 @@ propagation; do not assume another machine, thread or existing process inherited
 Keep profile values and machine mappings out of tracked files and public reports.
 
 Before accessing signed-in content, resolve the selected name to an actual profile
-on the target browser's host through the tool's supported discovery. If the variable
-is unset or empty and the user has not selected a profile, ask which profile to use,
+on the target browser's host through the tool's supported discovery. If neither source
+provides a profile and the user has not selected one, ask which profile to use,
 even if only one is available. Also ask if the selection is unavailable or ambiguous,
 or the tool cannot verify or select it. Do not silently choose another profile,
 use the browser default, or import cookies to work around missing access.
@@ -66,7 +97,8 @@ IDs and results separate. Authentication does not authorize ticket edits or comm
 
 ## Agent identities and email
 
-Resolve identity from the executing agent's runtime environment:
+Resolve identity through approved private vault mappings or the executing agent's
+runtime environment:
 
 - `AGENT_EMAIL_DOMAIN`: the approved agent email domain, without `*@`.
 - `AGENT_GMAIL_ADDRESS`: the dedicated agent Gmail address.
