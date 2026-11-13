@@ -1,40 +1,53 @@
 ---
 name: model-selection
-description: Choose a model and coding harness using the user's cost, intelligence, and taste rankings. Use when selecting or escalating a model for implementation, review, or user-facing work.
+description: Choose the model, reasoning level and BB provider for a role (lead, worker, reviewer), and decide when to delegate, review or escalate. Use before spawning a thread or subagent, or when a worker keeps failing.
 ---
 
-# Select models and harnesses
+# Select models
 
-Use the current model rankings below. Higher scores are better on every axis. Cost reflects what the user actually pays, not list price. Intelligence is how hard a problem the model can handle unsupervised. Taste covers UI, UX, code quality, API design, and copy.
+| role | model | spawn with |
+|---|---|---|
+| Lead | Opus 5.5 or Fable 5.2 | The owner starts it |
+| Worker | Astra | `--provider codex --model gpt-6-astra --reasoning-level medium` |
+| Bulk worker | Grok 4.7 | `--provider acp-cursor --model grok-4.7 --reasoning-level xhigh --permission-mode full` |
+| QA | Opus 5.5 | `--provider claude-code --model claude-opus-5-5 --reasoning-level high` |
+| Reviewer | Fable 5.2 | `--provider claude-code --model claude-fable-5-2 --reasoning-level medium` |
+| Reviewer, second proposal | Astra | `--provider codex --model gpt-6-astra --reasoning-level high` |
 
-| model | cost | intelligence | taste |
-|---|---:|---:|---: |
-| opus-5.5 | 5 | 9 | 9 |
-| fable-5.1 | 1 | 8 | 9 |
-| gpt-6-astra | 1 | 8 | 7 |
-| grok-4.7 | 8 | 7 | 6 |
+- Quota, scarcest first: Fable, Opus, Astra, Grok. Volume goes to Astra and Grok.
+- Use no other model. Never spawn Opus or Fable to build, Fable above medium, or any model at max, unless the owner asks.
+- Check identifiers with `bb provider models <provider> --machine <machine>`. If a model is missing, tell the owner; do not substitute.
 
-## Role defaults
+## Lead
 
-| role | model and responsibility |
-|---|---|
-| Lead, planning and integration | Opus directs the work and owns integration and final judgment. |
-| Implementation, fixes and refactoring | Grok is the default worker. Astra at medium reasoning is the alternative worker. |
-| Performance | Opus directs the investigation, chooses experiments and judges results. Grok implements changes and runs benchmarks. |
-| Swarm workers | Grok by default, with Astra at medium reasoning as an alternative. |
-| Exploration and investigation | Opus directs and interprets findings. Grok gathers evidence. |
-| Judgment, prose and explanations | Opus. |
-| UI, UX and API design | Opus leads the design. Grok implements it. |
-| Architecture and arena candidates | Opus and Astra produce independent proposals. |
-| Plan, code and architecture reviews | Fable and Astra are independent reviewers. Use both for substantial or contested changes. |
-| Hardest tasks or repeated worker failures | Escalate to Opus at xhigh reasoning. |
+Opus is strongest when the work can be checked: a test, a benchmark, a spec. Fable is strongest when it cannot: experiments, unclear direction, new design.
 
-- Role names use the model identifiers and settings above.
-- Use Grok at xhigh reasoning.
-- These defaults do not require delegation for every small task.
-- Raise review reasoning to xhigh when deeper analysis is needed.
-- Use Fable at xhigh only when the user explicitly requests it.
+You lead the thread you are in. Do not respawn it on the other model.
 
-## Select the harness
+- Opus lead with no check for the next step: ask Fable for the direction, then carry on.
+- Fable lead: set the direction, then brief out each piece as soon as it has a check.
 
-Use BB for all agentic work. Use its model controls and check that the model is available before choosing its identifier. Model aliases can change.
+## Delegate
+
+Do it yourself if the brief would take longer than the change, or it is under about 50 lines in files you have read. Otherwise delegate, with a check the worker can run and the design already decided.
+
+## QA
+
+Spawn Opus for agentic end-to-end testing on a bb-box box of the target OS (see the `bb-box` skill).
+
+## Review
+
+The lead reads every worker diff and runs its check. Add reviewers when a change touches a public API, stored data, auth, concurrency or a migration, is over about 300 lines, or is disputed. No model reviews its own work:
+
+| who wrote it | Opus leads | Fable leads |
+|---|---|---|
+| Astra | Fable | The lead |
+| Grok or the lead | Fable and Astra | Astra |
+
+## Escalate
+
+1. Grok fails twice: give it to Astra. Astra fails twice: the lead does it.
+2. Opus lead stuck on a checkable task: spawn Opus at xhigh on that task alone.
+3. Still stuck, or a review is disputed: raise Astra to xhigh on that question.
+
+Report any escalation and why.
