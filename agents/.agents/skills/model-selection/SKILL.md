@@ -37,12 +37,9 @@ Spawn Opus for agentic end-to-end testing on a bb-box box of the target OS (see 
 
 ## Review
 
-The lead reads every worker diff and runs its check. Add reviewers when a change touches a public API, stored data, auth, concurrency or a migration, is over about 300 lines, or is disputed. No model reviews its own work:
+The lead reads every worker diff and runs its check. Add reviewers when a change touches a public API, stored data, auth, concurrency or a migration, is over about 300 lines, or is disputed.
 
-| who wrote it | Opus leads | Fable leads |
-|---|---|---|
-| Astra | Fable | The lead |
-| Grok or the lead | Fable and Astra | Astra |
+Spawn both reviewers fresh, whoever wrote the work or leads the thread. Give them the change, not the thread's history.
 
 ## Escalate
 
