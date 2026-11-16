@@ -8,13 +8,13 @@ description: Choose the model, reasoning level and BB provider for a role (lead,
 | role | model | spawn with |
 |---|---|---|
 | Lead | Opus 5.5 or Fable 5.2 | The owner starts it |
-| Worker | Astra | `--provider codex --model gpt-6-astra --reasoning-level medium` |
+| Worker | Sol 6.1 | `--provider codex --model gpt-6.1-sol --reasoning-level medium` |
 | Bulk worker | Grok 4.7 | `--provider acp-cursor --model grok-4.7 --reasoning-level xhigh --permission-mode full` |
 | QA | Opus 5.5 | `--provider claude-code --model claude-opus-5-5 --reasoning-level high` |
 | Reviewer | Fable 5.2 | `--provider claude-code --model claude-fable-5-2 --reasoning-level medium` |
 | Reviewer, second proposal | Astra | `--provider codex --model gpt-6-astra --reasoning-level high` |
 
-- Quota, scarcest first: Fable, Opus, Astra, Grok. Volume goes to Astra and Grok.
+- Quota, scarcest first: Fable, Opus, Astra, Sol, Grok. Volume goes to Sol and Grok.
 - Use no other model. Never spawn Opus or Fable to build, Fable above medium, or any model at max, unless the owner asks.
 - Check identifiers with `bb provider models <provider> --machine <machine>`. If a model is missing, tell the owner; do not substitute.
 
@@ -43,7 +43,7 @@ Spawn both reviewers fresh, whoever wrote the work or leads the thread. Give the
 
 ## Escalate
 
-1. Grok fails twice: give it to Astra. Astra fails twice: the lead does it.
+1. Grok fails twice: give it to Sol. Sol fails twice: the lead does it.
 2. Opus lead stuck on a checkable task: spawn Opus at xhigh on that task alone.
 3. Still stuck, or a review is disputed: raise Astra to xhigh on that question.
 
