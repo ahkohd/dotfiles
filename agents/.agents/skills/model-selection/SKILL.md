@@ -8,11 +8,11 @@ description: Choose the model, reasoning level and BB provider for a role (lead,
 | role | model | spawn with |
 |---|---|---|
 | Lead | Opus 5.5 or Fable 5.2 | The owner starts it |
-| Worker | Sol 6.1 | `--provider codex --model gpt-6.1-sol --reasoning-level medium` |
+| Worker | Sol 6.2 | `--provider codex --model gpt-6.2-sol --reasoning-level medium` |
 | Bulk worker | Grok 4.7 | `--provider acp-cursor --model grok-4.7 --reasoning-level xhigh --permission-mode full` |
 | QA | Opus 5.5 | `--provider claude-code --model claude-opus-5-5 --reasoning-level high` |
 | Reviewer | Fable 5.2 | `--provider claude-code --model claude-fable-5-2 --reasoning-level medium` |
-| Reviewer, second proposal | Astra | `--provider codex --model gpt-6-astra --reasoning-level high` |
+| Reviewer, second proposal | Astra 6.2 | `--provider codex --model gpt-6.2-astra --reasoning-level high` |
 
 - Quota, scarcest first: Fable, Opus, Astra, Sol, Grok. Volume goes to Sol and Grok.
 - Use no other model. Never spawn Opus or Fable to build, Fable above medium, or any model at max, unless the owner asks.
