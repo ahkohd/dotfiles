@@ -47,7 +47,7 @@ Spawn all reviewers fresh, whoever wrote the work or leads the thread. Give them
 
 ## Escalate
 
-1. Grok fails twice: give it to Sol. Sol fails twice: the lead does it.
+1. Grok fails twice: give it to Neon. Neon fails twice: the lead does it.
 2. Opus lead stuck on a checkable task: spawn Opus at xhigh on that task alone.
 3. Still stuck, or a review is disputed: raise Astra to xhigh on that question.
 
