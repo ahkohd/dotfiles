@@ -17,6 +17,7 @@ description: Choose the model, reasoning level and BB provider for a role (lead,
 | Reviewer, third proposal | Astra 6.2 | `--provider codex --model gpt-6.2-astra --reasoning-level high` |
 
 - Quota, scarcest first: Fable, Opus, Astra, Sol, Gemini, Grok. Volume goes to Neon, Grok and Sol.
+- Spawn Gemini only where `bb provider models acp-antigravity --machine <machine>` lists it; it reaches boxes through bb-box tools.
 - Use no other model. Never spawn Opus or Fable to build, Fable above medium, or any model at max, unless the owner asks.
 - Check identifiers with `bb provider models <provider> --machine <machine>`. If a model is missing, tell the owner; do not substitute.
 
