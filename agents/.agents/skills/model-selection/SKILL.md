@@ -9,7 +9,7 @@ description: Choose the model, reasoning level and BB provider for a role (lead,
 |---|---|---|
 | Lead | Opus 5.5 or Fable 5.2 | The owner starts it |
 | Worker | Gemini 4 Neon | `--provider acp-antigravity --model gemini-4-neon --reasoning-level high` |
-| Worker, fallback | Sol 6.1 | `--provider codex --model gpt-6.1-sol --reasoning-level high` |
+| Worker, fallback | Sol 6.1 | `--provider codex --model gpt-6.1-sol --reasoning-level high --service-tier fast` |
 | Bulk worker | Grok 4.7 | `--provider acp-cursor --model grok-4.7 --reasoning-level high --permission-mode full` |
 | QA | Opus 5.5 | `--provider claude-code --model claude-opus-5-5 --reasoning-level high` |
 | Reviewer | Fable 5.2 | `--provider claude-code --model claude-fable-5-2 --reasoning-level medium` |
