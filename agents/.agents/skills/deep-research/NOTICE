@@ -1,0 +1,8 @@
+deep-research skill
+
+Adapted from google-gemini/demolab, skills/deep-research/SKILL.md, version 1.0.0,
+by Google Gemini, licensed under the Apache License 2.0 (see LICENSE.txt).
+
+Changed by ahkohd in November 2026: adapted to BB and the Claude Code, Codex and Pi
+tools; added model choice through the model-selection skill, privacy rules,
+handling of untrusted content, source dates, and report location and style rules.
